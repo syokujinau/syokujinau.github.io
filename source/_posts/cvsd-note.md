@@ -6,10 +6,6 @@ tags:
 ---
 
 
-
-
-
-
 ## Verilog基本語法
 
 ### Operators
