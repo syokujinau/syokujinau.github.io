@@ -120,7 +120,7 @@ widgets:
         # Author name to be shown in the profile widget
         author: YC Lin
         # Title of the author to be shown in the profile widget
-        author_title:  
+        author_title:  沒什麼參考價值
         # Author's current location to be shown in the profile widget
         location: Taipei, Taiwan #Earth, Solar System
         # Path or URL to the avatar to be shown in the profile widget
