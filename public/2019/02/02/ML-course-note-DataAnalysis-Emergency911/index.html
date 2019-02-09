@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Emergency - 911 Calls 資料分析 - YC Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Dataset : Kaggle - Emergency - 911 Calls / Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1234import numpy as npimport pandas as pdimport matplotlib.pyplot as pltim">
+<meta name="keywords" content="Python,Scikit-learn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emergency - 911 Calls 資料分析">
+<meta property="og:url" content="http://yoursite.com/2019/02/02/ML-course-note-DataAnalysis-Emergency911/index.html">
+<meta property="og:site_name" content="YC Blog">
+<meta property="og:description" content="Dataset : Kaggle - Emergency - 911 Calls / Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1234import numpy as npimport pandas as pdimport matplotlib.pyplot as pltim">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/fQKB5ib.png">
+<meta property="og:image" content="https://i.imgur.com/ceW88aL.png">
+<meta property="og:image" content="https://i.imgur.com/IXvkZaS.png">
+<meta property="og:image" content="https://i.imgur.com/ZD3TXUI.png">
+<meta property="og:image" content="https://i.imgur.com/7RFPfp2.png">
+<meta property="og:image" content="https://i.imgur.com/eKNApQ6.png">
+<meta property="og:image" content="https://i.imgur.com/PZ9rkgR.png">
+<meta property="og:image" content="https://i.imgur.com/tS1xDVb.png">
+<meta property="og:image" content="https://i.imgur.com/pfpk1Q2.png">
+<meta property="og:updated_time" content="2019-02-02T09:13:45.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Emergency - 911 Calls 資料分析">
+<meta name="twitter:description" content="Dataset : Kaggle - Emergency - 911 Calls / Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1234import numpy as npimport pandas as pdimport matplotlib.pyplot as pltim">
+<meta name="twitter:image" content="https://i.imgur.com/fQKB5ib.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Emergency - 911 Calls 資料分析" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-02T09:12:32.000Z">2019-02-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 495 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Emergency - 911 Calls 資料分析
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>Dataset : <a href="https://www.kaggle.com/mchirico/montcoalert" target="_blank" rel="noopener">Kaggle - Emergency - 911 Calls / Montgomery County, PA</a></p>
+</blockquote>
+<h2 id="使用Python套件"><a href="#使用Python套件" class="headerlink" title="使用Python套件"></a>使用Python套件</h2><ul>
+<li>數據分析<ul>
+<li>NumPy</li>
+<li>Pandas</li>
+</ul>
+</li>
+<li>資料視覺化<ul>
+<li>matplotlib</li>
+<li>Seaborn</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="讀取dataset"><a href="#讀取dataset" class="headerlink" title="讀取dataset"></a>讀取dataset</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'911.csv'</span>)</span><br><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/fQKB5ib.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ceW88aL.png" alt=""></p>
+<h2 id="撥打911最多的5個郵遞區號"><a href="#撥打911最多的5個郵遞區號" class="headerlink" title="撥打911最多的5個郵遞區號"></a>撥打911最多的5個郵遞區號</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'zip'</span>].value_counts().head()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment"># 19401.0    6979</span></span><br><span class="line"><span class="hljs-comment"># 19464.0    6643</span></span><br><span class="line"><span class="hljs-comment"># 19403.0    4854</span></span><br><span class="line"><span class="hljs-comment"># 19446.0    4748</span></span><br><span class="line"><span class="hljs-comment"># 19406.0    3174</span></span><br><span class="line"><span class="hljs-comment"># Name: zip, dtype: int64</span></span><br></pre></td></tr></table></figure>
+<h2 id="撥打911最多的5個鄉鎮"><a href="#撥打911最多的5個鄉鎮" class="headerlink" title="撥打911最多的5個鄉鎮"></a>撥打911最多的5個鄉鎮</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'twp'</span>].value_counts().head()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># LOWER MERION    8443</span></span><br><span class="line"><span class="hljs-comment"># ABINGTON        5977</span></span><br><span class="line"><span class="hljs-comment"># NORRISTOWN      5890</span></span><br><span class="line"><span class="hljs-comment"># UPPER MERION    5227</span></span><br><span class="line"><span class="hljs-comment"># CHELTENHAM      4575</span></span><br><span class="line"><span class="hljs-comment"># Name: twp, dtype: int64</span></span><br></pre></td></tr></table></figure>
+<h2 id="title欄有幾筆唯一的資料"><a href="#title欄有幾筆唯一的資料" class="headerlink" title="title欄有幾筆唯一的資料"></a>title欄有幾筆唯一的資料</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># len(df['title'].unique()) </span></span><br><span class="line">df[<span class="hljs-string">'title'</span>].nunique()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 110</span></span><br></pre></td></tr></table></figure>
+<h2 id="分析title欄的類別，新增Reason欄位"><a href="#分析title欄的類別，新增Reason欄位" class="headerlink" title="分析title欄的類別，新增Reason欄位"></a>分析title欄的類別，新增Reason欄位</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#先取出類別</span></span><br><span class="line">x = df[<span class="hljs-string">'title'</span>].iloc[<span class="hljs-number">0</span>]</span><br><span class="line">x.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>] <span class="hljs-comment"># 'EMS'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 新增Reasons欄位</span></span><br><span class="line">df[<span class="hljs-string">'Reason'</span>] = df[<span class="hljs-string">'title'</span>].apply(<span class="hljs-keyword">lambda</span> title: title.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>])</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/IXvkZaS.png" alt=""></p>
+<h2 id="各種Reason案件數量"><a href="#各種Reason案件數量" class="headerlink" title="各種Reason案件數量"></a>各種Reason案件數量</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Reason'</span>].value_counts()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># EMS        48877</span></span><br><span class="line"><span class="hljs-comment"># Traffic    35695</span></span><br><span class="line"><span class="hljs-comment"># Fire       14920</span></span><br><span class="line"><span class="hljs-comment"># Name: Reason, dtype: int64</span></span><br></pre></td></tr></table></figure>
+<p>使用Seaborn產生圖表</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Reason'</span>, data = df, palette = <span class="hljs-string">'viridis'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ZD3TXUI.png" alt=""></p>
+<h2 id="分析timeStamp，新增Hour、Month、Day-of-Week欄位"><a href="#分析timeStamp，新增Hour、Month、Day-of-Week欄位" class="headerlink" title="分析timeStamp，新增Hour、Month、Day of Week欄位"></a>分析timeStamp，新增Hour、Month、Day of Week欄位</h2><blockquote>
+<p>使用pandas的to_datetime轉成Date Time物件</p>
+</blockquote>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># str</span></span><br><span class="line"></span><br><span class="line">df[<span class="hljs-string">'timeStamp'</span>] = pd.to_datetime(df[<span class="hljs-string">'timeStamp'</span>])</span><br><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># pandas._libs.tslibs.timestamps.Timestamp</span></span><br><span class="line"></span><br><span class="line">time = df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]</span><br><span class="line">time.hour <span class="hljs-comment"># 取出hour值</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 新增欄位</span></span><br><span class="line">df[<span class="hljs-string">'Hour'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.hour)</span><br><span class="line">df[<span class="hljs-string">'Month'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.month)</span><br><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.dayofweek)</span><br></pre></td></tr></table></figure>
+<p>重新mapping星期幾的欄位</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dmap = &#123;<span class="hljs-number">0</span>:<span class="hljs-string">'Mon'</span>,<span class="hljs-number">1</span>:<span class="hljs-string">'Tue'</span>,<span class="hljs-number">2</span>:<span class="hljs-string">'Wed'</span>,<span class="hljs-number">3</span>:<span class="hljs-string">'Thu'</span>,<span class="hljs-number">4</span>:<span class="hljs-string">'Fri'</span>,<span class="hljs-number">5</span>:<span class="hljs-string">'Sat'</span>,<span class="hljs-number">6</span>:<span class="hljs-string">'Sun'</span>&#125;</span><br><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'Day of Week'</span>].map(dmap)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/7RFPfp2.png" alt=""></p>
+<p>用Seaborn產生橫軸為<strong>Day of Week</strong>計量圖表</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Day of Week'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span><br><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)<span class="hljs-comment"># 把legend放外面避免重疊</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/eKNApQ6.png" alt=""></p>
+<p><strong>Month</strong>為橫軸</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Month'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span><br><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/PZ9rkgR.png" alt=""></p>
+<h2 id="Day-of-Week對Hour的Heat-map"><a href="#Day-of-Week對Hour的Heat-map" class="headerlink" title="Day of Week對Hour的Heat map"></a>Day of Week對Hour的Heat map</h2><blockquote>
+<p>需使用<strong>groupby</strong>與<strong>unstack</strong>重構dataFrame</p>
+</blockquote>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dayHour = df.groupby(by = [<span class="hljs-string">'Day of Week'</span>, <span class="hljs-string">'Hour'</span>]).count()[<span class="hljs-string">'Reason'</span>].unstack()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/tS1xDVb.png" alt=""></p>
+<p>用新的dataFrame產生Heat map</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">12</span>,<span class="hljs-number">6</span>))</span><br><span class="line">sns.heatmap(dayHour, cmap = <span class="hljs-string">'viridis'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/pfpk1Q2.png" alt=""></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/Scikit-learn/">Scikit-learn</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Decision Tree and Random Forest - Lending Club 信貸資料分析</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/02/ML-course-note-LinearRegression/">
+                <span class="level-item">Linear Regression - Boston house-prices dataset  房價預測模型</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/yc.png" alt="YC Lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC Lin
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        31
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/ppoffice">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.udemy.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Udemy</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.udemy.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.ee.nchu.edu.tw/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NCHU EE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.ee.nchu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.giee.ntu.edu.tw/portal/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NTU GIEE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.giee.ntu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/IoT/" style="font-size: 13.33px;">IoT</a> <a href="/tags/Jupyter/" style="font-size: 10px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 13.33px;">Raspberry Pi</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 10px;">Tensorflow</a> <a href="/tags/Verilog/" style="font-size: 13.33px;">Verilog</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-K-means/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="K-Means-Clustering演算法 - 腫瘤分類">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:16:19.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-K-means/" class="has-link-black-ter is-size-6">K-Means-Clustering演算法 - 腫瘤分類</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:14:55.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="has-link-black-ter is-size-6">Decision Tree and Random Forest - Lending Club 信貸資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Emergency - 911 Calls 資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:12:32.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="has-link-black-ter is-size-6">Emergency - 911 Calls 資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LinearRegression/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linear Regression - Boston house-prices dataset  房價預測模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:10:42.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LinearRegression/" class="has-link-black-ter is-size-6">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Logistic Regrassion - 廣告點擊資料分析&amp;預測">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:09:28.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="has-link-black-ter is-size-6">Logistic Regrassion - 廣告點擊資料分析&amp;預測</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-K-means/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="K-Means-Clustering演算法 - 腫瘤分類">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:16:19.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-K-means/" class="has-link-black-ter is-size-6">K-Means-Clustering演算法 - 腫瘤分類</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:14:55.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="has-link-black-ter is-size-6">Decision Tree and Random Forest - Lending Club 信貸資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Emergency - 911 Calls 資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:12:32.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="has-link-black-ter is-size-6">Emergency - 911 Calls 資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LinearRegression/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linear Regression - Boston house-prices dataset  房價預測模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:10:42.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LinearRegression/" class="has-link-black-ter is-size-6">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Logistic Regrassion - 廣告點擊資料分析&amp;預測">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:09:28.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="has-link-black-ter is-size-6">Logistic Regrassion - 廣告點擊資料分析&amp;預測</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Emergency - 911 Calls 資料分析" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>

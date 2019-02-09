@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Tensorflow Notebook 1 - Python實作二元線性分類器 - YC Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Basic - Perceptron生物的神經元，包含樹突(Dendrites)、細胞核(Body)、軸突(Axon) Artificial Neural Network模仿神經元運作   令activation function運算每個input*weight之和若weight皆為0，加入bias避免輸出恆為0的情況   數學式:$$\sum_{i=0}^{n} w_{i}x_{i} + b$">
+<meta name="keywords" content="Python,Tensorflow,Deep Learning,AI,Jupyter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensorflow Notebook 1 - Python實作二元線性分類器">
+<meta property="og:url" content="http://yoursite.com/2019/01/28/Tensorflow-notebook-1/index.html">
+<meta property="og:site_name" content="YC Blog">
+<meta property="og:description" content="Basic - Perceptron生物的神經元，包含樹突(Dendrites)、細胞核(Body)、軸突(Axon) Artificial Neural Network模仿神經元運作   令activation function運算每個input*weight之和若weight皆為0，加入bias避免輸出恆為0的情況   數學式:$$\sum_{i=0}^{n} w_{i}x_{i} + b$">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/V0TrxkI.png">
+<meta property="og:image" content="https://i.imgur.com/bwe5HDN.png">
+<meta property="og:image" content="https://i.imgur.com/j0WrsTc.png">
+<meta property="og:image" content="https://i.imgur.com/Ls9vU9U.png">
+<meta property="og:image" content="https://i.imgur.com/l5lVfc4.png">
+<meta property="og:image" content="https://i.imgur.com/1S0XLxV.png">
+<meta property="og:image" content="https://i.imgur.com/FqgzriI.png">
+<meta property="og:image" content="https://i.imgur.com/HPujnEy.png">
+<meta property="og:image" content="https://i.imgur.com/eaHVvcJ.png">
+<meta property="og:image" content="https://i.imgur.com/Ucs8CnC.png">
+<meta property="og:updated_time" content="2019-02-04T08:07:33.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tensorflow Notebook 1 - Python實作二元線性分類器">
+<meta name="twitter:description" content="Basic - Perceptron生物的神經元，包含樹突(Dendrites)、細胞核(Body)、軸突(Axon) Artificial Neural Network模仿神經元運作   令activation function運算每個input*weight之和若weight皆為0，加入bias避免輸出恆為0的情況   數學式:$$\sum_{i=0}^{n} w_{i}x_{i} + b$">
+<meta name="twitter:image" content="https://i.imgur.com/V0TrxkI.png">
+
+
+
+
+
+<link rel="icon" href="/myimages/yc.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Tensorflow Notebook 1 - Python實作二元線性分類器" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/zJX2v4b.jpg" alt="Tensorflow Notebook 1 - Python實作二元線性分類器">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-01-28T12:46:49.000Z">2019-01-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 minutes read (About 1501 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Tensorflow Notebook 1 - Python實作二元線性分類器
+            
+        </h1>
+        <div class="content">
+            <a id="more"></a>
+<h2 id="Basic-Perceptron"><a href="#Basic-Perceptron" class="headerlink" title="Basic - Perceptron"></a>Basic - Perceptron</h2><p>生物的神經元，包含樹突(Dendrites)、細胞核(Body)、軸突(Axon)<br><img src="https://i.imgur.com/V0TrxkI.png" alt=""></p>
+<p>Artificial Neural Network模仿神經元運作</p>
+<p><img src="https://i.imgur.com/bwe5HDN.png" alt=""></p>
+<blockquote>
+<p>令activation function運算每個input*weight之和<br>若weight皆為0，加入bias避免輸出恆為0的情況 </p>
+</blockquote>
+<p>數學式:<br>$$<br>\sum_{i=0}^{n} w_{i}x_{i} + b<br>$$</p>
+<h3 id="Multiple-Perceptron-Network"><a href="#Multiple-Perceptron-Network" class="headerlink" title="Multiple Perceptron Network"></a>Multiple Perceptron Network</h3><ul>
+<li><p>Input layer </p>
+<ul>
+<li>real valus from the data</li>
+</ul>
+</li>
+<li><p>Hidden laayer </p>
+<ul>
+<li>layers in between input and output</li>
+<li>3 or more layers is deep network</li>
+</ul>
+</li>
+<li>Output layer<ul>
+<li>Final estimate of the output</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/j0WrsTc.png" alt=""></p>
+<h3 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h3><blockquote>
+<p><strong>Notation</strong><br>y : true value<br>a : neuron’s prediction</p>
+</blockquote>
+<h4 id="1-Quadratic-Cost"><a href="#1-Quadratic-Cost" class="headerlink" title="1. Quadratic Cost"></a>1. Quadratic Cost</h4><p>$$<br>C = \frac{\sum (y-a)^{2}}{n}<br>$$</p>
+<p>y - a即為error越大的error，則cost越大<br>會造成learning speed下降</p>
+<h4 id="2-Cross-Entropy"><a href="#2-Cross-Entropy" class="headerlink" title="2. Cross Entropy"></a>2. Cross Entropy</h4><p>$$<br>C =  \frac{-1}{n}\sum (ylna+(1-y)ln(1-a))<br>$$</p>
+<p>error越大則learning speed越快<br>(the larger the difference, the faster the neuron can learn.)</p>
+<h3 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h3><p>We need to figure out how we can use our <strong>neurons(activation function)</strong> and <strong>the measurement of error (cost function)</strong> and then attempt to <strong>correct our prediction (learning)</strong></p>
+<h2 id="Manual-Neural-Network"><a href="#Manual-Neural-Network" class="headerlink" title="Manual Neural Network"></a>Manual Neural Network</h2><p>以下用python實作一個ANN，並分類一個2個label的資料集(二元線性分類器)</p>
+<h3 id="Basic-Graph"><a href="#Basic-Graph" class="headerlink" title="Basic Graph"></a>Basic Graph</h3><p><img src="https://i.imgur.com/Ls9vU9U.png" alt=""></p>
+<p>“Graph”可想像成一連串nodes，n1、n2為常數輸入，n3為”operation”，繼承此class實作各種運算，例如上圖add operation，最後輸出為3</p>
+<h3 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h3><h4 id="Opeartion"><a href="#Opeartion" class="headerlink" title="Opeartion"></a>Opeartion</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Operation</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, input_nodes=[])</span>:</span></span><br><span class="line">        self.input_nodes = input_nodes</span><br><span class="line">        self.output_nodes = []</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> input_nodes:</span><br><span class="line">            node.output_nodes.append(self)</span><br><span class="line">            </span><br><span class="line">        _default_graph.operations.append(self)</span><br><span class="line">            </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">add</span><span class="hljs-params">(Operation)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x, y)</span>:</span></span><br><span class="line">        super().__init__([x, y])</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span><span class="hljs-params">(self, val_x, val_y)</span>:</span> <span class="hljs-comment">#overwrite</span></span><br><span class="line">        self.inputs = [val_x, val_y]</span><br><span class="line">        <span class="hljs-keyword">return</span> val_x + val_y</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">multiply</span><span class="hljs-params">(Operation)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x, y)</span>:</span></span><br><span class="line">        super().__init__([x, y])</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span><span class="hljs-params">(self, val_x, val_y)</span>:</span> <span class="hljs-comment">#overwrite</span></span><br><span class="line">        self.inputs = [val_x, val_y]</span><br><span class="line">        <span class="hljs-keyword">return</span> val_x * val_y</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">matmul</span><span class="hljs-params">(Operation)</span>:</span> <span class="hljs-comment"># matrix multiply</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x, y)</span>:</span></span><br><span class="line">        super().__init__([x, y])</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span><span class="hljs-params">(self, val_x, val_y)</span>:</span> <span class="hljs-comment">#overwrite</span></span><br><span class="line">        self.inputs = [val_x, val_y]</span><br><span class="line">        <span class="hljs-keyword">return</span> val_x.dot(val_y)</span><br></pre></td></tr></table></figure>
+<h4 id="Placeholder"><a href="#Placeholder" class="headerlink" title="Placeholder"></a>Placeholder</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Placeholder</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        self.output_nodes = [];</span><br><span class="line">        _default_graph.placeholders.append(self)</span><br></pre></td></tr></table></figure>
+<h4 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Variable</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, initial_value = None)</span>:</span></span><br><span class="line">        self.value= initial_value</span><br><span class="line">        self.output_nodes = []</span><br><span class="line">    </span><br><span class="line">        _default_graph.variables.append(self)</span><br></pre></td></tr></table></figure>
+<h4 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Graph</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        self.operations = []</span><br><span class="line">        self.placeholders = []</span><br><span class="line">        self.variables = []</span><br><span class="line">        </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_as_default</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">global</span> _default_graph</span><br><span class="line">        _default_graph = self</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = Ax + b</span><br><span class="line">A = 10, b = 1</span><br></pre></td></tr></table></figure>
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>此時需要先有post-order traverse function來查看運算是否按照正確順序，比如說這個範例需要先相乘再相加，因此定義session class</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">traverse_postorder</span><span class="hljs-params">(operation)</span>:</span></span><br><span class="line">    nodes_postorder = []</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recurse</span><span class="hljs-params">(node)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> isinstance(node, Operation):</span><br><span class="line">            <span class="hljs-keyword">for</span> input_node <span class="hljs-keyword">in</span> node.input_nodes:</span><br><span class="line">                recurse(input_node)</span><br><span class="line">        nodes_postorder.append(node)</span><br><span class="line">    </span><br><span class="line">    recurse(operation)</span><br><span class="line">    <span class="hljs-keyword">return</span> nodes_postorder</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Session</span><span class="hljs-params">()</span>:</span>   </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self, operation, feed_dict=&#123;&#125;)</span>:</span> <span class="hljs-comment"># feed_dict to input a batch of data</span></span><br><span class="line">    </span><br><span class="line">        nodes_postorder = traverse_postorder(operation)</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> nodes_postorder:</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">if</span> type(node) == Placeholder:</span><br><span class="line">                node.output = feed_dict[node]</span><br><span class="line">                </span><br><span class="line">            <span class="hljs-keyword">elif</span> type(node) == Variable:</span><br><span class="line">                node.output = node.value</span><br><span class="line">                </span><br><span class="line">            <span class="hljs-keyword">else</span>: <span class="hljs-comment">#operation</span></span><br><span class="line">                node.inputs = [input_node.output <span class="hljs-keyword">for</span> input_node <span class="hljs-keyword">in</span> node.input_nodes]</span><br><span class="line">                node.output = node.compute(*node.inputs) <span class="hljs-comment"># args</span></span><br><span class="line">                </span><br><span class="line">            <span class="hljs-keyword">if</span> type(node.output) == list:</span><br><span class="line">                node.output = np.array(node.output)</span><br><span class="line">                </span><br><span class="line">        <span class="hljs-keyword">return</span> operation.output</span><br></pre></td></tr></table></figure>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># example1</span></span><br><span class="line">g = Graph()</span><br><span class="line">g.set_as_default()</span><br><span class="line"></span><br><span class="line">A = Variable(<span class="hljs-number">10</span>)</span><br><span class="line">b = Variable(<span class="hljs-number">1</span>)</span><br><span class="line">x = Placeholder()</span><br><span class="line"></span><br><span class="line">z = add(multiply(A, x), b)</span><br><span class="line"></span><br><span class="line">sess = Session()</span><br><span class="line"></span><br><span class="line">result = sess.run(operation = z, feed_dict = &#123;x:<span class="hljs-number">10</span>&#125;)</span><br><span class="line">print(result) <span class="hljs-comment">#101</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># example2</span></span><br><span class="line">g = Graph()</span><br><span class="line">g.set_as_default()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># z = Ax + b</span></span><br><span class="line">A = Variable([[<span class="hljs-number">10</span>, <span class="hljs-number">20</span>], [<span class="hljs-number">30</span>, <span class="hljs-number">40</span>]])</span><br><span class="line">b = Variable([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])</span><br><span class="line"></span><br><span class="line">x = Placeholder()</span><br><span class="line"></span><br><span class="line">y = matmul(A, x)</span><br><span class="line">z = add(y, b)</span><br><span class="line"></span><br><span class="line">sess = Session()</span><br><span class="line">sess.run(operation=z, feed_dict=&#123;x:<span class="hljs-number">10</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Perceptron-type-model"><a href="#Perceptron-type-model" class="headerlink" title="Perceptron type model"></a>Perceptron type model</h3><p>應用此模型來做分類，從簡單的linear classification開始!</p>
+<h4 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h4><p>先引入視覺化套件<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure></p>
+<p>定義activation function<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sigmoid</span><span class="hljs-params">(z)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-z))</span><br></pre></td></tr></table></figure></p>
+<p>先看看這個function的長相</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sample_z = np.linspace(<span class="hljs-number">-10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>)</span><br><span class="line">sample_a = sigmoid(sample_z)</span><br><span class="line"></span><br><span class="line">plt.plot(sample_z, sample_a)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/l5lVfc4.png" alt=""></p>
+<p>建立運算(繼承Operation)</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sigmoid</span><span class="hljs-params">(Operation)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, z)</span>:</span></span><br><span class="line">        super().__init__([z])</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span><span class="hljs-params">(self, z_val)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-z_val))</span><br></pre></td></tr></table></figure>
+<h4 id="Feature之間的線性關係"><a href="#Feature之間的線性關係" class="headerlink" title="Feature之間的線性關係"></a>Feature之間的線性關係</h4><p>上面我們定義了神經元中的activation function，現在我們要找出feature之間的線性關係，這是我們從資料集中觀察到的結果，是人類自己需要歸納、分析的部分。<br><img src="https://i.imgur.com/1S0XLxV.png" alt=""><br>(source: <a href="https://isaacchanghau.github.io/post/activation_functions/" target="_blank" rel="noopener">https://isaacchanghau.github.io/post/activation_functions/</a>)</p>
+<p>使用scikit-learn的內建資料集產生器</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> make_blobs</span><br><span class="line"></span><br><span class="line">features, labels = make_blobs(n_samples = <span class="hljs-number">50</span>, n_features = <span class="hljs-number">2</span>, centers = <span class="hljs-number">2</span>, random_state = <span class="hljs-number">55</span>)</span><br></pre></td></tr></table></figure>
+<p>畫出斑點分布<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(features[:, <span class="hljs-number">0</span>], features[:, <span class="hljs-number">1</span>], c=labels)</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意!! 這張圖的兩軸各代表一種feature，顏色代表label</strong></p>
+<p><img src="https://i.imgur.com/FqgzriI.png" alt=""></p>
+<p>現在，我可以用肉眼觀察，<code>y = x + 5</code>可以很好地劃分2種斑點<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x1 = np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">11</span>, <span class="hljs-number">10</span>)</span><br><span class="line">y1 = x1 + <span class="hljs-number">5</span></span><br><span class="line">plt.scatter(features[:, <span class="hljs-number">0</span>], features[:, <span class="hljs-number">1</span>], c=labels)</span><br><span class="line">plt.plot(x1, y1)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/HPujnEy.png" alt=""></p>
+<p>接著要實際定義perceptron來構成最簡單的前饋神經網路(Feedforward Neural Network)</p>
+<blockquote>
+<p>前饋神經網路是最早被發明的ANN<br>The feedforward neural network was the first and simplest type of artificial neural network devised. In this network, the information moves in only one direction, forward, from the input nodes, through the hidden nodes (if any) and to the output nodes. There are no cycles or loops in the network. - <a href="https://en.wikipedia.org/wiki/Feedforward_neural_network" target="_blank" rel="noopener">Wikipedia</a></p>
+</blockquote>
+<h5 id="Matrix-representation"><a href="#Matrix-representation" class="headerlink" title="Matrix representation"></a>Matrix representation</h5><p><code>y = x + 5</code>其中x,y都是<strong>feature</strong><br>可寫成<code>feat2 = feat1 + 5</code>，移項後為<code>-feat1 + feat2 - 5 = 0</code><br>矩陣表示成<br><!-- $$
+\begin{bmatrix}-1&1 \end{bmatrix} \begin{bmatrix} feat1 \\ feat2 \end{bmatrix} - 5 = 0 
+$$ --><br><img src="https://i.imgur.com/eaHVvcJ.png" alt=""><br>所以給定feat1、feat2，代入上面式子為0代表在<code>y = x + 5</code>線上<br>令$f(feat1, feat2) = -feat1 + feat2 - 5$<br>若$f(feat1, feat2) &gt; 0$表示在直線<code>y = x + 5</code>劃分的上半區域，即label1<br>若$f(feat1, feat2) &lt; 0$表示在直線<code>y = x + 5</code>劃分的下半區域，即label2</p>
+<blockquote>
+<p>因此稱之為linear classification</p>
+</blockquote>
+<h4 id="建構神經元"><a href="#建構神經元" class="headerlink" title="建構神經元"></a>建構神經元</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = Graph()</span><br><span class="line">g.set_as_default()</span><br></pre></td></tr></table></figure>
+<p>$\sum_{i} wixi + b$<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = Placeholder()</span><br><span class="line"><span class="hljs-comment"># f(feat1, feat2) = −feat1 + feat2 − 5 </span></span><br><span class="line">w = Variable([<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>])</span><br><span class="line">b = Variable(<span class="hljs-number">-5</span>)</span><br></pre></td></tr></table></figure></p>
+<p>activation function:<br>$a = f(\sum_{i} wixi + b )$<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = add(matmul(w, x), b)</span><br><span class="line">a = Sigmoid(z)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Ucs8CnC.png" alt=""></p>
+<p>再複習一次，sigmoid會給我們一個近似0或1的數，類比成神經元的行為就是當輸入訊號到達某個threshold(上圖就是0)，產生電脈衝。電脈衝沿著軸突並通過突觸傳遞到其它神經元</p>
+<p>現在我們已經完成神經元的構造，現在我有一組features=(-8, 10)<br>丟進這個perceptron model，看看這個model會辨識出什麼<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = Session()</span><br><span class="line">sess.run(operation=a, feed_dict=&#123;x: [<span class="hljs-number">-8</span>, <span class="hljs-number">10</span>]&#125;)</span><br><span class="line"><span class="hljs-comment"># 0.99999773967570205</span></span><br></pre></td></tr></table></figure></p>
+<p>輸出一個很接近1的數，代表label = 1<br>我們可以看到分布圖中(-8, 10)的位置就是直線上半的某點</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sess.run(operation=a, feed_dict=&#123;x: [<span class="hljs-number">0</span>, <span class="hljs-number">-5</span>]&#125;)</span><br><span class="line"><span class="hljs-comment"># 4.5397868702434395e-05</span></span><br></pre></td></tr></table></figure>
+<p>輸出一個很接近0的數，代表label = 0</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/AI/">AI</a>, <a class="has-link-grey -link" href="/tags/Deep-Learning/">Deep Learning</a>, <a class="has-link-grey -link" href="/tags/Jupyter/">Jupyter</a>, <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/Tensorflow/">Tensorflow</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/02/Raspberry-Pi3-MJPEG-Streamer-Install-Setup/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Raspberry Pi3 MJPEG-Streamer Install &amp; Setup</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/11/26/iot-course2018-HW6/">
+                <span class="level-item">透過AWS IoT core儲存sensor資料至DynamoDB</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/01/28/Tensorflow-notebook-1/';
+        this.page.identifier = '2019/01/28/Tensorflow-notebook-1/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/myimages/yc.png" alt="YC Lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC Lin
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        21
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        35
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.udemy.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Udemy</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.udemy.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.ee.nchu.edu.tw/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NCHU EE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.ee.nchu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.giee.ntu.edu.tw/portal/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NTU GIEE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.giee.ntu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 13.33px;">AI</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 13.33px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/IoT/" style="font-size: 13.33px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 13.33px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 13.33px;">Raspberry Pi</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 13.33px;">Tensorflow</a> <a href="/tags/Verilog/" style="font-size: 13.33px;">Verilog</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/erestes/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="erestes">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:27:11.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/erestes/" class="has-link-black-ter is-size-6">erestes</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:13:34.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test2/" class="has-link-black-ter is-size-6">test2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T07:21:15.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test/" class="has-link-black-ter is-size-6">test</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/04/Tensorflow-notebook-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/zJX2v4b.jpg" alt="Tensorflow Notebook 2 - Linear Regression">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-04T08:42:49.000Z">2019-02-04</time></div>
+                    <a href="/2019/02/04/Tensorflow-notebook-2/" class="has-link-black-ter is-size-6">Tensorflow Notebook 2 - Linear Regression</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/03/js-promise-execute-sequentially/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time></div>
+                    <a href="/2019/02/03/js-promise-execute-sequentially/" class="has-link-black-ter is-size-6">JavaScript 筆記 - 依序執行function</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/erestes/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="erestes">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:27:11.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/erestes/" class="has-link-black-ter is-size-6">erestes</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:13:34.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test2/" class="has-link-black-ter is-size-6">test2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T07:21:15.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test/" class="has-link-black-ter is-size-6">test</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/04/Tensorflow-notebook-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/zJX2v4b.jpg" alt="Tensorflow Notebook 2 - Linear Regression">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-04T08:42:49.000Z">2019-02-04</time></div>
+                    <a href="/2019/02/04/Tensorflow-notebook-2/" class="has-link-black-ter is-size-6">Tensorflow Notebook 2 - Linear Regression</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/03/js-promise-execute-sequentially/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time></div>
+                    <a href="/2019/02/03/js-promise-execute-sequentially/" class="has-link-black-ter is-size-6">JavaScript 筆記 - 依序執行function</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Tensorflow Notebook 1 - Python實作二元線性分類器" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>

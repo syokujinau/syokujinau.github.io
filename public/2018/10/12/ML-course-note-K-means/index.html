@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>K-Means-Clustering演算法 - 腫瘤分類 - YC Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)並用cufflinks作圖幫助我們做初步的資料分析dataset來自scikit-learn  函式庫12345678910111213import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as sn">
+<meta name="keywords" content="Machine Learning,K-Means">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K-Means-Clustering演算法 - 腫瘤分類">
+<meta property="og:url" content="http://yoursite.com/2018/10/12/ML-course-note-K-means/index.html">
+<meta property="og:site_name" content="YC Blog">
+<meta property="og:description" content="非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)並用cufflinks作圖幫助我們做初步的資料分析dataset來自scikit-learn  函式庫12345678910111213import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as sn">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/25fKd74.png">
+<meta property="og:image" content="https://i.imgur.com/YPs3Wnb.png">
+<meta property="og:image" content="https://i.imgur.com/kL71HaG.png">
+<meta property="og:image" content="https://i.imgur.com/rC33hjL.png">
+<meta property="og:image" content="https://i.imgur.com/2RVe9nG.png">
+<meta property="og:updated_time" content="2019-02-02T09:23:43.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="K-Means-Clustering演算法 - 腫瘤分類">
+<meta name="twitter:description" content="非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)並用cufflinks作圖幫助我們做初步的資料分析dataset來自scikit-learn  函式庫12345678910111213import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as sn">
+<meta name="twitter:image" content="https://i.imgur.com/25fKd74.png">
+
+
+
+
+
+<link rel="icon" href="/myimages/yc.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="K-Means-Clustering演算法 - 腫瘤分類" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-12T09:16:19.000Z">2018-10-12</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 539 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                K-Means-Clustering演算法 - 腫瘤分類
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)<br>並用cufflinks作圖幫助我們做初步的資料分析<br>dataset來自<a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html" target="_blank" rel="noopener">scikit-learn</a></p>
+</blockquote>
+<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> plotly.offline <span class="hljs-keyword">import</span> download_plotlyjs, init_notebook_mode, plot, iplot</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> cufflinks <span class="hljs-keyword">as</span> cf</span><br><span class="line"><span class="hljs-comment"># For Notebooks</span></span><br><span class="line">init_notebook_mode(connected=<span class="hljs-keyword">True</span>)</span><br><span class="line"><span class="hljs-comment"># For offline use</span></span><br><span class="line">cf.go_offline()</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="scikit-learn資料集"><a href="#scikit-learn資料集" class="headerlink" title="scikit-learn資料集"></a>scikit-learn資料集</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_breast_cancer</span><br><span class="line"></span><br><span class="line">data = load_breast_cancer()</span><br><span class="line">data.keys()</span><br><span class="line"><span class="hljs-comment"># print(data.DESCR)</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(data.data, columns= data.feature_names)</span><br><span class="line">df[<span class="hljs-string">'target'</span>] = data.target</span><br><span class="line"></span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/25fKd74.png" alt=""></p>
+<h2 id="cufflinks-互動式資料分析"><a href="#cufflinks-互動式資料分析" class="headerlink" title="cufflinks 互動式資料分析"></a>cufflinks 互動式資料分析</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iplot(kind=<span class="hljs-string">'scatter'</span>,x=<span class="hljs-string">'mean radius'</span>,y=<span class="hljs-string">'mean texture'</span>,mode=<span class="hljs-string">'markers'</span>,size=<span class="hljs-number">10</span>, categories= <span class="hljs-string">'target'</span>, xTitle=<span class="hljs-string">'mean radius'</span>, yTitle=<span class="hljs-string">'mean texture'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/YPs3Wnb.png" alt=""></p>
+<p>具有部分縮放功能可查看資料細節</p>
+<p><img src="https://i.imgur.com/kL71HaG.png" alt=""></p>
+<h2 id="KMeans演算法"><a href="#KMeans演算法" class="headerlink" title="KMeans演算法"></a>KMeans演算法</h2><h3 id="由scikit-learn的cluster引入"><a href="#由scikit-learn的cluster引入" class="headerlink" title="由scikit-learn的cluster引入"></a>由scikit-learn的cluster引入</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> KMeans</span><br><span class="line"></span><br><span class="line">kmeans = KMeans(n_clusters=<span class="hljs-number">2</span>) <span class="hljs-comment">#分成2類</span></span><br><span class="line"></span><br><span class="line">kmeans.fit(df.drop(<span class="hljs-string">'target'</span>, axis=<span class="hljs-number">1</span>))  <span class="hljs-comment">#注意! 非監督式不需要Label</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看重心"><a href="#查看重心" class="headerlink" title="查看重心"></a>查看重心</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kmeans.cluster_centers_</span><br></pre></td></tr></table></figure>
+<p>array([[1.25562991e+01, 1.85703653e+01, 8.11234703e+01, 4.96061872e+02,<br>        9.48844977e-02, 9.10998174e-02, 6.24377642e-02, 3.34325434e-02,<br>        1.78057991e-01, 6.34540183e-02, 3.04190868e-01, 1.21515320e+00,<br>        2.15288059e+00, 2.37852922e+01, 7.17326256e-03, 2.34746895e-02,<br>        2.87455128e-02, 1.06363242e-02, 2.06135799e-02, 3.74750297e-03,<br>        1.40439018e+01, 2.47095434e+01, 9.19375114e+01, 6.19647945e+02,<br>        1.29959110e-01, 2.23311758e-01, 2.19214947e-01, 9.13298425e-02,<br>        2.83553653e-01, 8.32819406e-02],<br>       [1.93799237e+01, 2.16945802e+01, 1.28231298e+02, 1.18592977e+03,<br>        1.01294580e-01, 1.48612977e-01, 1.76939466e-01, 1.00698779e-01,<br>        1.91539695e-01, 6.06029008e-02, 7.42803817e-01, 1.22253817e+00,<br>        5.25058015e+00, 9.56781679e+01, 6.59868702e-03, 3.21766947e-02,<br>        4.24197710e-02, 1.56739847e-02, 2.03039695e-02, 3.95338931e-03,<br>        2.37094656e+01, 2.89126718e+01, 1.58496183e+02, 1.75302290e+03,<br>        1.40424733e-01, 3.57757710e-01, 4.49306107e-01, 1.92431069e-01,<br>        3.11881679e-01, 8.61654962e-02]])</p>
+<h3 id="分群結果"><a href="#分群結果" class="headerlink" title="分群結果"></a>分群結果</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kmeans.labels_</span><br></pre></td></tr></table></figure>
+<p>array([0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1,<br>       1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1,<br>       1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,<br>       1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,<br>       0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1,<br>       0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,<br>       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1,<br>       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1,<br>       1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1])</p>
+<h3 id="視覺化比較分類結果"><a href="#視覺化比較分類結果" class="headerlink" title="視覺化比較分類結果"></a>視覺化比較分類結果</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-keyword">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = kmeans.labels_)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/rC33hjL.png" alt=""></p>
+<p>很明顯良性惡性的結果label反了(因為n_clusters=2，所以類型非0即1)，所以修改預測數值 (此步驟不一定要做)</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func = <span class="hljs-keyword">lambda</span> x : <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> x ==<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></span><br><span class="line">predictions = np.array([func(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> kmeans.labels_])</span><br></pre></td></tr></table></figure>
+<p>再次作圖</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-keyword">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = predictions)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/2RVe9nG.png" alt=""></p>
+<p>評估預測準確度</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span>  classification_report, confusion_matrix</span><br><span class="line">print(confusion_matrix(df[<span class="hljs-string">'target'</span>], predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">""" </span></span><br><span class="line"><span class="hljs-string">[[130  82]</span></span><br><span class="line"><span class="hljs-string"> [  1 356]]</span></span><br><span class="line"><span class="hljs-string">"""</span> </span><br><span class="line"> </span><br><span class="line">print(classification_report(df[<span class="hljs-string">'target'</span>], predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">            precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.99      0.61      0.76       212</span></span><br><span class="line"><span class="hljs-string">          1       0.81      1.00      0.90       357</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.88      0.85      0.84       569</span></span><br><span class="line"><span class="hljs-string">"""</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/K-Means/">K-Means</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/">Machine Learning</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/10/22/bulid-a-facebook-bot/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Fackbook Bot Webhook架設筆記</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/10/12/ML-course-note-SVM/">
+                <span class="level-item">Support-Vector-Machine演算法 - 紅酒種類預測</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/10/12/ML-course-note-K-means/';
+        this.page.identifier = '2018/10/12/ML-course-note-K-means/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/myimages/yc.png" alt="YC Lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC Lin
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        21
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        35
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.udemy.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Udemy</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.udemy.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.ee.nchu.edu.tw/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NCHU EE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.ee.nchu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.giee.ntu.edu.tw/portal/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NTU GIEE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.giee.ntu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 13.33px;">AI</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 13.33px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/IoT/" style="font-size: 13.33px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 13.33px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 13.33px;">Raspberry Pi</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 13.33px;">Tensorflow</a> <a href="/tags/Verilog/" style="font-size: 13.33px;">Verilog</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/erestes/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="erestes">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:27:11.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/erestes/" class="has-link-black-ter is-size-6">erestes</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:13:34.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test2/" class="has-link-black-ter is-size-6">test2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T07:21:15.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test/" class="has-link-black-ter is-size-6">test</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/04/Tensorflow-notebook-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/zJX2v4b.jpg" alt="Tensorflow Notebook 2 - Linear Regression">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-04T08:42:49.000Z">2019-02-04</time></div>
+                    <a href="/2019/02/04/Tensorflow-notebook-2/" class="has-link-black-ter is-size-6">Tensorflow Notebook 2 - Linear Regression</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/03/js-promise-execute-sequentially/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time></div>
+                    <a href="/2019/02/03/js-promise-execute-sequentially/" class="has-link-black-ter is-size-6">JavaScript 筆記 - 依序執行function</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/erestes/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="erestes">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:27:11.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/erestes/" class="has-link-black-ter is-size-6">erestes</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T08:13:34.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test2/" class="has-link-black-ter is-size-6">test2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/09/test/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="test">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-09T07:21:15.000Z">2019-02-09</time></div>
+                    <a href="/2019/02/09/test/" class="has-link-black-ter is-size-6">test</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/04/Tensorflow-notebook-2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/zJX2v4b.jpg" alt="Tensorflow Notebook 2 - Linear Regression">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-04T08:42:49.000Z">2019-02-04</time></div>
+                    <a href="/2019/02/04/Tensorflow-notebook-2/" class="has-link-black-ter is-size-6">Tensorflow Notebook 2 - Linear Regression</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/03/js-promise-execute-sequentially/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time></div>
+                    <a href="/2019/02/03/js-promise-execute-sequentially/" class="has-link-black-ter is-size-6">JavaScript 筆記 - 依序執行function</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="K-Means-Clustering演算法 - 腫瘤分類" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>

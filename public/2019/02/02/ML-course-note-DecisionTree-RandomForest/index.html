@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Decision Tree and Random Forest - Lending Club 信貸資料分析 - YC Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
+<meta name="keywords" content="Machine Learning,Decision Tree,Random Forest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+<meta property="og:url" content="http://yoursite.com/2019/02/02/ML-course-note-DecisionTree-RandomForest/index.html">
+<meta property="og:site_name" content="YC Blog">
+<meta property="og:description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/yBHSpml.png">
+<meta property="og:image" content="https://i.imgur.com/7N890vM.png">
+<meta property="og:image" content="https://i.imgur.com/0411JUG.png">
+<meta property="og:image" content="https://i.imgur.com/8Flad85.png">
+<meta property="og:image" content="https://i.imgur.com/5JLTwFS.png">
+<meta property="og:image" content="https://i.imgur.com/jKjwOhi.png">
+<meta property="og:image" content="https://i.imgur.com/xe152ig.png">
+<meta property="og:updated_time" content="2019-02-02T09:19:09.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+<meta name="twitter:description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
+<meta name="twitter:image" content="https://i.imgur.com/yBHSpml.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-02T09:14:55.000Z">2019-02-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 841 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Decision Tree and Random Forest - Lending Club 信貸資料分析
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>Dataset <a href="https://drive.google.com/file/d/1MSbXgZrlQkPBzBNkHPYidYHxPRn9uP1G/view?usp=sharing" target="_blank" rel="noopener">Download</a><br>各column所代表的意義如下</p>
+</blockquote>
+<ul>
+<li>credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise.</li>
+<li>purpose: The purpose of the loan (takes values “credit_card”, “debt_consolidation”, “educational”, “major_purchase”, “small_business”, and “all_other”).</li>
+<li>int.rate: The interest rate of the loan, as a proportion (a rate of 11% would be stored as 0.11). Borrowers judged by LendingClub.com to be more risky are assigned higher interest rates.</li>
+<li>installment: The monthly installments owed by the borrower if the loan is funded.<a id="more"></a></li>
+<li>log.annual.inc: The natural log of the self-reported annual income of the borrower.</li>
+<li>dti: The debt-to-income ratio of the borrower (amount of debt divided by annual income).</li>
+<li>fico: The FICO credit score of the borrower.</li>
+<li>days.with.cr.line: The number of days the borrower has had a credit line.</li>
+<li>revol.bal: The borrower’s revolving balance (amount unpaid at the end of the credit card billing cycle).</li>
+<li>revol.util: The borrower’s revolving line utilization rate (the amount of the credit line used relative to total credit available).</li>
+<li>inq.last.6mths: The borrower’s number of inquiries by creditors in the last 6 months.</li>
+<li>delinq.2yrs: The number of times the borrower had been 30+ days past due on a payment in the past 2 years.</li>
+<li>pub.rec: The borrower’s number of derogatory public records (bankruptcy filings, tax liens, or judgments).</li>
+</ul>
+<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<h2 id="引入資料集"><a href="#引入資料集" class="headerlink" title="引入資料集"></a>引入資料集</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'loan_data.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/yBHSpml.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+<p><class 'pandas.core.frame.dataframe'=""><br>RangeIndex: 9578 entries, 0 to 9577<br>Data columns (total 14 columns):<br>credit.policy        9578 non-null int64<br>purpose              9578 non-null object<br>int.rate             9578 non-null float64<br>installment          9578 non-null float64<br>log.annual.inc       9578 non-null float64<br>dti                  9578 non-null float64<br>fico                 9578 non-null int64<br>days.with.cr.line    9578 non-null float64<br>revol.bal            9578 non-null int64<br>revol.util           9578 non-null float64<br>inq.last.6mths       9578 non-null int64<br>delinq.2yrs          9578 non-null int64<br>pub.rec              9578 non-null int64<br>not.fully.paid       9578 non-null int64<br>dtypes: float64(6), int64(7), object(1)<br>memory usage: 1.0+ MB</class></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/7N890vM.png" alt=""></p>
+<h2 id="資料分析"><a href="#資料分析" class="headerlink" title="資料分析"></a>資料分析</h2><p>個別顯示credit.policy為1跟0的fico值分布之histogram</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'Credit Policy = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'Credit Policy = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/0411JUG.png" alt=""></p>
+<p>同上，改成分為not.fully.paid為1、0的histogram</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'not.fully.paid = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'not.fully.paid = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/8Flad85.png" alt=""></p>
+<p>使用seaborn，產生countplot來顯示每種purpose對應的not.fully.paid為0、1的資訊</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>, <span class="hljs-number">7</span>))</span><br><span class="line">sns.countplot(x = <span class="hljs-string">'purpose'</span>, hue = <span class="hljs-string">'not.fully.paid'</span>, data = df)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/5JLTwFS.png" alt=""></p>
+<p>顯示fico值與int.rate之間的關係</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x = <span class="hljs-string">'fico'</span>, y= <span class="hljs-string">'int.rate'</span>, data = df)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/jKjwOhi.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>,<span class="hljs-number">7</span>))</span><br><span class="line">sns.lmplot(y= <span class="hljs-string">'int.rate'</span>, x= <span class="hljs-string">'fico'</span>, data = loans, hue = <span class="hljs-string">'credit.policy'</span>, col = <span class="hljs-string">'not.fully.paid'</span>, fit_reg=<span class="hljs-keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/xe152ig.png" alt=""></p>
+<h2 id="資料處理"><a href="#資料處理" class="headerlink" title="資料處理"></a>資料處理</h2><blockquote>
+<p>將類別變數改成dummy variable</p>
+</blockquote>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat_feats = [<span class="hljs-string">'purpose'</span>]  <span class="hljs-comment">#紀錄類別column名稱</span></span><br><span class="line"></span><br><span class="line">final_data = pd.get_dummies(df, columns=cat_feats, drop_first=<span class="hljs-keyword">True</span>)  <span class="hljs-comment">#drop_first = True會丟棄第一行(但仍然能夠藉由其他行推斷類別)，減少不必要的資料</span></span><br></pre></td></tr></table></figure>
+<h2 id="切分訓練、測試資料"><a href="#切分訓練、測試資料" class="headerlink" title="切分訓練、測試資料"></a>切分訓練、測試資料</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">X = final_data.drop(<span class="hljs-string">'not.fully.paid'</span>, axis = <span class="hljs-number">1</span>)</span><br><span class="line">y = final_data[<span class="hljs-string">'not.fully.paid'</span>]</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="hljs-number">0.3</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="訓練Decision-Tree-model"><a href="#訓練Decision-Tree-model" class="headerlink" title="訓練Decision Tree model"></a>訓練Decision Tree model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line">dTree = DecisionTreeClassifier()</span><br><span class="line">dTree.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+<h3 id="預測與評估"><a href="#預測與評估" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span><br><span class="line"></span><br><span class="line">predictions = dTree.predict(X_test)</span><br><span class="line">print(confusion_matrix(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">[[2006  395]</span></span><br><span class="line"><span class="hljs-string"> [ 357  116]]</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line">print(classification_report(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.85      0.84      0.84      2401</span></span><br><span class="line"><span class="hljs-string">          1       0.23      0.25      0.24       473</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.75      0.74      0.74      2874</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="訓練Random-Forest-model"><a href="#訓練Random-Forest-model" class="headerlink" title="訓練Random Forest model"></a>訓練Random Forest model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line">rfc = RandomForestClassifier(n_estimators= <span class="hljs-number">300</span>)</span><br><span class="line">rfc.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+<h3 id="預測與評估-1"><a href="#預測與評估-1" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span><br><span class="line"></span><br><span class="line">predictions = dTree.predict(X_test)</span><br><span class="line">print(confusion_matrix(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">[[2363   38]</span></span><br><span class="line"><span class="hljs-string"> [ 447   26]]</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line">print(classification_report(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.84      0.98      0.91      2401</span></span><br><span class="line"><span class="hljs-string">          1       0.41      0.05      0.10       473</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.77      0.83      0.77      2874</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Decision-Tree/">Decision Tree</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/">Machine Learning</a>, <a class="has-link-grey -link" href="/tags/Random-Forest/">Random Forest</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/02/ML-course-note-K-means/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">K-Means-Clustering演算法 - 腫瘤分類</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/">
+                <span class="level-item">Emergency - 911 Calls 資料分析</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/yc.png" alt="YC Lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC Lin
+                    </p>
+                    
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        31
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/ppoffice">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.udemy.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Udemy</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.udemy.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.ee.nchu.edu.tw/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NCHU EE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.ee.nchu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.giee.ntu.edu.tw/portal/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NTU GIEE</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.giee.ntu.edu.tw</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/IoT/" style="font-size: 13.33px;">IoT</a> <a href="/tags/Jupyter/" style="font-size: 10px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 13.33px;">Raspberry Pi</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 10px;">Tensorflow</a> <a href="/tags/Verilog/" style="font-size: 13.33px;">Verilog</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-K-means/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="K-Means-Clustering演算法 - 腫瘤分類">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:16:19.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-K-means/" class="has-link-black-ter is-size-6">K-Means-Clustering演算法 - 腫瘤分類</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:14:55.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="has-link-black-ter is-size-6">Decision Tree and Random Forest - Lending Club 信貸資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Emergency - 911 Calls 資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:12:32.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="has-link-black-ter is-size-6">Emergency - 911 Calls 資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LinearRegression/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linear Regression - Boston house-prices dataset  房價預測模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:10:42.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LinearRegression/" class="has-link-black-ter is-size-6">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Logistic Regrassion - 廣告點擊資料分析&amp;預測">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:09:28.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="has-link-black-ter is-size-6">Logistic Regrassion - 廣告點擊資料分析&amp;預測</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-K-means/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="K-Means-Clustering演算法 - 腫瘤分類">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:16:19.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-K-means/" class="has-link-black-ter is-size-6">K-Means-Clustering演算法 - 腫瘤分類</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:14:55.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DecisionTree-RandomForest/" class="has-link-black-ter is-size-6">Decision Tree and Random Forest - Lending Club 信貸資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Emergency - 911 Calls 資料分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:12:32.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-DataAnalysis-Emergency911/" class="has-link-black-ter is-size-6">Emergency - 911 Calls 資料分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LinearRegression/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linear Regression - Boston house-prices dataset  房價預測模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:10:42.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LinearRegression/" class="has-link-black-ter is-size-6">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Logistic Regrassion - 廣告點擊資料分析&amp;預測">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-02T09:09:28.000Z">2019-02-02</time></div>
+                    <a href="/2019/02/02/ML-course-note-LogisticRegrassion/" class="has-link-black-ter is-size-6">Logistic Regrassion - 廣告點擊資料分析&amp;預測</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Decision Tree and Random Forest - Lending Club 信貸資料分析" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>
