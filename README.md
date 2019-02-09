@@ -1,1 +1,0 @@
-# syokujinau.github.io
