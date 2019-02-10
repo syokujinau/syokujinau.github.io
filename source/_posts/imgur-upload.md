@@ -7,6 +7,7 @@ tags:
 thumbnail: ./myimages/image1.jpg
 ---
 
+<iframe width="100%" height="300" src="//jsfiddle.net/syokujinau/p07sejcd/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 # 註冊應用程式
 
@@ -25,7 +26,7 @@ https://api.imgur.com/oauth2/addclient
     <input type="file" class="imgur" accept="image/*" data-max-size="5000"/>
 </form>
 ```
-
+<!-- more -->
 ## JS
 ```js 
 $("document").ready(function () {
@@ -71,7 +72,7 @@ $("document").ready(function () {
     });
 });
 ```
-<iframe width="100%" height="300" src="//jsfiddle.net/syokujinau/p07sejcd/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
 
 
 
