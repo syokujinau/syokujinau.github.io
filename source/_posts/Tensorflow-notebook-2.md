@@ -6,7 +6,7 @@ tags:
   - Python
   - Jupyter
 thumbnail: 'https://i.imgur.com/zJX2v4b.jpg'
-date: 2019-02-04 16:42:49
+date: 2018-12-04 16:42:49
 ---
 [![](https://i.imgur.com/BKsRpNc.png)](https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/learn/v4/content)
 
@@ -17,7 +17,7 @@ date: 2019-02-04 16:42:49
 2. 勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可)
 ![]()
 <img src="https://i.imgur.com/8U9bgby.png" width="70%">
-3. cd到教學資料夾，有tfdl_enc.yml檔案
+3. cd到教學資料夾，有tfdl_env.yml檔案
 4. 執行`conda env create -f tfdl_env.yml`
 5. 執行`activate tfdeeplearning`
 6. 執行`jupyter notebook`

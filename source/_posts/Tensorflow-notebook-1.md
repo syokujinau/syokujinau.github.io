@@ -1,6 +1,6 @@
 ---
 title: Tensorflow Notebook 1 - Python實作二元線性分類器
-date: 2019-01-28 20:46:49
+date: 2018-12-01 20:46:49
 tags:
 - Tensorflow
 - Deep Learning
