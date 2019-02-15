@@ -118,7 +118,7 @@ widgets:
         # Where should the widget be placed, left or right
         position: left
         # Author name to be shown in the profile widget
-        author: YC Lin
+        author: Kyle Lin
         # Title of the author to be shown in the profile widget
         author_title:  沒什麼參考價值
         # Author's current location to be shown in the profile widget
