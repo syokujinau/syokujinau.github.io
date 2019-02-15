@@ -67,6 +67,7 @@ thumbnail: https://i.imgur.com/wH9EPrj.jpg
 改欄位順序(也可以不改順序)，欄位名稱Expression與Reading不能自己命名，因為這是Japanese Support定義的，到時候分別輸入:
 1. Meaning: 中文
 2. Expression: 日文
+
 會根據Expression的漢字產生:
 * Reading: 日文含振假名
 
