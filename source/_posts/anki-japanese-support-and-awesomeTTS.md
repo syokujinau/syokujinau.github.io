@@ -80,7 +80,7 @@ AwesomeTTS會唸出Expression(不能唸Reading欄位因為振假名也會被重�
 修改正背面與樣式
 ![](https://i.imgur.com/8w18NEB.png)
 
-欄位名稱會用{}包住，類似[mustache](https://mustache.github.io/)樣板字串，然後背面樣板中的Expression用tts tag包住就能發音，此外因為Reading會顯示日文含振假名，所以Expression可以隱藏
+欄位名稱會用{}包住，類似[mustache](https://mustache.github.io/)樣板字串，然後背面樣板中的Expression用tts tag包住就能發音，此外，因為Reading會顯示日文含振假名，而正面不需要顯示日文，所以在Expression的tag加上hidden來隱藏。
 
 ### Source code
 正面:
