@@ -8,11 +8,11 @@ tags:
 thumbnail: https://i.imgur.com/wH9EPrj.jpg
 ---
 
-希望能製作一種卡片，看中文可以想到日文，訓練自己的中翻日能力，並且自動產生振假名，好處是看背面的時候google小姐會唸給你聽增強記憶XD。
+希望能製作一種卡片，看中文可以想到日文，訓練自己的中翻日能力，並且自動產生振假名，好處還有看背面的時候google小姐會唸給你聽增強記憶XD。
 
 # Install
 
-請先安裝以下2種套件，才能使用他們的功能tags
+請先安裝以下2種套件，才能使用他們的功能與樣板
 * [AwesomeTTS](https://ankiweb.net/shared/info/301952613)
 * [Japanese Support](https://ankiweb.net/shared/info/3918629684)
 
@@ -99,7 +99,7 @@ AwesomeTTS會唸出Expression(不能唸Reading欄位因為振假名也會被重�
 .card {
  font-family: arial;
  font-size: 20px;
- /* text-align: center;*/ 
+ /* text-align: center; */ 
  /* 我習慣文字靠左，想要置中就把上面註解拿掉 */
  color: black;
  background-color: white;
@@ -116,7 +116,6 @@ AwesomeTTS會唸出Expression(不能唸Reading欄位因為振假名也會被重�
 {{Meaning}}
 <hr id=answer>
 <tts service="google" voice="ja" hidden> {{Expression}} </tts> 
-<!--  -->
 <div class=jp> {{furigana:Reading}} </div><br>
 ```
 
@@ -140,3 +139,5 @@ AwesomeTTS會唸出Expression(不能唸Reading欄位因為振假名也會被重�
 
 圖翻日
 <img src="https://i.imgur.com/6e3Nx7W.png" width="80%" />
+
+<br/><br/><br/>
