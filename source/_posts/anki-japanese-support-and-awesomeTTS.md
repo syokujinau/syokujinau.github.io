@@ -129,7 +129,7 @@ AwesomeTTS會唸出Expression(不能唸Reading欄位因為振假名也會被重�
 
 <img src="https://i.imgur.com/608vrKw.png" width="80%" />
 
-<hr/>
+<hr/> 
 
 當然用法不只有中翻日，也可以在Meaning輸入日文意思或圖片
 
