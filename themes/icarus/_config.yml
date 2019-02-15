@@ -160,9 +160,8 @@ widgets:
         links:
             Hexo: 'https://hexo.io'
             PPOffice: 'https://github.com/ppoffice'
-            Udemy: https://www.udemy.com/
-            NCHU EE: http://www.ee.nchu.edu.tw/
-            NTU GIEE: http://www.giee.ntu.edu.tw/portal/
+            # NCHU EE: http://www.ee.nchu.edu.tw/
+            # NTU GIEE: http://www.giee.ntu.edu.tw/portal/
     -
         # Widget name
         type: category
