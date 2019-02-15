@@ -4,7 +4,7 @@ date: 2019-02-10 11:55:00
 tags:
 - imgur
 - jQuery
-thumbnail: ./myimages/image1.jpg
+thumbnail: https://i.imgur.com/vNiihJ9.jpg
 ---
 
 <iframe width="100%" height="300" src="//jsfiddle.net/syokujinau/p07sejcd/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
