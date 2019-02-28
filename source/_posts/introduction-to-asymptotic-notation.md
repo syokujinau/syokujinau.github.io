@@ -1,5 +1,5 @@
 ---
-title: introduction-to-asymptotic-notation
+title: Introduction to Asymptotic Notation
 date: 2019-02-28 12:05:54
 tags: 
 - Algorithm
@@ -8,10 +8,8 @@ thumbnail: https://i.imgur.com/K6F6Ojx.jpg
 ---
 
 
-# Introduction to Asymptotic Notation
 
-
-> 衡量程式運行的時間量級，所關心的是輸入資料量成長的同時，演算法完成運算時間的成長率。
+> 衡量程式運行的時間量級，所關心的是輸入資料量成長的同時，演算法完成運算所需時間的成長率。
 
 
 ## Big-O: $O$
@@ -21,7 +19,7 @@ $f(n) = O(g(n))$ iff exists **two** positive constants $c$ and $n_{0}$ such that
 
 
 
-<img alt="bigO" src="https://i.imgur.com/9hS03jF.png" width="60%"/>
+<img alt="" src="https://i.imgur.com/9hS03jF.png" width="60%"/>
 
 ## Omega: $\Omega$
 
@@ -42,17 +40,17 @@ $f(n) = o(g(n))$ iff exists **two** positive constants $c$ and $n_{0}$ such that
 $f(n) = \omega (g(n))$ iff exists **two** positive constants $c$ and $n_{0}$ such that $f(n) > c\cdot g(n) \space \space \forall n \geq n_{0}$
 
 
-### Examples
+## Examples
 
 
-#### Disprove that $\frac{1}{100} n\log_{2}{n} \in O(n)$ is false
+### 1. Disprove that $\frac{1}{100} n\log_{2}{n} \in O(n)$ is false
 
 $\frac{1}{100} n\log_{2}{n} \leq c \cdot n \space \space \forall n \geq n_{0}$
 so $\frac{1}{100} \log_{2}{n} \leq c$
 $\because$ c is not constant
 $\therefore$ $\frac{1}{100} n\log_{2}{n} \notin O(n)$
 
-#### If $g(n) \in O(f(n))$ and $g(n) \in \omega (h(n))$ then $f(n) \in \omega (h(n))$
+### 2. If $g(n) \in O(f(n))$ and $g(n) \in \omega (h(n))$ then $f(n) \in \omega (h(n))$
 
 $\because g(n) \in O(f(n))$
 $\therefore g(n) \leq c_{1} \cdot f(n) \space \space \forall n \geq n_{0}$
