@@ -19,7 +19,7 @@ $$
 
 
 
-<img alt="" src="https://i.imgur.com/9hS03jF.png" width="60%"/>
+<img alt="bigO" src="https://i.imgur.com/9hS03jF.png" width="60%"/>
 
 ## Omega: $\Omega$
 
@@ -30,7 +30,9 @@ $$
 
 ## Theta: $\Theta$
 
-$$\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}$$
+$$
+\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
+$$
 
 <!-- more -->
 
@@ -40,11 +42,15 @@ $$\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0, \space s.
 
 ## little-o: $o$
 
-$$o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) < c \cdot g(n) \space \space , \forall n \geq n_0 \right \}$$ 
+$$
+o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) < c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
+$$ 
 
 ## little-omega: $\omega$
 
-$$\omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) > c \cdot g(n) \space \space , \forall n \geq n_0 \right \}$$ 
+$$
+\omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) > c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
+$$ 
 
 
 
@@ -117,10 +123,7 @@ $f(n) \in o(g(n)) \space iff \space g(n) \in \omega (f(n))$
 ### 1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$
 
 
-example: $f(n) = n, \space g(n) = \begin{cases}
- & 1 \space \space \text{ ,if } n \space is \space even \\ 
- & n^2 \text{ ,if } n \space is \space odd
-\end{cases}$
+example: $f(n) = n, \space g(n) = \begin{cases} & 1 \space \space \text{ ,if } n \space is \space even \\ & n^2 \text{ ,if } n \space is \space odd \end{cases}$
 
 <img alt="" src="https://i.imgur.com/gJtn9cr.png" width="50%" />
 
