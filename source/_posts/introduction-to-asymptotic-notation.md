@@ -8,14 +8,18 @@ thumbnail: https://i.imgur.com/K6F6Ojx.jpg
 ---
 
 
+
+
 # Asymptotic Notation
 
 ## Big-O: $O$
 
 
+{% raw %}
 $$
 O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$
+{% endraw %}
 
 
 
@@ -23,16 +27,20 @@ $$
 
 ## Omega: $\Omega$
 
+{% raw %}
 $$
 \Omega (g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \geq c \cdot g(n) \space \space ,  \forall n \geq n_0 \right \}
 $$ 
+{% endraw %}
 
 
 ## Theta: $\Theta$
 
+{% raw %}
 $$
 \Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
 $$
+{% endraw %}
 
 <!-- more -->
 
@@ -42,15 +50,19 @@ $$
 
 ## little-o: $o$
 
+{% raw %}
 $$
 o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) < c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
+{% endraw %}
 
 ## little-omega: $\omega$
 
+{% raw %}
 $$
 \omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) > c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
+{% endraw %}
 
 
 
@@ -123,7 +135,9 @@ $f(n) \in o(g(n)) \space iff \space g(n) \in \omega (f(n))$
 ### 1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$
 
 
+{% raw %}
 example: $f(n) = n, \space g(n) = \begin{cases} & 1 \space \space \text{ ,if } n \space is \space even \\ & n^2 \text{ ,if } n \space is \space odd \end{cases}$
+{% endraw %}
 
 <img alt="" src="https://i.imgur.com/gJtn9cr.png" width="50%" />
 
