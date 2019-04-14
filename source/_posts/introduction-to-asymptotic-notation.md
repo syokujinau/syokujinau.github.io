@@ -9,9 +9,6 @@ thumbnail: https://i.imgur.com/K6F6Ojx.jpg
 
 
 
-
-# Asymptotic Notation 
-
 ## Big-O: $O$
 
 
@@ -282,7 +279,7 @@ $\therefore T(n) = \Theta (nlog_{2}n)$
 若遞迴時間函數符合以下形式:
 
 $$
-T(n) = aT(\frac{n}{b}) + f(n)$
+T(n) = aT(\frac{n}{b}) + f(n)
 $$
 
 $$

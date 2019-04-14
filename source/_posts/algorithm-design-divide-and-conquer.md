@@ -1,5 +1,5 @@
 ---
-title: Divide and Conquer
+title: 演算法設計 - Divide and Conquer
 date: 2019-03-13 15:24:45
 tags:
 - Algorithm
@@ -71,4 +71,5 @@ MaxSubseqSum(data, 1, n) { // 從1~n中，求最大子序列之和
 $T(n) = 2T(\frac{n}{2}) + \Theta (n)$
 
 $= \Theta (nlogn)$
+
 
