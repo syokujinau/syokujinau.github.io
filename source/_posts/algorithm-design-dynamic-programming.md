@@ -133,4 +133,59 @@ $$
 B \left [i \right ] = j \text{ , if the above min pick A \left [ j \right ] }
 $$ 
 
+
+## Max subsequence sum
+
+給予$\left [ a_{1}, a_{2}, \dots , a_{n} \right ]$
+ 
+求連續子序列之和的最大值$Max_{i,j} = a_i +a_{i+1} + \dots + a_{j}$
+
+**Subproblem:**
+* $R_i$為$\left [ a_1, a_2, \dots, a_i \right ]$的最大子序列之和
+* $M_i$代表目前的子序列和最大值
+
+**Init:**
+$R_1 = a_1$
+$M_1 = a_1$
+
+
+{% raw %}
+$$
+R_i = max \begin{cases}
+R_{i-1} + a_i &  \\ 
+a_i &  
+\end{cases}
+$$
+
+
+$$
+M_i = max \begin{cases}
+M_{i-1} &  \\ 
+R_i &  
+\end{cases}
+$$
+{% endraw %}
+
+
+**[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)**
+ 
+```cpp
+int maxSubArray(vector<int>& nums) {
+    const int len = nums.size();
+    vector<int> M(len); // max subseq so far
+    vector<int> R(len); // R[i] means max subseq (contain ai)
+
+    // init
+    M[0] = R[0] = nums[0];
+
+    // update
+    for(int i = 1; i < len; ++i) {
+        R[i] = max(R[i - 1] + nums[i], nums[i]);
+        M[i] = max(M[i - 1], R[i]);
+    }
+
+    return M[len - 1];
+}
+```
+ 
  
