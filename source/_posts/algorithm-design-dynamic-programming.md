@@ -19,6 +19,7 @@ thumbnail: https://i.imgur.com/RPQGyZx.jpg
 走到(i, j)的位置，只有可能來自上面或左邊
 令$P(i, j)$表示走到(i, j)位置的方法數
 
+{% raw %}
 $$
 P(i, j) = \begin{cases}
 1 & \text{ if } i=0 \\ 
@@ -26,6 +27,7 @@ P(i, j) = \begin{cases}
 P(i-1, j) + P(i, j-1) & \text{ if } i \geq 1, j \geq 1 
 \end{cases}
 $$
+{% endraw %}
 
 又稱為state equation
 
@@ -47,7 +49,7 @@ int uniquePaths(int m, int n) {
 
     // update
     for(int i = 1; i < m; ++i) 
-    	for(int j = 1; j < n; ++j) 
+        for(int j = 1; j < n; ++j) 
             P[i][j] = P[i - 1][j] + P[i][j - 1];
 
  
@@ -114,15 +116,21 @@ $S(i, j) = 1$表示$j$年時有投資$P_i$ (??)
 前1~20公里最省錢方法就是直接一開始直接到達，B則全部初始化為0
 
 $$
-A[1 ... 20] = C[1 ... 20]  \\
-B[i] = \left \{0 \right \}
+A[1 \dots 20] = C[1 \dots 20] 
+$$
+
+$$
+B[i] = 0 \text{ , where } i = 0 \sim n
 $$
 
 **update:**
 
 $$
-A[i] = min(A[i-20], A[i-19],...,A[i-1]) + C_i \\
-B[i] = j \text{ , if the above min pick A[j]}
+A \left [ i \right ] = min(A \left [ i - 20 \right ], A \left [ i - 19 \right ],...,A \left [ i - 1 \right ]) + C_i
 $$
 
+$$
+B \left [i \right ] = j \text{ , if the above min pick A \left [ j \right ] }
+$$ 
 
+ 
