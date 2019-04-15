@@ -136,7 +136,7 @@ int maxSubArray(vector<int>& nums) {
 
 **Subproblem:**
 
-令$C(i, j)$為max profit，代表只用了$P_1, P_2,...,P_i$的投資組合於$j$年之間
+令$C(i, j)$為max profit，代表只用了$P_1, P_2,...,P_i$的投資組合於$j$年之間，目前狀態下只需考慮要不要不投資$P_i$
 
 
 {% raw %}
@@ -148,7 +148,9 @@ C(i, j-y_i) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ at least once}
 
 **Algo:**
 
-> {% raw %}$\text{for }i = 1 \text{ to }m \\ \space \space \space \space \text{for }j = 1 \text{ to } n \\ \space \space \space \space \space \space \space \space C(i,j) = max \begin{cases} C(i-1 , j) & \text{, don't invest } P_i \\ C(i, j-y_i) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ at least once} \end{cases} \\ \text{output: }C(m,n)${% endraw %}
+為維持可讀性，先不管陣列超出邊界存取問題
+因為沒有限定一個plan能投資幾次，所以固定$i$個plan，$1 \sim n$年都有可能再選擇$P_i$
+> {% raw %}$\text{for }i = 1 \text{ to }m \text{ plans} \\ \space \space \space \space \text{for }j = 1 \text{ to } n \text{ years} \\ \space \space \space \space \space \space \space \space C(i,j) = max \begin{cases} C(i-1 , j) & \text{, don't invest } P_i \\ C(i, j-y_i) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ at least once} \end{cases} \\ \text{output: }C(m,n)${% endraw %}
 
 
 
@@ -169,8 +171,10 @@ $C(i,j,k) = max \begin{cases} C(i-1 , j,k) & \text{, don't invest } P_i \\ C(i-1
 
 **Algo:**
 
-> {% raw %}$\text{for }i = 1 \text{ to }m \\ \space \space \space \space \text{for }j = 1 \text{ to } n \\
-\space \space \space \space \space \space \space \space  \text{for }k = 1 \text{ to }t \\ \space \space \space \space \space \space \space \space \space \space \space \space C(i,j,k) = max \begin{cases} C(i-1 , j,k) & \text{, don't invest } P_i \\ C(i-1, j-y_i, k-1) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ once} \\ C(i-1, j-2y_i, k-2) \cdot (1+r_i)^{2y_i} & \text{, invest } P_i \text{ twice} \end{cases} \\ \text{output: }C(m,n,t)${% endraw %}
+
+
+> {% raw %}$\text{for }i = 1 \text{ to }m \text{ plans} \\ \space \space \space \space \text{for }j = 1 \text{ to } n \text{ years} \\
+\space \space \space \space \space \space \space \space  \text{for }k = 1 \text{ to }t \text{ plans used} \\ \space \space \space \space \space \space \space \space \space \space \space \space C(i,j,k) = max \begin{cases} C(i-1 , j,k) & \text{, don't invest } P_i \\ C(i-1, j-y_i, k-1) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ once} \\ C(i-1, j-2y_i, k-2) \cdot (1+r_i)^{2y_i} & \text{, invest } P_i \text{ twice} \end{cases} \\ \text{output: }C(m,n,t)${% endraw %}
 
 
 
@@ -251,6 +255,8 @@ $T(j,k) = \begin{cases} 0 & \text{ if } T(j-1,k-a_{j}) \cup \left \{ G_{j} \righ
 
 ## Sequence Alignment
 
+An application of biology, find the similarity of 2 DNA sequence.
+
 Input: 
 * X: $ACAAT$
 * Y: $AGATG$
@@ -269,22 +275,56 @@ ex.
 2.  
     $ACAAT\text{ _ }$
     $AGA\text{ _ }TG$ $\Rightarrow$ 1 mismatch, 2 gaps
-
-3.
+    
+3.  
     $ACAAT\text{ _ _ _ _ }$
     $A\text{ _ _ _ _ }GATG$ $\Rightarrow$ 8 gaps
+    
+    
 
 **Subproblem:**
 
-$C(i, j)$代表min cost of matching "first $i$ symbols of $X$" and "first $j$ symbols of $Y$"
+$P(i, j)$: min cost of matching "first $i$ symbols of $X$" and "first $j$ symbols of $Y$"
 
 ex.
-$C(3,3)$: min cost of matching $ACA$ and $AGA$
-$C(1,5)$: min cost of matching $A$ and $ACTAG$
+$P(3,3)$: min cost of matching $ACA$ and $AGA$
+$P(1,5)$: min cost of matching $A$ and $ACTAG$
 
 
-* case1: 
+* **case 1:** match $X[i]$ with $Y[i]$
+<img src="https://i.imgur.com/3daddaa.png" width="50%"/>
 
-######################
+* **case 2:** match $X[i]$ with gap
+<img src="https://i.imgur.com/0hhi7me.png" width="50%"/>
+
+* **case 3:** match $Y[i]$ with gap
+<img src="https://i.imgur.com/mlpq8Cl.png" width="50%"/>
+
+**Subproblem:**
+
+{% raw %}
+$P(i,j) = min \begin{cases} P(i-1, j-1) + \begin{cases} C_1 & \text{ if } X[i] \neq Y[j] \\ 0 & \text{ else} \end{cases} & \text{ case1 } \\ P(i-1, j) + C_2 & \text{ case2 } \\ P(i, j-1) + C_2 & \text{ case3 } \end{cases}$
+<br/>
+$B(i, j)$: record the cases choosed at $i,j$ 
+{% endraw %}
+
+**Init:**
+
+
+* match X with an empty Y: $P[i,0] = C_{2}i$
+* match Y with an empty X: $P[0,j] = C_{2}j$
+
+**Algo:**
+
+
+> {% raw %}$\text{for } i = 0 \text{ to } m \\ \space \space \space \space  \text{for } j = 0 \text{ to } n \\ \space \space \space \space \\ \space \space \space \space \space \space \space \space P(i,j) = min \begin{cases} P(i-1, j-1) + \begin{cases} C_1 & \text{ if } X[i] \neq Y[j] \\ 0 & \text{ else} \end{cases} & \text{ case1 } \\ P(i-1, j) + C_2 & \text{ case2 } \\ P(i, j-1) + C_2 & \text{ case3 } \end{cases} \\ \space \space \space \space \space \space \space \space B(i,j) = \begin{cases} 1 & \text{ if choose caes 1 } \\ 2 & \text{ if choose caes 2 } \\ 3 & \text{ if choose caes 3 } \end{cases} \\ \text{output: }P(m,n)${% endraw %}
+
+
+* Checking $B(m,n)$, we can get the min cost alignment of $X,Y$
+> {% raw %}$\text{if } B(m,n) = 1 \\ \space \space \text{match } X[m] \text{ with } Y[n] \\ \space \space \text{check } B(m-1,n-1) \text{ ...etc} \\ \text{if } B(m,n) = 2 \\ \space \space \text{match } X[m] \text{ with } gap \\ \space \space \text{check } B(m-1,n-1) \text{ ...etc} \\ \text{if } B(m,n) = 3 \\ \space \space \text{match } Y[n] \text{ with } gap \\ \space \space \text{check } B(m-1,n-1) \text{ ...etc}$ {% endraw %}
+> 
+>
+> at most $m+n$ check linear time complexity
+
 
 
