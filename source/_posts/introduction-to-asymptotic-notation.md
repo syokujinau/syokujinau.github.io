@@ -47,7 +47,7 @@ $$
 
 {% raw %}
 $$
-o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) < c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
+o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
 {% endraw %}
 
@@ -55,7 +55,7 @@ $$
 
 {% raw %}
 $$
-\omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) > c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
+\omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) \geq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
 {% endraw %}
 
@@ -397,5 +397,9 @@ $\leq n^{log_{b}a} \cdot T(1) + \left [ \dots + c^{2}f(n) + cf(n) + f(n) \right 
 
 
 $T(n) \leq n^{log_{b}a}T(1) + \frac{f(n)}{1-c} \in \Theta (f(n))$
+
+
+
+
 
 
