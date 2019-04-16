@@ -19,15 +19,15 @@ thumbnail: https://i.imgur.com/RPQGyZx.jpg
 走到(i, j)的位置，只有可能來自上面或左邊
 令$P(i, j)$表示走到(i, j)位置的方法數
 
-{% raw %}
+
 $$
 P(i, j) = \begin{cases}
-1 & \text{ if } i=0 \\ 
-1 & \text{ if } j=0 \\ 
+1 & \text{ if } i=0 \newline 
+1 & \text{ if } j=0 \newline 
 P(i-1, j) + P(i, j-1) & \text{ if } i \geq 1, j \geq 1 
 \end{cases}
 $$
-{% endraw %}
+
 
 又稱為state equation
 
@@ -78,10 +78,10 @@ $R_1 = a_1$
 $M_1 = a_1$
 
 
-{% raw %}
+
 $$
 R_i = max \begin{cases}
-R_{i-1} + a_i &  \\ 
+R_{i-1} + a_i &  \newline 
 a_i &  
 \end{cases}
 $$
@@ -89,11 +89,11 @@ $$
 
 $$
 M_i = max \begin{cases}
-M_{i-1} &  \\ 
+M_{i-1} &  \newline 
 R_i &  
 \end{cases}
 $$
-{% endraw %}
+
 
 
 [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
@@ -139,12 +139,12 @@ int maxSubArray(vector<int>& nums) {
 令$C(i, j)$為max profit，代表只用了$P_1, P_2,...,P_i$的投資組合於$j$年之間，目前狀態下只需考慮要不要不投資$P_i$
 
 
-{% raw %}
+
 $C(i,j) = max \begin{cases}
-C(i-1 , j) & \text{, don't invest } P_i \\
+C(i-1 , j) & \text{, don't invest } P_i \newline
 C(i, j-y_i) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ at least once} 
 \end{cases}$
-{% endraw %}
+
 
 **Algo:**
 
@@ -165,9 +165,9 @@ C(i, j-y_i) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ at least once}
 * 投資$\leq j$年
 * 共使用了$\leq k$個plan
 
-{% raw %}
-$C(i,j,k) = max \begin{cases} C(i-1 , j,k) & \text{, don't invest } P_i \\ C(i-1, j-y_i, k-1) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ once} \\ C(i-1, j-2y_i, k-2) \cdot (1+r_i)^{2y_i} & \text{, invest } P_i \text{ twice} \end{cases}$
-{% endraw %}
+
+$C(i,j,k) = max \begin{cases} C(i-1 , j,k) & \text{, don't invest } P_i \newline C(i-1, j-y_i, k-1) \cdot (1+r_i)^{y_i} & \text{, invest } P_i \text{ once} \newline C(i-1, j-2y_i, k-2) \cdot (1+r_i)^{2y_i} & \text{, invest } P_i \text{ twice} \end{cases}$
+
 
 **Algo:**
 
@@ -230,14 +230,14 @@ Want: $Max \sum_{S} a_{i}d_{i}$ , subject to $\sum_{S} a_{i} \leq n$
 **Subproblem:**
 
 
-* {% raw %}$S(j,k)$ : $Max \sum_{S} a_{i}d_{i}$, subject to $\begin{cases} \sum_{S}a_{i} & \\ S \subseteq \left \{ G_1, G_2, \dots, G_{j} \right \} & \end{cases}${% endraw %}
-* {% raw %}$T(j,k)$ : set of groups selected in $S(j,k)${% endraw %}
+* $S(j,k)$ : $Max \sum_{S} a_{i}d_{i}$, subject to $\begin{cases} \sum_{S}a_{i} & \newline S \subseteq \left \{ G_1, G_2, \dots, G_{j} \right \} & \end{cases}$
+* $T(j,k)$ : set of groups selected in $S(j,k)$
 
-{% raw %}
-$S(j,k) = max \begin{cases} S(j-1,k- a_j) + a_{j}d_{j} & (\text{ accept }G_{j}) \\ S(j-1, k) & (\text{ don't accept }G_{j}) \end{cases}$
 
-$T(j,k) = \begin{cases} 0 & \text{ if } T(j-1,k-a_{j}) \cup \left \{ G_{j} \right \} (\text{ accept }G_{j}) \\ 1 & \text{ if } S(j-1, k) (\text{ don't accept }G_{j}) \end{cases}$
-{% endraw %}
+$S(j,k) = max \begin{cases} S(j-1,k- a_j) + a_{j}d_{j} & (\text{ accept }G_{j}) \newline S(j-1, k) & (\text{ don't accept }G_{j}) \end{cases}$
+
+$T(j,k) = \begin{cases} 0 & \text{ if } T(j-1,k-a_{j}) \cup \left \{ G_{j} \right \} (\text{ accept }G_{j}) \newline 1 & \text{ if } S(j-1, k) (\text{ don't accept }G_{j}) \end{cases}$
+
 
 **Algo:**
 
@@ -302,11 +302,11 @@ $P(1,5)$: min cost of matching $A$ and $ACTAG$
 
 **Subproblem:**
 
-{% raw %}
-$P(i,j) = min \begin{cases} P(i-1, j-1) + \begin{cases} C_1 & \text{ if } X[i] \neq Y[j] \\ 0 & \text{ else} \end{cases} & \text{ case1 } \\ P(i-1, j) + C_2 & \text{ case2 } \\ P(i, j-1) + C_2 & \text{ case3 } \end{cases}$
+
+$P(i,j) = min \begin{cases} P(i-1, j-1) + \begin{cases} C_1 & \text{ if } X[i] \neq Y[j] \newline 0 & \text{ else} \end{cases} & \text{ case1 } \newline P(i-1, j) + C_2 & \text{ case2 } \newline P(i, j-1) + C_2 & \text{ case3 } \end{cases}$
 <br/>
 $B(i, j)$: record the cases choosed at $i,j$ 
-{% endraw %}
+
 
 **Init:**
 
@@ -316,7 +316,6 @@ $B(i, j)$: record the cases choosed at $i,j$
 
 **Algo:**
 
-
 > {% raw %}$\text{for } i = 0 \text{ to } m \\ \space \space \space \space  \text{for } j = 0 \text{ to } n \\ \space \space \space \space \\ \space \space \space \space \space \space \space \space P(i,j) = min \begin{cases} P(i-1, j-1) + \begin{cases} C_1 & \text{ if } X[i] \neq Y[j] \\ 0 & \text{ else} \end{cases} & \text{ case1 } \\ P(i-1, j) + C_2 & \text{ case2 } \\ P(i, j-1) + C_2 & \text{ case3 } \end{cases} \\ \space \space \space \space \space \space \space \space B(i,j) = \begin{cases} 1 & \text{ if choose caes 1 } \\ 2 & \text{ if choose caes 2 } \\ 3 & \text{ if choose caes 3 } \end{cases} \\ \text{output: }P(m,n)${% endraw %}
 
 
@@ -325,6 +324,4 @@ $B(i, j)$: record the cases choosed at $i,j$
 > 
 >
 > at most $m+n$ check linear time complexity
-
-
 
