@@ -209,11 +209,9 @@ $A[1,2, \dots ,20] = C[1,2, \dots ,20]$
 
 $B[i] = 0 \text{ , where } i = 0 \sim n$
 
-**update:**
+**Algo:**
 
-$A \left [ i \right ] = min(A \left [ i - 20 \right ], A \left [ i - 19 \right ],...,A \left [ i - 1 \right ]) + C_i$
-
-$B \left [i \right ] = j \text{ , if the above min pick } A \left [ j \right ]$ 
+> {% raw %}$\text{for i = 21 to n} \\ \space \space A \left [ i \right ] = min(A \left [ i - 20 \right ], A \left [ i - 19 \right ],...,A \left [ i - 1 \right ]) + C_i \\ \space \space B \left [i \right ] = j \text{ , if the above min pick } A \left [ j \right ]${% endraw %}
 
 
 
@@ -230,13 +228,15 @@ Want: $Max \sum_{S} a_{i}d_{i}$ , subject to $\sum_{S} a_{i} \leq n$
 **Subproblem:**
 
 
-* $S(j,k)$ : $Max \sum_{S} a_{i}d_{i}$, subject to $\begin{cases} \sum_{S}a_{i} & \newline S \subseteq \left \{ G_1, G_2, \dots, G_{j} \right \} & \end{cases}$
+* {% raw %}$S(j,k)$ : $Max \sum_{S} a_{i}d_{i} \text{, subject to } \begin{cases} \sum_{S}a_{i} & \newline S \subseteq \left \{ G_1, G_2, \dots, G_{j} \right \} & \end{cases}${% endraw %}
 * $T(j,k)$ : set of groups selected in $S(j,k)$
 
 
 $S(j,k) = max \begin{cases} S(j-1,k- a_j) + a_{j}d_{j} & (\text{ accept }G_{j}) \newline S(j-1, k) & (\text{ don't accept }G_{j}) \end{cases}$
 
+{% raw %}
 $T(j,k) = \begin{cases} 0 & \text{ if } T(j-1,k-a_{j}) \cup \left \{ G_{j} \right \} (\text{ accept }G_{j}) \newline 1 & \text{ if } S(j-1, k) (\text{ don't accept }G_{j}) \end{cases}$
+{% endraw %}
 
 
 **Algo:**
