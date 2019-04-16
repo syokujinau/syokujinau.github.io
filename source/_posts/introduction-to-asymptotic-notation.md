@@ -35,7 +35,7 @@ $$
 
 {% raw %}
 $$
-\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
+\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0 > 0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
 $$
 {% endraw %}
 
