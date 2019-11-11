@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>透過AWS IoT core儲存sensor資料至DynamoDB - YC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。   入門照著步驟做，先安裝pip install AWSIoTPythonSDK  AWS IoT subscribe PM2.5 MQTT修改政策IOT CORE -&amp;gt; 安全無虞 -&amp;gt; 政策 -&amp;gt; {政策的名稱} -&amp;gt;">
+<meta name="keywords" content="Python,IoT,AWS,matplotlib,DynamoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="透過AWS IoT core儲存sensor資料至DynamoDB">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/iot-course2018-HW6/index.html">
+<meta property="og:site_name" content="YC">
+<meta property="og:description" content="這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。   入門照著步驟做，先安裝pip install AWSIoTPythonSDK  AWS IoT subscribe PM2.5 MQTT修改政策IOT CORE -&amp;gt; 安全無虞 -&amp;gt; 政策 -&amp;gt; {政策的名稱} -&amp;gt;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/FyLh6ax.png">
+<meta property="og:image" content="https://i.imgur.com/Srd2tGj.png">
+<meta property="og:image" content="https://i.imgur.com/hBu7nDY.png">
+<meta property="og:image" content="https://i.imgur.com/PAsU1EQ.png">
+<meta property="og:image" content="https://i.imgur.com/Rfj2hnX.png">
+<meta property="og:image" content="https://i.imgur.com/jsFY4f9.png">
+<meta property="og:image" content="https://i.imgur.com/abWzFwS.png">
+<meta property="og:image" content="https://i.imgur.com/4wplaVo.png">
+<meta property="og:image" content="https://i.imgur.com/DOuzfkS.png">
+<meta property="og:updated_time" content="2019-02-15T15:12:11.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="透過AWS IoT core儲存sensor資料至DynamoDB">
+<meta name="twitter:description" content="這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。   入門照著步驟做，先安裝pip install AWSIoTPythonSDK  AWS IoT subscribe PM2.5 MQTT修改政策IOT CORE -&amp;gt; 安全無虞 -&amp;gt; 政策 -&amp;gt; {政策的名稱} -&amp;gt;">
+<meta name="twitter:image" content="https://i.imgur.com/FyLh6ax.png">
+
+
+
+
+
+<link rel="icon" href="/myimages/hexo-logo.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="透過AWS IoT core儲存sensor資料至DynamoDB" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/9b82heZ.jpg" alt="透過AWS IoT core儲存sensor資料至DynamoDB">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-11-26T03:15:28.000Z">2018-11-26</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1874 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                透過AWS IoT core儲存sensor資料至DynamoDB
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/FyLh6ax.png" alt=""></p>
+<h1 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h1><p>照著步驟做，先安裝<code>pip install AWSIoTPythonSDK</code></p>
+<p><img src="https://i.imgur.com/Srd2tGj.png" alt=""></p>
+<h1 id="AWS-IoT-subscribe-PM2-5-MQTT"><a href="#AWS-IoT-subscribe-PM2-5-MQTT" class="headerlink" title="AWS IoT subscribe PM2.5 MQTT"></a>AWS IoT subscribe PM2.5 MQTT</h1><h2 id="修改政策"><a href="#修改政策" class="headerlink" title="修改政策"></a>修改政策</h2><p>IOT CORE -&gt; 安全無虞 -&gt; 政策 -&gt; {政策的名稱} -&gt; 編輯政策文件 </p>
+<p><img src="https://i.imgur.com/hBu7nDY.png" alt=""><br><img src="https://i.imgur.com/PAsU1EQ.png" alt=""></p>
+<a id="more"></a>
+<h2 id="發布、訂閱程式"><a href="#發布、訂閱程式" class="headerlink" title="發布、訂閱程式"></a>發布、訂閱程式</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># basicPubSub_PM2.5.py</span></span><br><span class="line"><span class="hljs-keyword">from</span> AWSIoTPythonSDK.MQTTLib <span class="hljs-keyword">import</span> AWSIoTMQTTClient</span><br><span class="line"><span class="hljs-keyword">from</span> serial <span class="hljs-keyword">import</span> Serial</span><br><span class="line"><span class="hljs-keyword">import</span> logging</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> pytz <span class="hljs-keyword">import</span> timezone <span class="hljs-comment"># pip install pytz</span></span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"><span class="hljs-keyword">import</span> argparse</span><br><span class="line"><span class="hljs-keyword">import</span> json</span><br><span class="line"></span><br><span class="line">AllowedActions = [<span class="hljs-string">'both'</span>, <span class="hljs-string">'publish'</span>, <span class="hljs-string">'subscribe'</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Custom MQTT message callback</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">customCallback</span><span class="hljs-params">(client, userdata, message)</span>:</span></span><br><span class="line">    print(<span class="hljs-string">"Received a new message: "</span>)</span><br><span class="line">    print(message.payload)</span><br><span class="line">    print(<span class="hljs-string">"from topic: "</span>)</span><br><span class="line">    print(message.topic)</span><br><span class="line">    print(<span class="hljs-string">"--------------\n\n"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">publish</span><span class="hljs-params">(PM25)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> mode == <span class="hljs-string">'both'</span> <span class="hljs-keyword">or</span> mode == <span class="hljs-string">'publish'</span>:</span><br><span class="line">	u = datetime.now(timezone(<span class="hljs-string">'Asia/Taipei'</span>))</span><br><span class="line">        message = &#123;&#125;</span><br><span class="line">        message[<span class="hljs-string">'type'</span>] = <span class="hljs-string">'PM2.5'</span></span><br><span class="line">        message[<span class="hljs-string">'value'</span>] = PM25</span><br><span class="line">        message[<span class="hljs-string">'time'</span>] =u.strftime(<span class="hljs-string">'%H:%M:%S'</span>)</span><br><span class="line"></span><br><span class="line">        messageJson = json.dumps(message)</span><br><span class="line">        myAWSIoTMQTTClient.publish(topic, messageJson, <span class="hljs-number">1</span>)</span><br><span class="line">        <span class="hljs-keyword">if</span> mode == <span class="hljs-string">'publish'</span>:</span><br><span class="line">            print(<span class="hljs-string">'Published topic %s: %s\n'</span> % (topic, messageJson))</span><br><span class="line"></span><br><span class="line">host = <span class="hljs-string">"a1edmqmbezxdwv-ats.iot.us-east-1.amazonaws.com"</span></span><br><span class="line">rootCAPath = <span class="hljs-string">"./root-CA.crt"</span></span><br><span class="line">certificatePath = <span class="hljs-string">"./RPi.cert.pem"</span></span><br><span class="line">privateKeyPath = <span class="hljs-string">"./RPi.private.key"</span></span><br><span class="line">useWebsocket = <span class="hljs-keyword">False</span></span><br><span class="line">clientId = <span class="hljs-string">"vensen"</span></span><br><span class="line">topic = <span class="hljs-string">"RPi/PM25"</span></span><br><span class="line">mode = <span class="hljs-string">"publish"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Port defaults</span></span><br><span class="line"><span class="hljs-keyword">if</span> useWebsocket:  <span class="hljs-comment"># When no port override for WebSocket, default to 443</span></span><br><span class="line">    port = <span class="hljs-number">443</span></span><br><span class="line"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> useWebsocket:  <span class="hljs-comment"># When no port override for non-WebSocket, default to 8883</span></span><br><span class="line">    port = <span class="hljs-number">8883</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Configure logging</span></span><br><span class="line">logger = logging.getLogger(<span class="hljs-string">"AWSIoTPythonSDK.core"</span>)</span><br><span class="line">logger.setLevel(logging.DEBUG)</span><br><span class="line">streamHandler = logging.StreamHandler()</span><br><span class="line">formatter = logging.Formatter(<span class="hljs-string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)</span><br><span class="line">streamHandler.setFormatter(formatter)</span><br><span class="line">logger.addHandler(streamHandler)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Init AWSIoTMQTTClient</span></span><br><span class="line">myAWSIoTMQTTClient = <span class="hljs-keyword">None</span></span><br><span class="line"><span class="hljs-keyword">if</span> useWebsocket:</span><br><span class="line">    myAWSIoTMQTTClient = AWSIoTMQTTClient(clientId, useWebsocket=<span class="hljs-keyword">True</span>)</span><br><span class="line">    myAWSIoTMQTTClient.configureEndpoint(host, port)</span><br><span class="line">    myAWSIoTMQTTClient.configureCredentials(rootCAPath)</span><br><span class="line"><span class="hljs-keyword">else</span>:</span><br><span class="line">    myAWSIoTMQTTClient = AWSIoTMQTTClient(clientId)</span><br><span class="line">    myAWSIoTMQTTClient.configureEndpoint(host, port)</span><br><span class="line">    myAWSIoTMQTTClient.configureCredentials(rootCAPath, privateKeyPath, certificatePath)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># AWSIoTMQTTClient connection configuration</span></span><br><span class="line">myAWSIoTMQTTClient.configureAutoReconnectBackoffTime(<span class="hljs-number">1</span>, <span class="hljs-number">32</span>, <span class="hljs-number">20</span>)</span><br><span class="line">myAWSIoTMQTTClient.configureOfflinePublishQueueing(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># Infinite offline Publish queueing</span></span><br><span class="line">myAWSIoTMQTTClient.configureDrainingFrequency(<span class="hljs-number">2</span>)  <span class="hljs-comment"># Draining: 2 Hz</span></span><br><span class="line">myAWSIoTMQTTClient.configureConnectDisconnectTimeout(<span class="hljs-number">10</span>)  <span class="hljs-comment"># 10 sec</span></span><br><span class="line">myAWSIoTMQTTClient.configureMQTTOperationTimeout(<span class="hljs-number">5</span>)  <span class="hljs-comment"># 5 sec</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Connect and subscribe to AWS IoT</span></span><br><span class="line">myAWSIoTMQTTClient.connect()</span><br><span class="line"><span class="hljs-keyword">if</span> mode == <span class="hljs-string">'both'</span> <span class="hljs-keyword">or</span> mode == <span class="hljs-string">'subscribe'</span>:</span><br><span class="line">    myAWSIoTMQTTClient.subscribe(topic, <span class="hljs-number">1</span>, customCallback)</span><br><span class="line">time.sleep(<span class="hljs-number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Publish to the same topic in a loop forever</span></span><br><span class="line">ser = Serial(<span class="hljs-string">'/dev/ttyACM0'</span>, <span class="hljs-number">9600</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:</span><br><span class="line">	str = ser.readline().decode(<span class="hljs-string">'utf8'</span>)[:<span class="hljs-number">-2</span>]</span><br><span class="line">	end = str.find(<span class="hljs-string">'\r'</span>)</span><br><span class="line">	PM25 = str[:end]</span><br><span class="line">	publish(PM25)</span><br><span class="line">	time.sleep(<span class="hljs-number">2</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>放在與start.sh同一層路徑下<br><img src="https://i.imgur.com/Rfj2hnX.png" alt=""></p>
+</blockquote>
+<p>Host在start.sh內(Line 21)<br><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># stop script on error</span></span><br><span class="line"><span class="hljs-built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Check to see if root CA file exists, download if not</span></span><br><span class="line"><span class="hljs-keyword">if</span> [ ! -f ./root-CA.crt ]; <span class="hljs-keyword">then</span></span><br><span class="line">  <span class="hljs-built_in">printf</span> <span class="hljs-string">"\nDownloading AWS IoT Root CA certificate from AWS...\n"</span></span><br><span class="line">  curl https://www.amazontrust.com/repository/AmazonRootCA1.pem &gt; root-CA.crt</span><br><span class="line"><span class="hljs-keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># install AWS Device SDK for Python if not already installed</span></span><br><span class="line"><span class="hljs-keyword">if</span> [ ! -d ./aws-iot-device-sdk-python ]; <span class="hljs-keyword">then</span></span><br><span class="line">  <span class="hljs-built_in">printf</span> <span class="hljs-string">"\nInstalling AWS SDK...\n"</span></span><br><span class="line">  git <span class="hljs-built_in">clone</span> https://github.com/aws/aws-iot-device-sdk-python.git</span><br><span class="line">  <span class="hljs-built_in">pushd</span> aws-iot-device-sdk-python</span><br><span class="line">  python setup.py install</span><br><span class="line">  <span class="hljs-built_in">popd</span></span><br><span class="line"><span class="hljs-keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># run pub/sub sample app using certificates downloaded in package</span></span><br><span class="line"><span class="hljs-built_in">printf</span> <span class="hljs-string">"\nRunning pub/sub sample application...\n"</span></span><br><span class="line">python aws-iot-device-sdk-python/samples/basicPubSub/basicPubSub.py -e a3l21ss4gwlsqf-ats.iot.us-east-1.amazonaws.com -r root-CA.crt -c pi3.cert.pem -k pi3.private.key</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/jsFY4f9.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> AWSIoTPythonSDK.MQTTLib <span class="hljs-keyword">import</span> AWSIoTMQTTClient</span><br><span class="line"><span class="hljs-keyword">from</span> serial <span class="hljs-keyword">import</span> Serial</span><br><span class="line"><span class="hljs-keyword">import</span> logging</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> pytz <span class="hljs-keyword">import</span> timezone <span class="hljs-comment"># pip install pytz</span></span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"><span class="hljs-keyword">import</span> argparse</span><br><span class="line"><span class="hljs-keyword">import</span> json</span><br><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"></span><br><span class="line">AllowedActions = [<span class="hljs-string">'both'</span>, <span class="hljs-string">'publish'</span>, <span class="hljs-string">'subscribe'</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Custom MQTT message callback</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">customCallback</span><span class="hljs-params">(client, userdata, message)</span>:</span></span><br><span class="line">    print(<span class="hljs-string">"Received a new message: "</span>)</span><br><span class="line">    print(message.payload)</span><br><span class="line">    print(<span class="hljs-string">"from topic: "</span>)</span><br><span class="line">    print(message.topic)</span><br><span class="line">    print(<span class="hljs-string">"--------------\n\n"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">publish</span><span class="hljs-params">(PM25)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> mode == <span class="hljs-string">'both'</span> <span class="hljs-keyword">or</span> mode == <span class="hljs-string">'publish'</span>:</span><br><span class="line">        u = datetime.now(timezone(<span class="hljs-string">'Asia/Taipei'</span>))</span><br><span class="line">        message = &#123;&#125;</span><br><span class="line">        message[<span class="hljs-string">'time'</span>] = u.strftime(<span class="hljs-string">'%H:%M:%S'</span>)</span><br><span class="line">        message[<span class="hljs-string">'value'</span>] = PM25</span><br><span class="line">        messageJson = json.dumps(message)</span><br><span class="line">        myAWSIoTMQTTClient.publish(topic, messageJson, <span class="hljs-number">1</span>)</span><br><span class="line">        <span class="hljs-keyword">if</span> mode == <span class="hljs-string">'publish'</span>:</span><br><span class="line">            print(<span class="hljs-string">'Published topic %s: %s\n'</span> % (topic, messageJson))</span><br><span class="line"></span><br><span class="line">host = <span class="hljs-string">"a3l21ss4gwlsqf-ats.iot.us-east-1.amazonaws.com"</span></span><br><span class="line">rootCAPath = <span class="hljs-string">"./root-CA.crt"</span></span><br><span class="line">certificatePath = <span class="hljs-string">"./RPi.cert.pem"</span></span><br><span class="line">privateKeyPath = <span class="hljs-string">"./RPi.private.key"</span></span><br><span class="line">useWebsocket = <span class="hljs-keyword">False</span></span><br><span class="line">clientId = <span class="hljs-string">"myRPi"</span></span><br><span class="line">topic = <span class="hljs-string">"RPi/PM25"</span></span><br><span class="line">mode = <span class="hljs-string">"publish"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Port defaults</span></span><br><span class="line"><span class="hljs-keyword">if</span> useWebsocket:  <span class="hljs-comment"># When no port override for WebSocket, default to 443</span></span><br><span class="line">    port = <span class="hljs-number">443</span></span><br><span class="line"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> useWebsocket:  <span class="hljs-comment"># When no port override for non-WebSocket, default to 8883</span></span><br><span class="line">    port = <span class="hljs-number">8883</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Configure logging</span></span><br><span class="line">logger = logging.getLogger(<span class="hljs-string">"AWSIoTPythonSDK.core"</span>)</span><br><span class="line">logger.setLevel(logging.DEBUG)</span><br><span class="line">streamHandler = logging.StreamHandler()</span><br><span class="line">formatter = logging.Formatter(<span class="hljs-string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)</span><br><span class="line">streamHandler.setFormatter(formatter)</span><br><span class="line">logger.addHandler(streamHandler)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Init AWSIoTMQTTClient</span></span><br><span class="line">myAWSIoTMQTTClient = <span class="hljs-keyword">None</span></span><br><span class="line"><span class="hljs-keyword">if</span> useWebsocket:</span><br><span class="line">    myAWSIoTMQTTClient = AWSIoTMQTTClient(clientId, useWebsocket=<span class="hljs-keyword">True</span>)</span><br><span class="line">    myAWSIoTMQTTClient.configureEndpoint(host, port)</span><br><span class="line">    myAWSIoTMQTTClient.configureCredentials(rootCAPath)</span><br><span class="line"><span class="hljs-keyword">else</span>:</span><br><span class="line">    myAWSIoTMQTTClient = AWSIoTMQTTClient(clientId)</span><br><span class="line">    myAWSIoTMQTTClient.configureEndpoint(host, port)</span><br><span class="line">    myAWSIoTMQTTClient.configureCredentials(rootCAPath, privateKeyPath, certificatePath)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># AWSIoTMQTTClient connection configuration</span></span><br><span class="line">myAWSIoTMQTTClient.configureAutoReconnectBackoffTime(<span class="hljs-number">1</span>, <span class="hljs-number">32</span>, <span class="hljs-number">20</span>)</span><br><span class="line">myAWSIoTMQTTClient.configureOfflinePublishQueueing(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># Infinite offline Publish queueing</span></span><br><span class="line">myAWSIoTMQTTClient.configureDrainingFrequency(<span class="hljs-number">2</span>)  <span class="hljs-comment"># Draining: 2 Hz</span></span><br><span class="line">myAWSIoTMQTTClient.configureConnectDisconnectTimeout(<span class="hljs-number">10</span>)  <span class="hljs-comment"># 10 sec</span></span><br><span class="line">myAWSIoTMQTTClient.configureMQTTOperationTimeout(<span class="hljs-number">5</span>)  <span class="hljs-comment"># 5 sec</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Connect and subscribe to AWS IoT</span></span><br><span class="line">myAWSIoTMQTTClient.connect()</span><br><span class="line"><span class="hljs-keyword">if</span> mode == <span class="hljs-string">'both'</span> <span class="hljs-keyword">or</span> mode == <span class="hljs-string">'subscribe'</span>:</span><br><span class="line">    myAWSIoTMQTTClient.subscribe(topic, <span class="hljs-number">1</span>, customCallback)</span><br><span class="line">time.sleep(<span class="hljs-number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Publish to the same topic in a loop forever</span></span><br><span class="line">ser = Serial(<span class="hljs-string">'/dev/ttyACM0'</span>, <span class="hljs-number">9600</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:</span><br><span class="line">        str = ser.readline().decode(<span class="hljs-string">'utf8'</span>)[:<span class="hljs-number">-2</span>]</span><br><span class="line">        end = str.find(<span class="hljs-string">'\r'</span>)</span><br><span class="line">        PM25 = str[:end]</span><br><span class="line">        publish(PM25)</span><br></pre></td></tr></table></figure>
+<h1 id="在VM執行-fetch-DynamoDB"><a href="#在VM執行-fetch-DynamoDB" class="headerlink" title="在VM執行 fetch DynamoDB"></a>在VM執行 fetch DynamoDB</h1><h2 id="基本連線"><a href="#基本連線" class="headerlink" title="基本連線"></a>基本連線</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> boto3</span><br><span class="line"><span class="hljs-keyword">from</span> boto3.dynamodb.conditions <span class="hljs-keyword">import</span> Key</span><br><span class="line"></span><br><span class="line">dynamodb = boto3.resource(<span class="hljs-string">'dynamodb'</span>, region_name=<span class="hljs-string">'us-east-1'</span>,</span><br><span class="line">                                      aws_session_token=<span class="hljs-string">'FQoGZXIvYXdzEIz//////////wEaDEmGC67DXliftdi15yLjAlNe8Meiqw9LjtH0bS2WCsEwKrtZdGVj4lEXx7YlsON2f3I6vQ4FRqen8d+hT/zUpVzDb6JVMblgslHXSUlaQWi8qovFVQtbw/AvtdlSiZlH3nENUGpev5rlVe30dl5DAiFj8HIZV47+zIcsfZXRqkL8faMpnssTCNqVRwcF4iX5U9o6vjHvMVYelW+EnUVU9/Le2bTe5QDcUsvhAOvzzZ4ZlE/SFEYfFQ4/W3cbr83NLEvU4Bqj8bqKu8L2Vmotbcong/3SFe/QgJH6KsN5Q28HDnjtnvGxFf3z2v/lGOV9e+qVWNFht5/nh6dk+JXni59hXibZa7LIZxHKAOVqs+Vk8es9JVUqm4EYH16e5fHqHLG9gSPJG64RVBa8Jth1hCjWryAlitWFdk1FTiuHdsLYIBRuPz54sdFFJFGoudEnC7/C/8eZPO+H0JseakCFZNMv9zm92cXYoJ9bS/eIu10s0Ykoi8iJ4AU='</span>,</span><br><span class="line">                                      aws_access_key_id = <span class="hljs-string">'ASIA27E3PJ447BBJPJNA'</span>,</span><br><span class="line">                                      aws_secret_access_key = <span class="hljs-string">'taQBfl4HxZF6xyzQvflv2BT04p5sy6dMwKyeo1CE'</span></span><br><span class="line">                          )</span><br><span class="line"></span><br><span class="line">response = table.get_item( Key = &#123;<span class="hljs-string">'time'</span>: <span class="hljs-string">'14:00:01'</span>&#125;) <span class="hljs-comment"># 取出特定時間資料</span></span><br><span class="line"><span class="hljs-keyword">try</span>:</span><br><span class="line">    <span class="hljs-comment"># print(response)</span></span><br><span class="line">    item = response[<span class="hljs-string">'Item'</span>]</span><br><span class="line">    message = item[<span class="hljs-string">'message'</span>]</span><br><span class="line">    print(message[<span class="hljs-string">'value'</span>])</span><br><span class="line"><span class="hljs-keyword">except</span> KeyError:</span><br><span class="line">    print(<span class="hljs-string">''</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="source-code"><a href="#source-code" class="headerlink" title="source code"></a>source code</h2><p>取出DB資料，存成log.txt<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> boto3</span><br><span class="line"><span class="hljs-keyword">from</span> boto3.dynamodb.conditions <span class="hljs-keyword">import</span> Key</span><br><span class="line"></span><br><span class="line">dynamodb = boto3.resource(<span class="hljs-string">'dynamodb'</span>, region_name=<span class="hljs-string">'us-east-1'</span>,</span><br><span class="line">                                      aws_session_token=<span class="hljs-string">'FQoGZXIvYXdzEIz//////////wEaDEmGC67DXliftdi15yLjAlNe8Meiqw9LjtH0bS2WCsEwKrtZdGVj4lEXx7YlsON2f3I6vQ4FRqen8d+hT/zUpVzDb6JVMblgslHXSUlaQWi8qovFVQtbw/AvtdlSiZlH3nENUGpev5rlVe30dl5DAiFj8HIZV47+zIcsfZXRqkL8faMpnssTCNqVRwcF4iX5U9o6vjHvMVYelW+EnUVU9/Le2bTe5QDcUsvhAOvzzZ4ZlE/SFEYfFQ4/W3cbr83NLEvU4Bqj8bqKu8L2Vmotbcong/3SFe/QgJH6KsN5Q28HDnjtnvGxFf3z2v/lGOV9e+qVWNFht5/nh6dk+JXni59hXibZa7LIZxHKAOVqs+Vk8es9JVUqm4EYH16e5fHqHLG9gSPJG64RVBa8Jth1hCjWryAlitWFdk1FTiuHdsLYIBRuPz54sdFFJFGoudEnC7/C/8eZPO+H0JseakCFZNMv9zm92cXYoJ9bS/eIu10s0Ykoi8iJ4AU='</span>,</span><br><span class="line">                                      aws_access_key_id = <span class="hljs-string">'ASIA27E3PJ447BBJPJNA'</span>,</span><br><span class="line">                                      aws_secret_access_key = <span class="hljs-string">'taQBfl4HxZF6xyzQvflv2BT04p5sy6dMwKyeo1CE'</span></span><br><span class="line">                          )</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">## utiliy function ####################################</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">toTimeStamp</span><span class="hljs-params">(u)</span>:</span></span><br><span class="line">    HH = str(u/<span class="hljs-number">3600</span>) <span class="hljs-keyword">if</span> u/<span class="hljs-number">3600</span> &gt;= <span class="hljs-number">10</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'0'</span> + str(u/<span class="hljs-number">3600</span>);</span><br><span class="line">    u %= <span class="hljs-number">3600</span>;</span><br><span class="line">    MM = str(u/<span class="hljs-number">60</span>) <span class="hljs-keyword">if</span> u/<span class="hljs-number">60</span> &gt;= <span class="hljs-number">10</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'0'</span> + str(u/<span class="hljs-number">60</span>);</span><br><span class="line">    SS = str(u%<span class="hljs-number">60</span>) <span class="hljs-keyword">if</span> u%<span class="hljs-number">60</span> &gt;= <span class="hljs-number">10</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'0'</span> + str(u%<span class="hljs-number">60</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> HH + <span class="hljs-string">':'</span> + MM +  <span class="hljs-string">':'</span> + SS;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">toUnixTime</span><span class="hljs-params">(time)</span>:</span></span><br><span class="line">    t = time.split(<span class="hljs-string">':'</span>);</span><br><span class="line">    i = <span class="hljs-number">3600</span>;</span><br><span class="line">    sum = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> t:</span><br><span class="line">        sum += int(a) * i;</span><br><span class="line">        i /= <span class="hljs-number">60</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getMoveAvgBy30secRange</span><span class="hljs-params">(u1)</span>:</span> <span class="hljs-comment"># trace back 30 sec and calculate move average</span></span><br><span class="line">    res = [];</span><br><span class="line">    u2 = u1 - <span class="hljs-number">30</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(u1, u2, <span class="hljs-number">-1</span>):</span><br><span class="line">        print(<span class="hljs-string">'&gt;&gt;'</span> + toTimeStamp(i))</span><br><span class="line">        response = table.get_item(Key=&#123;<span class="hljs-string">'time'</span>: toTimeStamp(i)&#125;)</span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            item = response[<span class="hljs-string">'Item'</span>]</span><br><span class="line">            message = item[<span class="hljs-string">'message'</span>]</span><br><span class="line">            res.append(message[<span class="hljs-string">'value'</span>]);</span><br><span class="line">        <span class="hljs-keyword">except</span> KeyError:</span><br><span class="line">            print(<span class="hljs-string">''</span>)</span><br><span class="line">    sum = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> res:</span><br><span class="line">        sum += x;</span><br><span class="line">    moveAvg = sum / len(res);</span><br><span class="line">    <span class="hljs-keyword">return</span> &#123;toTimeStamp(u1) : moveAvg&#125;;</span><br><span class="line"><span class="hljs-comment">#####################################################</span></span><br><span class="line"></span><br><span class="line">table = dynamodb.Table(<span class="hljs-string">'PM25sensor'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># setting</span></span><br><span class="line">start_hour = <span class="hljs-string">'15:00:00'</span>;</span><br><span class="line">total = <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">list_30sec_avg = [];</span><br><span class="line">list_2min__avg = [];</span><br><span class="line">list_10min_avg = [];</span><br><span class="line"></span><br><span class="line">f = open(<span class="hljs-string">"log.txt"</span>, <span class="hljs-string">"a"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># list of 30 sec move avg</span></span><br><span class="line">t1 = toUnixTime(start_hour);</span><br><span class="line">end = toTimeStamp(t1 - total * <span class="hljs-number">3600</span>);</span><br><span class="line">t2 = toUnixTime(end);</span><br><span class="line">print(start_hour + <span class="hljs-string">'trace back to '</span>+ end)</span><br><span class="line"><span class="hljs-keyword">while</span>(t1 != t2): <span class="hljs-comment">#</span></span><br><span class="line">    list_30sec_avg.append(getMoveAvgBy30secRange(t1));</span><br><span class="line">    print(list_30sec_avg);</span><br><span class="line">    t1 -= <span class="hljs-number">30</span>;</span><br><span class="line"></span><br><span class="line">print(list_30sec_avg);</span><br><span class="line">f.write(str(list_30sec_avg));</span><br></pre></td></tr></table></figure></p>
+<h1 id="產生移動平均chart"><a href="#產生移動平均chart" class="headerlink" title="產生移動平均chart"></a>產生移動平均chart</h1><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(<span class="hljs-string">'log.txt'</span>, <span class="hljs-string">'r'</span>)</span><br><span class="line"></span><br><span class="line">data = f.read().split(<span class="hljs-string">'&#123;'</span>);</span><br><span class="line"></span><br><span class="line">data = data[<span class="hljs-number">1</span>:];</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># print(data[1:])</span></span><br><span class="line"></span><br><span class="line">moveAvg_30sec = [];</span><br><span class="line">timeList = [];</span><br><span class="line">pm25List = [];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> data:</span><br><span class="line">    <span class="hljs-comment"># print(e)</span></span><br><span class="line">    time = e[<span class="hljs-number">1</span>:<span class="hljs-number">9</span>];</span><br><span class="line">    timeList.append(time)</span><br><span class="line">    <span class="hljs-comment"># print(time);</span></span><br><span class="line">    s = e.split(<span class="hljs-string">"': Decimal('"</span>);</span><br><span class="line">    pm25 = s[<span class="hljs-number">1</span>].split(<span class="hljs-string">"'"</span>)[<span class="hljs-number">0</span>]</span><br><span class="line">    pm25_float = float(pm25)</span><br><span class="line">    pm25List.append(pm25_float)</span><br><span class="line">    moveAvg_30sec.append(&#123;time: pm25&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># visualization</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="hljs-string">'time'</span>:timeList, <span class="hljs-string">'pm2.5'</span>: pm25List&#125;)</span><br><span class="line"><span class="hljs-comment"># df['pm2.5'] = df['pm2.5'].astype('float64') # convert pm2.5 string to float</span></span><br><span class="line">df[<span class="hljs-string">'index_col'</span>] = df.index;</span><br><span class="line"></span><br><span class="line">print(df.head(<span class="hljs-number">5</span>));</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)</span><br><span class="line">ax.set_xticklabels(df[<span class="hljs-string">'time'</span>], rotation=<span class="hljs-number">15</span>, fontsize=<span class="hljs-number">18</span>)</span><br><span class="line">sns.lineplot(x=<span class="hljs-string">"index_col"</span>, y=<span class="hljs-string">"pm2.5"</span>, data=df)</span><br><span class="line">plt.title(<span class="hljs-string">"30 sec move average"</span>)</span><br><span class="line"><span class="hljs-comment"># plt.show()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">##### 2 min move avg</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># clear list</span></span><br><span class="line">timeList = [];</span><br><span class="line">pm25List = [];</span><br><span class="line"></span><br><span class="line">moveAvg_2min = []</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(moveAvg_30sec) - len(moveAvg_30sec)%<span class="hljs-number">4</span>, <span class="hljs-number">4</span>):</span><br><span class="line">    time = moveAvg_30sec[i].keys()[<span class="hljs-number">0</span>];</span><br><span class="line">    avg2 = (float(moveAvg_30sec[i].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">1</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">2</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">3</span>].values()[<span class="hljs-number">0</span>])) / <span class="hljs-number">4</span>;</span><br><span class="line">    moveAvg_2min.append(&#123;time: avg2&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># print (moveAvg_2min)</span></span><br><span class="line"><span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> moveAvg_2min:</span><br><span class="line">    <span class="hljs-comment"># print(e)</span></span><br><span class="line">    time = e.keys()[<span class="hljs-number">0</span>];</span><br><span class="line">    timeList.append(time)</span><br><span class="line">    pm25 = e.values()[<span class="hljs-number">0</span>];</span><br><span class="line">    pm25_float = float(pm25)</span><br><span class="line">    pm25List.append(pm25_float)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># visualization</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="hljs-string">'time'</span>:timeList, <span class="hljs-string">'pm2.5'</span>: pm25List&#125;)</span><br><span class="line"><span class="hljs-comment"># df['pm2.5'] = df['pm2.5'].astype('float64') # convert pm2.5 string to float</span></span><br><span class="line">df[<span class="hljs-string">'index_col'</span>] = df.index;</span><br><span class="line"></span><br><span class="line">print(df.head(<span class="hljs-number">5</span>));</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)</span><br><span class="line">ax.set_xticklabels(df[<span class="hljs-string">'time'</span>], rotation=<span class="hljs-number">15</span>, fontsize=<span class="hljs-number">18</span>)</span><br><span class="line">sns.lineplot(x=<span class="hljs-string">"index_col"</span>, y=<span class="hljs-string">"pm2.5"</span>, data=df)</span><br><span class="line">plt.title(<span class="hljs-string">"2 min move average"</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">##### 10 min move avg</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># clear list</span></span><br><span class="line">timeList = [];</span><br><span class="line">pm25List = [];</span><br><span class="line"></span><br><span class="line">moveAvg_10min = []</span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(moveAvg_30sec) - len(moveAvg_30sec)%<span class="hljs-number">20</span>, <span class="hljs-number">20</span>):</span><br><span class="line">    time = moveAvg_30sec[i].keys()[<span class="hljs-number">0</span>];</span><br><span class="line">    avg10 = (float(moveAvg_30sec[i].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">1</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">2</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">3</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">4</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">5</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">6</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">7</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">8</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">9</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">10</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">11</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">12</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">13</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">14</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">15</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">16</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">17</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">18</span>].values()[<span class="hljs-number">0</span>]) + float(moveAvg_30sec[i + <span class="hljs-number">19</span>].values()[<span class="hljs-number">0</span>])) / <span class="hljs-number">20</span>;</span><br><span class="line">    moveAvg_10min.append(&#123;time: avg10&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> moveAvg_10min:</span><br><span class="line">    <span class="hljs-comment"># print(e)</span></span><br><span class="line">    time = e.keys()[<span class="hljs-number">0</span>];</span><br><span class="line">    timeList.append(time)</span><br><span class="line">    pm25 = e.values()[<span class="hljs-number">0</span>];</span><br><span class="line">    pm25_float = float(pm25)</span><br><span class="line">    pm25List.append(pm25_float)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># visualization</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="hljs-string">'time'</span>:timeList, <span class="hljs-string">'pm2.5'</span>: pm25List&#125;)</span><br><span class="line"><span class="hljs-comment"># df['pm2.5'] = df['pm2.5'].astype('float64') # convert pm2.5 string to float</span></span><br><span class="line">df[<span class="hljs-string">'index_col'</span>] = df.index;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># print(df.head(5));</span></span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)</span><br><span class="line">ax.set_xticklabels(df[<span class="hljs-string">'time'</span>], rotation=<span class="hljs-number">15</span>, fontsize=<span class="hljs-number">18</span>)</span><br><span class="line">sns.lineplot(x=<span class="hljs-string">"index_col"</span>, y=<span class="hljs-string">"pm2.5"</span>, data=df)</span><br><span class="line">plt.title(<span class="hljs-string">"10 min move average"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/abWzFwS.png" alt=""></p>
+<p><img src="https://i.imgur.com/4wplaVo.png" alt=""></p>
+<p><img src="https://i.imgur.com/DOuzfkS.png" alt=""></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/AWS/">AWS</a>, <a class="has-link-grey -link" href="/tags/DynamoDB/">DynamoDB</a>, <a class="has-link-grey -link" href="/tags/IoT/">IoT</a>, <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/matplotlib/">matplotlib</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/12/01/Tensorflow-notebook-1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Tensorflow Notebook 1 - Python實作二元線性分類器</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/11/15/iot-course2018-HW4-HW5/">
+                <span class="level-item">Arduino LoRa Shield通訊實驗與NodeRED</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/11/26/iot-course2018-HW6/';
+        this.page.identifier = '2018/11/26/iot-course2018-HW6/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/myimages/fukurou.png" alt="YC">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        放筆記的地方^^
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Taipei, Taiwan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        30
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        51
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 12.5px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.5px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12.5px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12.5px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IoT/" style="font-size: 12.5px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12.5px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12.5px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/STM32/" style="font-size: 12.5px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12.5px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12.5px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="透過AWS IoT core儲存sensor資料至DynamoDB" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>

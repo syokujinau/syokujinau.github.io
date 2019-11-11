@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE - YC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="FIR fliter This project will go through the setup steps for DSP application on ARM CortexM4 processor    AlgorithmThe FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operat">
+<meta name="keywords" content="DSP,STM32,ARM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/stm32-dsp-fir-low-pass-filter/index.html">
+<meta property="og:site_name" content="YC">
+<meta property="og:description" content="FIR fliter This project will go through the setup steps for DSP application on ARM CortexM4 processor    AlgorithmThe FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operat">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://render.githubusercontent.com/render/math?math=y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]">
+<meta property="og:image" content="https://i.imgur.com/dUuvgc1.png">
+<meta property="og:image" content="https://i.imgur.com/GJMatKW.png">
+<meta property="og:image" content="https://i.imgur.com/LH5k6Qm.png">
+<meta property="og:image" content="https://i.imgur.com/JEaWJOM.png">
+<meta property="og:image" content="https://i.imgur.com/LR3xEpc.png">
+<meta property="og:image" content="https://i.imgur.com/LtLM5Gy.png">
+<meta property="og:image" content="https://i.imgur.com/1ZDwwYB.png">
+<meta property="og:image" content="https://i.imgur.com/E0xmZc1.png">
+<meta property="og:image" content="https://i.imgur.com/tGrNPkl.png">
+<meta property="og:image" content="https://i.imgur.com/lUHQ35A.png">
+<meta property="og:image" content="https://i.imgur.com/LLWIjwo.png">
+<meta property="og:image" content="https://i.imgur.com/dc73zPX.png">
+<meta property="og:image" content="https://i.imgur.com/C653v8C.png">
+<meta property="og:updated_time" content="2019-11-11T09:11:05.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+<meta name="twitter:description" content="FIR fliter This project will go through the setup steps for DSP application on ARM CortexM4 processor    AlgorithmThe FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operat">
+<meta name="twitter:image" content="https://render.githubusercontent.com/render/math?math=y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]">
+
+
+
+
+
+<link rel="icon" href="/myimages/hexo-logo.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 minutes read (About 1567 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE
+            
+        </h1>
+        <div class="content">
+            <!-- <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1"> -->
+<h1 id="FIR-fliter"><a href="#FIR-fliter" class="headerlink" title="FIR fliter"></a>FIR fliter</h1><blockquote>
+<p>This project will go through the setup steps for DSP application on ARM CortexM4 processor  </p>
+</blockquote>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient $b[n]$ is multiplied by a state variable which equals a previous input sample $x[n]$.</p>
+<p><img src="https://render.githubusercontent.com/render/math?math=y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]"></p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/dUuvgc1.png" alt=""></p>
+<h2 id="Finite-Impulse-Response-filter"><a href="#Finite-Impulse-Response-filter" class="headerlink" title="Finite Impulse Response filter"></a>Finite Impulse Response filter</h2><p>pCoeffs points to a coefficient array of size numTaps. Coefficients are stored in time reversed order.<br>    $${b[numTaps-1], b[numTaps-2], b[N-2], …, b[1], b[0]}$$<br>pState points to a state array of size numTaps + blockSize - 1. Samples in the state buffer are stored in the following order.<br>    $${x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]….x[0], x[1], …, x[blockSize-1]}$$<br>Note that the length of the state buffer exceeds the length of the coefficient array by blockSize-1. The increased state buffer length allows circular addressing, which is traditionally used in the FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed; the coefficients are untouched.</p>
+<p>Finite Impulse Response filter</p>
+<h2 id="1-New-Project-and-Logic-Analyzer"><a href="#1-New-Project-and-Logic-Analyzer" class="headerlink" title="1. New Project and Logic Analyzer"></a>1. New Project and Logic Analyzer</h2><ol>
+<li>Select Libraries<br><img src="https://i.imgur.com/GJMatKW.png" alt=""></li>
+<li>Add <code>main.c</code> to project<br><img src="https://i.imgur.com/LH5k6Qm.png" alt=""></li>
+<li>Set frequency<br><img src="https://i.imgur.com/JEaWJOM.png" alt=""></li>
+<li>Setup debugger<br><img src="https://i.imgur.com/LR3xEpc.png" alt=""></li>
+<li>Check default frequency</li>
+</ol>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx_hal.h"</span>              <span class="hljs-comment">// Keil::Device:STM32Cube HAL:Common</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> freq; <span class="hljs-comment">// In debug mode, add this variable to watch window</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    HAL_Init();</span><br><span class="line">    </span><br><span class="line">    freq = HAL_RCC_GetHCLKFreq();</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SysTick_Handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    HAL_IncTick();</span><br><span class="line">    HAL_SYSTICK_IRQHandler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/LtLM5Gy.png" alt=""></p>
+<ol start="6">
+<li>Set trace core clock<br><img src="https://i.imgur.com/1ZDwwYB.png" alt=""></li>
+</ol>
+<ol start="7">
+<li>Test Logic analyzer<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx_hal.h"</span>              <span class="hljs-comment">// Keil::Device:STM32Cube HAL:Common</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> freq;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> counter = <span class="hljs-number">50</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">//int i;</span></span><br><span class="line">    </span><br><span class="line">    HAL_Init();</span><br><span class="line">    freq = HAL_RCC_GetHCLKFreq();</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="line">    counter++;</span><br><span class="line">    <span class="hljs-keyword">if</span>(counter == <span class="hljs-number">100</span>) counter = <span class="hljs-number">0</span>;</span><br><span class="line">        </span><br><span class="line">        HAL_Delay(<span class="hljs-number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SysTick_Handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    HAL_IncTick();</span><br><span class="line">    HAL_SYSTICK_IRQHandler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/E0xmZc1.png" alt=""></p>
+<h3 id="Set-clock"><a href="#Set-clock" class="headerlink" title="Set clock"></a>Set clock</h3><ol>
+<li>Use CubeMX, set HCLK to 100MHz<br><img src="https://i.imgur.com/tGrNPkl.png" alt=""></li>
+<li>Copy the <code>SystemClock_Config</code> code</li>
+</ol>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx_hal.h"</span>              <span class="hljs-comment">// Keil::Device:STM32Cube HAL:Common</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">void</span> _Error_Handler(<span class="hljs-keyword">char</span> *file, <span class="hljs-keyword">int</span> line);</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SystemClock_Config</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  RCC_OscInitTypeDef RCC_OscInitStruct;</span><br><span class="line">  RCC_ClkInitTypeDef RCC_ClkInitStruct;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**Configure the main internal regulator output voltage </span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">  __HAL_RCC_PWR_CLK_ENABLE();</span><br><span class="line"></span><br><span class="line">  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**Initializes the CPU, AHB and APB busses clocks </span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;</span><br><span class="line">  RCC_OscInitStruct.HSIState = RCC_HSI_ON;</span><br><span class="line">  RCC_OscInitStruct.HSICalibrationValue = <span class="hljs-number">16</span>;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLM = <span class="hljs-number">8</span>;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLN = <span class="hljs-number">100</span>;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;</span><br><span class="line">  RCC_OscInitStruct.PLL.PLLQ = <span class="hljs-number">4</span>;</span><br><span class="line">  <span class="hljs-keyword">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)</span><br><span class="line">  &#123;</span><br><span class="line">    _Error_Handler(__FILE__, __LINE__);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**Initializes the CPU, AHB and APB busses clocks </span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK</span><br><span class="line">                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;</span><br><span class="line">  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;</span><br><span class="line">  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;</span><br><span class="line">  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;</span><br><span class="line">  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">if</span> (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)</span><br><span class="line">  &#123;</span><br><span class="line">    _Error_Handler(__FILE__, __LINE__);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**Configure the Systick interrupt time </span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/<span class="hljs-number">1000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**Configure the Systick </span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">/* SysTick_IRQn interrupt configuration */</span></span><br><span class="line">  HAL_NVIC_SetPriority(SysTick_IRQn, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* USER CODE BEGIN 4 */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* USER CODE END 4 */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">  * @brief  This function is executed in case of error occurrence.</span></span><br><span class="line"><span class="hljs-comment">  * @param  file: The file name as string.</span></span><br><span class="line"><span class="hljs-comment">  * @param  line: The line in file as a number.</span></span><br><span class="line"><span class="hljs-comment">  * @retval None</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line"><span class="hljs-keyword">void</span> _Error_Handler(<span class="hljs-keyword">char</span> *file, <span class="hljs-keyword">int</span> line)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="hljs-comment">/* USER CODE BEGIN Error_Handler_Debug */</span></span><br><span class="line">  <span class="hljs-comment">/* User can add his own implementation to report the HAL error return state */</span></span><br><span class="line">  <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">/* USER CODE END Error_Handler_Debug */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Add <code>clock.c</code> and config function<br><img src="https://i.imgur.com/lUHQ35A.png" alt=""></li>
+<li>Check variable in watch window<br><img src="https://i.imgur.com/LLWIjwo.png" alt=""></li>
+</ol>
+<h2 id="2-Generate-sin-wave-and-plot"><a href="#2-Generate-sin-wave-and-plot" class="headerlink" title="2. Generate sin wave and plot"></a>2. Generate sin wave and plot</h2><p>Plot the wave below </p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"arm_math.h"</span>                   <span class="hljs-comment">// ARM::CMSIS:DSP</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">float32_t</span> inputSignal_f32_1kHz_15kHz[<span class="hljs-number">320</span>] =</span><br><span class="line">&#123;</span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line"><span class="hljs-number">-0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line"><span class="hljs-number">-0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line"><span class="hljs-number">-0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line"><span class="hljs-number">-0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-0.4619397663f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-0.5000000000f</span>, <span class="hljs-number">-1.1827865776f</span>, <span class="hljs-number">-1.3194792169f</span>, <span class="hljs-number">-0.4619397663f</span>, </span><br><span class="line"><span class="hljs-number">-0.8660254038f</span>, <span class="hljs-number">-1.2552931065f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.1913417162f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.5924659585f</span>, </span><br><span class="line"><span class="hljs-number">-0.0000000000f</span>, +<span class="hljs-number">0.5924659585f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.1913417162f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">1.2552931065f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">0.4619397663f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">0.5000000000f</span>, +<span class="hljs-number">1.1827865776f</span>, +<span class="hljs-number">1.3194792169f</span>, +<span class="hljs-number">0.4619397663f</span>, </span><br><span class="line">+<span class="hljs-number">0.8660254038f</span>, +<span class="hljs-number">1.2552931065f</span>, +<span class="hljs-number">0.3535533906f</span>, +<span class="hljs-number">0.4174197128f</span>, +<span class="hljs-number">1.0000000000f</span>, +<span class="hljs-number">0.1913417162f</span>, <span class="hljs-number">-0.0947343455f</span>, +<span class="hljs-number">0.5924659585f</span>, </span><br><span class="line">+<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.5924659585f</span>, +<span class="hljs-number">0.0947343455f</span>, <span class="hljs-number">-0.1913417162f</span>, <span class="hljs-number">-1.0000000000f</span>, <span class="hljs-number">-0.4174197128f</span>, <span class="hljs-number">-0.3535533906f</span>, <span class="hljs-number">-1.2552931065f</span>, </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx_hal.h"</span>              <span class="hljs-comment">// Keil::Device:STM32Cube HAL:Common</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"arm_math.h"</span>                   <span class="hljs-comment">// ARM::CMSIS:DSP</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SIG_LENGTH 320</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> freq;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SystemClock_Config</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">float32_t</span> inputSignal_f32_1kHz_15kHz[SIG_LENGTH];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_Sin_wave</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">float32_t</span> inputSample;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    freq = HAL_RCC_GetHCLKFreq();</span><br><span class="line">    </span><br><span class="line">    plot_Sin_wave();</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_Sin_wave</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> i, j;</span><br><span class="line">    </span><br><span class="line">      <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; SIG_LENGTH; i++) &#123;</span><br><span class="line">            </span><br><span class="line">            inputSample = inputSignal_f32_1kHz_15kHz[i];</span><br><span class="line">            <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3000</span>; j++) &#123;&#125;; <span class="hljs-comment">// delay</span></span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SysTick_Handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    HAL_IncTick();</span><br><span class="line">    HAL_SYSTICK_IRQHandler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/dc73zPX.png" alt=""></p>
+<h2 id="3-Filter-by-given-coefficient"><a href="#3-Filter-by-given-coefficient" class="headerlink" title="3. Filter by given coefficient"></a>3. Filter by given coefficient</h2><p>Given coeff below</p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">float32_t</span> firCoeffs32[NUM_TAPS] = &#123;</span><br><span class="line">  <span class="hljs-number">-0.0018225230f</span>, <span class="hljs-number">-0.0015879294f</span>, +<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.0036977508f</span>, +<span class="hljs-number">0.0080754303f</span>, +<span class="hljs-number">0.0085302217f</span>, <span class="hljs-number">-0.0000000000f</span>, <span class="hljs-number">-0.0173976984f</span>,</span><br><span class="line">  <span class="hljs-number">-0.0341458607f</span>, <span class="hljs-number">-0.0333591565f</span>, +<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.0676308395f</span>, +<span class="hljs-number">0.1522061835f</span>, +<span class="hljs-number">0.2229246956f</span>, +<span class="hljs-number">0.2504960933f</span>, +<span class="hljs-number">0.2229246956f</span>,</span><br><span class="line">  +<span class="hljs-number">0.1522061835f</span>, +<span class="hljs-number">0.0676308395f</span>, +<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.0333591565f</span>, <span class="hljs-number">-0.0341458607f</span>, <span class="hljs-number">-0.0173976984f</span>, <span class="hljs-number">-0.0000000000f</span>, +<span class="hljs-number">0.0085302217f</span>,</span><br><span class="line">  +<span class="hljs-number">0.0080754303f</span>, +<span class="hljs-number">0.0036977508f</span>, +<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.0015879294f</span>, <span class="hljs-number">-0.0018225230f</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h3><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx_hal.h"</span>              <span class="hljs-comment">// Keil::Device:STM32Cube HAL:Common</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"arm_math.h"</span>                   <span class="hljs-comment">// ARM::CMSIS:DSP</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SIG_LENGTH      320</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NUM_TAPS        29</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BLOCK_SIZE      32</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> freq;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SystemClock_Config</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">float32_t</span> inputSignal_f32_1kHz_15kHz[SIG_LENGTH];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_Sin_wave</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_output_signal</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_both</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Variable for logic analyzer</span></span><br><span class="line"><span class="hljs-keyword">float32_t</span> inputSample;</span><br><span class="line"><span class="hljs-keyword">float32_t</span> outputSample;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/// FIR Low-pass filter</span></span><br><span class="line"><span class="hljs-comment">/// Given Coeff</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">float32_t</span> firCoeffs32[NUM_TAPS] = &#123;</span><br><span class="line">    <span class="hljs-number">-0.0018225230f</span>, <span class="hljs-number">-0.0015879294f</span>, +<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.0036977508f</span>, +<span class="hljs-number">0.0080754303f</span>, +<span class="hljs-number">0.0085302217f</span>, <span class="hljs-number">-0.0000000000f</span>, <span class="hljs-number">-0.0173976984f</span>,</span><br><span class="line">    <span class="hljs-number">-0.0341458607f</span>, <span class="hljs-number">-0.0333591565f</span>, +<span class="hljs-number">0.0000000000f</span>, +<span class="hljs-number">0.0676308395f</span>, +<span class="hljs-number">0.1522061835f</span>, +<span class="hljs-number">0.2229246956f</span>, +<span class="hljs-number">0.2504960933f</span>, +<span class="hljs-number">0.2229246956f</span>,</span><br><span class="line">    +<span class="hljs-number">0.1522061835f</span>, +<span class="hljs-number">0.0676308395f</span>, +<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.0333591565f</span>, <span class="hljs-number">-0.0341458607f</span>, <span class="hljs-number">-0.0173976984f</span>, <span class="hljs-number">-0.0000000000f</span>, +<span class="hljs-number">0.0085302217f</span>,</span><br><span class="line">    +<span class="hljs-number">0.0080754303f</span>, +<span class="hljs-number">0.0036977508f</span>, +<span class="hljs-number">0.0000000000f</span>, <span class="hljs-number">-0.0015879294f</span>, <span class="hljs-number">-0.0018225230f</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float32_t</span> firState_f32[BLOCK_SIZE + NUM_TAPS - <span class="hljs-number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> NUM_OF_BLOCKs = SIG_LENGTH / BLOCK_SIZE;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">float32_t</span> outputSignal_f32[SIG_LENGTH];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    freq = HAL_RCC_GetHCLKFreq();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/// FIR Low-pass filter</span></span><br><span class="line"><span class="hljs-comment">// ARM DSP API</span></span><br><span class="line"><span class="hljs-comment">// 1. Create fir object</span></span><br><span class="line">    arm_fir_instance_f32 _1Khz_Khz_sig;</span><br><span class="line"><span class="hljs-comment">// 2. Initialize</span></span><br><span class="line">    arm_fir_init_f32(</span><br><span class="line">                &amp;_1Khz_Khz_sig,               <span class="hljs-comment">// points to an instance of the floating-point FIR filter structure</span></span><br><span class="line">                NUM_TAPS,                     <span class="hljs-comment">// number of filter coefficients in the filter</span></span><br><span class="line">                (<span class="hljs-keyword">float32_t</span> *)&amp;firCoeffs32[<span class="hljs-number">0</span>], <span class="hljs-comment">// points to the filter coefficients buffer</span></span><br><span class="line">                &amp;firState_f32[<span class="hljs-number">0</span>],             <span class="hljs-comment">// points to the state buffer</span></span><br><span class="line">                BLOCK_SIZE                    <span class="hljs-comment">// number of samples processed per call</span></span><br><span class="line">                );</span><br><span class="line"><span class="hljs-comment">// 3. Calculate </span></span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM_OF_BLOCKs; i++) &#123;</span><br><span class="line">        arm_fir_f32(</span><br><span class="line">            &amp;_1Khz_Khz_sig, </span><br><span class="line">                &amp;inputSignal_f32_1kHz_15kHz[<span class="hljs-number">0</span>] + (i * BLOCK_SIZE), <span class="hljs-comment">// filter out block by block</span></span><br><span class="line">                &amp;outputSignal_f32[<span class="hljs-number">0</span>] + (i * BLOCK_SIZE),           <span class="hljs-comment">// store output block by block</span></span><br><span class="line">                BLOCK_SIZE</span><br><span class="line">                );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// plot_Sin_wave();</span></span><br><span class="line"><span class="hljs-comment">// plot_output_signal();</span></span><br><span class="line">    plot_both();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_Sin_wave</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">        inputSample = inputSignal_f32_1kHz_15kHz[i];</span><br><span class="line"><span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3000</span>; j++) &#123;&#125;; <span class="hljs-comment">// delay</span></span><br><span class="line"></span><br><span class="line">    i = (i == SIG_LENGTH - <span class="hljs-number">1</span>) ? <span class="hljs-number">0</span> : i + <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_output_signal</span> <span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; SIG_LENGTH; i++) &#123;</span><br><span class="line">        outputSample = outputSignal_f32[i];</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3000</span>; j++) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">plot_both</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; SIG_LENGTH; i++) &#123;</span><br><span class="line">        inputSample = inputSignal_f32_1kHz_15kHz[i];</span><br><span class="line">        outputSample = outputSignal_f32[i];</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">8000</span>; j++) &#123;&#125;</span><br><span class="line"><span class="hljs-comment">//if(i == SIG_LENGTH - 1) i = 0;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SysTick_Handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    HAL_IncTick();</span><br><span class="line">    HAL_SYSTICK_IRQHandler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/C653v8C.png" alt=""></p>
+<h2 id="Signal-Generation-via-Octive"><a href="#Signal-Generation-via-Octive" class="headerlink" title="Signal Generation via Octive"></a>Signal Generation via Octive</h2><ul>
+<li>Generate 10 Hz sin wave for 3 sec</li>
+<li>Save as txt file</li>
+</ul>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> <span class="hljs-number">10</span>; # <span class="hljs-number">10</span>Hz</span><br><span class="line">Amp <span class="hljs-built_in">=</span> <span class="hljs-number">1</span>;</span><br><span class="line">ts <span class="hljs-built_in">=</span> <span class="hljs-number">1</span>/<span class="hljs-number">100</span>;</span><br><span class="line">T <span class="hljs-built_in">=</span> <span class="hljs-number">3</span>;</span><br><span class="line">t <span class="hljs-built_in">=</span> <span class="hljs-number">0</span>:ts:T;</span><br><span class="line">y <span class="hljs-built_in">=</span> Amp*sin(<span class="hljs-number">2</span>*pi*f*t);</span><br><span class="line"></span><br><span class="line">csvwrite(<span class="hljs-string">'_10hz_signal.txt'</span>, y);</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://www.keil.com/pack/doc/cmsis/DSP/html/group__FIR.html" target="_blank" rel="noopener">http://www.keil.com/pack/doc/cmsis/DSP/html/group__FIR.html</a></li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ARM/">ARM</a>, <a class="has-link-grey -link" href="/tags/DSP/">DSP</a>, <a class="has-link-grey -link" href="/tags/STM32/">STM32</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/12/signal-statistics-CMSIS-DSP/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Signal Statistics and CMSIS-DSP</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/31/computational-complexity-theory/">
+                <span class="level-item">計算複雜度理論簡介</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/09/11/stm32-dsp-fir-low-pass-filter/';
+        this.page.identifier = '2019/09/11/stm32-dsp-fir-low-pass-filter/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/myimages/fukurou.png" alt="YC">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        放筆記的地方^^
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Taipei, Taiwan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        30
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        51
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 12.5px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.5px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12.5px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12.5px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IoT/" style="font-size: 12.5px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12.5px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12.5px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/STM32/" style="font-size: 12.5px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12.5px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12.5px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>

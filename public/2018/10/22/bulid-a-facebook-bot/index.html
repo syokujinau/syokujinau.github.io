@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+<title>Fackbook Bot Webhook架設筆記 - YC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="當時參加2018 NASA Hackathon做的Facebook聊天機器人，雖然沒得名，但是學會了FB Bot製作、後端database串接，base64 等等還算是有收穫 呵呵   官方 快速入門教學課程 FB Developers  基本上照著做即可 Note 過程中要記得安裝request套件 在開發者頁面要把VERIFY_TOKEN填入(自己記得就好)，對應到的code的VERIFY_">
+<meta name="keywords" content="Facebook,Ngrok,base64,Firebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fackbook Bot Webhook架設筆記">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/bulid-a-facebook-bot/index.html">
+<meta property="og:site_name" content="YC">
+<meta property="og:description" content="當時參加2018 NASA Hackathon做的Facebook聊天機器人，雖然沒得名，但是學會了FB Bot製作、後端database串接，base64 等等還算是有收穫 呵呵   官方 快速入門教學課程 FB Developers  基本上照著做即可 Note 過程中要記得安裝request套件 在開發者頁面要把VERIFY_TOKEN填入(自己記得就好)，對應到的code的VERIFY_">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/ob4RLqy.png">
+<meta property="og:image" content="https://i.imgur.com/3Hajp91.png">
+<meta property="og:updated_time" content="2019-02-15T15:12:11.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fackbook Bot Webhook架設筆記">
+<meta name="twitter:description" content="當時參加2018 NASA Hackathon做的Facebook聊天機器人，雖然沒得名，但是學會了FB Bot製作、後端database串接，base64 等等還算是有收穫 呵呵   官方 快速入門教學課程 FB Developers  基本上照著做即可 Note 過程中要記得安裝request套件 在開發者頁面要把VERIFY_TOKEN填入(自己記得就好)，對應到的code的VERIFY_">
+<meta name="twitter:image" content="https://i.imgur.com/ob4RLqy.png">
+
+
+
+
+
+<link rel="icon" href="/myimages/hexo-logo.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body class="is-3-column">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Fackbook Bot Webhook架設筆記" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-22T13:37:49.000Z">2018-10-22</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1269 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Fackbook Bot Webhook架設筆記
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>當時參加2018 NASA Hackathon做的Facebook聊天機器人，雖然沒得名，但是學會了FB Bot製作、後端database串接，base64 等等<br>還算是有收穫 呵呵</p>
+</blockquote>
+<ul>
+<li>官方 <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup" target="_blank" rel="noopener">快速入門教學課程</a></li>
+<li><a href="https://developers.facebook.com/apps/" target="_blank" rel="noopener">FB Developers</a></li>
+</ul>
+<p>基本上照著做即可</p>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><ol>
+<li>過程中要記得安裝request套件</li>
+<li>在<a href="https://developers.facebook.com/apps/" target="_blank" rel="noopener">開發者頁面</a>要把VERIFY_TOKEN填入(自己記得就好)，對應到的code的VERIFY_TOKEN</li>
+</ol>
+<p><img src="https://i.imgur.com/ob4RLqy.png" alt=""><br><a id="more"></a><br><img src="https://i.imgur.com/3Hajp91.png" alt=""></p>
+<ol start="3">
+<li>在 Messenger 設定主控台的「權杖產生」區段，點擊「選擇粉絲專頁」下拉式功能表，然後選擇您要這個應用程式訂閱的 Facebook 粉絲專頁。這個粉絲專頁就是當用戶在 Messenger 與其交談時，想要 Webhook 接收事件的粉絲專頁</li>
+<li>要訂閱這個粉專!!!</li>
+<li>要使這個應用程式上線，需要有隱私權政策網址，可以用<a href="https://privacypolicies.com/" target="_blank" rel="noopener">產生器</a>產生</li>
+<li>要提交pages_messaging功能才能讓開發者以外的人使用訊息</li>
+<li>提交審查之前，要先上傳<strong>1024x1024 pixel的透明背景圖</strong>，以及勾選<strong>商業用途</strong><blockquote>
+<p>Ref:<a href="http://animabeautifullife.blogspot.com/2016/06/facebook-messenger-api.html" target="_blank" rel="noopener">http://animabeautifullife.blogspot.com/2016/06/facebook-messenger-api.html</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Ngrok"><a href="#Ngrok" class="headerlink" title="Ngrok"></a>Ngrok</h2><p>省去webhook在app engine或heroku等等平台部屬的時間，等debug完成再部屬(記得更改webhook網址)，加速開發!</p>
+<blockquote>
+<p>Reference: <a href="https://blog.techbridge.cc/2018/05/24/ngrok/" target="_blank" rel="noopener">https://blog.techbridge.cc/2018/05/24/ngrok/</a></p>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> myToken = <span class="hljs-string">'YOUR TOKEN'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Imports dependencies and set up http server</span></span><br><span class="line"><span class="hljs-keyword">const</span></span><br><span class="line">  express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>),</span><br><span class="line">  bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>),</span><br><span class="line">  app = express().use(bodyParser.json()); <span class="hljs-comment">// creates express http server</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">'request'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> image2base64 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'image-to-base64'</span>); <span class="hljs-comment">//upload base64 encode image on firebase</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Sets server port and logs message on success</span></span><br><span class="line">app.listen(process.env.PORT || <span class="hljs-number">3000</span>, () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'webhook is listening'</span>));</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    res.send(<span class="hljs-string">`hello yc!!!`</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1</span></span><br><span class="line"><span class="hljs-comment">// Creates the endpoint for our webhook </span></span><br><span class="line">app.post(<span class="hljs-string">'/webhook'</span>, (req, res) =&gt; &#123;  </span><br><span class="line"> </span><br><span class="line">    <span class="hljs-comment">// Parse the request body from the POST</span></span><br><span class="line">    <span class="hljs-keyword">let</span> body = req.body;</span><br><span class="line">  </span><br><span class="line">    <span class="hljs-comment">// Checks this is an event from a page subscription</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (body.object === <span class="hljs-string">'page'</span>) &#123;</span><br><span class="line">  </span><br><span class="line">      <span class="hljs-comment">// Iterates over each entry - there may be multiple if batched</span></span><br><span class="line">      body.entry.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">entry</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">        <span class="hljs-comment">// Gets the message. entry.messaging is an array, but </span></span><br><span class="line">        <span class="hljs-comment">// will only ever contain one message, so we get index 0</span></span><br><span class="line">        <span class="hljs-keyword">let</span> webhook_event = entry.messaging[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(webhook_event);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// Get the sender PSID</span></span><br><span class="line">        <span class="hljs-keyword">let</span> sender_psid = webhook_event.sender.id;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Sender PSID: '</span> + sender_psid);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// Check if the event is a message or postback and</span></span><br><span class="line">        <span class="hljs-comment">// pass the event to the appropriate handler function</span></span><br><span class="line">        <span class="hljs-keyword">if</span> (webhook_event.message) &#123;</span><br><span class="line">            <span class="hljs-comment">// handleMessage(sender_psid, webhook_event.message);</span></span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">switch</span>(webhook_event.message.text) &#123;</span><br><span class="line">              <span class="hljs-keyword">case</span> <span class="hljs-string">'hi'</span>:</span><br><span class="line">                  webhook_event.message.text = <span class="hljs-string">'Hi :))'</span>;</span><br><span class="line">                  handleMessage(sender_psid, webhook_event.message);</span><br><span class="line">                  <span class="hljs-keyword">break</span>;</span><br><span class="line">              <span class="hljs-keyword">default</span>:</span><br><span class="line">                  <span class="hljs-comment">//直接回覆原字串 或傳入attachment</span></span><br><span class="line">                  handleMessage(sender_psid, webhook_event.message);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (webhook_event.postback) &#123;</span><br><span class="line">            handlePostback(sender_psid, webhook_event.postback);</span><br><span class="line">        &#125;        </span><br><span class="line"></span><br><span class="line">      &#125;);</span><br><span class="line">  </span><br><span class="line">      <span class="hljs-comment">// Returns a '200 OK' response to all requests</span></span><br><span class="line">      res.status(<span class="hljs-number">200</span>).send(<span class="hljs-string">'EVENT_RECEIVED'</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">      <span class="hljs-comment">// Returns a '404 Not Found' if event is not from a page subscription</span></span><br><span class="line">      res.sendStatus(<span class="hljs-number">404</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Adds support for GET requests to our webhook</span></span><br><span class="line">app.get(<span class="hljs-string">'/webhook'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'get webhook'</span>);</span><br><span class="line">    <span class="hljs-comment">// Your verify token. Should be a random string.</span></span><br><span class="line">    <span class="hljs-keyword">let</span> VERIFY_TOKEN = <span class="hljs-string">"12345"</span> <span class="hljs-comment">//對應到FB developer頁面的驗證權杖</span></span><br><span class="line">      </span><br><span class="line">    <span class="hljs-comment">// Parse the query params</span></span><br><span class="line">    <span class="hljs-keyword">let</span> mode = req.query[<span class="hljs-string">'hub.mode'</span>];</span><br><span class="line">    <span class="hljs-keyword">let</span> token = req.query[<span class="hljs-string">'hub.verify_token'</span>];</span><br><span class="line">    <span class="hljs-keyword">let</span> challenge = req.query[<span class="hljs-string">'hub.challenge'</span>];</span><br><span class="line">      </span><br><span class="line">    <span class="hljs-comment">// Checks if a token and mode is in the query string of the request</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (mode &amp;&amp; token) &#123;</span><br><span class="line">    </span><br><span class="line">      <span class="hljs-comment">// Checks the mode and token sent is correct</span></span><br><span class="line">      <span class="hljs-keyword">if</span> (mode === <span class="hljs-string">'subscribe'</span> &amp;&amp; token === VERIFY_TOKEN) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment">// Responds with the challenge token from the request</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'WEBHOOK_VERIFIED'</span>);</span><br><span class="line">        res.status(<span class="hljs-number">200</span>).send(challenge);</span><br><span class="line">      </span><br><span class="line">      &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-comment">// Responds with '403 Forbidden' if verify tokens do not match</span></span><br><span class="line">        res.sendStatus(<span class="hljs-number">403</span>);      </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Handles messages events</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleMessage</span>(<span class="hljs-params">sender_psid, received_message</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">let</span> response;</span><br><span class="line">  </span><br><span class="line">  <span class="hljs-comment">// Checks if the message contains text</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (received_message.text) &#123;    </span><br><span class="line">    <span class="hljs-comment">// Create the payload for a basic text message, which</span></span><br><span class="line">    <span class="hljs-comment">// will be added to the body of our request to the Send API</span></span><br><span class="line">    response = &#123; </span><br><span class="line">      <span class="hljs-comment">//"text": `You sent the message: "$&#123;received_message.text&#125;". Now send me an attachment! \nfrom handleMessage`</span></span><br><span class="line">      <span class="hljs-string">"attachment"</span>: &#123;</span><br><span class="line">        <span class="hljs-string">"type"</span>: <span class="hljs-string">"template"</span>,</span><br><span class="line">        <span class="hljs-string">"payload"</span>: &#123;</span><br><span class="line">            <span class="hljs-string">"template_type"</span>: <span class="hljs-string">"generic"</span>,</span><br><span class="line">            <span class="hljs-string">"elements"</span>: [&#123;</span><br><span class="line">                <span class="hljs-string">"title"</span>: <span class="hljs-string">"Title test"</span>,</span><br><span class="line">                <span class="hljs-string">"subtitle"</span>: <span class="hljs-string">`subtitle`</span>,</span><br><span class="line">                <span class="hljs-string">"image_url"</span>: <span class="hljs-string">''</span>,</span><br><span class="line">                <span class="hljs-string">"buttons"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                      <span class="hljs-string">"type"</span>: <span class="hljs-string">"web_url"</span>,</span><br><span class="line">                      <span class="hljs-string">"url"</span>: <span class="hljs-string">'www.google.com'</span>,</span><br><span class="line">                      <span class="hljs-string">"title"</span>:<span class="hljs-string">"Google"</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (received_message.attachments) &#123;</span><br><span class="line">    <span class="hljs-comment">// Get the URL of the message attachment</span></span><br><span class="line">    <span class="hljs-keyword">let</span> attachment_url = received_message.attachments[<span class="hljs-number">0</span>].payload.url;</span><br><span class="line">    <span class="hljs-comment">// console.log(`[XDDDDDDD] $&#123;JSON.stringify(received_message.attachments, undefined, 4)&#125;`);</span></span><br><span class="line">    response = &#123;</span><br><span class="line">        <span class="hljs-string">"attachment"</span>: &#123;</span><br><span class="line">          <span class="hljs-string">"type"</span>: <span class="hljs-string">"template"</span>,</span><br><span class="line">          <span class="hljs-string">"payload"</span>: &#123;</span><br><span class="line">              <span class="hljs-string">"template_type"</span>: <span class="hljs-string">"generic"</span>,</span><br><span class="line">              <span class="hljs-string">"elements"</span>: [&#123;</span><br><span class="line">                  <span class="hljs-string">"title"</span>: <span class="hljs-string">"回報系統"</span>,</span><br><span class="line">                  <span class="hljs-string">"subtitle"</span>: <span class="hljs-string">`25.024782°N 121.528864°E`</span>,</span><br><span class="line">                  <span class="hljs-string">"image_url"</span>: attachment_url,</span><br><span class="line">                  <span class="hljs-string">"buttons"</span>: [</span><br><span class="line">                      &#123;</span><br><span class="line">                        <span class="hljs-string">"type"</span>: <span class="hljs-string">"web_url"</span>,</span><br><span class="line">                        <span class="hljs-string">"url"</span>: NASAwebpage,</span><br><span class="line">                        <span class="hljs-string">"title"</span>:<span class="hljs-string">"火災現況"</span></span><br><span class="line">                      &#125;</span><br><span class="line">                  ],</span><br><span class="line">              &#125;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">const</span> FirebaseURL = <span class="hljs-string">'https://nasa-hackthon-linebot.firebaseio.com/firespot.json'</span>;</span><br><span class="line"></span><br><span class="line">    image2base64(attachment_url) <span class="hljs-comment">// you can also to use url</span></span><br><span class="line">    .then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">let</span> MyData = <span class="hljs-built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            img : response,</span><br><span class="line">            location: &#123;</span><br><span class="line">                latitude: <span class="hljs-number">121.528864</span>,</span><br><span class="line">                longitude: <span class="hljs-number">25.024782</span></span><br><span class="line">            &#125;,</span><br><span class="line">            status: <span class="hljs-string">"未通報"</span></span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">        request(&#123;</span><br><span class="line">            <span class="hljs-string">"uri"</span>: FirebaseURL,</span><br><span class="line">            <span class="hljs-string">"method"</span>: <span class="hljs-string">"POST"</span>,</span><br><span class="line">            <span class="hljs-string">"body"</span> : MyData</span><br><span class="line">        &#125;, (err, res, body) =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">if</span> (!err) &#123;</span><br><span class="line">                <span class="hljs-comment">//console.log(res);</span></span><br><span class="line">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                <span class="hljs-built_in">console</span>.log(err);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(error); <span class="hljs-comment">//Exepection error....</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  <span class="hljs-comment">// Send the response message</span></span><br><span class="line">  callSendAPI(sender_psid, response);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Handles messaging_postbacks events</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handlePostback</span>(<span class="hljs-params">sender_psid, received_postback</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> response;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// Checks if the message contains text</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (received_message.text) &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="hljs-comment">// Creates the payload for a basic text message, which</span></span><br><span class="line">      <span class="hljs-comment">// will be added to the body of our request to the Send API</span></span><br><span class="line">      response = &#123;</span><br><span class="line">        <span class="hljs-string">"text"</span>: <span class="hljs-string">`You sent the message: "<span class="hljs-subst">$&#123;received_message.text&#125;</span>". Now send me an attachment! \nfrom handlePostback`</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (received_message.attachments) &#123;</span><br><span class="line">    </span><br><span class="line">      <span class="hljs-comment">// Gets the URL of the message attachment</span></span><br><span class="line">      <span class="hljs-keyword">let</span> attachment_url = received_message.attachments[<span class="hljs-number">0</span>].payload.url;</span><br><span class="line">    </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">// Sends the response message</span></span><br><span class="line">    callSendAPI(sender_psid, response); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callSendAPI</span>(<span class="hljs-params">sender_psid, response</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// Construct the message body</span></span><br><span class="line">    <span class="hljs-keyword">let</span> request_body = &#123;</span><br><span class="line">        <span class="hljs-string">"recipient"</span>: &#123;</span><br><span class="line">          <span class="hljs-string">"id"</span>: sender_psid</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="hljs-string">"message"</span>: response</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">// Send the HTTP request to the Messenger Platform</span></span><br><span class="line">    request(&#123;</span><br><span class="line">        <span class="hljs-string">"uri"</span>: <span class="hljs-string">"https://graph.facebook.com/v2.6/me/messages"</span>,</span><br><span class="line">        <span class="hljs-string">"qs"</span>: &#123; <span class="hljs-string">"access_token"</span>: myToken &#125;, <span class="hljs-comment">//PAGE_ACCESS_TOKEN</span></span><br><span class="line">        <span class="hljs-string">"method"</span>: <span class="hljs-string">"POST"</span>,</span><br><span class="line">        <span class="hljs-string">"json"</span>: request_body</span><br><span class="line">    &#125;, (err, res, body) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (!err) &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'message sent!'</span>)</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"Unable to send message:"</span> + err);</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// playground</span></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLatestInfo</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// Promise</span></span><br><span class="line">  <span class="hljs-keyword">let</span> year =  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear()</span><br><span class="line">  <span class="hljs-keyword">let</span> month = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getMonth() + <span class="hljs-number">1</span></span><br><span class="line">  <span class="hljs-keyword">let</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getDate()</span><br><span class="line">  month = (month &lt; <span class="hljs-number">10</span>)? <span class="hljs-string">'0'</span>+month : month;</span><br><span class="line">  date = (date &lt; <span class="hljs-number">10</span>)? <span class="hljs-string">'0'</span>+date : date;   </span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      request(&#123;</span><br><span class="line">        <span class="hljs-string">"uri"</span>: <span class="hljs-string">`https://launchlibrary.net/1.3/launch/<span class="hljs-subst">$&#123;year&#125;</span>-<span class="hljs-subst">$&#123;month&#125;</span>-<span class="hljs-subst">$&#123;date&#125;</span>`</span>,</span><br><span class="line">        <span class="hljs-string">"method"</span>: <span class="hljs-string">"GET"</span>,</span><br><span class="line">        <span class="hljs-string">"json"</span>: <span class="hljs-literal">true</span></span><br><span class="line">      &#125;, (err, res, body) =&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (!err) &#123;</span><br><span class="line">            <span class="hljs-comment">// console.log(`[QUERY] $&#123;year&#125;-$&#123;month&#125;-$&#123;date&#125;`)</span></span><br><span class="line">            <span class="hljs-comment">// console.log(body.launches[0])</span></span><br><span class="line">            <span class="hljs-keyword">let</span> latest = body.launches[<span class="hljs-number">0</span>];</span><br><span class="line">            resolve(&#123;</span><br><span class="line">                date: latest.windowstart,</span><br><span class="line">                name: latest.name,</span><br><span class="line">                lat:  latest.location.pads[<span class="hljs-number">0</span>].latitude,</span><br><span class="line">                lng:  latest.location.pads[<span class="hljs-number">0</span>].longitude,</span><br><span class="line">                gmap: latest.location.pads[<span class="hljs-number">0</span>].mapURL</span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="hljs-comment">// console.log(data);</span></span><br><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            reject(<span class="hljs-string">"Unable to send message:"</span> + err);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">Usage:</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">getLatestInfo().then((res) =&gt; &#123;</span></span><br><span class="line"><span class="hljs-comment">    // handle </span></span><br><span class="line"><span class="hljs-comment">&#125;).catch((err) =&gt; &#123;</span></span><br><span class="line"><span class="hljs-comment">    // error </span></span><br><span class="line"><span class="hljs-comment">&#125;)</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> fbIDtoTimestamp = <span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">var</span> PUSH_CHARS = <span class="hljs-string">"-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"</span>;</span><br><span class="line">  id = id.substring(<span class="hljs-number">0</span>,<span class="hljs-number">8</span>);</span><br><span class="line">  <span class="hljs-keyword">var</span> timestamp = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt; id.length; i++) &#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> c = id.charAt(i);</span><br><span class="line">    timestamp = timestamp * <span class="hljs-number">64</span> + PUSH_CHARS.indexOf(c);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">return</span> timestamp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Facebook/">Facebook</a>, <a class="has-link-grey -link" href="/tags/Firebase/">Firebase</a>, <a class="has-link-grey -link" href="/tags/Ngrok/">Ngrok</a>, <a class="has-link-grey -link" href="/tags/base64/">base64</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/11/12/cvsd-note/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">CVSD 2018 Fall Nodebook</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/10/12/ML-course-note-K-means/">
+                <span class="level-item">K-Means-Clustering演算法 - 腫瘤分類</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/10/22/bulid-a-facebook-bot/';
+        this.page.identifier = '2018/10/22/bulid-a-facebook-bot/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/myimages/fukurou.png" alt="YC">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        YC
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        放筆記的地方^^
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Taipei, Taiwan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        30
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        51
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 12.5px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.5px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12.5px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12.5px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IoT/" style="font-size: 12.5px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12.5px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12.5px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/STM32/" style="font-size: 12.5px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12.5px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12.5px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
+                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Fackbook Bot Webhook架設筆記" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 John Doe&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</body>
+</html>
