@@ -29,7 +29,8 @@ thumbnail: https://i.imgur.com/VFOqYdF.png
     * <img src="https://render.githubusercontent.com/render/math?math=\LARGE SNR = \frac{\mu}{\sigma}" /> 
 * Coefficient of Variation
     * <img src="https://render.githubusercontent.com/render/math?math=\LARGE CV = \frac{\mu}{\sigma} \times 100" /> 
-<!-- more -->
+
+<!-- more --> 
 
 ### Implementation
 
