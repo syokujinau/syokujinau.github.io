@@ -79,6 +79,6 @@ theme: icarus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/syokujinau/syokujinau.github.io.git
+  repository: git@github.com:syokujinau/syokujinau.github.io.git
   branch: master
 
