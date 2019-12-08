@@ -5,6 +5,8 @@ tags:
 - Anki
 - HTML
 - CSS
+categories:
+- Miscellaneous
 thumbnail: https://i.imgur.com/wH9EPrj.jpg
 ---
 

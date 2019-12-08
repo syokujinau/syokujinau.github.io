@@ -4,6 +4,8 @@ date: 2019-02-28 12:05:54
 tags: 
 - Algorithm
 - Time complexity
+categories:
+- Algorithm
 thumbnail: https://i.imgur.com/K6F6Ojx.jpg
 ---
 

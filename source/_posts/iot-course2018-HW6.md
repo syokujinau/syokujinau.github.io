@@ -7,6 +7,8 @@ tags:
 - Python
 - matplotlib
 - DynamoDB
+categories:
+- IoT
 thumbnail: https://i.imgur.com/9b82heZ.jpg
 ---
 

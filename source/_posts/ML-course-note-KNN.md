@@ -4,6 +4,8 @@ date: 2018-10-11 17:07:46
 tags:
 - Machine Learning
 - KNN
+categories:
+- Miscellaneous
 ---
 
 

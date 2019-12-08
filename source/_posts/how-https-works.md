@@ -4,6 +4,8 @@ date: 2019-03-02 21:14:47
 tags: 
 - HTTPS
 - Web
+categories:
+- Web
 thumbnail: https://i.imgur.com/1SpDhK2.jpg
 ---
 

@@ -7,6 +7,8 @@ tags:
 - Raspberry Pi
 - NodeRED
 - MQTT
+categories:
+- IoT
 thumbnail: https://i.imgur.com/gYUb3E9.jpg
 ---
 

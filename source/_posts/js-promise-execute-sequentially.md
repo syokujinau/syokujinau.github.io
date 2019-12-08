@@ -5,6 +5,8 @@ tags:
 - JavaScript
 - Promise
 - ES6
+categories:
+- Web
 thumbnail: https://i.imgur.com/X3i6f9L.png
 
 ---

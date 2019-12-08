@@ -3,6 +3,8 @@ title: 演算法設計 - Divide and Conquer
 date: 2019-03-13 15:24:45
 tags:
 - Algorithm
+categories:
+- Algorithm
 thumbnail: https://i.imgur.com/q4Mqv51.jpg
 ---
 

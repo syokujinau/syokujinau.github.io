@@ -3,6 +3,8 @@ title: 計算複雜度理論簡介
 date: 2019-05-31 16:25:30
 tags:
 - Algorithm
+categories:
+- Algorithm
 thumbnail: https://i.imgur.com/nzJdLTR.jpg
 ---
 

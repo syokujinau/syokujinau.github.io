@@ -5,6 +5,8 @@ tags:
 - DSP
 - STM32 
 - ARM
+categories:
+- [Embedded, ARM]
 thumbnail: https://i.imgur.com/okSiQ42.png
 ---
 <!-- <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1"> -->

@@ -4,6 +4,8 @@ date: 2019-02-10 11:55:00
 tags:
 - imgur
 - jQuery
+categories:
+- Web
 thumbnail: https://i.imgur.com/vNiihJ9.jpg
 ---
 

@@ -7,6 +7,8 @@ tags:
 - AI
 - Python
 - Jupyter
+categories:
+- Miscellaneous
 thumbnail: https://i.imgur.com/zJX2v4b.jpg
 ---
 

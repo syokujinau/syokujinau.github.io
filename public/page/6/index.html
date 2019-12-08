@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-<title>YC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<html  lang="en">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>YC</title>
 
 
     <meta property="og:type" content="website">
@@ -12,8 +15,12 @@
 <meta property="og:url" content="http://yoursite.com/page/6/index.html">
 <meta property="og:site_name" content="YC">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YC">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
 
 
 
@@ -30,34 +37,25 @@
 
     
     
-    
-    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
-    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
 
     
     
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
 
     
     
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
 
-
     
     
     
     
-
 <link rel="stylesheet" href="/css/back-to-top.css">
 
-
     
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -66,17 +64,13 @@
     gtag('config', 'UA-133583967-1');
 </script>
 
-
     
     
     
     
-
     
-    
-<link rel="stylesheet" href="/css/progressbar.css">
+    <link rel="stylesheet" href="/css/progressbar.css">
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
     
     
     
@@ -100,21 +94,25 @@
             
             <div class="navbar-start">
                 
-                <a class="navbar-item" href="/">Home</a>
+                <a class="navbar-item"
+                href="/">Home</a>
                 
-                <a class="navbar-item" href="/archives">Archives</a>
+                <a class="navbar-item"
+                href="/archives">Archives</a>
                 
-                <a class="navbar-item" href="/categories">Categories</a>
+                <a class="navbar-item"
+                href="/categories">Categories</a>
                 
-                <a class="navbar-item" href="/tags">Tags</a>
+                <a class="navbar-item"
+                href="/tags">Tags</a>
                 
-                <a class="navbar-item" href="/about">About</a>
+                <a class="navbar-item"
+                href="/about">About</a>
                 
             </div>
             
             <div class="navbar-end">
                 
-                    
                     
                     <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
                         
@@ -138,7 +136,148 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-11T09:12:32.000Z">2018-10-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 495 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/10/11/ML-course-note-DataAnalysis-Emergency911/">Emergency - 911 Calls 資料分析</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>Dataset : <a href="https://www.kaggle.com/mchirico/montcoalert" target="_blank" rel="noopener">Kaggle - Emergency - 911 Calls / Montgomery County, PA</a></p>
+</blockquote>
+<h2 id="使用Python套件"><a href="#使用Python套件" class="headerlink" title="使用Python套件"></a>使用Python套件</h2><ul>
+<li>數據分析<ul>
+<li>NumPy</li>
+<li>Pandas</li>
+</ul>
+</li>
+<li>資料視覺化<ul>
+<li>matplotlib</li>
+<li>Seaborn</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/10/11/ML-course-note-DataAnalysis-Emergency911/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-11T09:10:42.000Z">2018-10-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1042 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/10/11/ML-course-note-LinearRegression/">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html</a></p>
+</blockquote>
+<h2 id="引入Libraries"><a href="#引入Libraries" class="headerlink" title="引入Libraries"></a>引入Libraries</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<h2 id="讀取Dataset"><a href="#讀取Dataset" class="headerlink" title="讀取Dataset"></a>讀取Dataset</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_boston</span><br><span class="line">boston = load_boston()</span><br><span class="line">print(boston.DESCR) <span class="hljs-comment">#查看說明文件</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>CRIM：城鎮人均犯罪率</li>
+<li>ZN：佔地面積超過25,000平方英尺的住宅用地比例。</li>
+<li>INDUS：每個城鎮的非零售業務面積比例</li>
+<li>CHAS：Charles River虛擬變量（如果管道限制河流則= 1;否則為0）</li>
+<li>NOX：一氧化氮濃度（每千萬份）</li>
+<li>RM：每棟住宅的平均房間數</li>
+<li>AGE：1940年以前建造的自住單位比例</li>
+<li>DIS：到波士頓五個就業中心的加權距離</li>
+<li>RAD：徑向高速公路的可達性指數</li>
+<li>TAX：每10,000美元的全額房產稅率</li>
+<li>PTRATIO：城鎮的學生與教師比例</li>
+<li>B：1000（Bk - 0.63）^ 2其中Bk是城鎮黑人的比例</li>
+<li>LSTAT：人口狀況下降％</li>
+<li>MEDV：自住房屋的中位數價值(單位: USD1000)</li></ul>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/10/11/ML-course-note-LinearRegression/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
     
     <div class="card-content article ">
         
@@ -146,12 +285,17 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-10-11T09:09:28.000Z">2018-10-11</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
                     3 minutes read (About 522 words)
                 </span>
+                
                 
             </div>
         </div>
@@ -188,7 +332,8 @@
 
 
 
-    <div class="card">
+    
+<div class="card">
     
     <div class="card-content article ">
         
@@ -196,12 +341,17 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-10-11T09:07:46.000Z">2018-10-11</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
                     4 minutes read (About 559 words)
                 </span>
+                
                 
             </div>
         </div>
@@ -240,7 +390,8 @@
 
 
 
-    <div class="card">
+    
+<div class="card">
     
     <div class="card-image">
         <a href="/2018/06/21/minecraft-config/" class="image is-7by1">
@@ -254,12 +405,17 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-06-21T02:01:06.000Z">2018-06-21</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
                     2 minutes read (About 253 words)
                 </span>
+                
                 
             </div>
         </div>
@@ -304,117 +460,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-05-11T09:36:33.000Z">2018-05-11</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 192 words)
-                </span>
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/05/11/nodejs-debugging/">Node.js Debugging 筆記</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Command-Line"><a href="#Command-Line" class="headerlink" title="Command Line"></a>Command Line</h2><blockquote>
-<p>node版本一定要是8以上!!</p>
-</blockquote>
-<h3 id="進入debug-mode"><a href="#進入debug-mode" class="headerlink" title="進入debug mode"></a>進入debug mode</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$node inspect app.js</span><br></pre></td></tr></table></figure>
-<p>操作:</p>
-<ul>
-<li><p>單步執行 :</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debug&gt; n  #next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>進入REPL: </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debug&gt; repl #進入REPL後可以輸入變數名稱查看其值，或執行任何js指令</span><br><span class="line">            #用Ctrl+C回到debug mode</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全部執行</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debug&gt; c #continue</span><br><span class="line">         #Ctrl+C離開debug mode</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="常用技巧-程式插入中斷點"><a href="#常用技巧-程式插入中斷點" class="headerlink" title="常用技巧: 程式插入中斷點"></a>常用技巧: 程式插入中斷點</h3>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/05/11/nodejs-debugging/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-09-27T09:48:04.000Z">2017-09-27</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 179 words)
-                </span>
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2017/09/27/modelSim-create-project-note/">ModelSim 專案建立&amp;模擬 步驟</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Step-1-用文字編輯器撰寫程式碼"><a href="#Step-1-用文字編輯器撰寫程式碼" class="headerlink" title="Step 1: 用文字編輯器撰寫程式碼"></a>Step 1: 用文字編輯器撰寫程式碼</h2><p>隨意路徑隨意(<strong>不要有中文</strong>)</p>
-<p><img src="https://i.imgur.com/0QXYbTk.png" alt=""><br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2017/09/27/modelSim-create-project-note/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -422,7 +467,7 @@
         <div class="pagination-previous">
             <a class="is-flex-grow has-text-black-ter" href="/page/5/">Previous</a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
+        <div class="pagination-next">
             <a class="is-flex-grow has-text-black-ter" href="/page/7/">Next</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
@@ -434,6 +479,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
             
             <li><a class="pagination-link is-current" href="/page/6/">6</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
             
         </ul>
     </nav>
@@ -450,11 +497,12 @@
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
-            <div class="level-item has-text-centered">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="/myimages/fukurou.png" alt="YC">
-                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/myimages/fukurou.png" alt="YC">
+                    </figure>
                     
                     <p class="is-size-4 is-block">
                         YC
@@ -480,9 +528,11 @@
                     <p class="heading">
                         Posts
                     </p>
-                    <p class="title has-text-weight-normal">
-                        30
-                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            32
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
@@ -490,9 +540,11 @@
                     <p class="heading">
                         Categories
                     </p>
-                    <p class="title has-text-weight-normal">
-                        0
-                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
@@ -500,45 +552,54 @@
                     <p class="heading">
                         Tags
                     </p>
-                    <p class="title has-text-weight-normal">
-                        51
-                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            57
+                        </p>
+                    </a>
                 </div>
             </div>
         </nav>
+        
         <div class="level">
-            <a class="level-item button is-link is-rounded" href="/">
+            <a class="level-item button is-link is-rounded" href="/" target="_blank">
                 Follow</a>
         </div>
         
         
+        
         <div class="level is-mobile">
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/syokujinau">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/syokujinau">
                 
                 <i class="fab fa-github"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
                 
                 <i class="fab fa-facebook"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="http://twitter.com">
                 
                 <i class="fab fa-twitter"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="http://dribbble.com">
                 
                 <i class="fab fa-dribbble"></i>
                 
             </a>
             
-            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
                 
                 <i class="fas fa-rss"></i>
                 
@@ -551,9 +612,7 @@
     
         
     
-        
-
-<div class="card widget">
+        <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -572,22 +631,10 @@
                 </a>
             </li>
         
-            <li>
-                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">PPOffice</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">github.com</span>
-                    </span>
-                </a>
-            </li>
-        
         </ul>
         </div>
     </div>
 </div>
-
 
     
         
@@ -598,32 +645,123 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Algorithm/">
+            <span class="level-start">
+                <span class="level-item">Algorithm</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/">
+            <span class="level-start">
+                <span class="level-item">Embedded</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Embedded/ARM/">
+            <span class="level-start">
+                <span class="level-item">ARM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
+            <span class="level-start">
+                <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/IoT/">
+            <span class="level-start">
+                <span class="level-item">IoT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Miscellaneous/">
+            <span class="level-start">
+                <span class="level-item">Miscellaneous</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Web/">
+            <span class="level-start">
+                <span class="level-item">Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
 </div>
     
-        
-<div class="card widget">
+        <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12.5px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.5px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12.5px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12.5px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IoT/" style="font-size: 12.5px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12.5px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12.5px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/STM32/" style="font-size: 12.5px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12.5px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12.5px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
-
     
     
         <div class="column-right-shadow is-hidden-widescreen ">
         
-            
-<div class="card widget">
+            <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/08/memory-illustrator/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T14:26:38.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/memory-illustrator/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Memory Illustrator</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/08/beaglebone-boot-process/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone Boot Process">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T13:48:41.000Z">2019-10-08</time></div>
+                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone Boot Process</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -636,9 +774,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
-                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Signal Statistics and CMSIS-DSP</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
                     </p>
                 </div>
             </div>
@@ -655,9 +793,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
-                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
                     </p>
                 </div>
             </div>
@@ -674,47 +812,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
-                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
-                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
                     </p>
                 </div>
             </div>
@@ -722,7 +822,6 @@
         
     </div>
 </div>
-
         
             <div class="card widget">
     <div class="card-content">
@@ -731,6 +830,28 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -876,7 +997,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ARM/">
                         <span class="tag">ARM</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -895,8 +1016,29 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
+                        <span class="tag">Angstrom Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Anki/">
                         <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BeagleBone/">
+                        <span class="tag">BeagleBone</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C3-js/">
+                        <span class="tag">C3.js</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -951,6 +1093,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
+                        <span class="tag">Embedded Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Facebook/">
                         <span class="tag">Facebook</span>
                         <span class="tag is-grey">1</span>
@@ -981,6 +1130,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/HTTPS/">
                         <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IEEE754/">
+                        <span class="tag">IEEE754</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1098,6 +1254,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Operating-System/">
+                        <span class="tag">Operating System</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Promise/">
                         <span class="tag">Promise</span>
                         <span class="tag is-grey">1</span>
@@ -1128,14 +1291,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STM32/">
                         <span class="tag">STM32</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1232,6 +1395,8 @@
     
 </div>
 
+
+                
                 
 
 
@@ -1239,12 +1404,49 @@
 
 <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
-        
-<div class="card widget">
+        <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/08/memory-illustrator/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T14:26:38.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/memory-illustrator/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Memory Illustrator</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/08/beaglebone-boot-process/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone Boot Process">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T13:48:41.000Z">2019-10-08</time></div>
+                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone Boot Process</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1257,9 +1459,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time></div>
-                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="has-link-black-ter is-size-6">Signal Statistics and CMSIS-DSP</a>
+                    <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Signal Statistics and CMSIS-DSP</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
                     </p>
                 </div>
             </div>
@@ -1276,9 +1478,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
-                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="has-link-black-ter is-size-6">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
+                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
                     </p>
                 </div>
             </div>
@@ -1295,47 +1497,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="has-link-black-ter is-size-6">計算複雜度理論簡介</a>
+                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time></div>
-                    <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="has-link-black-ter is-size-6">演算法設計 - Dynamic Programming</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/04/14/algorithm-design-greedy/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time></div>
-                    <a href="/2019/04/14/algorithm-design-greedy/" class="has-link-black-ter is-size-6">演算法設計 - Greedy Algorithm</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
                     </p>
                 </div>
             </div>
@@ -1343,7 +1507,6 @@
         
     </div>
 </div>
-
     
         <div class="card widget">
     <div class="card-content">
@@ -1352,6 +1515,28 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1497,7 +1682,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ARM/">
                         <span class="tag">ARM</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1516,8 +1701,29 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
+                        <span class="tag">Angstrom Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Anki/">
                         <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BeagleBone/">
+                        <span class="tag">BeagleBone</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C3-js/">
+                        <span class="tag">C3.js</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1572,6 +1778,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
+                        <span class="tag">Embedded Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Facebook/">
                         <span class="tag">Facebook</span>
                         <span class="tag is-grey">1</span>
@@ -1602,6 +1815,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/HTTPS/">
                         <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IEEE754/">
+                        <span class="tag">IEEE754</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1719,6 +1939,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Operating-System/">
+                        <span class="tag">Operating System</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Promise/">
                         <span class="tag">Promise</span>
                         <span class="tag is-grey">1</span>
@@ -1749,14 +1976,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STM32/">
                         <span class="tag">STM32</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1852,6 +2079,8 @@
     
 </div>
 
+
+                
             </div>
         </div>
     </section>
@@ -1866,13 +2095,14 @@
                 </a>
                 <p class="is-size-7">
                 &copy; 2019 John Doe&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
                 </p>
             </div>
             <div class="level-end">
             
                 <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
                 
                 <p class="control">
                     <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
@@ -1908,24 +2138,34 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 <script>moment.locale("en");</script>
 
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'true'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
 
     
     
-    
-    <script src="/js/animation.js"></script>
-    
+<script src="/js/animation.js"></script>
 
     
     
-    
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
 
     
     
-
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
     <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
@@ -1943,10 +2183,8 @@
     });
 </script>
 
-
     
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
@@ -1968,24 +2206,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-
     
     
-
 <a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
 
-
-    
-    
-
     
     
     
     
-
+    
+    
     
     
     
@@ -2004,7 +2237,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">

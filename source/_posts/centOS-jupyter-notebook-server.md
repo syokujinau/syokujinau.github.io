@@ -4,6 +4,8 @@ date: 2019-03-03 23:10:54
 tags:
 - jupyter
 - CentOS
+categories:
+- Web
 thumbnail: https://i.imgur.com/IYjQsLQ.png
 ---
 

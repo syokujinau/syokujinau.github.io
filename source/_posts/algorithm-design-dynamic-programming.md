@@ -3,6 +3,8 @@ title: 演算法設計 - Dynamic Programming
 date: 2019-04-14 17:44:07
 tags:
 - Algorithm
+categories:
+- Algorithm
 thumbnail: https://i.imgur.com/RPQGyZx.jpg
 ---
  

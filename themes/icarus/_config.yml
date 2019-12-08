@@ -159,7 +159,6 @@ widgets:
         # Links to be shown in the links widget
         links:
             Hexo: 'https://hexo.io'
-            PPOffice: 'https://github.com/ppoffice'
             # NCHU EE: http://www.ee.nchu.edu.tw/
             # NTU GIEE: http://www.giee.ntu.edu.tw/portal/
     -

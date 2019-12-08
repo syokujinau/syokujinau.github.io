@@ -3,7 +3,8 @@ title: ModelSim 專案建立&模擬 步驟
 date: 2017-09-27 17:48:04
 tags:
 - Verilog
-
+categories:
+- Miscellaneous
 ---
 
 ## Step 1: 用文字編輯器撰寫程式碼

@@ -5,6 +5,8 @@ tags:
 - Minecraft
 - Google Compute Engine
 - Linux
+categories:
+- Web
 thumbnail: https://i.imgur.com/qJbMWEQ.png
 ---
 

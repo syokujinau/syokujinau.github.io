@@ -2,9 +2,11 @@
 title: Signal Statistics and CMSIS-DSP
 date: 2019-09-12 14:14:10
 tags:
-  - DSP
-  - STM32 
-  - ARM
+- DSP
+- STM32 
+- ARM
+categories:
+- [Embedded, ARM]
 thumbnail: https://i.imgur.com/VFOqYdF.png
 ---
 

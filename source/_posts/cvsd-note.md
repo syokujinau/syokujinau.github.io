@@ -1,8 +1,11 @@
 ---
-title: CVSD 2018 Fall Nodebook
+title: CVSD 2018 Fall Notebook
 date: 2018-11-12 14:56:09
 tags:
 - Verilog
+categories:
+- Miscellaneous
+thumbnail: https://i.imgur.com/cH3pcP5.png
 ---
 
 

@@ -4,6 +4,8 @@ date: 2018-10-11 17:09:28
 tags:
 - Machine Learning
 - Logistic Regrassion
+categories:
+- Miscellaneous
 ---
 
 

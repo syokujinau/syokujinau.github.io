@@ -5,6 +5,8 @@ tags:
 - Machine Learning
 - Decision Tree
 - Random Forest
+categories:
+- Miscellaneous
 ---
 
 

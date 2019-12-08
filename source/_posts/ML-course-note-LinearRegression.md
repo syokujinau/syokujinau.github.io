@@ -4,6 +4,8 @@ date: 2018-10-11 17:10:42
 tags:
 - Machine Learning
 - Linear Regression
+categories:
+- Miscellaneous
 ---
 
 

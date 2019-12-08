@@ -5,6 +5,8 @@ tags:
 - React
 - ES6
 - npm
+categories:
+- Web
 thumbnail: https://i.imgur.com/5VOk9jX.png
 ---
 

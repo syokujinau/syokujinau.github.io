@@ -3,6 +3,8 @@ title: 演算法設計 - Greedy Algorithm
 date: 2019-04-14 17:43:51
 tags:
 - Algorithm
+categories:
+- Algorithm
 thumbnail: https://i.imgur.com/sUq9XBU.jpg
 ---
 

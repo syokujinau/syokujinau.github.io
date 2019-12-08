@@ -4,6 +4,8 @@ date: 2019-02-02 16:20:47
 tags:
 - Raspberry Pi
 - MJPEG-Streamer
+categories:
+- IoT
 thumbnail: https://i.imgur.com/f9eSaX7.jpg
 ---
 

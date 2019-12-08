@@ -1,3 +1,4 @@
+---
 title: Tensorflow Notebook 2 - Linear Regression
 tags:
   - Tensorflow
@@ -5,6 +6,8 @@ tags:
   - AI
   - Python
   - Jupyter
+categories:
+- Miscellaneous
 thumbnail: 'https://i.imgur.com/zJX2v4b.jpg'
 date: 2018-12-04 16:42:49
 ---

@@ -4,6 +4,8 @@ date: 2018-10-11 17:12:32
 tags:
 - Python
 - Scikit-learn
+categories:
+- Miscellaneous
 ---
 
 

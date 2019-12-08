@@ -4,6 +4,8 @@ date: 2018-10-12 17:16:19
 tags:
 - Machine Learning
 - K-Means
+categories:
+- Miscellaneous
 ---
 
 
