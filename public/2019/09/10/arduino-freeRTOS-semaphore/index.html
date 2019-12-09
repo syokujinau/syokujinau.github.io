@@ -10,15 +10,15 @@
 <title>Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法 - YC</title>
 
 
-    <meta name="description" content="RTOS一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本。 RTOS必須對每個執行的critical operation有一個已知的maximum">
+    <meta name="description" content="RTOS一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在port.c定義)。 RTOS必須對每個執行的critical operation有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;10&#x2F;arduino-freeRTOS-semaphore&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="RTOS一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本。 RTOS必須對每個執行的critical operation有一個已知的maximum">
+<meta property="og:description" content="RTOS一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在port.c定義)。 RTOS必須對每個執行的critical operation有">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;4UVLZn1.png">
 <meta property="article:published_time" content="2019-09-10T07:48:30.000Z">
-<meta property="article:modified_time" content="2019-12-09T07:59:17.593Z">
+<meta property="article:modified_time" content="2019-12-09T10:40:38.757Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Embedded">
 <meta property="article:tag" content="Semaphore">
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1153 words)
+                    8 minutes read (About 1175 words)
                 </span>
                 
                 
@@ -179,14 +179,14 @@
         </h1>
         <div class="content">
             <p><img src="https://i.imgur.com/8rVf5V5.png" alt></p>
-<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本。</p>
+<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在<code>port.c</code>定義)。</p>
 <p>RTOS必須對每個執行的critical operation有一個已知的maximum time，並能做到</p>
 <ul>
 <li>處理 interrupts 與 internal system exceptions</li>
 <li>維護 Critical Sections</li>
 <li>執行合適的 Scheduling Mechanism</li>
 </ul>
-<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，更重要的CPU的行為是<strong>predictable</strong>。</p>
+<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，主要表達Task的執行是<strong>predictable</strong>，而非執行速度快(這應是由 clock 決定)。</p>
 <a id="more"></a>
 
 <h2 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h2><p>在Arduino下載並使用FreeRTOS非常容易，在Library Manager搜尋安裝即可，並提供一些範例可以直接執行。</p>

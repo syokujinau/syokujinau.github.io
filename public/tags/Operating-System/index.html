@@ -241,7 +241,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1153 words)
+                    8 minutes read (About 1175 words)
                 </span>
                 
                 
@@ -255,14 +255,14 @@
         </h1>
         <div class="content">
             <p><img src="https://i.imgur.com/8rVf5V5.png" alt></p>
-<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本。</p>
+<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在<code>port.c</code>定義)。</p>
 <p>RTOS必須對每個執行的critical operation有一個已知的maximum time，並能做到</p>
 <ul>
 <li>處理 interrupts 與 internal system exceptions</li>
 <li>維護 Critical Sections</li>
 <li>執行合適的 Scheduling Mechanism</li>
 </ul>
-<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，更重要的CPU的行為是<strong>predictable</strong>。</p>
+<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，主要表達Task的執行是<strong>predictable</strong>，而非執行速度快(這應是由 clock 決定)。</p>
         </div>
         
         
