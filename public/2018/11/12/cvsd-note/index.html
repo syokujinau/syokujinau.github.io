@@ -3,27 +3,26 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>CVSD 2018 Fall Notebook - YC</title>
 
 
-    <meta name="description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;amp;,~&amp;amp;,|,~|,^,~^  ex: &amp;amp;m Arithmet">
-<meta name="keywords" content="Verilog">
+    <meta name="description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;,~&amp;,|,~|,^,~^  ex: &amp;m Arithmet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CVSD 2018 Fall Notebook">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/cvsd-note/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;11&#x2F;12&#x2F;cvsd-note&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;amp;,~&amp;amp;,|,~|,^,~^  ex: &amp;amp;m Arithmet">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/cH3pcP5.png">
-<meta property="og:updated_time" content="2019-12-08T14:10:06.681Z">
+<meta property="og:description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;,~&amp;,|,~|,^,~^  ex: &amp;m Arithmet">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;cH3pcP5.png">
+<meta property="article:published_time" content="2018-11-12T06:56:09.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.660Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Verilog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CVSD 2018 Fall Notebook">
-<meta name="twitter:description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;amp;,~&amp;amp;,|,~|,^,~^  ex: &amp;amp;m Arithmet">
-<meta name="twitter:image" content="https://i.imgur.com/cH3pcP5.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;cH3pcP5.png">
 
 
 
@@ -187,22 +186,33 @@
 <li><strong>Logical Shift Operators</strong>: <code>&lt;&lt;</code>,<code>&gt;&gt;</code> ex: <code>m&lt;&lt;2</code>，代表m左移兩個bits，相當於4(補0)</li>
 <li><strong>Misc Operators</strong>: <code>條件?為真的值:為偽的值</code>(三元運算子),<code>{m,n}</code>(串接),<br><code>{n{m}}</code>(m重複n次)</li>
 </ol>
-<p><strong>Procedural Block</strong>: 出現<code>always@</code>或<code>initial</code><br><a id="more"></a><br><strong>Initial block</strong>: 在testbench中給初值</p>
+<p><strong>Procedural Block</strong>: 出現<code>always@</code>或<code>initial</code></p>
+<a id="more"></a>
+<p><strong>Initial block</strong>: 在testbench中給初值</p>
 <p><strong>always@</strong>: 當條件改變時，總是會做…</p>
 <ol>
 <li><p>用於需要FF時<br>posedge/negedge:正/負緣觸發，若reset看clk為synchronous，不看為asynchronous</p>
-<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//下列為asynchronous</span></span><br><span class="line"><span class="hljs-keyword">always</span>@(<span class="hljs-keyword">posedge</span> clk, <span class="hljs-keyword">negedge</span> reset)</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//下列為asynchronous</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">always</span>@(<span class="hljs-keyword">posedge</span> clk, <span class="hljs-keyword">negedge</span> reset)</span></pre></td></tr></table></figure>
 </li>
 <li><p>用於需要條件判斷時(合成MUX)<br>出現在Procedure Block等號左邊的變數(output)要宣告成reg，因為這變數會因為某些條件改變而改變，所以需要存一段時間，但這不代表需要FF</p>
 </li>
 </ol>
-<p><strong>Assignment</strong><br>Continuous assignment:在procedural block的外面，用assign的方式給值，output要宣告成wire<br><strong>Procedural assignment</strong>:在procedural block中給值，output要宣告成reg，又分為blocking(用<code>=</code>，做完才做其他的事)或non-blocking(用<code>&lt;=</code>，會先把右手邊都做完，等到跳出block時，一起把值吐到左手邊去)<br><figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = b;</span><br><span class="line">b = a; </span><br><span class="line"><span class="hljs-comment">// 結果是 a=a</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b &lt;= a; </span><br><span class="line">a &lt;= b;  </span><br><span class="line"><span class="hljs-comment">// 結果是b update成 a的舊值，a update成 b的舊值 (swap)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CLR=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span><br><span class="line">CLR=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span><br><span class="line"><span class="hljs-comment">// 結果是一行一行做</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CLR&lt;=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span><br><span class="line">CLR&lt;=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span><br><span class="line"><span class="hljs-comment">// 結果是按照時間順序</span></span><br></pre></td></tr></table></figure>
+<p><strong>Assignment</strong><br>Continuous assignment:在procedural block的外面，用assign的方式給值，output要宣告成wire<br><strong>Procedural assignment</strong>:在procedural block中給值，output要宣告成reg，又分為blocking(用<code>=</code>，做完才做其他的事)或non-blocking(用<code>&lt;=</code>，會先把右手邊都做完，等到跳出block時，一起把值吐到左手邊去)</p>
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a = b;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b = a; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 結果是 a=a</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">b &lt;= a; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">a &lt;= b;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 結果是b update成 a的舊值，a update成 b的舊值 (swap)</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">CLR=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CLR=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 結果是一行一行做</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">CLR&lt;=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CLR&lt;=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 結果是按照時間順序</span></span></pre></td></tr></table></figure>
+
+
 <p>Logic分成combinational(根據不同的輸入產生不同的輸出，可用讓它自己找需要的參數)和sequential logic(還會跟之前的狀態有關，看sensitive list來合FF，不能用)</p>
-<p>邏輯判斷<br>case…default…<br><figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">case</span>(判斷條件) </span><br><span class="line">	<span class="hljs-number">8</span>’b1:</span><br><span class="line">      …</span><br><span class="line">    <span class="hljs-keyword">default</span>: 異常時，易判斷問題出在哪</span><br><span class="line"><span class="hljs-keyword">endcase</span></span><br></pre></td></tr></table></figure></p>
-<p>if…else…<br><figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (判斷條件) ...</span><br><span class="line"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(判斷條件) ...</span><br><span class="line"><span class="hljs-keyword">else</span> ...</span><br></pre></td></tr></table></figure></p>
+<p>邏輯判斷<br>case…default…</p>
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">case</span>(判斷條件) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="hljs-number">8</span>’b1:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">      …</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">default</span>: 異常時，易判斷問題出在哪</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">endcase</span></span></pre></td></tr></table></figure>
+<p>if…else…</p>
+<figure class="highlight verilog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (判斷條件) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(判斷條件) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">else</span> ...</span></pre></td></tr></table></figure>
+
 <p>如果條件沒寫滿會不知道該怎麼辦，只好保持不動，產生latch<br>如果要告訴合成軟體說這就是所有會發生的情形，可以如下<br><code>Case(判斷條件) // synopsys fullcase</code></p>
 <h2 id="Ch1"><a href="#Ch1" class="headerlink" title="Ch1"></a>Ch1</h2><p><img src="https://i.imgur.com/D1ppIxm.png" alt="p.17"></p>
 <p>module name不要取數字，不要用特殊符號</p>
@@ -213,7 +223,7 @@
 <p><img src="https://i.imgur.com/cwjuS0F.png" alt="p.46"></p>
 <p><img src="https://i.imgur.com/XOG3GCr.png" alt="p.48"></p>
 <p><img src="https://i.imgur.com/BAOQxTC.png" alt="p.49"></p>
-<p><img src="https://i.imgur.com/6abzsAk.png" alt=""></p>
+<p><img src="https://i.imgur.com/6abzsAk.png" alt></p>
 <p>變數前面的是vector，代表wordlength<br>變數後面的是number，代表有幾個</p>
 <p><img src="https://i.imgur.com/eQ6i0pk.png" alt="p.57"></p>
 <p><img src="https://i.imgur.com/JctdmG4.png" alt="p.58"></p>
@@ -242,7 +252,8 @@
 <p><img src="https://i.imgur.com/gX9xa6x.png" alt="p.89"></p>
 <p><img src="https://i.imgur.com/OL5ocoo.png" alt="p.98"></p>
 <h2 id="Ch3"><a href="#Ch3" class="headerlink" title="Ch3"></a>Ch3</h2><p><img src="https://i.imgur.com/CKQczvG.png" alt="p.4"></p>
-<p><img src="https://i.imgur.com/QkZ1ylz.png" width="60%"></p>
+<img src="https://i.imgur.com/QkZ1ylz.png" width="60%">
+
 <p>timing包含兩種<br>(1)delay:元件的特性</p>
 <p>(2)clock period: 有多少的時間給我運算(兩個FF中間有多少時間)</p>
 <p>根據clock period的timing constraint，會去調整standard cell的size，以符合timing的限制<br>ex:希望加法器變快，會把standard cell的size加大，面積加大之後電路操作的速度會變快，delay會變小，就比較有機會符合clock period的規格</p>
@@ -273,7 +284,7 @@
 <p><img src="https://i.imgur.com/byC9krT.png" alt="p.42"></p>
 <p>如果debug要看陣列內的訊號，要加p.42最下面的兩行指令</p>
 <p><img src="https://i.imgur.com/FuivRaF.png" alt="p.43"></p>
-<p><img src="https://i.imgur.com/kJ5fIEU.png" alt=""></p>
+<p><img src="https://i.imgur.com/kJ5fIEU.png" alt></p>
 <p>如果合成後看到type有出現latch，要回頭把RTL的code改掉</p>
 <p>[p.75]<br><img src="https://i.imgur.com/SCkobJZ.png" width="60%"></p>
 <p>圖中的<code>datafile</code>是design好要餵給testbench吃test pattern的檔案</p>
@@ -296,7 +307,7 @@
 <p>Retiming: tool會自動讓cell在FF間做移動</p>
 <p><img src="https://i.imgur.com/9qUmN74.png" alt="p.23"></p>
 <p><img src="https://i.imgur.com/2iKV4Cl.png" alt="p.25"></p>
-<p>N~node~: node的數量<br>C~L~: 後端tool才能optimize<br>V^2^~dd~: 這受限於製程，不能改<br>只能調整clock的頻率</p>
+<p>N<del>node</del>: node的數量<br>C<del>L</del>: 後端tool才能optimize<br>V^2^<del>dd</del>: 這受限於製程，不能改<br>只能調整clock的頻率</p>
 <p><img src="https://i.imgur.com/U29hSnW.png" alt="p.27"></p>
 <p>以下的方法可以減少Power Consumption<br>(1)讓電路正常運作就好<br>(2)不要用的時候會關掉clk<br>(3)平常沒在運作時可以讓clk的速度變慢<br>(4)做不重要的動作時，可以把電壓降低<br>(5)減少不必要的切換，例如counter數完時，讓他停住不要再跳</p>
 <p><img src="https://i.imgur.com/Uf3SKSV.png" alt="p.61"></p>
@@ -308,34 +319,31 @@
 <th><strong>考試重點</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>set-up time: 這一筆資料不能太慢抵達 <br> FF在trigger時，存到rigister前，不能改變(因為clk不會立刻跳，電路不能跑太快) <br> T~clk~ &gt; T~CLKtoQ~ + T~data~(combinational) + T~setup~ - T~skew~  <br> hold time: 下一筆的資料不能太快來，否則會data feedthrogh，tool會自動插delay修正 <br> T~hold~ &lt; T~CLKtoQ~ + T~data~ - T~skew~ <br> <img src="https://i.imgur.com/g6ItnCB.png" alt="">  <br> <a href="https://www.cnblogs.com/poiu-elab/archive/2012/10/29/2745390.html" target="_blank" rel="noopener">STA Link</a></td>
+<tbody><tr>
+<td>set-up time: 這一筆資料不能太慢抵達 <br> FF在trigger時，存到rigister前，不能改變(因為clk不會立刻跳，電路不能跑太快) <br> T<del>clk</del> &gt; T<del>CLKtoQ</del> + T<del>data</del>(combinational) + T<del>setup</del> - T<del>skew</del>  <br> hold time: 下一筆的資料不能太快來，否則會data feedthrogh，tool會自動插delay修正 <br> T<del>hold</del> &lt; T<del>CLKtoQ</del> + T<del>data</del> - T<del>skew</del> <br> <img src="https://i.imgur.com/g6ItnCB.png" alt>  <br> <a href="https://www.cnblogs.com/poiu-elab/archive/2012/10/29/2745390.html" target="_blank" rel="noopener">STA Link</a></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
-<p>set-up time 的T~CLKtoQ~是從clk起來，一直到出現stable的輸出所需要的時間<br>hold time 的T~CLKtoQ~是從clk起來，一直到出現輸出所需要的時間，若要更嚴謹地不被下一筆資料做影響，下一筆的輸出可以是<strong>unstable</strong>的<br>另外set-up time 要取最長的path，而hold time要取最短的path做檢查</p>
+<p>set-up time 的T<del>CLKtoQ</del>是從clk起來，一直到出現stable的輸出所需要的時間<br>hold time 的T<del>CLKtoQ</del>是從clk起來，一直到出現輸出所需要的時間，若要更嚴謹地不被下一筆資料做影響，下一筆的輸出可以是<strong>unstable</strong>的<br>另外set-up time 要取最長的path，而hold time要取最短的path做檢查</p>
 </blockquote>
 <p>成因：因為clock不是理想的，寫到FF內的暫存器時，不是一瞬間的 =&gt; set-up time。<br>set-up time: 這一筆資料被寫到暫存器所需要的時間，所以這一筆資料不能來的太慢(slow.db是用來確認setup time)。<br>成因：因為clock不是理想的，第一級的暫存器開關不會立刻關掉，下一筆資料如果來太快，會被寫入暫存器內部，所以資料需要維持一段時間不能變動 =&gt; hold time<br>hold time: 下一筆資料來之前所需要維持的時間，所以下一筆資料不能來的太快(fast.db是用來確認有無hold time violation)。</p>
 <p>set-up time 在檢查時要取==最慢==的path.<br>hold time 要取==最快==的path.</p>
 <p><strong>Q:如何解決violation</strong><br><strong>A:</strong> set-up time : 做retiming(調整FF的位置)，平均分攤每兩級FF之間的combinational logic time 或者是調大clock。<br>hold time : 插delay buffer。<br>直到滿足兩個不等式為止。</p>
 <p>skew time：因走線有寄生電容，線越長Clock越晚到，所以相較之下，Data會來得比較快<br>這一筆資料來得比較快，對setup time有利，所以不等式是用加的。<br>下一筆資料也來的比較快，所以對hold time不利，所以不等式是用減的。</p>
 <p><a href="http://vlsi-soc.blogspot.com/2013/03/clock-skew-implication-on-timing.html" target="_blank" rel="noopener">Clock Skew: Implication on Timing</a></p>
-<p>clock skew又稱作clock uncertainty，clock因為繞線以及layout等於因導致抵達各個register時的時間不一。<br>但是在<strong>STA階段無法準確知道哪個register收到的clock是快的或是慢的</strong>，所以design compiler在分析static timing analysis時，在分析setup time或hold time時必須一律以<strong>worst case</strong>來做分析。<br>“邏輯所能使用之clock period皆減少”<br>T~CLKtoQ~ + T~data~(combinational) + T~setup~ ==+== T~skew~<br>T~hold~ &lt; T~CLKtoQ~ + T~data~ - T~skew~</p>
-<p><br></p>
+<p>clock skew又稱作clock uncertainty，clock因為繞線以及layout等於因導致抵達各個register時的時間不一。<br>但是在<strong>STA階段無法準確知道哪個register收到的clock是快的或是慢的</strong>，所以design compiler在分析static timing analysis時，在分析setup time或hold time時必須一律以<strong>worst case</strong>來做分析。<br>“邏輯所能使用之clock period皆減少”<br>T<del>CLKtoQ</del> + T<del>data</del>(combinational) + T<del>setup</del> ==+== T<del>skew</del><br>T<del>hold</del> &lt; T<del>CLKtoQ</del> + T<del>data</del> - T<del>skew</del></p>
+<br>
+
 <table>
 <thead>
 <tr>
 <th><strong>考試重點</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>Technology library:<code>.db</code>(給<strong>人</strong>看)、<code>.lib</code>(給<strong>機器</strong>看)，紀錄在不同操作環境下的cell的timing的資訊，提供給<code>dc(design compiler)</code>做<strong>合成</strong> <br>    PVT:Process Voltage Temperature <br> typical.db:中速製程 <br> <code>slow.db</code>:慢速製程，分析<strong>set-up time</strong> <br> <code>fast.db</code>:快速製程，分析<strong>hold-time</strong> <br> CPU跑超頻時=&gt;<strong>加大電壓</strong>或<strong>加液態氮(降溫)</strong>、電流取決於mobility、threshold voltage，會決定電路的操作速度而μ、V~t~隨溫度改變的趨勢不同，並不是一直降溫都會有用</td>
+<tbody><tr>
+<td>Technology library:<code>.db</code>(給<strong>人</strong>看)、<code>.lib</code>(給<strong>機器</strong>看)，紀錄在不同操作環境下的cell的timing的資訊，提供給<code>dc(design compiler)</code>做<strong>合成</strong> <br>    PVT:Process Voltage Temperature <br> typical.db:中速製程 <br> <code>slow.db</code>:慢速製程，分析<strong>set-up time</strong> <br> <code>fast.db</code>:快速製程，分析<strong>hold-time</strong> <br> CPU跑超頻時=&gt;<strong>加大電壓</strong>或<strong>加液態氮(降溫)</strong>、電流取決於mobility、threshold voltage，會決定電路的操作速度而μ、V<del>t</del>隨溫度改變的趨勢不同，並不是一直降溫都會有用</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>design compiler會把.db和.lib互轉</p>
 <p>[p.6]<br><img src="
 " width="60%"><br><img src="https://i.imgur.com/xvvBjEp.png" width="80%"></p>
@@ -362,25 +370,23 @@
 <th><strong>考試重點</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>可以把要做的事情寫成文字檔(script)，這會跟開dv按按鍵的步驟都有對應<br>P&amp;R要用script跑，通常在synthesis叫出GUI的機會不高，除非要找critical path去修negative slack，或者是要看合出來的東西是否正確 </td>
+<tbody><tr>
+<td>可以把要做的事情寫成文字檔(script)，這會跟開dv按按鍵的步驟都有對應<br>P&amp;R要用script跑，通常在synthesis叫出GUI的機會不高，除非要找critical path去修negative slack，或者是要看合出來的東西是否正確</td>
 </tr>
-</tbody>
-</table>
-<figure class="highlight tcl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># main.tcl</span></span><br><span class="line"><span class="hljs-comment"># Import Design</span></span><br><span class="line">read_file -<span class="hljs-keyword">format</span> verilog  <span class="hljs-string">"./CLE.v"</span></span><br><span class="line"></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line">link</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">source</span> -echo -verbose ./CLE_DC.sdc</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Compile Design</span></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span> high_fanout_net_threshold <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">uniquify</span><br><span class="line">set_fix_multiple_port_nets -all -buffer_constants [get_designs *]</span><br><span class="line"></span><br><span class="line">compile </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Output Design</span></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line"></span><br><span class="line">remove_unconnected_ports -blast_buses [get_cells -hierarchical *]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span> bus_inference_style &#123;%s[%d]&#125;</span><br><span class="line"><span class="hljs-keyword">set</span> bus_naming_style &#123;%s[%d]&#125;</span><br><span class="line"><span class="hljs-keyword">set</span> hdlout_internal_busses true</span><br><span class="line">change_names -hierarchy -rule verilog</span><br><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _&#125; -max_length <span class="hljs-number">255</span> -type cell</span><br><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _[]&#125; -max_length <span class="hljs-number">255</span> -type net</span><br><span class="line">define_name_rules name_rule -map &#123;&#123;<span class="hljs-string">"\\*cell\\*"</span> <span class="hljs-string">"cell"</span>&#125;&#125;</span><br><span class="line">define_name_rules name_rule -case_insensitive</span><br><span class="line">change_names -hierarchy -rules name_rule</span><br><span class="line"></span><br><span class="line">write -<span class="hljs-keyword">format</span> ddc     -hierarchy -output <span class="hljs-string">"CLE_syn.ddc"</span></span><br><span class="line">write -<span class="hljs-keyword">format</span> verilog -hierarchy -output <span class="hljs-string">"CLE_syn.v"</span></span><br><span class="line">write_sdf -version <span class="hljs-number">2.1</span>  CLE_syn.sdf</span><br></pre></td></tr></table></figure>
+<tr>
+<td><figure class="highlight tcl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># main.tcl</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Import Design</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">read_file -<span class="hljs-keyword">format</span> verilog  <span class="hljs-string">"./CLE.v"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">current_design [get_designs CLE]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">link</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">source</span> -echo -verbose ./CLE_DC.sdc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Compile Design</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">current_design [get_designs CLE]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">set</span> high_fanout_net_threshold <span class="hljs-number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">uniquify</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">set_fix_multiple_port_nets -all -buffer_constants [get_designs *]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">compile </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Output Design</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">current_design [get_designs CLE]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">remove_unconnected_ports -blast_buses [get_cells -hierarchical *]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">set</span> bus_inference_style &#123;%s[%d]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">set</span> bus_naming_style &#123;%s[%d]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">set</span> hdlout_internal_busses true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">change_names -hierarchy -rule verilog</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _&#125; -max_length <span class="hljs-number">255</span> -type cell</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _[]&#125; -max_length <span class="hljs-number">255</span> -type net</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -map &#123;&#123;<span class="hljs-string">"\\*cell\\*"</span> <span class="hljs-string">"cell"</span>&#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -case_insensitive</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">change_names -hierarchy -rules name_rule</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">write -<span class="hljs-keyword">format</span> ddc     -hierarchy -output <span class="hljs-string">"CLE_syn.ddc"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">write -<span class="hljs-keyword">format</span> verilog -hierarchy -output <span class="hljs-string">"CLE_syn.v"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">write_sdf -version <span class="hljs-number">2.1</span>  CLE_syn.sdf</span></pre></td></tr></table></figure></td>
+</tr>
+</tbody></table>
 <table>
 <thead>
 <tr>
 <th><strong>考試重點</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>名詞定義 <br> <img src="https://i.imgur.com/HlSKk5t.png" width="80%"> <br> 看圖 <br><img src="https://i.imgur.com/0MgTupN.png" width="80%"> <br> <img src="https://i.imgur.com/TYBj201.png" width="80%"></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><img src="https://i.imgur.com/CceleXN.png" alt="p.36"></p>
 <p>[p.40]<br><img src="https://i.imgur.com/eo2dZiH.png" width="60%"></p>
 <h2 id="Ch5-2"><a href="#Ch5-2" class="headerlink" title="Ch5-2"></a>Ch5-2</h2><p><img src="https://i.imgur.com/6FSfyDE.png" alt="p.3"></p>
@@ -449,28 +455,42 @@
 <li></li>
 <li>Propagate: fault要能夠反映到輸出，不能被其他的logic gate擋下來(藉由這個特性可以回推其他test pattern該有的值)</li>
 </ol>
-<p><img src="https://i.imgur.com/bhfnVlX.png" alt=""></p>
+<p><img src="https://i.imgur.com/bhfnVlX.png" alt></p>
 <p>應用and gate 和 or gate的天性，我們可以在activate fault之後，做implication，推回test pattern應該為多少</p>
 <p>如下圖，stuck at fault 就是將一 input 卡在錯誤的值，看 output 是否能夠被偵測到<br>(與原先 pattern 應得結果不同)，若有偵測到，表示 detect fault。</p>
-<p><img src="https://i.imgur.com/q4WwoEz.png" width="80%"></p>
+<img src="https://i.imgur.com/q4WwoEz.png" width="80%">
+
 <p>以下圖為例，<br></p>
 <ol>
 <li>s-a-0(D) =&gt; 我們首先要能 activate 它，就必須假設它為1，<br>再往回推要得到1所需要的條件(A=1、B=1)。<br></li>
 <li>為了能將錯誤表現出來，我們希望它能影響到 output 的值，也就是       propagation，<br>為了能將 0 的錯誤推至 output 需要 E=1 ，E=0 的話 D 不論為 0、1 都無法表現。</li>
 </ol>
-<p><img src="https://i.imgur.com/yndfYpL.png" width="80%"></p>
+<img src="https://i.imgur.com/yndfYpL.png" width="80%">
+
 <p>(P.29 與 P.39 為考試重點)</p>
-<p><img src="https://i.imgur.com/LIBynic.png" width="80%"><br><img src="https://i.imgur.com/xjC35qx.png" width="80%"><br><img src="https://i.imgur.com/11Qa5Uz.png" width="80%"></p>
+<img src="https://i.imgur.com/LIBynic.png" width="80%">
+<img src="https://i.imgur.com/xjC35qx.png" width="80%">
+<img src="https://i.imgur.com/11Qa5Uz.png" width="80%">
+
 <p>下圖也是依照兩個原則<br></p>
 <ol>
 <li>activation : 7 條 wire 可以插 stuck at fault 。<br></li>
 <li>propagation : 看看你插的 fault 會不會改變 output 原先 pattern 正確的值。<br><br>注意 : 只需考慮 single stuck at fault ，一次只考慮一個 fault，其他假設都正確。</li>
 </ol>
-<p><img src="https://i.imgur.com/5gMYUjY.png" width="80%"><br>&lt;!–<br><img src="https://i.imgur.com/ApmoGHR.png" width="80%"></p>
-<p><img src="https://i.imgur.com/42PRYYf.png" width="80%"></p>
-<p><img src="https://i.imgur.com/HZd3Mnd.png" width="80%"></p>
-<p><img src="https://i.imgur.com/pHyG6YB.png" width="80%"></p>
-<p><img src="https://i.imgur.com/xAHgVyD.png" width="80%"><br>–&gt;</p>
+<img src="https://i.imgur.com/5gMYUjY.png" width="80%">
+<!--
+<img src="https://i.imgur.com/ApmoGHR.png" width="80%">
+
+<img src="https://i.imgur.com/42PRYYf.png" width="80%">
+
+<img src="https://i.imgur.com/HZd3Mnd.png" width="80%">
+
+<img src="https://i.imgur.com/pHyG6YB.png" width="80%">
+
+<img src="https://i.imgur.com/xAHgVyD.png" width="80%">
+-->
+
+
 <h2 id="Ch7"><a href="#Ch7" class="headerlink" title="Ch7"></a>Ch7</h2><p><img src="https://i.imgur.com/PVObFvX.png" alt="p.4"></p>
 <p><img src="https://i.imgur.com/tLWZ8kz.png" alt="p.10"></p>
 <p>四種data path<br>Start Point可能是Clock pin(CLK port)或者是PI(primary input)<br>End Point可能是PO(primary output)或者是data input pin(D)<br>所以會有四種可能的Path</p>
@@ -506,11 +526,17 @@
 <p><img src="https://i.imgur.com/yIDZ2Ug.png" alt="p.56"></p>
 <h2 id="以下為考古的問答題"><a href="#以下為考古的問答題" class="headerlink" title="以下為考古的問答題"></a>以下為考古的問答題</h2><p><strong>問答1: interconnect area如果是0，如何解決??</strong><br>就是沒設wire load，在.sdc檔　set_wire_load_model　有關</p>
 <p><code>Net Interconnect area</code>是0: 在set design constraint(.sdc)檔案中，如果沒有設定<code>set wire load model</code>，那cell間的走線面積就不會考慮，所以<code>interconnect area</code>會是0<br><code>set_wire_load_model -name tsmc13_wl10 -library slow</code></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># CLE_DC.sdc</span><br><span class="line"># You can only modify clock period </span><br><span class="line"></span><br><span class="line">set cycle  10         ;#clock period defined by designer</span><br><span class="line"></span><br><span class="line">#don&apos;t modify the following part</span><br><span class="line">create_clock -period $cycle [get_ports  clk]</span><br><span class="line">set_dont_touch_network      [all_clocks]</span><br><span class="line">set_fix_hold                [all_clocks]</span><br><span class="line">set_clock_uncertainty  0.1  [all_clocks]</span><br><span class="line">set_clock_latency      0.5  [all_clocks]</span><br><span class="line">set_ideal_network           [get_ports clk]</span><br><span class="line"></span><br><span class="line">#Don&apos;t touch the basic env setting as below</span><br><span class="line">set_input_delay  1     -clock clk [remove_from_collection [all_inputs] [get_ports clk]]</span><br><span class="line">set_output_delay 1     -clock clk [all_outputs] </span><br><span class="line">set_load         1     [all_outputs]</span><br><span class="line">set_drive        1     [all_inputs]</span><br><span class="line"></span><br><span class="line">set_operating_conditions -max_library slow -max slow</span><br><span class="line">set_wire_load_model -name tsmc13_wl10 -library slow                        </span><br><span class="line"></span><br><span class="line">set_max_fanout 6 [all_inputs]</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/sD0Luza.png" alt=""></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># CLE_DC.sdc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># You can only modify clock period </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">set cycle  10         ;#clock period defined by designer</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">#don&#39;t modify the following part</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">create_clock -period $cycle [get_ports  clk]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">set_dont_touch_network      [all_clocks]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">set_fix_hold                [all_clocks]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">set_clock_uncertainty  0.1  [all_clocks]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">set_clock_latency      0.5  [all_clocks]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">set_ideal_network           [get_ports clk]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">#Don&#39;t touch the basic env setting as below</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">set_input_delay  1     -clock clk [remove_from_collection [all_inputs] [get_ports clk]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">set_output_delay 1     -clock clk [all_outputs] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">set_load         1     [all_outputs]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">set_drive        1     [all_inputs]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">set_operating_conditions -max_library slow -max slow</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">set_wire_load_model -name tsmc13_wl10 -library slow                        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">set_max_fanout 6 [all_inputs]</span></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://i.imgur.com/sD0Luza.png" alt></p>
 <p><strong>問答2: 為什麼<code>Macro/Black Box area</code>是0?</strong><br>因為環境設定檔中，<code>.synopsys_dc.setup</code>內的SRAM路徑不對，DC找不到SRAM的library，認不得所以沒吃到Macro的面積<br><code>search_path</code>會去搜尋Macro cell的gate netlist path在哪裡<br><code>target_library</code>是放置Macro cell 的technology library的path在哪裡，透過<code>target_library</code>，我們會把<code>link_library</code> link到Macro的cell，這樣就能認得Macro的cell</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span><br><span class="line">set search_path      &quot;. /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db  ./Memory/sram_1024x8_t13 $search_path&quot;</span><br><span class="line">set target_library   &quot;slow.db                     \</span><br><span class="line">					  typical.db</span><br><span class="line">					  fast.db</span><br><span class="line">                      sram_1024x8_t13_slow_syn.db \</span><br><span class="line">                     &quot;</span><br><span class="line">set link_library     &quot;* $target_library dw_foundation.sldb&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span><br><span class="line"># 1. Modify this file to fit your own environment.</span><br><span class="line"># 2. Copy this file synopsys_dc.setup to .synopsys_dc.setup</span><br><span class="line">#    and put this file in tool&apos;s invoking directory or your home directory.</span><br><span class="line">#	</span><br><span class="line"></span><br><span class="line">set company &#123;NTUGIEE&#125;</span><br><span class="line">set designer &#123;Student&#125;</span><br><span class="line"></span><br><span class="line">set search_path      &quot;. /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db  ./Memory/sram_1024x8_t13 $search_path&quot;</span><br><span class="line">set target_library   &quot;slow.db                     \</span><br><span class="line">					  typical.db</span><br><span class="line">					  fast.db</span><br><span class="line">                      sram_1024x8_t13_slow_syn.db \</span><br><span class="line">                     &quot;</span><br><span class="line">set link_library     &quot;* $target_library dw_foundation.sldb&quot;</span><br><span class="line">set symbol_library   &quot;tsmc13.sdb generic.sdb&quot;</span><br><span class="line">set synthetic_library &quot;dw_foundation.sldb&quot;</span><br><span class="line">set default_schematic_options &#123;-size infinite&#125;</span><br><span class="line"></span><br><span class="line">set hdlin_translate_off_skip_text &quot;TRUE&quot;</span><br><span class="line">set edifout_netlist_only &quot;TRUE&quot;</span><br><span class="line">set verilogout_no_tri true</span><br><span class="line"></span><br><span class="line">set hdlin_enable_presto_for_vhdl &quot;TRUE&quot;</span><br><span class="line">set sh_enable_line_editing true</span><br><span class="line">set sh_line_editing_mode emacs</span><br><span class="line">history keep 100</span><br><span class="line">alias h history</span><br><span class="line"></span><br><span class="line">set bus_inference_style &#123;%s[%d]&#125;</span><br><span class="line">set bus_naming_style &#123;%s[%d]&#125;</span><br><span class="line">set hdlout_internal_busses true</span><br><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z 0-9 _&#125; -max_length 255 -type cell</span><br><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z 0-9 _[]&#125; -max_length 255 -type net</span><br><span class="line">define_name_rules name_rule -map &#123;&#123;&quot;\\*cell\\*&quot; &quot;cell&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">set search_path      &quot;. &#x2F;home&#x2F;raid7_2&#x2F;course&#x2F;cvsd&#x2F;CBDK_IC_Contest&#x2F;CIC&#x2F;SynopsysDC&#x2F;db  .&#x2F;Memory&#x2F;sram_1024x8_t13 $search_path&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">set target_library   &quot;slow.db                     \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">					  typical.db</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">					  fast.db</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                      sram_1024x8_t13_slow_syn.db \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                     &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">set link_library     &quot;* $target_library dw_foundation.sldb&quot;</span></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># 1. Modify this file to fit your own environment.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 2. Copy this file synopsys_dc.setup to .synopsys_dc.setup</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#    and put this file in tool&#39;s invoking directory or your home directory.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">#	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">set company &#123;NTUGIEE&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">set designer &#123;Student&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">set search_path      &quot;. &#x2F;home&#x2F;raid7_2&#x2F;course&#x2F;cvsd&#x2F;CBDK_IC_Contest&#x2F;CIC&#x2F;SynopsysDC&#x2F;db  .&#x2F;Memory&#x2F;sram_1024x8_t13 $search_path&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">set target_library   &quot;slow.db                     \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">					  typical.db</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">					  fast.db</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                      sram_1024x8_t13_slow_syn.db \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                     &quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">set link_library     &quot;* $target_library dw_foundation.sldb&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">set symbol_library   &quot;tsmc13.sdb generic.sdb&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">set synthetic_library &quot;dw_foundation.sldb&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">set default_schematic_options &#123;-size infinite&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">set hdlin_translate_off_skip_text &quot;TRUE&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">set edifout_netlist_only &quot;TRUE&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">set verilogout_no_tri true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">set hdlin_enable_presto_for_vhdl &quot;TRUE&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">set sh_enable_line_editing true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">set sh_line_editing_mode emacs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">history keep 100</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">alias h history</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">set bus_inference_style &#123;%s[%d]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">set bus_naming_style &#123;%s[%d]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">set hdlout_internal_busses true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z 0-9 _&#125; -max_length 255 -type cell</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -allowed &#123;a-z A-Z 0-9 _[]&#125; -max_length 255 -type net</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">define_name_rules name_rule -map &#123;&#123;&quot;\\*cell\\*&quot; &quot;cell&quot;&#125;&#125;</span></pre></td></tr></table></figure>
+
+
 <p><strong>問答3: timing report是讓critcal path可以過timing的constraints，<br>如果過了5ns的constraints，把testbench改成4ns使否有機會meet constraints?</strong><br>有機會，如果測資走的不是critical path，那就有機會通過限制</p>
 <p><strong>問答4: Why we only focus on total cell area instead of total area?</strong><br>因為我們能夠掌握的只有RTL的design，而他會影響的面積是Cominational、Buffer、Non-combinational的area，wire的面積不是我們能決定的，而且這個面積在P&amp;R之後才會比較準確</p>
 <p><strong>問答5: Why the total cell area will be underestimated if we don’t set wire load model?</strong><br>因為沒有設定wire model，那就不會考慮wire的delay，所以timing constraints會比較好通過<br>若今天把wire delay考慮回來，那timing constraints的條件會變得比較嚴苛，所以cell的面積必須要加大，讓操作速度變得比較快，才能通過constraints</p>
@@ -523,7 +549,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Verilog/">Verilog</a>
+                    <a class="has-link-grey -link" href="/tags/Verilog/" rel="tag">Verilog</a>
                 </div>
             </div>
         </div>
@@ -579,7 +605,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -628,7 +654,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -640,7 +666,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -652,7 +678,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -757,7 +783,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -771,6 +797,14 @@
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -810,7 +844,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -901,18 +935,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -957,7 +991,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1191,6 +1225,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1331,6 +1372,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1354,7 +1402,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1410,6 +1458,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1582,7 +1637,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

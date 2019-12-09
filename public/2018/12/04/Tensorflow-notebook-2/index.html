@@ -3,7 +3,7 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -11,19 +11,22 @@
 
 
     <meta name="description" content="Setup Download Python 3.7 version  勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可) cd到教學資料夾，有tfdl_env.yml檔案 執行conda env create -f tfdl_env.yml 執行activate tfdeeplearning 執行jupyter notebook  Basic Training">
-<meta name="keywords" content="Python,Tensorflow,Deep Learning,AI,Jupyter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tensorflow Notebook 2 - Linear Regression">
-<meta property="og:url" content="http://yoursite.com/2018/12/04/Tensorflow-notebook-2/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;12&#x2F;04&#x2F;Tensorflow-notebook-2&#x2F;index.html">
 <meta property="og:site_name" content="YC">
 <meta property="og:description" content="Setup Download Python 3.7 version  勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可) cd到教學資料夾，有tfdl_env.yml檔案 執行conda env create -f tfdl_env.yml 執行activate tfdeeplearning 執行jupyter notebook  Basic Training">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/zJX2v4b.jpg">
-<meta property="og:updated_time" content="2019-12-08T14:14:03.665Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;zJX2v4b.jpg">
+<meta property="article:published_time" content="2018-12-04T08:42:49.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.651Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Tensorflow">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Jupyter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow Notebook 2 - Linear Regression">
-<meta name="twitter:description" content="Setup Download Python 3.7 version  勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可) cd到教學資料夾，有tfdl_env.yml檔案 執行conda env create -f tfdl_env.yml 執行activate tfdeeplearning 執行jupyter notebook  Basic Training">
-<meta name="twitter:image" content="https://i.imgur.com/zJX2v4b.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;zJX2v4b.jpg">
 
 
 
@@ -176,10 +179,10 @@
             
         </h1>
         <div class="content">
-            <p><a href="https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/learn/v4/content" target="_blank" rel="noopener"><img src="https://i.imgur.com/BKsRpNc.png" alt=""></a></p>
+            <p><a href="https://www.udemy.com/complete-guide-to-tensorflow-for-deep-learning-with-python/learn/v4/content" target="_blank" rel="noopener"><img src="https://i.imgur.com/BKsRpNc.png" alt></a></p>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><ol>
 <li>Download <a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">Python 3.7 version </a></li>
-<li>勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可)<br><img src="" alt=""><br><img src="https://i.imgur.com/8U9bgby.png" width="70%"></li>
+<li>勾選新增環境變數 (沒勾就要手動加，不然就開Anaconda Prompt下指令也可)<br><img src alt><img src="https://i.imgur.com/8U9bgby.png" width="70%"></li>
 <li>cd到教學資料夾，有tfdl_env.yml檔案</li>
 <li>執行<code>conda env create -f tfdl_env.yml</code></li>
 <li>執行<code>activate tfdeeplearning</code></li>
@@ -192,63 +195,118 @@
 <li>丟入data並取得輸出</li>
 </ol>
 <h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><a id="more"></a>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>) + np.random.uniform(<span class="hljs-number">-1.5</span>,<span class="hljs-number">1.5</span>,<span class="hljs-number">10</span>) <span class="hljs-comment"># 加入雜訊</span></span><br><span class="line">y_label = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>) + np.random.uniform(<span class="hljs-number">-1.5</span>,<span class="hljs-number">1.5</span>,<span class="hljs-number">10</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="模擬實際資料分布"><a href="#模擬實際資料分布" class="headerlink" title="模擬實際資料分布"></a>模擬實際資料分布</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x_data,y_label,<span class="hljs-string">'o'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/LD9dX5Y.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>) + np.random.uniform(<span class="hljs-number">-1.5</span>,<span class="hljs-number">1.5</span>,<span class="hljs-number">10</span>) <span class="hljs-comment"># 加入雜訊</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">y_label = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>) + np.random.uniform(<span class="hljs-number">-1.5</span>,<span class="hljs-number">1.5</span>,<span class="hljs-number">10</span>)</span></pre></td></tr></table></figure>
+
+<h3 id="模擬實際資料分布"><a href="#模擬實際資料分布" class="headerlink" title="模擬實際資料分布"></a>模擬實際資料分布</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.plot(x_data,y_label,<span class="hljs-string">'o'</span>)</span></pre></td></tr></table></figure>
+
+
+<p><img src="https://i.imgur.com/LD9dX5Y.png" alt></p>
 <p>給定隨機斜率與截距</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m = tf.Variable(<span class="hljs-number">0.5</span>) <span class="hljs-comment"># 隨便給的variable ~</span></span><br><span class="line">b = tf.Variable(<span class="hljs-number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">m = tf.Variable(<span class="hljs-number">0.5</span>) <span class="hljs-comment"># 隨便給的variable ~</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b = tf.Variable(<span class="hljs-number">0.5</span>)</span></pre></td></tr></table></figure>
+
 <h3 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h3><p>如同吳恩達在<a href="https://medium.com/@ken90242/machine-learning%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-coursera%E7%AF%87-linear-regression-with-one-variable-model-representation-cost-1c5ff295ac2c" target="_blank" rel="noopener">Linear Regression</a>所講的cost function<br>$$J(\theta_0, \theta_1) = \frac{ 1 }{ 2m } \displaystyle \sum_{ i = 1 }^{ m } (\hat{ y }^{(i)} - y^{(i)})^2 = \frac{ 1 }{ 2m } \displaystyle \sum_{ i = 1 }^{ m } (h_\theta(x^{(i)}) - y^{(i)})^2 $$</p>
 <p>$\theta_0$是截距b，$\theta_1$是斜率m</p>
 <p>$\hat{ y }$或是$h_\theta(x)$就是預測的$y$值<br>所以預測與現實的差距$(\hat{ y } - y)$就是誤差，而平方目的是punish，讓誤差大時累加error更大，並在誤差減少時快速遞減</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">error = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> x,y <span class="hljs-keyword">in</span> zip(x_data,y_label):</span><br><span class="line">    </span><br><span class="line">    y_hat = m*x + b  <span class="hljs-comment"># hypothesis</span></span><br><span class="line">    </span><br><span class="line">    error += (y_hat - y)**<span class="hljs-number">2</span></span><br></pre></td></tr></table></figure>
-<h3 id="梯度下降法最小化Cost-Function"><a href="#梯度下降法最小化Cost-Function" class="headerlink" title="梯度下降法最小化Cost Function"></a>梯度下降法最小化Cost Function</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="hljs-number">0.001</span>) <span class="hljs-comment"># learning_rate通常就用0.001</span></span><br><span class="line">train = optimizer.minimize(error)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">error = <span class="hljs-number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> x,y <span class="hljs-keyword">in</span> zip(x_data,y_label):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    y_hat = m*x + b  <span class="hljs-comment"># hypothesis</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    error += (y_hat - y)**<span class="hljs-number">2</span></span></pre></td></tr></table></figure>
+
+<h3 id="梯度下降法最小化Cost-Function"><a href="#梯度下降法最小化Cost-Function" class="headerlink" title="梯度下降法最小化Cost Function"></a>梯度下降法最小化Cost Function</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="hljs-number">0.001</span>) <span class="hljs-comment"># learning_rate通常就用0.001</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train = optimizer.minimize(error)</span></pre></td></tr></table></figure>
+
 <p>train存的是optimizer傳入cost function(error)回傳的operation，所以之後要丟入session.run()</p>
-<h3 id="初始化-Variables"><a href="#初始化-Variables" class="headerlink" title="初始化 Variables"></a>初始化 Variables</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br></pre></td></tr></table></figure>
-<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:</span><br><span class="line">    </span><br><span class="line">    sess.run(init)</span><br><span class="line">    </span><br><span class="line">    epochs = <span class="hljs-number">100</span>  <span class="hljs-comment"># 1個epoch表示跑過train set中所有樣本一次</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(epochs):</span><br><span class="line">        sess.run(train)</span><br><span class="line">        </span><br><span class="line">    final_slope ,final_intercept = sess.run([m,b])</span><br><span class="line">    </span><br><span class="line">print(<span class="hljs-string">'%d次epochs的線性回歸函數: y = %.2fx + %.2f '</span> % (epochs, final_slope, final_intercept))</span><br><span class="line"><span class="hljs-comment"># 100次epochs的線性回歸函數: y = 0.91x + 0.42</span></span><br></pre></td></tr></table></figure>
-<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x_test = np.linspace(<span class="hljs-number">-1</span>,<span class="hljs-number">11</span>,<span class="hljs-number">10</span>)</span><br><span class="line">y_pred_plot = final_slope * x_test + final_intercept</span><br><span class="line"></span><br><span class="line">plt.plot(x_test,y_pred_plot,<span class="hljs-string">'r'</span>)</span><br><span class="line">plt.plot(x_data,y_label,<span class="hljs-string">'o'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/9yZyLHH.png" alt=""></p>
-<h3 id="實驗1"><a href="#實驗1" class="headerlink" title="實驗1"></a>實驗1</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">1000000</span>)</span><br><span class="line"> </span><br><span class="line">noise = np.random.randn(len(x_data))</span><br></pre></td></tr></table></figure>
+<h3 id="初始化-Variables"><a href="#初始化-Variables" class="headerlink" title="初始化 Variables"></a>初始化 Variables</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span></pre></td></tr></table></figure>
+
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    sess.run(init)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    epochs = <span class="hljs-number">100</span>  <span class="hljs-comment"># 1個epoch表示跑過train set中所有樣本一次</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(epochs):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        sess.run(train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    final_slope ,final_intercept = sess.run([m,b])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">'%d次epochs的線性回歸函數: y = %.2fx + %.2f '</span> % (epochs, final_slope, final_intercept))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 100次epochs的線性回歸函數: y = 0.91x + 0.42</span></span></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_test = np.linspace(<span class="hljs-number">-1</span>,<span class="hljs-number">11</span>,<span class="hljs-number">10</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">y_pred_plot = final_slope * x_test + final_intercept</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">plt.plot(x_test,y_pred_plot,<span class="hljs-string">'r'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">plt.plot(x_data,y_label,<span class="hljs-string">'o'</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/9yZyLHH.png" alt></p>
+<h3 id="實驗1"><a href="#實驗1" class="headerlink" title="實驗1"></a>實驗1</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">1000000</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">noise = np.random.randn(len(x_data))</span></pre></td></tr></table></figure>
+
 <p>$y = wx + b + noise$</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_true = (<span class="hljs-number">0.5</span> * x_data) + <span class="hljs-number">5</span> + noise</span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x_df = pd.DataFrame(data=x_data, columns=[<span class="hljs-string">'X'</span>])</span><br><span class="line">y_df = pd.DataFrame(data=y_true, columns=[<span class="hljs-string">'Y'</span>])</span><br><span class="line"></span><br><span class="line">my_data = pd.concat([x_df, y_df], axis=<span class="hljs-number">1</span>)</span><br><span class="line">my_data.head()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">my_data.sample(n=<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>, x=<span class="hljs-string">'X'</span>, y=<span class="hljs-string">'Y'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/mdirfvF.png" alt=""></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m = tf.Variable(<span class="hljs-number">0.5</span>) <span class="hljs-comment"># random numbers</span></span><br><span class="line">b = tf.Variable(<span class="hljs-number">1.0</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_ph = tf.placeholder(tf.float32, [batch_size])</span><br><span class="line">y_ph = tf.placeholder(tf.float32, [batch_size])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">y_true = (<span class="hljs-number">0.5</span> * x_data) + <span class="hljs-number">5</span> + noise</span></pre></td></tr></table></figure>
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_df = pd.DataFrame(data=x_data, columns=[<span class="hljs-string">'X'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">y_df = pd.DataFrame(data=y_true, columns=[<span class="hljs-string">'Y'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">my_data = pd.concat([x_df, y_df], axis=<span class="hljs-number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">my_data.head()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">my_data.sample(n=<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>, x=<span class="hljs-string">'X'</span>, y=<span class="hljs-string">'Y'</span>)</span></pre></td></tr></table></figure>
+
+
+
+
+<p><img src="https://i.imgur.com/mdirfvF.png" alt></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">m = tf.Variable(<span class="hljs-number">0.5</span>) <span class="hljs-comment"># random numbers</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b = tf.Variable(<span class="hljs-number">1.0</span>)</span></pre></td></tr></table></figure>
+
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_ph = tf.placeholder(tf.float32, [batch_size])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">y_ph = tf.placeholder(tf.float32, [batch_size])</span></pre></td></tr></table></figure>
+
 <p>預測函數:<br>$\hat{ y } = m * x + b$</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_hat = m * x_ph + b</span><br></pre></td></tr></table></figure>
-<p>使用tensorflow的API來描述cost function<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error = tf.reduce_sum(tf.square(y_hat - y_ph))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">y_hat = m * x_ph + b</span></pre></td></tr></table></figure>
+
+<p>使用tensorflow的API來描述cost function</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">error = tf.reduce_sum(tf.square(y_hat - y_ph))</span></pre></td></tr></table></figure>
+
 <p>梯度下降法optimizer </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="hljs-number">0.001</span>)</span><br><span class="line">train = optimizer.minimize(error)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="hljs-number">0.001</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">train = optimizer.minimize(error)</span></pre></td></tr></table></figure>
+
 <p>初始化graph中的global variables，回傳值是operation</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span></pre></td></tr></table></figure>
+
 <p><strong>Session: 定義bach size</strong></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="hljs-number">8</span></span><br><span class="line"><span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment"># 每一批丟入8個實際(x, y)值，optimizer會最佳化回歸直線，共做1000次</span></span><br><span class="line">    batches = <span class="hljs-number">1000</span></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(batches):</span><br><span class="line">        rand_idx = np.random.randint(len(x_data), size = batch_size)  <span class="hljs-comment"># 回傳隨機8個index值的陣列</span></span><br><span class="line">        </span><br><span class="line">        feed = &#123;x_ph: x_data[rand_idx], y_ph: y_true[rand_idx]&#125;</span><br><span class="line">        </span><br><span class="line">        sess.run(train, feed_dict=feed)</span><br><span class="line">        </span><br><span class="line">    final_slope ,final_intercept = sess.run([m,b]) <span class="hljs-comment"># 記得m,b是上面宣告的tf.Variable()</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y_hat = final_slope * x_data + final_intercept</span><br><span class="line">my_data.sample(<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>, x=<span class="hljs-string">'X'</span>, y=<span class="hljs-string">'Y'</span>)</span><br><span class="line">plt.plot(x_data, y_hat, <span class="hljs-string">'r'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">batch_size = <span class="hljs-number">8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    sess.run(init)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment"># 每一批丟入8個實際(x, y)值，optimizer會最佳化回歸直線，共做1000次</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    batches = <span class="hljs-number">1000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(batches):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        rand_idx = np.random.randint(len(x_data), size = batch_size)  <span class="hljs-comment"># 回傳隨機8個index值的陣列</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        feed = &#123;x_ph: x_data[rand_idx], y_ph: y_true[rand_idx]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        sess.run(train, feed_dict=feed)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    final_slope ,final_intercept = sess.run([m,b]) <span class="hljs-comment"># 記得m,b是上面宣告的tf.Variable()</span></span></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">y_hat = final_slope * x_data + final_intercept</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">my_data.sample(<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>, x=<span class="hljs-string">'X'</span>, y=<span class="hljs-string">'Y'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">plt.plot(x_data, y_hat, <span class="hljs-string">'r'</span>)</span></pre></td></tr></table></figure>
+
 <p>最後training的結果(圖中紅線)</p>
-<p><img src="https://i.imgur.com/ZmMh2aV.png" alt=""></p>
-<h3 id="實驗2-使用estimator-API"><a href="#實驗2-使用estimator-API" class="headerlink" title="實驗2 - 使用estimator API"></a>實驗2 - 使用estimator API</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ZmMh2aV.png" alt></p>
+<h3 id="實驗2-使用estimator-API"><a href="#實驗2-使用estimator-API" class="headerlink" title="實驗2 - 使用estimator API"></a>實驗2 - 使用estimator API</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr></table></figure>
+
 <p>產生樣本  </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">1000000</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x_data = np.linspace(<span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">1000000</span>)</span></pre></td></tr></table></figure>
+
 <p>加入雜訊</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">noise = np.random.uniform(<span class="hljs-number">-2</span>, <span class="hljs-number">2</span>, len(x_data))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">noise = np.random.uniform(<span class="hljs-number">-2</span>, <span class="hljs-number">2</span>, len(x_data))</span></pre></td></tr></table></figure>
+
 <p>$y = wx + b + noise$</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_true = (<span class="hljs-number">0.8</span> * x_data) + <span class="hljs-number">3</span> + noise</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">y_true = (<span class="hljs-number">0.8</span> * x_data) + <span class="hljs-number">3</span> + noise</span></pre></td></tr></table></figure>
+
 <p>畫出模擬的資料分布</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myDataset = pd.concat([pd.DataFrame(data=x_data,columns=[<span class="hljs-string">'X Data'</span>]),pd.DataFrame(data=y_true,columns=[<span class="hljs-string">'Y'</span>])],axis=<span class="hljs-number">1</span>)</span><br><span class="line">myDataset.sample(<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>,x=<span class="hljs-string">'X Data'</span>,y=<span class="hljs-string">'Y'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/T4nNorC.png" alt=""></p>
-<h4 id="使用estimator-API來做訓練"><a href="#使用estimator-API來做訓練" class="headerlink" title="使用estimator API來做訓練"></a>使用estimator API來做訓練</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 首先要設定feature類型、倒入哪種模型，可以想成格式設定</span></span><br><span class="line">feat_cols = [tf.feature_column.numeric_column(<span class="hljs-string">'x'</span>,shape=[<span class="hljs-number">1</span>])]  </span><br><span class="line">estimator = tf.estimator.LinearRegressor(feature_columns=feat_cols)</span><br></pre></td></tr></table></figure>
-<h4 id="切分訓練、測試資料"><a href="#切分訓練、測試資料" class="headerlink" title="切分訓練、測試資料"></a>切分訓練、測試資料</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">x_train, x_eval, y_train, y_eval = train_test_split(x_data,y_true,test_size=<span class="hljs-number">0.3</span>, random_state = <span class="hljs-number">101</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="丟入樣本，類似之前的feed-dict動作"><a href="#丟入樣本，類似之前的feed-dict動作" class="headerlink" title="丟入樣本，類似之前的feed_dict動作"></a>丟入樣本，類似之前的feed_dict動作</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_train&#125;,y_train,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-keyword">None</span>,shuffle=<span class="hljs-keyword">True</span>)</span><br><span class="line"></span><br><span class="line">train_input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_train&#125;,y_train,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-number">1000</span>,shuffle=<span class="hljs-keyword">False</span>) <span class="hljs-comment"># 接受參數，輸出數據訓練數據</span></span><br><span class="line">eval_input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_eval&#125;,y_eval,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-number">1000</span>,shuffle=<span class="hljs-keyword">False</span>) <span class="hljs-comment"># 接受參數，並輸出驗證數據和測試數據</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">myDataset = pd.concat([pd.DataFrame(data=x_data,columns=[<span class="hljs-string">'X Data'</span>]),pd.DataFrame(data=y_true,columns=[<span class="hljs-string">'Y'</span>])],axis=<span class="hljs-number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">myDataset.sample(<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>,x=<span class="hljs-string">'X Data'</span>,y=<span class="hljs-string">'Y'</span>)</span></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/T4nNorC.png" alt></p>
+<h4 id="使用estimator-API來做訓練"><a href="#使用estimator-API來做訓練" class="headerlink" title="使用estimator API來做訓練"></a>使用estimator API來做訓練</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 首先要設定feature類型、倒入哪種模型，可以想成格式設定</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">feat_cols = [tf.feature_column.numeric_column(<span class="hljs-string">'x'</span>,shape=[<span class="hljs-number">1</span>])]  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">estimator = tf.estimator.LinearRegressor(feature_columns=feat_cols)</span></pre></td></tr></table></figure>
+
+<h4 id="切分訓練、測試資料"><a href="#切分訓練、測試資料" class="headerlink" title="切分訓練、測試資料"></a>切分訓練、測試資料</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">x_train, x_eval, y_train, y_eval = train_test_split(x_data,y_true,test_size=<span class="hljs-number">0.3</span>, random_state = <span class="hljs-number">101</span>)</span></pre></td></tr></table></figure>
+
+<h4 id="丟入樣本，類似之前的feed-dict動作"><a href="#丟入樣本，類似之前的feed-dict動作" class="headerlink" title="丟入樣本，類似之前的feed_dict動作"></a>丟入樣本，類似之前的feed_dict動作</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_train&#125;,y_train,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-keyword">None</span>,shuffle=<span class="hljs-keyword">True</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">train_input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_train&#125;,y_train,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-number">1000</span>,shuffle=<span class="hljs-keyword">False</span>) <span class="hljs-comment"># 接受參數，輸出數據訓練數據</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">eval_input_func = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:x_eval&#125;,y_eval,batch_size=<span class="hljs-number">4</span>,num_epochs=<span class="hljs-number">1000</span>,shuffle=<span class="hljs-keyword">False</span>) <span class="hljs-comment"># 接受參數，並輸出驗證數據和測試數據</span></span></pre></td></tr></table></figure>
+
 <p>Trains a model given training data input_fn</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">estimator.train(input_fn=input_func,steps=<span class="hljs-number">1000</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_metrics = estimator.evaluate(input_fn=train_input_func,steps=<span class="hljs-number">1000</span>)</span><br><span class="line">eval_metrics = estimator.evaluate(input_fn=eval_input_func,steps=<span class="hljs-number">1000</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">"train metrics: &#123;&#125;"</span>.format(train_metrics))</span><br><span class="line">print(<span class="hljs-string">"eval metrics: &#123;&#125;"</span>.format(eval_metrics))</span><br><span class="line"><span class="hljs-comment">#train metrics: &#123;'average_loss': 1.393801, 'global_step': 1000, 'loss': 5.5752039&#125;</span></span><br><span class="line"><span class="hljs-comment">#eval metrics: &#123;'average_loss': 1.3947791, 'global_step': 1000, 'loss': 5.5791163&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Predictions"><a href="#Predictions" class="headerlink" title="Predictions"></a>Predictions</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 假設我們得到一組新的樣本 np.linspace(0, 10, 10)</span></span><br><span class="line">input_fn_predict = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)&#125;,shuffle=<span class="hljs-keyword">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">list(estimator.predict(input_fn=input_fn_predict))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># fetch results</span></span><br><span class="line">predictions = []</span><br><span class="line"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> estimator.predict(input_fn=input_fn_predict):</span><br><span class="line">    predictions.append(x[<span class="hljs-string">'predictions'</span>])</span><br><span class="line"></span><br><span class="line">predictions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">myPredict = pd.concat([pd.DataFrame(data=np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>),columns=[<span class="hljs-string">'New X'</span>]), pd.DataFrame(data=predictions,columns=[<span class="hljs-string">'predictions'</span>])],axis=<span class="hljs-number">1</span>)</span><br><span class="line">print(<span class="hljs-string">'my prediction line: y = %.2fx + %.2f'</span> % ((myPredict.iloc[<span class="hljs-number">1</span>][<span class="hljs-string">'predictions'</span>] - myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'predictions'</span>])/((myPredict.iloc[<span class="hljs-number">1</span>][<span class="hljs-string">'New X'</span>] - myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'New X'</span>])), myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'predictions'</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">estimator.train(input_fn=input_func,steps=<span class="hljs-number">1000</span>)</span></pre></td></tr></table></figure>
+
+
+<h4 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">train_metrics = estimator.evaluate(input_fn=train_input_func,steps=<span class="hljs-number">1000</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">eval_metrics = estimator.evaluate(input_fn=eval_input_func,steps=<span class="hljs-number">1000</span>)</span></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">"train metrics: &#123;&#125;"</span>.format(train_metrics))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">"eval metrics: &#123;&#125;"</span>.format(eval_metrics))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#train metrics: &#123;'average_loss': 1.393801, 'global_step': 1000, 'loss': 5.5752039&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#eval metrics: &#123;'average_loss': 1.3947791, 'global_step': 1000, 'loss': 5.5791163&#125;</span></span></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="Predictions"><a href="#Predictions" class="headerlink" title="Predictions"></a>Predictions</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 假設我們得到一組新的樣本 np.linspace(0, 10, 10)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">input_fn_predict = tf.estimator.inputs.numpy_input_fn(&#123;<span class="hljs-string">'x'</span>:np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)&#125;,shuffle=<span class="hljs-keyword">False</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">list(estimator.predict(input_fn=input_fn_predict))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># fetch results</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">predictions = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> estimator.predict(input_fn=input_fn_predict):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    predictions.append(x[<span class="hljs-string">'predictions'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">predictions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">myPredict = pd.concat([pd.DataFrame(data=np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>),columns=[<span class="hljs-string">'New X'</span>]), pd.DataFrame(data=predictions,columns=[<span class="hljs-string">'predictions'</span>])],axis=<span class="hljs-number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">'my prediction line: y = %.2fx + %.2f'</span> % ((myPredict.iloc[<span class="hljs-number">1</span>][<span class="hljs-string">'predictions'</span>] - myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'predictions'</span>])/((myPredict.iloc[<span class="hljs-number">1</span>][<span class="hljs-string">'New X'</span>] - myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'New X'</span>])), myPredict.iloc[<span class="hljs-number">0</span>][<span class="hljs-string">'predictions'</span>]))</span></pre></td></tr></table></figure>
+
 <p>預測函數: $y = 0.81x + 2.75$</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myDataset.sample(n=<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>,x=<span class="hljs-string">'X Data'</span>,y=<span class="hljs-string">'Y'</span>)</span><br><span class="line">plt.plot(np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>), predictions, <span class="hljs-string">'r'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/n0N6ZHo.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">myDataset.sample(n=<span class="hljs-number">250</span>).plot(kind=<span class="hljs-string">'scatter'</span>,x=<span class="hljs-string">'X Data'</span>,y=<span class="hljs-string">'Y'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">plt.plot(np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>), predictions, <span class="hljs-string">'r'</span>)</span></pre></td></tr></table></figure>
+
+
+<p><img src="https://i.imgur.com/n0N6ZHo.png" alt></p>
 
         </div>
         
@@ -256,7 +314,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/AI/">AI</a>, <a class="has-link-grey -link" href="/tags/Deep-Learning/">Deep Learning</a>, <a class="has-link-grey -link" href="/tags/Jupyter/">Jupyter</a>, <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/Tensorflow/">Tensorflow</a>
+                    <a class="has-link-grey -link" href="/tags/AI/" rel="tag">AI</a>, <a class="has-link-grey -link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a>, <a class="has-link-grey -link" href="/tags/Jupyter/" rel="tag">Jupyter</a>, <a class="has-link-grey -link" href="/tags/Python/" rel="tag">Python</a>, <a class="has-link-grey -link" href="/tags/Tensorflow/" rel="tag">Tensorflow</a>
                 </div>
             </div>
         </div>
@@ -312,7 +370,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -361,7 +419,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -373,7 +431,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -385,7 +443,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -490,7 +548,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -504,6 +562,14 @@
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -543,7 +609,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -634,18 +700,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -690,7 +756,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -924,6 +990,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1064,6 +1137,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1087,7 +1167,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1143,6 +1223,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1315,7 +1402,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

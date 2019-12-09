@@ -3,7 +3,7 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -11,19 +11,20 @@
 
 
     <meta name="description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
-<meta name="keywords" content="Machine Learning,Decision Tree,Random Forest">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Decision Tree and Random Forest - Lending Club 信貸資料分析">
-<meta property="og:url" content="http://yoursite.com/2018/10/11/ML-course-note-DecisionTree-RandomForest/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;10&#x2F;11&#x2F;ML-course-note-DecisionTree-RandomForest&#x2F;index.html">
 <meta property="og:site_name" content="YC">
 <meta property="og:description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-08T14:12:28.914Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
+<meta property="article:published_time" content="2018-10-11T09:14:55.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.641Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Decision Tree">
+<meta property="article:tag" content="Random Forest">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Decision Tree and Random Forest - Lending Club 信貸資料分析">
-<meta name="twitter:description" content="Dataset Download各column所代表的意義如下   credit.policy: 1 if the customer meets the credit underwriting criteria of LendingClub.com, and 0 otherwise. purpose: The purpose of the loan (takes values “credit_c">
-<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
 
 
@@ -188,36 +189,50 @@
 <li>delinq.2yrs: The number of times the borrower had been 30+ days past due on a payment in the past 2 years.</li>
 <li>pub.rec: The borrower’s number of derogatory public records (bankruptcy filings, tax liens, or judgments).</li>
 </ul>
-<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
-<h2 id="引入資料集"><a href="#引入資料集" class="headerlink" title="引入資料集"></a>引入資料集</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'loan_data.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/yBHSpml.png" alt=""></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></table></figure>
-<p><class 'pandas.core.frame.dataframe'=""><br>RangeIndex: 9578 entries, 0 to 9577<br>Data columns (total 14 columns):<br>credit.policy        9578 non-null int64<br>purpose              9578 non-null object<br>int.rate             9578 non-null float64<br>installment          9578 non-null float64<br>log.annual.inc       9578 non-null float64<br>dti                  9578 non-null float64<br>fico                 9578 non-null int64<br>days.with.cr.line    9578 non-null float64<br>revol.bal            9578 non-null int64<br>revol.util           9578 non-null float64<br>inq.last.6mths       9578 non-null int64<br>delinq.2yrs          9578 non-null int64<br>pub.rec              9578 non-null int64<br>not.fully.paid       9578 non-null int64<br>dtypes: float64(6), int64(7), object(1)<br>memory usage: 1.0+ MB</class></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/7N890vM.png" alt=""></p>
+<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span></pre></td></tr></table></figure>
+
+<h2 id="引入資料集"><a href="#引入資料集" class="headerlink" title="引入資料集"></a>引入資料集</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'loan_data.csv'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df.head()</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/yBHSpml.png" alt></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df.info()</span></pre></td></tr></table></figure>
+
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;<br>RangeIndex: 9578 entries, 0 to 9577<br>Data columns (total 14 columns):<br>credit.policy        9578 non-null int64<br>purpose              9578 non-null object<br>int.rate             9578 non-null float64<br>installment          9578 non-null float64<br>log.annual.inc       9578 non-null float64<br>dti                  9578 non-null float64<br>fico                 9578 non-null int64<br>days.with.cr.line    9578 non-null float64<br>revol.bal            9578 non-null int64<br>revol.util           9578 non-null float64<br>inq.last.6mths       9578 non-null int64<br>delinq.2yrs          9578 non-null int64<br>pub.rec              9578 non-null int64<br>not.fully.paid       9578 non-null int64<br>dtypes: float64(6), int64(7), object(1)<br>memory usage: 1.0+ MB</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df.describe()</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/7N890vM.png" alt></p>
 <h2 id="資料分析"><a href="#資料分析" class="headerlink" title="資料分析"></a>資料分析</h2><p>個別顯示credit.policy為1跟0的fico值分布之histogram</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'Credit Policy = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'Credit Policy = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/0411JUG.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'Credit Policy = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df[ df[<span class="hljs-string">'credit.policy'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'Credit Policy = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">plt.legend()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/0411JUG.png" alt></p>
 <p>同上，改成分為not.fully.paid為1、0的histogram</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span><br><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'not.fully.paid = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'not.fully.paid = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/8Flad85.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">1</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'blue'</span>, label = <span class="hljs-string">'not.fully.paid = 1'</span>, alpha = <span class="hljs-number">0.6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df[ df[<span class="hljs-string">'not.fully.paid'</span>] == <span class="hljs-number">0</span> ][<span class="hljs-string">'fico'</span>].hist(bins= <span class="hljs-number">35</span>, color = <span class="hljs-string">'red'</span>, label = <span class="hljs-string">'not.fully.paid = 0'</span>, alpha = <span class="hljs-number">0.6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">plt.legend()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">plt.title(<span class="hljs-string">'FICO'</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/8Flad85.png" alt></p>
 <p>使用seaborn，產生countplot來顯示每種purpose對應的not.fully.paid為0、1的資訊</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>, <span class="hljs-number">7</span>))</span><br><span class="line">sns.countplot(x = <span class="hljs-string">'purpose'</span>, hue = <span class="hljs-string">'not.fully.paid'</span>, data = df)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/5JLTwFS.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>, <span class="hljs-number">7</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'purpose'</span>, hue = <span class="hljs-string">'not.fully.paid'</span>, data = df)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/5JLTwFS.png" alt></p>
 <p>顯示fico值與int.rate之間的關係</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x = <span class="hljs-string">'fico'</span>, y= <span class="hljs-string">'int.rate'</span>, data = df)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/jKjwOhi.png" alt=""></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>,<span class="hljs-number">7</span>))</span><br><span class="line">sns.lmplot(y= <span class="hljs-string">'int.rate'</span>, x= <span class="hljs-string">'fico'</span>, data = loans, hue = <span class="hljs-string">'credit.policy'</span>, col = <span class="hljs-string">'not.fully.paid'</span>, fit_reg=<span class="hljs-keyword">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/xe152ig.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.jointplot(x = <span class="hljs-string">'fico'</span>, y= <span class="hljs-string">'int.rate'</span>, data = df)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/jKjwOhi.png" alt></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">11</span>,<span class="hljs-number">7</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sns.lmplot(y= <span class="hljs-string">'int.rate'</span>, x= <span class="hljs-string">'fico'</span>, data = loans, hue = <span class="hljs-string">'credit.policy'</span>, col = <span class="hljs-string">'not.fully.paid'</span>, fit_reg=<span class="hljs-keyword">False</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/xe152ig.png" alt></p>
 <h2 id="資料處理"><a href="#資料處理" class="headerlink" title="資料處理"></a>資料處理</h2><blockquote>
 <p>將類別變數改成dummy variable</p>
 </blockquote>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat_feats = [<span class="hljs-string">'purpose'</span>]  <span class="hljs-comment">#紀錄類別column名稱</span></span><br><span class="line"></span><br><span class="line">final_data = pd.get_dummies(df, columns=cat_feats, drop_first=<span class="hljs-keyword">True</span>)  <span class="hljs-comment">#drop_first = True會丟棄第一行(但仍然能夠藉由其他行推斷類別)，減少不必要的資料</span></span><br></pre></td></tr></table></figure>
-<h2 id="切分訓練、測試資料"><a href="#切分訓練、測試資料" class="headerlink" title="切分訓練、測試資料"></a>切分訓練、測試資料</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">X = final_data.drop(<span class="hljs-string">'not.fully.paid'</span>, axis = <span class="hljs-number">1</span>)</span><br><span class="line">y = final_data[<span class="hljs-string">'not.fully.paid'</span>]</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="hljs-number">0.3</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="訓練Decision-Tree-model"><a href="#訓練Decision-Tree-model" class="headerlink" title="訓練Decision Tree model"></a>訓練Decision Tree model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line">dTree = DecisionTreeClassifier()</span><br><span class="line">dTree.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
-<h3 id="預測與評估"><a href="#預測與評估" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span><br><span class="line"></span><br><span class="line">predictions = dTree.predict(X_test)</span><br><span class="line">print(confusion_matrix(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">[[2006  395]</span></span><br><span class="line"><span class="hljs-string"> [ 357  116]]</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line">print(classification_report(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.85      0.84      0.84      2401</span></span><br><span class="line"><span class="hljs-string">          1       0.23      0.25      0.24       473</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.75      0.74      0.74      2874</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br></pre></td></tr></table></figure>
-<h2 id="訓練Random-Forest-model"><a href="#訓練Random-Forest-model" class="headerlink" title="訓練Random Forest model"></a>訓練Random Forest model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line">rfc = RandomForestClassifier(n_estimators= <span class="hljs-number">300</span>)</span><br><span class="line">rfc.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
-<h3 id="預測與評估-1"><a href="#預測與評估-1" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span><br><span class="line"></span><br><span class="line">predictions = dTree.predict(X_test)</span><br><span class="line">print(confusion_matrix(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">[[2363   38]</span></span><br><span class="line"><span class="hljs-string"> [ 447   26]]</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line">print(classification_report(y_test, predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.84      0.98      0.91      2401</span></span><br><span class="line"><span class="hljs-string">          1       0.41      0.05      0.10       473</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.77      0.83      0.77      2874</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat_feats = [<span class="hljs-string">'purpose'</span>]  <span class="hljs-comment">#紀錄類別column名稱</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">final_data = pd.get_dummies(df, columns=cat_feats, drop_first=<span class="hljs-keyword">True</span>)  <span class="hljs-comment">#drop_first = True會丟棄第一行(但仍然能夠藉由其他行推斷類別)，減少不必要的資料</span></span></pre></td></tr></table></figure>
+
+<h2 id="切分訓練、測試資料"><a href="#切分訓練、測試資料" class="headerlink" title="切分訓練、測試資料"></a>切分訓練、測試資料</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">X = final_data.drop(<span class="hljs-string">'not.fully.paid'</span>, axis = <span class="hljs-number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">y = final_data[<span class="hljs-string">'not.fully.paid'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="hljs-number">0.3</span>)</span></pre></td></tr></table></figure>
+
+<h2 id="訓練Decision-Tree-model"><a href="#訓練Decision-Tree-model" class="headerlink" title="訓練Decision Tree model"></a>訓練Decision Tree model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">dTree = DecisionTreeClassifier()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">dTree.fit(X_train, y_train)</span></pre></td></tr></table></figure>
+
+<h3 id="預測與評估"><a href="#預測與評估" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">predictions = dTree.predict(X_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(confusion_matrix(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">[[2006  395]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"> [ 357  116]]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">print(classification_report(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">          0       0.85      0.84      0.84      2401</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">          1       0.23      0.25      0.24       473</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">avg / total       0.75      0.74      0.74      2874</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr></table></figure>
+
+<h2 id="訓練Random-Forest-model"><a href="#訓練Random-Forest-model" class="headerlink" title="訓練Random Forest model"></a>訓練Random Forest model</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">rfc = RandomForestClassifier(n_estimators= <span class="hljs-number">300</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">rfc.fit(X_train, y_train)</span></pre></td></tr></table></figure>
+
+<h3 id="預測與評估-1"><a href="#預測與評估-1" class="headerlink" title="預測與評估"></a>預測與評估</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, confusion_matrix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">predictions = dTree.predict(X_test)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(confusion_matrix(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">[[2363   38]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"> [ 447   26]]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">print(classification_report(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">             precision    recall  f1-score   support</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">          0       0.84      0.98      0.91      2401</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">          1       0.41      0.05      0.10       473</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">avg / total       0.77      0.83      0.77      2874</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span></pre></td></tr></table></figure>
 
         </div>
         
@@ -225,7 +240,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Decision-Tree/">Decision Tree</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/">Machine Learning</a>, <a class="has-link-grey -link" href="/tags/Random-Forest/">Random Forest</a>
+                    <a class="has-link-grey -link" href="/tags/Decision-Tree/" rel="tag">Decision Tree</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a>, <a class="has-link-grey -link" href="/tags/Random-Forest/" rel="tag">Random Forest</a>
                 </div>
             </div>
         </div>
@@ -281,7 +296,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -330,7 +345,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -342,7 +357,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -354,7 +369,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -459,7 +474,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -473,6 +488,14 @@
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -512,7 +535,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -603,18 +626,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -659,7 +682,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -893,6 +916,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1033,6 +1063,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1056,7 +1093,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1112,6 +1149,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1284,7 +1328,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

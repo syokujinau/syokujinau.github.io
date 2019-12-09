@@ -3,7 +3,7 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -11,19 +11,20 @@
 
 
     <meta name="description" content="ShiginimaSE_v3100 (破解版 請自己找)Adderss: yc-minecraft.tk  (已關閉)  Setting Up a Minecraft Server on Google Compute Engine 官方已提供很詳盡的說明，架完後可用freenom的免費域名(最長1年免費)，就不用記IP。  Info 版本:1.12.2 地圖類型: 大型生態系 pvp: on 作">
-<meta name="keywords" content="Minecraft,Google Compute Engine,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minecraft server架設&amp;設定檔紀錄">
-<meta property="og:url" content="http://yoursite.com/2018/06/21/minecraft-config/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;06&#x2F;21&#x2F;minecraft-config&#x2F;index.html">
 <meta property="og:site_name" content="YC">
 <meta property="og:description" content="ShiginimaSE_v3100 (破解版 請自己找)Adderss: yc-minecraft.tk  (已關閉)  Setting Up a Minecraft Server on Google Compute Engine 官方已提供很詳盡的說明，架完後可用freenom的免費域名(最長1年免費)，就不用記IP。  Info 版本:1.12.2 地圖類型: 大型生態系 pvp: on 作">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/qJbMWEQ.png">
-<meta property="og:updated_time" content="2019-12-08T14:11:25.185Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;qJbMWEQ.png">
+<meta property="article:published_time" content="2018-06-21T02:01:06.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.670Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Minecraft">
+<meta property="article:tag" content="Google Compute Engine">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minecraft server架設&amp;設定檔紀錄">
-<meta name="twitter:description" content="ShiginimaSE_v3100 (破解版 請自己找)Adderss: yc-minecraft.tk  (已關閉)  Setting Up a Minecraft Server on Google Compute Engine 官方已提供很詳盡的說明，架完後可用freenom的免費域名(最長1年免費)，就不用記IP。  Info 版本:1.12.2 地圖類型: 大型生態系 pvp: on 作">
-<meta name="twitter:image" content="https://i.imgur.com/qJbMWEQ.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;qJbMWEQ.png">
 
 
 
@@ -188,10 +189,8 @@
 <li>pvp: on</li>
 <li>作弊: off</li>
 <li>人數:20<a id="more"></a></li>
-<li>server.properties<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#Minecraft server properties</span><br><span class="line">#Fri Jun 29 04:31:51 UTC 2018</span><br><span class="line">max-tick-time=60000</span><br><span class="line">generator-settings=</span><br><span class="line">force-gamemode=false</span><br><span class="line">allow-nether=true</span><br><span class="line">gamemode=0</span><br><span class="line">enable-query=false</span><br><span class="line">player-idle-timeout=0</span><br><span class="line">difficulty=2</span><br><span class="line">spawn-monsters=true</span><br><span class="line">op-permission-level=4</span><br><span class="line">pvp=true</span><br><span class="line">snooper-enabled=true</span><br><span class="line">level-type=LARGEBIOMES</span><br><span class="line">hardcore=false</span><br><span class="line">enable-command-block=false</span><br><span class="line">max-players=20</span><br><span class="line">network-compression-threshold=256</span><br><span class="line">resource-pack-sha1=</span><br><span class="line">max-world-size=29999984</span><br><span class="line">server-port=25565</span><br><span class="line">server-ip=</span><br><span class="line">spawn-npcs=true</span><br><span class="line">allow-flight=false</span><br><span class="line">level-name=world</span><br><span class="line">view-distance=10</span><br><span class="line">resource-pack=</span><br><span class="line">spawn-animals=true</span><br><span class="line">white-list=false</span><br><span class="line">generate-structures=true</span><br><span class="line">online-mode=false</span><br><span class="line">max-build-height=256</span><br><span class="line">level-seed=</span><br><span class="line">prevent-proxy-connections=false</span><br><span class="line">use-native-transport=true</span><br><span class="line">enable-rcon=false</span><br><span class="line">motd=YC Minecraft Server</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="Rule"><a href="#Rule" class="headerlink" title="Rule"></a>Rule</h2><ul>
+<li>server.properties<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#Minecraft server properties</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#Fri Jun 29 04:31:51 UTC 2018</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">max-tick-time&#x3D;60000</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">generator-settings&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">force-gamemode&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">allow-nether&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">gamemode&#x3D;0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">enable-query&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">player-idle-timeout&#x3D;0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">difficulty&#x3D;2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">spawn-monsters&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">op-permission-level&#x3D;4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">pvp&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">snooper-enabled&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">level-type&#x3D;LARGEBIOMES</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">hardcore&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">enable-command-block&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">max-players&#x3D;20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">network-compression-threshold&#x3D;256</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">resource-pack-sha1&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">max-world-size&#x3D;29999984</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">server-port&#x3D;25565</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">server-ip&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">spawn-npcs&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">allow-flight&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">level-name&#x3D;world</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">view-distance&#x3D;10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">resource-pack&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">spawn-animals&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">white-list&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">generate-structures&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">online-mode&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">max-build-height&#x3D;256</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">level-seed&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">prevent-proxy-connections&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">use-native-transport&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">enable-rcon&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">motd&#x3D;YC Minecraft Server</span></pre></td></tr></table></figure>
+<h2 id="Rule"><a href="#Rule" class="headerlink" title="Rule"></a>Rule</h2></li>
 <li>箱子資源可自取</li>
 <li>苦力怕坑要填平(不用填滿)</li>
 </ul>
@@ -203,8 +202,7 @@
 <th>註</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>127,77,-43</td>
 <td>最初重生點附近</td>
@@ -234,8 +232,7 @@
 <td>-</td>
 <td>-</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
         </div>
         
@@ -243,7 +240,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Google-Compute-Engine/">Google Compute Engine</a>, <a class="has-link-grey -link" href="/tags/Linux/">Linux</a>, <a class="has-link-grey -link" href="/tags/Minecraft/">Minecraft</a>
+                    <a class="has-link-grey -link" href="/tags/Google-Compute-Engine/" rel="tag">Google Compute Engine</a>, <a class="has-link-grey -link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="has-link-grey -link" href="/tags/Minecraft/" rel="tag">Minecraft</a>
                 </div>
             </div>
         </div>
@@ -299,7 +296,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -348,7 +345,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -360,7 +357,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -372,7 +369,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -477,7 +474,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -491,6 +488,14 @@
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -530,7 +535,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -621,18 +626,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -677,7 +682,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -911,6 +916,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1051,6 +1063,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1074,7 +1093,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1130,6 +1149,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1302,7 +1328,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

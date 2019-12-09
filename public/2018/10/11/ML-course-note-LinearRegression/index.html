@@ -3,27 +3,27 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>Linear Regression - Boston house-prices dataset  房價預測模型 - YC</title>
 
 
-    <meta name="description" content="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html  引入Libraries1234import pandas as pdimport numpy as npimport matplotlib.pyplot as pltimport seaborn as sns 讀取Dataset1">
-<meta name="keywords" content="Machine Learning,Linear Regression">
+    <meta name="description" content="http:&#x2F;&#x2F;scikit-learn.org&#x2F;stable&#x2F;modules&#x2F;generated&#x2F;sklearn.datasets.load_boston.html  引入Libraries1import pandas as pd2import numpy as np3import matplotlib.pyplot as plt4import seaborn as sns  讀取Dataset">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linear Regression - Boston house-prices dataset  房價預測模型">
-<meta property="og:url" content="http://yoursite.com/2018/10/11/ML-course-note-LinearRegression/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;10&#x2F;11&#x2F;ML-course-note-LinearRegression&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html  引入Libraries1234import pandas as pdimport numpy as npimport matplotlib.pyplot as pltimport seaborn as sns 讀取Dataset1">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-08T14:12:27.985Z">
+<meta property="og:description" content="http:&#x2F;&#x2F;scikit-learn.org&#x2F;stable&#x2F;modules&#x2F;generated&#x2F;sklearn.datasets.load_boston.html  引入Libraries1import pandas as pd2import numpy as np3import matplotlib.pyplot as plt4import seaborn as sns  讀取Dataset">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
+<meta property="article:published_time" content="2018-10-11T09:10:42.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.644Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Linear Regression">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linear Regression - Boston house-prices dataset  房價預測模型">
-<meta name="twitter:description" content="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html  引入Libraries1234import pandas as pdimport numpy as npimport matplotlib.pyplot as pltimport seaborn as sns 讀取Dataset1">
-<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
 
 
@@ -173,8 +173,9 @@
             <blockquote>
 <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html</a></p>
 </blockquote>
-<h2 id="引入Libraries"><a href="#引入Libraries" class="headerlink" title="引入Libraries"></a>引入Libraries</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></table></figure>
-<h2 id="讀取Dataset"><a href="#讀取Dataset" class="headerlink" title="讀取Dataset"></a>讀取Dataset</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_boston</span><br><span class="line">boston = load_boston()</span><br><span class="line">print(boston.DESCR) <span class="hljs-comment">#查看說明文件</span></span><br></pre></td></tr></table></figure>
+<h2 id="引入Libraries"><a href="#引入Libraries" class="headerlink" title="引入Libraries"></a>引入Libraries</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span></pre></td></tr></table></figure>
+
+<h2 id="讀取Dataset"><a href="#讀取Dataset" class="headerlink" title="讀取Dataset"></a>讀取Dataset</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_boston</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">boston = load_boston()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(boston.DESCR) <span class="hljs-comment">#查看說明文件</span></span></pre></td></tr></table></figure>
 <ul>
 <li>CRIM：城鎮人均犯罪率</li>
 <li>ZN：佔地面積超過25,000平方英尺的住宅用地比例。</li>
@@ -192,41 +193,51 @@
 <li>MEDV：自住房屋的中位數價值(單位: USD1000)<a id="more"></a>
 <h2 id="整理dataFrame"><a href="#整理dataFrame" class="headerlink" title="整理dataFrame"></a>整理dataFrame</h2></li>
 </ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(boston.data.T, [<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>]) <span class="hljs-comment">#有13個feature</span></span><br><span class="line">df = df.T</span><br><span class="line">df[<span class="hljs-string">'MEDV'</span>] = boston.target.T  <span class="hljs-comment">#MEDV即預測目標向量</span></span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/8oLJrgu.png" alt=""></p>
-<h2 id="查看各項統計數據"><a href="#查看各項統計數據" class="headerlink" title="查看各項統計數據"></a>查看各項統計數據</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/OKqyEuV.png" alt=""></p>
-<h2 id="Exploratory-data-analysis"><a href="#Exploratory-data-analysis" class="headerlink" title="Exploratory data analysis"></a>Exploratory data analysis</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.pairplot(df)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/wzDcol2.jpg" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(boston.data.T, [<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>]) <span class="hljs-comment">#有13個feature</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df = df.T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'MEDV'</span>] = boston.target.T  <span class="hljs-comment">#MEDV即預測目標向量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">df.head()</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/8oLJrgu.png" alt></p>
+<h2 id="查看各項統計數據"><a href="#查看各項統計數據" class="headerlink" title="查看各項統計數據"></a>查看各項統計數據</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df.describe()</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/OKqyEuV.png" alt></p>
+<h2 id="Exploratory-data-analysis"><a href="#Exploratory-data-analysis" class="headerlink" title="Exploratory data analysis"></a>Exploratory data analysis</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.pairplot(df)</span></pre></td></tr></table></figure>
+
+
+<p><img src="https://i.imgur.com/wzDcol2.jpg" alt></p>
 <blockquote>
 <p>對單一變量的數值分布</p>
 </blockquote>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(df[<span class="hljs-string">'MEDV'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/RnHL0fW.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.distplot(df[<span class="hljs-string">'MEDV'</span>])</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/RnHL0fW.png" alt></p>
 <blockquote>
 <p>查看各種feature間的相關性<br>記得用corr()產生新的dataFrame</p>
 </blockquote>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">18</span>, <span class="hljs-number">12</span>))</span><br><span class="line">sns.heatmap(df.corr(), annot= <span class="hljs-keyword">True</span>, cmap = <span class="hljs-string">'coolwarm'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/Stfy0qC.png" alt=""></p>
-<h2 id="訓練線性回歸模型"><a href="#訓練線性回歸模型" class="headerlink" title="訓練線性回歸模型"></a>訓練線性回歸模型</h2><h3 id="載入sklearn"><a href="#載入sklearn" class="headerlink" title="載入sklearn"></a>載入sklearn</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">X = df[[<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>]]</span><br><span class="line">y = df[<span class="hljs-string">'MEDV'</span>]</span><br><span class="line"><span class="hljs-comment">#分出30%的資料作為test set</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="hljs-number">0.3</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="使用LinearRegression建立並訓練模型"><a href="#使用LinearRegression建立並訓練模型" class="headerlink" title="使用LinearRegression建立並訓練模型"></a>使用LinearRegression建立並訓練模型</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression</span><br><span class="line">lm = LinearRegression()</span><br><span class="line">lm.fit(X_train,y_train) <span class="hljs-comment">#Fit linear model</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">18</span>, <span class="hljs-number">12</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sns.heatmap(df.corr(), annot= <span class="hljs-keyword">True</span>, cmap = <span class="hljs-string">'coolwarm'</span>)</span></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Stfy0qC.png" alt></p>
+<h2 id="訓練線性回歸模型"><a href="#訓練線性回歸模型" class="headerlink" title="訓練線性回歸模型"></a>訓練線性回歸模型</h2><h3 id="載入sklearn"><a href="#載入sklearn" class="headerlink" title="載入sklearn"></a>載入sklearn</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">X = df[[<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">y = df[<span class="hljs-string">'MEDV'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#分出30%的資料作為test set</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="hljs-number">0.3</span>)</span></pre></td></tr></table></figure>
+
+<h3 id="使用LinearRegression建立並訓練模型"><a href="#使用LinearRegression建立並訓練模型" class="headerlink" title="使用LinearRegression建立並訓練模型"></a>使用LinearRegression建立並訓練模型</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">lm = LinearRegression()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">lm.fit(X_train,y_train) <span class="hljs-comment">#Fit linear model</span></span></pre></td></tr></table></figure>
+
 <blockquote>
 <p>到這裡就完成模型的訓練，接著看看訓練成果</p>
 </blockquote>
-<h2 id="模型評估"><a href="#模型評估" class="headerlink" title="模型評估"></a>模型評估</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lm.coef_  <span class="hljs-comment"># 查看各項係數</span></span><br></pre></td></tr></table></figure>
+<h2 id="模型評估"><a href="#模型評估" class="headerlink" title="模型評估"></a>模型評估</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">lm.coef_  <span class="hljs-comment"># 查看各項係數</span></span></pre></td></tr></table></figure>
+
 <p>表列係數</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">coeff_df = pd.DataFrame(lm.coef_, [<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>], columns = [<span class="hljs-string">'Coefficient'</span>])</span><br><span class="line">coeff_df[<span class="hljs-string">'註記'</span>] = [<span class="hljs-string">'城鎮人均犯罪率'</span>,<span class="hljs-string">'佔地面積超過25,000平方英尺的住宅用地比例'</span>,<span class="hljs-string">'每個城鎮的非零售業務面積比例'</span>,<span class="hljs-string">'Charles River虛擬變量（如果管道限制河流則= 1;否則為0）'</span>,<span class="hljs-string">'一氧化氮濃度（每千萬份）'</span>,<span class="hljs-string">'每棟住宅的平均房間數'</span>,<span class="hljs-string">'1940年以前建造的自住單位比例'</span>,<span class="hljs-string">'到波士頓五個就業中心的加權距離'</span>,<span class="hljs-string">'徑向高速公路的可達性指數'</span>,<span class="hljs-string">'每10,000美元的全額房產稅率'</span>,<span class="hljs-string">'城鎮的學生與教師比例'</span>,<span class="hljs-string">'1000*(Bk - 0.63)^2，其中Bk是城鎮黑人的比例'</span>,<span class="hljs-string">'人口狀況下降百分比'</span>]</span><br><span class="line">coeff_df</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">coeff_df = pd.DataFrame(lm.coef_, [<span class="hljs-string">'CRIM'</span>,<span class="hljs-string">'ZN'</span>,<span class="hljs-string">'INDUS'</span>,<span class="hljs-string">'CHAS'</span>,<span class="hljs-string">'NOX'</span>,<span class="hljs-string">'RM'</span> ,<span class="hljs-string">'AGE'</span>,<span class="hljs-string">'DIS'</span>,<span class="hljs-string">'RAD'</span>,<span class="hljs-string">'TAX'</span>, <span class="hljs-string">'PTRATIO'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'LSTAT'</span>], columns = [<span class="hljs-string">'Coefficient'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">coeff_df[<span class="hljs-string">'註記'</span>] = [<span class="hljs-string">'城鎮人均犯罪率'</span>,<span class="hljs-string">'佔地面積超過25,000平方英尺的住宅用地比例'</span>,<span class="hljs-string">'每個城鎮的非零售業務面積比例'</span>,<span class="hljs-string">'Charles River虛擬變量（如果管道限制河流則= 1;否則為0）'</span>,<span class="hljs-string">'一氧化氮濃度（每千萬份）'</span>,<span class="hljs-string">'每棟住宅的平均房間數'</span>,<span class="hljs-string">'1940年以前建造的自住單位比例'</span>,<span class="hljs-string">'到波士頓五個就業中心的加權距離'</span>,<span class="hljs-string">'徑向高速公路的可達性指數'</span>,<span class="hljs-string">'每10,000美元的全額房產稅率'</span>,<span class="hljs-string">'城鎮的學生與教師比例'</span>,<span class="hljs-string">'1000*(Bk - 0.63)^2，其中Bk是城鎮黑人的比例'</span>,<span class="hljs-string">'人口狀況下降百分比'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">coeff_df</span></pre></td></tr></table></figure>
+
 <blockquote>
 <p>coefficients代表feature每單位增加對房價(MEDV)的增量<br>ex.平均房間數增加1，則房價(MEDV)會增加3.890080(單位:USD1000)</p>
 </blockquote>
-<p><img src="https://i.imgur.com/Wq7OZvj.png" alt=""></p>
-<h2 id="用建立的模型做預測"><a href="#用建立的模型做預測" class="headerlink" title="用建立的模型做預測"></a>用建立的模型做預測</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predictions = lm.predict(X_test)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Wq7OZvj.png" alt></p>
+<h2 id="用建立的模型做預測"><a href="#用建立的模型做預測" class="headerlink" title="用建立的模型做預測"></a>用建立的模型做預測</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">predictions = lm.predict(X_test)</span></pre></td></tr></table></figure>
 <p>predictions即為<strong>預測房價</strong>，真實房價為y_test<br>用scatter plot看預測正確性，高度正相關代表預測誤差越小</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(y_test,predictions)   </span><br><span class="line">plt.xlabel(<span class="hljs-string">'Measured'</span>)</span><br><span class="line">plt.ylabel(<span class="hljs-string">'Predicted'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/MrJAx1U.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.scatter(y_test,predictions)   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">plt.xlabel(<span class="hljs-string">'Measured'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">plt.ylabel(<span class="hljs-string">'Predicted'</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/MrJAx1U.png" alt></p>
 <p>用distribution plot檢查預測與實際的差值，residual = y_test-predictions<br>若residual位置集中在0的常態分布，則模型建立完成</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot((y_test-predictions), bins=<span class="hljs-number">50</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/mKlAZiF.png" alt=""></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.distplot((y_test-predictions), bins=<span class="hljs-number">50</span>);</span></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/mKlAZiF.png" alt></p>
 <h2 id="Regression-Evaluation-Metrics"><a href="#Regression-Evaluation-Metrics" class="headerlink" title="Regression Evaluation Metrics"></a>Regression Evaluation Metrics</h2><p>評估回歸模型<br><strong>Mean Absolute Error</strong> (MAE) is the mean of the absolute value of the errors:</p>
 <p>$$\frac 1n\sum_{i=1}^n|y_i-\hat{y}_i|$$</p>
 <p><strong>Mean Squared Error</strong> (MSE) is the mean of the squared errors:</p>
@@ -234,7 +245,8 @@
 <p><strong>Root Mean Squared Error</strong> (RMSE) is the square root of the mean of the squared errors:</p>
 <p>$$\sqrt{\frac 1n\sum_{i=1}^n(y_i-\hat{y}_i)^2}$$</p>
 <p>以上都是<strong>損失函數</strong>，越大代表與真實數據的不一致性越大，所以我們需要最小化他們才能做出正確預測</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics</span><br><span class="line">print(<span class="hljs-string">'MAE:'</span>, metrics.mean_absolute_error(y_test, predictions))</span><br><span class="line">print(<span class="hljs-string">'MSE:'</span>, metrics.mean_squared_error(y_test, predictions))</span><br><span class="line">print(<span class="hljs-string">'RMSE:'</span>, np.sqrt(metrics.mean_squared_error(y_test, predictions)))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># MAE: 82288.22251914957</span></span><br><span class="line"><span class="hljs-comment"># MSE: 10460958907.209501</span></span><br><span class="line"><span class="hljs-comment"># RMSE: 102278.82922291153</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">'MAE:'</span>, metrics.mean_absolute_error(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">'MSE:'</span>, metrics.mean_squared_error(y_test, predictions))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(<span class="hljs-string">'RMSE:'</span>, np.sqrt(metrics.mean_squared_error(y_test, predictions)))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># MAE: 82288.22251914957</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># MSE: 10460958907.209501</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># RMSE: 102278.82922291153</span></span></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -242,7 +254,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Linear-Regression/">Linear Regression</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/">Machine Learning</a>
+                    <a class="has-link-grey -link" href="/tags/Linear-Regression/" rel="tag">Linear Regression</a>, <a class="has-link-grey -link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a>
                 </div>
             </div>
         </div>
@@ -298,7 +310,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -347,7 +359,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -359,7 +371,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -371,7 +383,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -476,7 +488,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -490,6 +502,14 @@
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -529,7 +549,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -620,18 +640,18 @@
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -676,7 +696,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -910,6 +930,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1050,6 +1077,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1073,7 +1107,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1129,6 +1163,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1301,7 +1342,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

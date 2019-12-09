@@ -3,27 +3,26 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>計算複雜度理論簡介 - YC</title>
 
 
-    <meta name="description" content="主要介紹  P NP NP-Complete  Decision Problem一個計算問題，輸出只有True/False的某種演算法例如:  給定一個圖$G$，是否連通?  shortest problem也可以改寫成Decision Problem  給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?  經典的計算難題: Hamiltoni">
-<meta name="keywords" content="Algorithm">
+    <meta name="description" content="主要介紹  P NP NP-Complete  Decision Problem一個計算問題，輸出只有True&#x2F;False的某種演算法例如:  給定一個圖$G$，是否連通?  shortest problem也可以改寫成Decision Problem  給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?  經典的計算難題: Hamiltoni">
 <meta property="og:type" content="article">
 <meta property="og:title" content="計算複雜度理論簡介">
-<meta property="og:url" content="http://yoursite.com/2019/05/31/computational-complexity-theory/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;05&#x2F;31&#x2F;computational-complexity-theory&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="主要介紹  P NP NP-Complete  Decision Problem一個計算問題，輸出只有True/False的某種演算法例如:  給定一個圖$G$，是否連通?  shortest problem也可以改寫成Decision Problem  給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?  經典的計算難題: Hamiltoni">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/nzJdLTR.jpg">
-<meta property="og:updated_time" content="2019-12-08T14:07:39.314Z">
+<meta property="og:description" content="主要介紹  P NP NP-Complete  Decision Problem一個計算問題，輸出只有True&#x2F;False的某種演算法例如:  給定一個圖$G$，是否連通?  shortest problem也可以改寫成Decision Problem  給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?  經典的計算難題: Hamiltoni">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;nzJdLTR.jpg">
+<meta property="article:published_time" content="2019-05-31T08:25:30.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.659Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="計算複雜度理論簡介">
-<meta name="twitter:description" content="主要介紹  P NP NP-Complete  Decision Problem一個計算問題，輸出只有True/False的某種演算法例如:  給定一個圖$G$，是否連通?  shortest problem也可以改寫成Decision Problem  給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?  經典的計算難題: Hamiltoni">
-<meta name="twitter:image" content="https://i.imgur.com/nzJdLTR.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;nzJdLTR.jpg">
 
 
 
@@ -194,14 +193,17 @@
 <ul>
 <li>給定一個圖$G$與起點$s$是否存在一個path、cycle，能夠剛好經過所有頂點一次?</li>
 </ul>
-<p><img src="https://i.imgur.com/niyYfHS.png" width="550px"></p>
+<img src="https://i.imgur.com/niyYfHS.png" width="550px">
+
+
 <h2 id="P-Problems"><a href="#P-Problems" class="headerlink" title="$P$ Problems"></a>$P$ Problems</h2><p>一個Decision Problem屬於$P$，若且唯若存在一個poly-time演算法$A(s)$使得</p>
 <ul>
 <li>一個instance $s$是true$\Leftrightarrow A(s) = 1$</li>
 <li>一個instance $s$是false$\Leftrightarrow A(s) = 0$</li>
 </ul>
-<p><img src="https://i.imgur.com/3vDeqjn.png" alt=""></p>
+<p><img src="https://i.imgur.com/3vDeqjn.png" alt></p>
 <a id="more"></a>
+
 <blockquote>
 <p>所謂instance可以當作演算法的input，例如Hamiltonian path的instance就是一個graph</p>
 </blockquote>
@@ -210,13 +212,13 @@
 <li>一個instance $s$是true$\Leftrightarrow \exists t, B(s, t) = 1$</li>
 <li>一個instance $s$是false$\Leftrightarrow \forall t, B(s, t) = 0$</li>
 </ul>
-<p><img src="https://i.imgur.com/qZJztd4.png" alt=""></p>
+<p><img src="https://i.imgur.com/qZJztd4.png" alt></p>
 <blockquote>
 <ol>
 <li>$\left | s \right |$代表輸入instance的個數</li>
 <li>$t$是一個random bit可想成丟銅板，若input是true，<strong>至少存在一個</strong>演算法的output是true，但input是false則<strong>所有</strong>output皆須是0<ul>
 <li>答案是true，存在某個$t$使答對機率$&gt; 0$</li>
-<li>答案是false，對所有$t$使答對機率$=100\%$</li>
+<li>答案是false，對所有$t$使答對機率$=100%$</li>
 </ul>
 </li>
 </ol>
@@ -260,13 +262,14 @@
 <p>reducible意思是能mapping成另一個<strong>更難的</strong>問題，使得輸入與對應的輸出相同</p>
 </blockquote>
 <h3 id="Thm-HAM-PATH-is-poly-time-reducible-to-HAM-CYCLE"><a href="#Thm-HAM-PATH-is-poly-time-reducible-to-HAM-CYCLE" class="headerlink" title="Thm: HAM. PATH is poly-time reducible to HAM. CYCLE"></a>Thm: HAM. PATH is poly-time reducible to HAM. CYCLE</h3><p><strong>pf:</strong></p>
-<p><img src="https://i.imgur.com/dXgSziL.png" width="250px"></p>
+<img src="https://i.imgur.com/dXgSziL.png" width="250px">
+
 <p><br><br></p>
 <p>把HAM. PATH的instance $G$ reduce為$G^{‘}$，方法是在原有的vertex各拉一條edge到一個新的vertex</p>
-<p><img src="https://i.imgur.com/JEtHQkC.png" alt=""></p>
+<p><img src="https://i.imgur.com/JEtHQkC.png" alt></p>
 <h3 id="Thm-HAM-PATH-in-NP-complete-then-the-HAM-CYCLE-in-NP-complete"><a href="#Thm-HAM-PATH-in-NP-complete-then-the-HAM-CYCLE-in-NP-complete" class="headerlink" title="Thm: HAM. PATH $\in$ $NP-complete$, then the HAM. CYCLE  $\in$ $NP-complete$"></a>Thm: HAM. PATH $\in$ $NP-complete$, then the HAM. CYCLE  $\in$ $NP-complete$</h3><p><strong>pf:</strong> </p>
 <p>若從某個已知是$NP-complete$問題$Y$可以poly-time reduce到HAM. PATH，則也能間接證明HAM. CYCLE也是$NP-complete$</p>
-<p><img src="https://i.imgur.com/9RxqEZS.png" alt=""></p>
+<p><img src="https://i.imgur.com/9RxqEZS.png" alt></p>
 <h2 id="證明某問題為-NP-complete-的方法"><a href="#證明某問題為-NP-complete-的方法" class="headerlink" title="證明某問題為$NP-complete$的方法"></a>證明某問題為$NP-complete$的方法</h2><p>$X$: new problem<br>$Y$: old problem，已知為$NP−complete$</p>
 <p>如果符合以下三個條件</p>
 <ol>
@@ -301,7 +304,7 @@
 <li>同一個clause中的變數彼此用一條邊連接</li>
 <li>對$x_i$、$\overline{x_i}$之間用一條邊連接</li>
 <li>令$k$為clause的個數</li>
-<li><img src="https://i.imgur.com/sdo3oe1.png" alt=""><ul>
+<li><img src="https://i.imgur.com/sdo3oe1.png" alt><ul>
 <li>將$x_1 = 1、x_2=1、x_4 = 1$代回$(x_1 + x_2 + \overline{x_3}) \cdot (x_2 + x_4) \cdot (\overline{x_2} + x_4)$輸出也是True</li>
 <li>INPED. SET $\in NP-complete$得證</li>
 </ul>
@@ -320,6 +323,7 @@
 
 $S = \left \{ b,c,d,f,g \right \}, l = 5$
 
+
 <p>以下為證明流程:</p>
 <ol>
 <li>$X \in NP$<ul>
@@ -335,14 +339,16 @@ $S = \left \{ b,c,d,f,g \right \}, l = 5$
 <li>$f:$ <ul>
 <li>$H=G$</li>
 <li>$l = \left | V \right | - k$</li>
-<li>Notice that $f$ should be poly-time in “size of $G,k$”<br><img src="https://i.imgur.com/wsCaLrI.png" alt=""></li>
+<li>Notice that $f$ should be poly-time in “size of $G,k$”<br><img src="https://i.imgur.com/wsCaLrI.png" alt></li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
 <p>每個邊至少會有一個edge在VERTEX COVER Set之中，暗示這個Set之外的vertex pair皆不相鄰</p>
-<p><img src="https://i.imgur.com/IHwcEIL.png" width="300px"></p>
+<img src="https://i.imgur.com/IHwcEIL.png" width="300px">
+
+
 <h3 id="證明-SET-COVER-in-NP-complete"><a href="#證明-SET-COVER-in-NP-complete" class="headerlink" title="證明 SET COVER $\in NP-complete$"></a>證明 SET COVER $\in NP-complete$</h3><blockquote>
 <p>Given  a set $U =  \{ x_1,x_2,\dots,x_m  \}$<br>$n$ subsets $S_1、S_2、\dots、S_n \subseteq U$<br>constant $k$<br>Are there $k$ subsets such that the union of these $k$ subsets is $U$?</p>
 </blockquote>
@@ -353,6 +359,7 @@ $U= \{x_1, x_2, x_3, x_4 \} \\$
 $n=3$ subsets 
 
 $S_1 =  \{x_1, x_2 \} \\ S_2 =  \{ x_2,x_3,x_4 \} \\ S_3 =  \{ x_3,x_4  \}$
+
 
 <p>$k=2$，是否有2個subsets的union會是$U$?</p>
 <ol>
@@ -376,23 +383,26 @@ $S_1 =  \{x_1, x_2 \} \\ S_2 =  \{ x_2,x_3,x_4 \} \\ S_3 =  \{ x_3,x_4  \}$
 </li>
 </ol>
 <p>e.g.</p>
-<p><img src="https://i.imgur.com/v7rubuh.png" width="300px"></p>
+<img src="https://i.imgur.com/v7rubuh.png" width="300px">
+
+
 
 $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1 , x_2  \} \\ S_3 =  \{ x_2 , x_3 , x_4   \} \\ S_4 =  \{ x_5   \} \\ S_5 =  \{ x_4 , x_5   \}$
+
 
 <p>Are there $k$ subsets such that the union of these $k$ subsets is $U$?</p>
 <!-- 註記:
 有用 \left \{ \right \} 的LaTeX語法
 
- –&gt;
--->
+ -->
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithm/">Algorithm</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>
                 </div>
             </div>
         </div>
@@ -410,9 +420,9 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/11/stm32-dsp-fir-low-pass-filter/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/10/arduino-freeRTOS-semaphore/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</span>
+                <span class="level-item">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</span>
             </a>
         </div>
         
@@ -448,7 +458,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -497,7 +507,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -509,7 +519,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -521,7 +531,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -626,7 +636,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -640,6 +650,14 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -679,7 +697,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -770,18 +788,18 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -826,7 +844,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1060,6 +1078,13 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1200,6 +1225,13 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1223,7 +1255,7 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1279,6 +1311,13 @@ $U =  \{ x_1, x_2, x_3, x_4, x_5  \} \\ S_1 =  \{ x_1, x_2   \} \\ S_2 =  \{ x_1
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1451,7 +1490,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>

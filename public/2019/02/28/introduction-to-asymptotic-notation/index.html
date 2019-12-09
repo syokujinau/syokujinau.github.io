@@ -3,27 +3,27 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 4.1.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>Introduction to Asymptotic Notation and Analysis of Algorithms - YC</title>
 
 
-    <meta name="description" content="Big-O: $O$ $$ O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 &amp;gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$   Omega: $\Omega$ $$ \Omega (g(n)) = \left">
-<meta name="keywords" content="Algorithm,Time complexity">
+    <meta name="description" content="Big-O: $O$ $$ O(g(n)) &#x3D; \left \{ f(n) \space | \space \exists c, n_0 &gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$       Omega: $\Omega$ $$ \Omega (g(n)) &#x3D; \l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Asymptotic Notation and Analysis of Algorithms">
-<meta property="og:url" content="http://yoursite.com/2019/02/28/introduction-to-asymptotic-notation/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;28&#x2F;introduction-to-asymptotic-notation&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="Big-O: $O$ $$ O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 &amp;gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$   Omega: $\Omega$ $$ \Omega (g(n)) = \left">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/K6F6Ojx.jpg">
-<meta property="og:updated_time" content="2019-12-08T14:10:40.218Z">
+<meta property="og:description" content="Big-O: $O$ $$ O(g(n)) &#x3D; \left \{ f(n) \space | \space \exists c, n_0 &gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$       Omega: $\Omega$ $$ \Omega (g(n)) &#x3D; \l">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;K6F6Ojx.jpg">
+<meta property="article:published_time" content="2019-02-28T04:05:54.000Z">
+<meta property="article:modified_time" content="2019-12-09T05:56:12.662Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Time complexity">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Introduction to Asymptotic Notation and Analysis of Algorithms">
-<meta name="twitter:description" content="Big-O: $O$ $$ O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 &amp;gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$   Omega: $\Omega$ $$ \Omega (g(n)) = \left">
-<meta name="twitter:image" content="https://i.imgur.com/K6F6Ojx.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;K6F6Ojx.jpg">
 
 
 
@@ -181,27 +181,41 @@ $$
 O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$
 
-<p><img alt="bigO" src="https://i.imgur.com/9hS03jF.png" width="60%"></p>
+
+
+
+<img alt="bigO" src="https://i.imgur.com/9hS03jF.png" width="60%">
+
 <h2 id="Omega-Omega"><a href="#Omega-Omega" class="headerlink" title="Omega: $\Omega$"></a>Omega: $\Omega$</h2>
 $$
 \Omega (g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \geq c \cdot g(n) \space \space ,  \forall n \geq n_0 \right \}
 $$ 
+
+
 
 <h2 id="Theta-Theta"><a href="#Theta-Theta" class="headerlink" title="Theta: $\Theta$"></a>Theta: $\Theta$</h2>
 $$
 \Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0 > 0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
 $$
 
+
 <a id="more"></a>
+
+
+
 <h2 id="little-o-o"><a href="#little-o-o" class="headerlink" title="little-o: $o$"></a>little-o: $o$</h2>
 $$
 o(g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
 
+
 <h2 id="little-omega-omega"><a href="#little-omega-omega" class="headerlink" title="little-omega: $\omega$"></a>little-omega: $\omega$</h2>
 $$
 \omega (g(n)) = \left \{ f(n) \space | \space  \forall c > 0, \exists n_0 > 0, \space s.t. f(n) \geq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$ 
+
+
+
 
 <hr>
 <h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><h2 id="Transitivity"><a href="#Transitivity" class="headerlink" title="Transitivity"></a>Transitivity</h2><p>$f(n) \in O(g(n)), \space g(n) \in O(h(n))$</p>
@@ -233,7 +247,11 @@ $$
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="1-There-exists-two-functions-f-n-、g-n-space-s-t-f-n-notin-O-g-n-and-g-n-notin-O-f-n"><a href="#1-There-exists-two-functions-f-n-、g-n-space-s-t-f-n-notin-O-g-n-and-g-n-notin-O-f-n" class="headerlink" title="1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$"></a>1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$</h3><p>example:</p>
 <p>$f(n) = n$</p>
 <p>$\space g(n) = \begin{cases} &amp; 1  \text{ , if n is even} \ &amp; n^2 \text{ , if  n is odd } \end{cases}$</p>
-<p><img alt="" src="https://i.imgur.com/gJtn9cr.png" width="50%"></p>
+<img alt src="https://i.imgur.com/gJtn9cr.png" width="50%">
+
+
+
+
 <h3 id="2-Disprove-that-frac-1-100-n-log-2-n-in-O-n-is-false"><a href="#2-Disprove-that-frac-1-100-n-log-2-n-in-O-n-is-false" class="headerlink" title="2. Disprove that $\frac{1}{100} n\log_{2}{n} \in O(n)$ is false"></a>2. Disprove that $\frac{1}{100} n\log_{2}{n} \in O(n)$ is false</h3><p>$\frac{1}{100} n\log_{2}{n} \leq c \cdot n \space \space \forall n \geq n_{0}$</p>
 <p>so $\frac{1}{100} \log_{2}{n} \leq c$</p>
 <p>$\because$ c is not constant</p>
@@ -246,10 +264,12 @@ $$
 <p>$\Rightarrow f(n) &gt; c_{3} \cdot h(n) \space \space \forall n \geq n_{0}$ where $c_{3}$ and $n_{0}$ are positive constants</p>
 <p>$\Rightarrow f(n) \in \omega (h(n))$ </p>
 <h1 id="Recurrence-Relations"><a href="#Recurrence-Relations" class="headerlink" title="Recurrence Relations"></a>Recurrence Relations</h1><h2 id="Substitution-Method"><a href="#Substitution-Method" class="headerlink" title="Substitution Method"></a>Substitution Method</h2><ol>
-<li>Guess: $T(k) \leq c \cdot k^4, \space \forall k$, for some const. $c$</li>
+<li><p>Guess: $T(k) \leq c \cdot k^4, \space \forall k$, for some const. $c$</p>
+</li>
 <li><p>Verify:</p>
 <ul>
-<li>Base case: $k = 1$, need $T(1) \leq c \cdot 1^{4} \Rightarrow c \geq 1$</li>
+<li><p>Base case: $k = 1$, need $T(1) \leq c \cdot 1^{4} \Rightarrow c \geq 1$</p>
+</li>
 <li><p>Assume true for $k &lt; n$, when $k = n$, $T(n) = 4T( \frac{n}{2} ) + n \leq 4 \left [  c \cdot   \left ( \frac{n}{2}\right )^{4} \right ] + n = c \cdot n^{4} + (- \frac{3}{4} c n^{4} + n) \leq c \cdot n^{4}$成立<br>若$(- \frac{3}{4} c n^{4} + n) \leq 0 \Rightarrow c \geq \frac{4}{3}$</p>
 <p>$\Rightarrow T(k) \leq c \cdot k^{4} \space \forall c \geq \frac{4}{3}$</p>
 <p>$\Rightarrow T(k) = O(k^{4})$</p>
@@ -266,10 +286,12 @@ $$
 </li>
 </ol>
 <ol>
-<li>Guess: $T(k) \leq c_1 k^2 + c_2 k, \space k$ for some const $c_1, c_2$</li>
+<li><p>Guess: $T(k) \leq c_1 k^2 + c_2 k, \space k$ for some const $c_1, c_2$</p>
+</li>
 <li><p>Verify:</p>
 <ul>
-<li>Base case: $k = 1, \space T(1) \leq c_1 \cdot 1^{2} + c_2 \cdot 1$<br>$\Rightarrow need \space c_1 + c_2 \geq 1$</li>
+<li><p>Base case: $k = 1, \space T(1) \leq c_1 \cdot 1^{2} + c_2 \cdot 1$<br>$\Rightarrow need \space c_1 + c_2 \geq 1$</p>
+</li>
 <li><p>Assume true for $k &lt; n$<br>when $k = n, \space T(n) = 4T(\frac{n}{2}) + n \leq \left [  c_1 \left (  \frac{n}{2} \right )^{2} + c_2 \left ( \frac{n}{2} \right ) \right ] + n = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) n \leq c_1 n^{2} + c_2 n$</p>
 <p>$\Rightarrow 1 + c_2 \leq 0 \Rightarrow c_2 \leq -1$</p>
 <p>for some const. $c_1 = 2, c_2 = -1$</p>
@@ -293,16 +315,19 @@ $$
 <p>$=n^2+(n-1)n$</p>
 <p>$= 2n^{2} - n \in O(n^{2})$</p>
 <h2 id="Recursion-Tree"><a href="#Recursion-Tree" class="headerlink" title="Recursion Tree"></a>Recursion Tree</h2><p>Repeated substitution的變形，節點表示每個展開代入的cost</p>
-<h3 id="1-T-n-4T-frac-n-2-n-T-1-1"><a href="#1-T-n-4T-frac-n-2-n-T-1-1" class="headerlink" title="1. $T(n) = 4T(\frac{n}{2}) + n$, $T(1) = 1$"></a>1. $T(n) = 4T(\frac{n}{2}) + n$, $T(1) = 1$</h3><p><img src="https://i.imgur.com/umv7n9P.png" width="80%"></p>
+<h3 id="1-T-n-4T-frac-n-2-n-T-1-1"><a href="#1-T-n-4T-frac-n-2-n-T-1-1" class="headerlink" title="1. $T(n) = 4T(\frac{n}{2}) + n$, $T(1) = 1$"></a>1. $T(n) = 4T(\frac{n}{2}) + n$, $T(1) = 1$</h3><img src="https://i.imgur.com/umv7n9P.png" width="80%">
+
 <p>每個$T(\frac{n}{2})$再遞迴地代入</p>
-<p><img src="https://i.imgur.com/3290bSI.png" width="80%"></p>
+<img src="https://i.imgur.com/3290bSI.png" width="80%">
+
 <p>最終會迭代到$T(1) = 1$，長成高度$log_{2}n$的遞迴樹</p>
-<p><img src="https://i.imgur.com/Zrq15vT.png" width="98%"></p>
+<img src="https://i.imgur.com/Zrq15vT.png" width="98%">
+
 <p>$= \left [n + 2n+ \dots +2^{(log_{2}n - 1)}n \right ] + 4^{log_{2}n}T(1)$</p>
 <p>$= (2^{log_{2}n} -1)n + n^{2}$</p>
 <p>$= n^{2} - n + n^{2}$</p>
 <p>$= 2n^{2}-n \in O(n^{2})$</p>
-<h3 id="2-T-n-T-frac-2-3-n-T-frac-1-3-n-n-forall-n-geq-2-T-1-1"><a href="#2-T-n-T-frac-2-3-n-T-frac-1-3-n-n-forall-n-geq-2-T-1-1" class="headerlink" title="2. $T(n) = T(\frac{2}{3}n) + T(\frac{1}{3}n) + n$, $\forall n \geq 2$, $T(1)=1$"></a>2. $T(n) = T(\frac{2}{3}n) + T(\frac{1}{3}n) + n$, $\forall n \geq 2$, $T(1)=1$</h3><p><img src="https://i.imgur.com/peyUiJn.png" alt=""></p>
+<h3 id="2-T-n-T-frac-2-3-n-T-frac-1-3-n-n-forall-n-geq-2-T-1-1"><a href="#2-T-n-T-frac-2-3-n-T-frac-1-3-n-n-forall-n-geq-2-T-1-1" class="headerlink" title="2. $T(n) = T(\frac{2}{3}n) + T(\frac{1}{3}n) + n$, $\forall n \geq 2$, $T(1)=1$"></a>2. $T(n) = T(\frac{2}{3}n) + T(\frac{1}{3}n) + n$, $\forall n \geq 2$, $T(1)=1$</h3><p><img src="https://i.imgur.com/peyUiJn.png" alt></p>
 <p>每層cost皆為$n$，完整層(較矮那邊)高度為$log_{3}n$<br>若整棵樹為full complete，高度為$log_{1.5}n$，實際的cost會被bounded在這之間<br>$nlog_{3}n \leq nlog_{2}n \leq nlog_{1.5}n$</p>
 <p>$\therefore T(n) = \Theta (nlog_{2}n)$</p>
 <h1 id="Master-Theorem"><a href="#Master-Theorem" class="headerlink" title="Master Theorem"></a>Master Theorem</h1><p>每次用recursion tree都要做等比級數、加法等運算，其實可以歸納出一套定理來快速地看出general case的遞迴時間函數</p>
@@ -365,7 +390,7 @@ $$
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithm/">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Time-complexity/">Time complexity</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Time-complexity/" rel="tag">Time complexity</a>
                 </div>
             </div>
         </div>
@@ -421,7 +446,7 @@ $$
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -470,7 +495,7 @@ $$
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -482,7 +507,7 @@ $$
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -494,7 +519,7 @@ $$
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            57
+                            60
                         </p>
                     </a>
                 </div>
@@ -599,7 +624,7 @@ $$
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -613,6 +638,14 @@ $$
         <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
             <span class="level-start">
                 <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -652,7 +685,7 @@ $$
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 10px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 10px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 10px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -743,18 +776,18 @@ $$
         
         <article class="media">
             
-            <a href="/2019/05/31/computational-complexity-theory/" class="media-left">
+            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
+                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time></div>
-                    <a href="/2019/05/31/computational-complexity-theory/" class="title has-link-black-ter is-size-6 has-text-weight-normal">計算複雜度理論簡介</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -799,7 +832,7 @@ $$
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1033,6 +1066,13 @@ $$
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1173,6 +1213,13 @@ $$
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Ngrok/">
                         <span class="tag">Ngrok</span>
                         <span class="tag is-grey">1</span>
@@ -1196,7 +1243,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1252,6 +1299,13 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Scikit-learn/">
                         <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1424,7 +1478,7 @@ var IcarusThemeSettings = {
     
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
             my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
