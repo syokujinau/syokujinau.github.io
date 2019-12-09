@@ -15,14 +15,14 @@ thumbnail: https://i.imgur.com/4UVLZn1.png
 
 ## RTOS 
 
-一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本。
+一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在`port.c`定義)。
 
 RTOS必須對每個執行的critical operation有一個已知的maximum time，並能做到
 * 處理 interrupts 與 internal system exceptions
 * 維護 Critical Sections
 * 執行合適的 Scheduling Mechanism
 
-RTOS中事件觸發到能夠進入CPU的時間(**Task switching latency**)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(**Interrupt latency**)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，更重要的CPU的行為是**predictable**。
+RTOS中事件觸發到能夠進入CPU的時間(**Task switching latency**)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(**Interrupt latency**)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，主要表達Task的執行是**predictable**，而非執行速度快(這應是由 clock 決定)。
 
 <!-- more -->
 
