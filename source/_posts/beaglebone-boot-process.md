@@ -1,5 +1,5 @@
 ---
-title: BeagleBone 開機程序
+title: 使用 Angstrom Demo Linux Kernel 測試 BeagleBone 開機程序
 date: 2019-10-08 21:48:41
 tags:
 - Embedded Linux
@@ -10,6 +10,7 @@ categories:
 - [Embedded, Embedded Linux]
 thumbnail: https://i.imgur.com/kR0epnW.png
 ---
+
 > http://processors.wiki.ti.com/index.php/The_Boot_Process
 > ![](https://i.imgur.com/ojSKnU5.png)
 
@@ -62,9 +63,9 @@ thumbnail: https://i.imgur.com/kR0epnW.png
     3. uEnv
 * `ROOTFS`
     * copy all files from [here](https://github.com/syokujinau/Embedded_Linux_Resources/blob/master/Uboot_demo_linux_kernel/Angstrom-systemd-image-eglibc-ipk-v2012.12-beagleboard.rootfs.tar.xz)
-    * :warning: Download it by Ubuntu browser
-    * :warning: Do NOT extract it on Windows which uses a different file system. (I extract it in Windows shared folder, that's a problem... )
-    * :warning: Extract it in command line `tar xf archive.tar.xz`
+    * **[NOTE]** Download it by Ubuntu browser
+    * **[NOTE]** Do NOT extract it on Windows which uses a different file system. (I extract it in Windows shared folder, that's a problem... )
+    * **[NOTE]** Extract it in command line `tar xf archive.tar.xz`
 
 
 ![](https://i.imgur.com/kR0epnW.png)
@@ -80,7 +81,7 @@ thumbnail: https://i.imgur.com/kR0epnW.png
     * **MMC0** interface: microSD card  
         * 0:2 means mmc0 2nd partition, 0x82000000 of DDR 
     * **MMC1** interface: eMMC 
-    * :cake: 
+    * Load command
         * To load **FAT** based file system in to memory, use `fatload`
         * To load a file from any file system, use `load`
     * ![](https://i.imgur.com/JOXwy0V.png)
