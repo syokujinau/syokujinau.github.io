@@ -139,6 +139,73 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1175 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/10/arduino-freeRTOS-semaphore/">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
+            
+        </h1>
+        <div class="content">
+            <p><img src="https://i.imgur.com/8rVf5V5.png" alt></p>
+<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在<code>port.c</code>定義)。</p>
+<p>RTOS必須對每個執行的critical operation有一個已知的maximum time，並能做到</p>
+<ul>
+<li>處理 interrupts 與 internal system exceptions</li>
+<li>維護 Critical Sections</li>
+<li>執行合適的 Scheduling Mechanism</li>
+</ul>
+<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，主要表達Task的執行是<strong>predictable</strong>，而非執行速度快(這應是由 clock 決定)。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/10/arduino-freeRTOS-semaphore/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/05/31/computational-complexity-theory/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
         </a>
@@ -435,73 +502,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/03/centOS-jupyter-notebook-server/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/IYjQsLQ.png" alt="CentOS架設Jupyter notebook server">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-03T15:10:54.000Z">2019-03-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 578 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/03/centOS-jupyter-notebook-server/">CentOS架設Jupyter notebook server</a>
-            
-        </h1>
-        <div class="content">
-            <!-- title: CentOS架設Jupyter notebook server -->
-
-<h1 id="Step1-新增CentOS使用者"><a href="#Step1-新增CentOS使用者" class="headerlink" title="Step1: 新增CentOS使用者"></a>Step1: 新增CentOS使用者</h1><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo adduser jpynb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo su</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">passwd jpynb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">gpasswd -a jpynb wheel <span class="hljs-comment">#給予使用者 sudo 權限</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">lid -g wheel</span></pre></td></tr></table></figure>
-
-<p>之後就能用該組帳號密碼ssh進入/home/jpynb</p>
-<h1 id="Step2-安裝jupyter"><a href="#Step2-安裝jupyter" class="headerlink" title="Step2: 安裝jupyter"></a>Step2: 安裝jupyter</h1><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo yum install python-pip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo yum install python3-pip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sudo pip install ipython[all]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sudo pip3 install ipython[all]</span></pre></td></tr></table></figure>
-
-<p>這時輸入以下指令，初步測試是否安裝成功</p>
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">jupyter notebook --no-browser</span></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/03/centOS-jupyter-notebook-server/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -572,7 +572,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            33
+                            34
                         </p>
                     </a>
                 </div>
@@ -777,6 +777,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/10/update-latest-Debian-img-on-beaglebone/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="update-latest-Debian-img-on-beaglebone">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-10T10:31:21.000Z">2019-12-10</time></div>
+                    <a href="/2019/12/10/update-latest-Debian-img-on-beaglebone/" class="title has-link-black-ter is-size-6 has-text-weight-normal">update-latest-Debian-img-on-beaglebone</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/08/memory-illustrator/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
@@ -798,14 +817,14 @@
             
             <a href="/2019/10/08/beaglebone-boot-process/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone Boot Process">
+                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone 開機程序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T13:48:41.000Z">2019-10-08</time></div>
-                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone Boot Process</a>
+                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone 開機程序</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
                     </p>
@@ -851,25 +870,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
-                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -887,7 +887,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1483,6 +1483,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/10/update-latest-Debian-img-on-beaglebone/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="update-latest-Debian-img-on-beaglebone">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-10T10:31:21.000Z">2019-12-10</time></div>
+                    <a href="/2019/12/10/update-latest-Debian-img-on-beaglebone/" class="title has-link-black-ter is-size-6 has-text-weight-normal">update-latest-Debian-img-on-beaglebone</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/08/memory-illustrator/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
@@ -1504,14 +1523,14 @@
             
             <a href="/2019/10/08/beaglebone-boot-process/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone Boot Process">
+                    <img class="thumbnail" src="https://i.imgur.com/kR0epnW.png" alt="BeagleBone 開機程序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T13:48:41.000Z">2019-10-08</time></div>
-                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone Boot Process</a>
+                    <a href="/2019/10/08/beaglebone-boot-process/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone 開機程序</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
                     </p>
@@ -1557,25 +1576,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time></div>
-                    <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1593,7 +1593,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
