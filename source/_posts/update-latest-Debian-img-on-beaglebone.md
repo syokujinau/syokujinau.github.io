@@ -1,5 +1,5 @@
 ---
-title: BeagleBone更新Debian至最新版本與網路設定
+title: BeagleBone eMMC 更新Debian至最新版本
 date: 2019-11-08 21:48:41
 tags:
 - Embedded Linux
@@ -15,6 +15,7 @@ thumbnail: https://i.imgur.com/OlWZIqH.png
 
 ![](https://i.imgur.com/CiFIvcD.png)
 
+以下步驟將eMMC裡的舊版Debian更新成新版。
 
 <!-- more -->
 
@@ -41,5 +42,24 @@ thumbnail: https://i.imgur.com/OlWZIqH.png
     * ![](https://i.imgur.com/0z7CMGD.png)
     * 此時eMMC已經成功更新為Debian 9.9
 
+### 透過USB分享網路
+
+BeagleBone Black不像Raspberry pi 3一樣有WiFi功能，所以一般使用要接Ethernet等方式上網，以下步驟在Windows環境分享目前電腦使用的網路給BeagleBone
+
+<!-- 接上Mini USB到電腦後，可以看到一個新的 -->
+
+![](https://i.imgur.com/Fg9iQlF.png)
 
 
+![](https://i.imgur.com/fgf8OvF.png)
+
+![](https://i.imgur.com/Kls4HOi.png)
+
+1. 打開putty，SSH連線至`192.168.7.2`
+2. 登入後，新增default gateway
+    * 輸入`sudo route add default gw 192.168.7.1 usb0`
+4. 加入DNS server
+    * `sudo vim /etc/resolv.conf`
+    * ![](https://i.imgur.com/QmzpQfB.png)
+
+如此便能成功上網。
