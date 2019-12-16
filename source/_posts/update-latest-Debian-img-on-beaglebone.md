@@ -8,7 +8,7 @@ tags:
 - Debian
 categories:
 - [Embedded, Embedded Linux]
-thumbnail: https://i.imgur.com/OlWZIqH.png
+thumbnail: https://i.imgur.com/mOo5sDC.jpg
 ---
  
 
