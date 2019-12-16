@@ -7,26 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Memory Illustrator - YC</title>
+<title>設置BeagleBone嵌入式硬體開發環境 - YC</title>
 
 
-    <meta name="description" content="Image to teach user dump log file https:&#x2F;&#x2F;tinyurl.com&#x2F;y4y7lcjl  Input dump.txt 10x200004CC  00 00 00 00 D9 AB 17 3F - 15 04 C2 BD 15 EF 43 3E .......?......C&gt;20x200004DC  00 00 80 3F 09 B8 D5 3E">
+    <meta name="description" content="本篇要在Host端設置開發環境，編譯執行檔，並傳送給Remote device執行並測試程式。 Host: 作業系統為Windows10，我們還需要IDE、Tool-chian以及Make toolRemote device: BeagleBone Black Download Eclipse IDE for C&#x2F;C++ Developers eclipse-cpp-oxygen-3a-win32">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Memory Illustrator">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;memory-illustrator&#x2F;index.html">
+<meta property="og:title" content="設置BeagleBone嵌入式硬體開發環境">
+<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;10&#x2F;16&#x2F;setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="Image to teach user dump log file https:&#x2F;&#x2F;tinyurl.com&#x2F;y4y7lcjl  Input dump.txt 10x200004CC  00 00 00 00 D9 AB 17 3F - 15 04 C2 BD 15 EF 43 3E .......?......C&gt;20x200004DC  00 00 80 3F 09 B8 D5 3E">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;pCDuIRu.png">
-<meta property="article:published_time" content="2019-12-08T14:26:38.000Z">
-<meta property="article:modified_time" content="2019-12-09T05:56:12.668Z">
+<meta property="og:description" content="本篇要在Host端設置開發環境，編譯執行檔，並傳送給Remote device執行並測試程式。 Host: 作業系統為Windows10，我們還需要IDE、Tool-chian以及Make toolRemote device: BeagleBone Black Download Eclipse IDE for C&#x2F;C++ Developers eclipse-cpp-oxygen-3a-win32">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;dWZ74DZ.png">
+<meta property="article:published_time" content="2019-10-16T09:11:14.000Z">
+<meta property="article:modified_time" content="2019-12-16T09:15:49.345Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="React">
-<meta property="article:tag" content="C3.js">
-<meta property="article:tag" content="IEEE754">
-<meta property="article:tag" content="STM32">
-<meta property="article:tag" content="ARM">
+<meta property="article:tag" content="Embedded Linux">
+<meta property="article:tag" content="BeagleBone">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;pCDuIRu.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;dWZ74DZ.png">
 
 
 
@@ -94,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Memory Illustrator" height="28">
+                <img src="/images/logo.svg" alt="設置BeagleBone嵌入式硬體開發環境" height="28">
             
             </a>
         </div>
@@ -148,7 +145,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
+            <img class="thumbnail" src="https://i.imgur.com/dWZ74DZ.png" alt="設置BeagleBone嵌入式硬體開發環境">
         </span>
     </div>
     
@@ -156,17 +153,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-08T14:26:38.000Z">2019-12-08</time>
+                <time class="level-item has-text-grey" datetime="2019-10-16T09:11:14.000Z">2019-10-16</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 191 words)
+                    4 minutes read (About 617 words)
                 </span>
                 
                 
@@ -175,30 +172,73 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Memory Illustrator
+                設置BeagleBone嵌入式硬體開發環境
             
         </h1>
         <div class="content">
-            <p><img src="https://i.imgur.com/xUicamV.png" alt></p>
-<p><a href="https://syokujinau.github.io/demo/MemoryIllustrator/" target="_blank" rel="noopener"><img src="https://i.imgur.com/CExsoNY.png" width="100px"></a></p>
-<ol>
-<li>Image to teach user dump log file <a href="https://tinyurl.com/y4y7lcjl" target="_blank" rel="noopener">https://tinyurl.com/y4y7lcjl</a></li>
-</ol>
-<p>Input dump.txt</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">0x200004CC  00 00 00 00 D9 AB 17 3F - 15 04 C2 BD 15 EF 43 3E .......?......C&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">0x200004DC  00 00 80 3F 09 B8 D5 3E - F3 04 B5 3E 72 AD A0 3F ...?...&gt;...&gt;r..?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">0x200004EC  D7 B3 5D 3F 5E 83 EC 3E - B2 E4 A8 3F 8D 65 97 3F ..]?^..&gt;...?.e.?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">0x200004FC  00 00 00 3F 8D 65 97 3F - B2 E4 A8 3F 5E 83 EC 3E ...?.e.?...?^..&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">0x2000050C  D7 B3 5D 3F 72 AD A0 3F - F3 04 B5 3E 09 B8 D5 3E ..]?r..?...&gt;...&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">0x2000051C  00 00 80 3F 15 EF 43 3E - 15 04 C2 BD D9 AB 17 3F ...?..C&gt;.......?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">0x2000052C  00 00 00 80 D9 AB 17 BF - 15 04 C2 3D 15 EF 43 BE ...........&#x3D;..C.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">0x2000053C  00 00 80 BF 09 B8 D5 BE - F3 04 B5 BE 72 AD A0 BF ............r...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">0x2000054C  D7 B3 5D BF 5E 83 EC BE - B2 E4 A8 BF 8D 65 97 BF ..].^........e..</span></pre></td></tr></table></figure>
-<a id="more"></a>
-<ol start="2">
-<li>plot <code>outputAry</code> with C3.js<ul>
-<li><a href="https://c3js.org/samples/simple_xy.html" target="_blank" rel="noopener">https://c3js.org/samples/simple_xy.html</a></li>
+            <p>本篇要在Host端設置開發環境，編譯執行檔，並傳送給Remote device執行並測試程式。</p>
+<p><strong>Host</strong>: 作業系統為Windows10，我們還需要IDE、Tool-chian以及Make tool<br><strong>Remote device</strong>: BeagleBone Black</p>
+<h2 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h2><ol>
+<li><a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">Eclipse IDE for C/C++ Developers</a><ul>
+<li><a href="https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/oxygen/3a/eclipse-cpp-oxygen-3a-win32-x86_64.zip" target="_blank" rel="noopener">eclipse-cpp-oxygen-3a-win32-x86_64.zip</a></li>
+<li>根據JDK是安裝32或64bit，選擇對應eclipse版本，下載後解壓縮，點及主程式選擇workspace路徑，可以用git repo儲存</li>
+</ul>
+</li>
+<li><a href="http://releases.linaro.org/components/toolchain/binaries/" target="_blank" rel="noopener">Cross compilation tool-chian</a><ul>
+<li><a href="http://releases.linaro.org/components/toolchain/binaries/6.3-2017.02/arm-linux-gnueabihf/gcc-linaro-6.3.1-2017.02-i686-mingw32_arm-linux-gnueabihf.tar.xz" target="_blank" rel="noopener">gcc-linaro-6.3.1-2017.02-i686-mingw32_arm-linux-gnueabihf.tar.xz</a></li>
+</ul>
+</li>
+<li><a href="http://gnuwin32.sourceforge.net/packages/make.htm" target="_blank" rel="noopener">“Make” exe file for Windows</a><ul>
+<li><a href="http://gnuwin32.sourceforge.net/downlinks/make.php" target="_blank" rel="noopener">GnuWin</a></li>
 </ul>
 </li>
 </ol>
-<h2 id="What-is-MemoryIllustrator"><a href="#What-is-MemoryIllustrator" class="headerlink" title="What is MemoryIllustrator?"></a>What is MemoryIllustrator?</h2><ul>
-<li>This is a tool to plot float array from a memory segment of ARM STM32 Series board.</li>
-<li>Just for fun :P</li>
-<li>Useless</li>
+<a id="more"></a>
+
+<h2 id="New-Workspace"><a href="#New-Workspace" class="headerlink" title="New Workspace"></a>New Workspace</h2><p>解壓Eclipse IDE for C/C++ Developers後執行主程式</p>
+<p><img src="https://i.imgur.com/s8UvEYU.png" alt></p>
+<p><img src="https://i.imgur.com/KCUM5oq.png" alt></p>
+<p><img src="https://i.imgur.com/YOA8QG7.png" alt></p>
+<p>加入Cross compiler prefix與path (bin資料夾路徑)</p>
+<p><img src="https://i.imgur.com/zRjmOnt.png" alt></p>
+<p>完成新增Project</p>
+<p><img src="https://i.imgur.com/vMmd4sA.png" alt></p>
+<p>安裝make tool for windows</p>
+<p><img src="https://i.imgur.com/TL5aAzF.png" alt></p>
+<p><img src="https://i.imgur.com/Izmexxv.png" alt></p>
+<p><img src="https://i.imgur.com/IyMPDHI.png" alt></p>
+<p>接著，到eclipse IDE 右鍵 build project</p>
+<p><img src="https://i.imgur.com/51wWL3Y.png" alt></p>
+<p>會看到產生binary檔</p>
+<p><img src="https://i.imgur.com/blLbDwM.png" alt></p>
+<p>接下來要將這個binary用Remote System Explorer傳送到BBB硬體去執行檔案，BBB就是我們的remote system</p>
+<p><img src="https://i.imgur.com/p0ijbuJ.png" alt></p>
+<p><img src="https://i.imgur.com/fHFXGjf.png" alt></p>
+<p>接著都按Next、同意license後完成</p>
+<p><img src="https://i.imgur.com/KPp0tBW.png" alt></p>
+<p>安裝完成後會需要重開IDE</p>
+<h2 id="Remote-SSH-Terminal"><a href="#Remote-SSH-Terminal" class="headerlink" title="Remote SSH Terminal"></a>Remote SSH Terminal</h2><p><img src="https://i.imgur.com/gTRhmZp.png" alt></p>
+<p><img src="https://i.imgur.com/uK7GZgw.png" alt></p>
+<p><img src="https://i.imgur.com/jUVdiZz.png" alt></p>
+<p>之後都按Next、Finish</p>
+<p><img src="https://i.imgur.com/A3f1jed.png" alt></p>
+<p><img src="https://i.imgur.com/ticJSXY.png" alt></p>
+<p>之後就能看到BBB的file system</p>
+<p><img src="https://i.imgur.com/jo86dgw.png" alt></p>
+<p>從host端(Windows)傳送硬體可執行檔方法很簡單，直接拖曳到BBB的檔案系統即可</p>
+<p><img src="https://i.imgur.com/rPhBzS8.png" alt></p>
+<p><img src="https://i.imgur.com/F3K3O3L.png" alt></p>
+<p>如此就能在IDE整合SSH連線</p>
+<p><img src="https://i.imgur.com/TchsbiY.png" alt></p>
+<ul>
+<li><code>cd Desktop/</code></li>
+<li>給予執行權限 <code>chmod +x TestProject</code></li>
+<li>執行 <code>./TestProject</code></li>
 </ul>
-<p><img src="https://i.imgur.com/3osDdvx.png" alt></p>
+<p><img src="https://i.imgur.com/rsAdJNj.png" alt></p>
+<p>完成開發環境設置，之後就能在Host開發、編譯，在傳到BBB上執行程式。</p>
+<h2 id="Import-Existing-Projects"><a href="#Import-Existing-Projects" class="headerlink" title="Import Existing Projects"></a>Import Existing Projects</h2><p><img src="https://i.imgur.com/xT5DsZ4.png" alt></p>
+<p>:::info<br>import project後可能需要重新新增cross compiler的絕對路徑<code>cc-linaro-6.3.1-2017.02-i686-mingw32_arm-linux-gnueabihf\bin</code><br>以及設置remote ssh terminal<br>:::</p>
 
         </div>
         
@@ -206,7 +246,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ARM/" rel="tag">ARM</a>, <a class="has-link-grey -link" href="/tags/C3-js/" rel="tag">C3.js</a>, <a class="has-link-grey -link" href="/tags/IEEE754/" rel="tag">IEEE754</a>, <a class="has-link-grey -link" href="/tags/React/" rel="tag">React</a>, <a class="has-link-grey -link" href="/tags/STM32/" rel="tag">STM32</a>
+                    <a class="has-link-grey -link" href="/tags/BeagleBone/" rel="tag">BeagleBone</a>, <a class="has-link-grey -link" href="/tags/Embedded-Linux/" rel="tag">Embedded Linux</a>
                 </div>
             </div>
         </div>
@@ -223,10 +263,17 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/08/update-latest-Debian-img-on-beaglebone/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">BeagleBone eMMC 更新Debian至最新版本</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/08/update-latest-Debian-img-on-beaglebone/">
-                <span class="level-item">BeagleBone eMMC 更新Debian至最新版本</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/08/beaglebone-boot-process/">
+                <span class="level-item">使用 Angstrom Demo Linux Kernel 測試 BeagleBone 開機程序</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -242,8 +289,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2019/12/08/memory-illustrator/';
-        this.page.identifier = '2019/12/08/memory-illustrator/';
+        this.page.url = 'https://syokujinau.github.io/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/';
+        this.page.identifier = '2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -304,7 +351,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            34
+                            35
                         </p>
                     </a>
                 </div>
@@ -433,7 +480,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -449,7 +496,7 @@
                 <span class="level-item">Embedded Linux</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
@@ -494,7 +541,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 12px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -509,25 +556,6 @@
         
         <article class="media">
             
-            <a href="/2019/12/08/memory-illustrator/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T14:26:38.000Z">2019-12-08</time></div>
-                    <a href="/2019/12/08/memory-illustrator/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Memory Illustrator</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/OlWZIqH.png" alt="BeagleBone eMMC 更新Debian至最新版本">
@@ -538,6 +566,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-08T13:48:41.000Z">2019-11-08</time></div>
                     <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone eMMC 更新Debian至最新版本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/dWZ74DZ.png" alt="設置BeagleBone嵌入式硬體開發環境">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T09:11:14.000Z">2019-10-16</time></div>
+                    <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="title has-link-black-ter is-size-6 has-text-weight-normal">設置BeagleBone嵌入式硬體開發環境</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
                     </p>
@@ -614,17 +661,6 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2019/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2019/11/">
                 <span class="level-start">
                     <span class="level-item">November 2019</span>
@@ -641,7 +677,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -697,6 +733,17 @@
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -825,7 +872,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/BeagleBone/">
                         <span class="tag">BeagleBone</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -902,7 +949,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded-Linux/">
                         <span class="tag">Embedded Linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1227,7 +1274,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Memory Illustrator" height="28">
+                    <img src="/images/logo.svg" alt="設置BeagleBone嵌入式硬體開發環境" height="28">
                 
                 </a>
                 <p class="is-size-7">
