@@ -120,7 +120,7 @@ widgets:
         # Author name to be shown in the profile widget
         author: YC
         # Title of the author to be shown in the profile widget
-        author_title:  放筆記的地方^^
+        author_title: 我就爛
         # Author's current location to be shown in the profile widget
         location: Taipei, Taiwan #Earth, Solar System
         # Path or URL to the avatar to be shown in the profile widget
