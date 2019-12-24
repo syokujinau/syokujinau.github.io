@@ -1,5 +1,5 @@
 ---
-title: 使用STM32的RTOS開發 - 下載FreeRTOS與SEGGER SystemView 
+title: 使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView 
 date: 2019-11-24 18:16:27
 tags:
 - FreeRTOS
@@ -10,7 +10,7 @@ categories:
 thumbnail: https://i.imgur.com/P0LXKC1.png
 ---
 
-本篇使用Eclipse IDE([openSTM32 System Workbench](https://www.openstm32.org/System%2BWorkbench%2Bfor%2BSTM32))在STMF411RE板子上引入FreeRTOS函示庫以及設置SEGGER SystemView在Debugger視覺化執行中的Tasks
+本篇使用Eclipse IDE([openSTM32 System Workbench](https://www.openstm32.org/System%2BWorkbench%2Bfor%2BSTM32))在STMF411RE板子上引入FreeRTOS函式庫以及設置SEGGER SystemView在Debugger視覺化執行中的Tasks
 
 
 ## FreeRTOS
