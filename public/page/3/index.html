@@ -139,6 +139,83 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/03/13/algorithm-design-divide-and-conquer/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/q4Mqv51.jpg" alt="演算法設計 - Divide and Conquer">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-13T07:24:45.000Z">2019-03-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 300 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/03/13/algorithm-design-divide-and-conquer/">演算法設計 - Divide and Conquer</a>
+            
+        </h1>
+        <div class="content">
+            <p>D&amp;C演算法大致會是以下流程</p>
+<ol>
+<li>Split into subproblems</li>
+<li>Solve subproblems <strong>recursively</strong></li>
+<li>Merge solutions</li>
+</ol>
+<h2 id="Find-MaxMin"><a href="#Find-MaxMin" class="headerlink" title="Find MaxMin"></a>Find MaxMin</h2><p>給一序列$data = \left [ a_1, a_2, \dots , a_n \right ]$<br>只能用pairwise comparison，求這個序列的最大與最小值</p>
+<ul>
+<li>Brute force</li>
+</ul>
+<p>(n-1)次比較找到MAX，(n-2)次比較找到min，共需要$2n - 3$時間</p>
+<ul>
+<li>D&amp;C</li>
+</ul>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">MaxMin(data, <span class="hljs-number">1</span>, n) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    [Max1, min1] = MaxMin(data, <span class="hljs-number">1</span>, n/<span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    [Max2, min2] = MaxMin(data, n/<span class="hljs-number">2</span> + <span class="hljs-number">1</span>, n)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">return</span> [max(Max1, Max2), min(min1, min2)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>$T(n) = 2T(\frac{n}{2}) + 2$, 若只有2數只需1次比較$T(2) = 1$</p>
+<p>$= \frac{3}{2}n - 2$</p>
+<h2 id="Max-Subsequence-Sum"><a href="#Max-Subsequence-Sum" class="headerlink" title="Max Subsequence Sum"></a>Max Subsequence Sum</h2>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/13/algorithm-design-divide-and-conquer/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/03/03/centOS-jupyter-notebook-server/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/IYjQsLQ.png" alt="CentOS架設Jupyter notebook server">
         </a>
@@ -410,76 +487,6 @@ $$
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/02/15/anki-japanese-support-and-awesomeTTS/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/wH9EPrj.jpg" alt="Anki - 使用AwesomeTTS與Japanese Support自動產生振假名與發音">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-15T05:34:01.000Z">2019-02-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 614 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/15/anki-japanese-support-and-awesomeTTS/">Anki - 使用AwesomeTTS與Japanese Support自動產生振假名與發音</a>
-            
-        </h1>
-        <div class="content">
-            <p>希望能製作一種卡片，看中文可以想到日文，訓練自己的中翻日能力，並且自動產生振假名，好處還有看背面的時候google小姐會唸給你聽增強記憶XD。</p>
-<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>請先安裝以下2種套件，才能使用他們的功能與樣板</p>
-<ul>
-<li><a href="https://ankiweb.net/shared/info/301952613" target="_blank" rel="noopener">AwesomeTTS</a></li>
-<li><a href="https://ankiweb.net/shared/info/3918629684" target="_blank" rel="noopener">Japanese Support</a></li>
-</ul>
-<h1 id="基本日文卡片"><a href="#基本日文卡片" class="headerlink" title="基本日文卡片"></a>基本日文卡片</h1><p>先來看看由Japanese Support提供的<code>Japanese (recognition)</code>的卡片樣板，可以看到它是根據Expression為Reading欄位加上振假名。</p>
-<p>正面:</p>
-<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">jp</span>&gt;</span> &#123;&#123;Expression&#125;&#125;  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></pre></td></tr></table></figure>
-
-<p>樣式:</p>
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.card</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">font-family</span>: arial;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">text-align</span>: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">color</span>: black;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">background-color</span>: white;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.jp</span> &#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span> &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.win</span> <span class="hljs-selector-class">.jp</span> &#123; <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"MS Mincho"</span>, <span class="hljs-string">"ＭＳ 明朝"</span>; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.mac</span> <span class="hljs-selector-class">.jp</span> &#123; <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Hiragino Mincho Pro"</span>, <span class="hljs-string">"ヒラギノ明朝 Pro"</span>; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.linux</span> <span class="hljs-selector-class">.jp</span> &#123; <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Kochi Mincho"</span>, <span class="hljs-string">"東風明朝"</span>; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.mobile</span> <span class="hljs-selector-class">.jp</span> &#123; <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Hiragino Mincho ProN"</span>; &#125;</span></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/15/anki-japanese-support-and-awesomeTTS/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -502,7 +509,7 @@ $$
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
             
         </ul>
     </nav>
@@ -552,7 +559,7 @@ $$
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            35
+                            36
                         </p>
                     </a>
                 </div>
@@ -576,7 +583,7 @@ $$
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            61
+                            62
                         </p>
                     </a>
                 </div>
@@ -681,7 +688,7 @@ $$
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -705,7 +712,7 @@ $$
                 <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/IoT/">
@@ -742,7 +749,7 @@ $$
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 14px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 14px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 20px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -754,6 +761,25 @@ $$
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32的RTOS開發 - 下載FreeRTOS與SEGGER SystemView">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
+                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32的RTOS開發 - 下載FreeRTOS與SEGGER SystemView</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -831,25 +857,6 @@ $$
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
-                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -867,7 +874,7 @@ $$
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1038,7 +1045,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ARM/">
                         <span class="tag">ARM</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1164,6 +1171,13 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeRTOS/">
+                        <span class="tag">FreeRTOS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1360,7 +1374,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STM32/">
                         <span class="tag">STM32</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1481,6 +1495,25 @@ $$
         
         <article class="media">
             
+            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32的RTOS開發 - 下載FreeRTOS與SEGGER SystemView">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
+                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32的RTOS開發 - 下載FreeRTOS與SEGGER SystemView</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/mOo5sDC.jpg" alt="BeagleBone eMMC 更新Debian至最新版本">
@@ -1555,25 +1588,6 @@ $$
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time></div>
-                    <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1591,7 +1605,7 @@ $$
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1762,7 +1776,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ARM/">
                         <span class="tag">ARM</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1888,6 +1902,13 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeRTOS/">
+                        <span class="tag">FreeRTOS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2084,7 +2105,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STM32/">
                         <span class="tag">STM32</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
