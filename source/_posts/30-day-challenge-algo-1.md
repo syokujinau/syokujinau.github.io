@@ -10,6 +10,10 @@ categories:
 thumbnail: https://i.imgur.com/IpgtwV7.png
 ---
 
+> 排列組合問題常用的DFS解法
+> 加一個"("，未來就要用一個")"來構成一組合法括號
+> 紀錄可用的"("與")"數量
+> 試著畫出這棵二元樹就清楚了
 
 ## LeetCode - 22. Generate Parentheses
 
