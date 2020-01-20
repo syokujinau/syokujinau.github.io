@@ -7,24 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>30-Day Challenge 1 - Generate Parentheses - YC</title>
+<title>Algorithm Daily - Binary Tree Level Order Traversal - YC</title>
 
 
-    <meta name="description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
+    <meta name="description" content="Tree traversal基本題 102. Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="30-Day Challenge 1 - Generate Parentheses">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2020&#x2F;01&#x2F;16&#x2F;30-day-challenge-algo-1&#x2F;index.html">
+<meta property="og:title" content="Algorithm Daily - Binary Tree Level Order Traversal">
+<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2020&#x2F;01&#x2F;17&#x2F;algorithm-daily-binary-tree-level-order-traversal&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;IpgtwV7.png">
-<meta property="article:published_time" content="2020-01-16T03:36:47.000Z">
-<meta property="article:modified_time" content="2020-01-17T07:51:54.000Z">
+<meta property="og:description" content="Tree traversal基本題 102. Binary Tree Level Order TraversalGiven a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary t">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;cfyFNNu.png">
+<meta property="article:published_time" content="2020-01-17T07:01:46.000Z">
+<meta property="article:modified_time" content="2020-01-20T07:32:16.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Algorithm">
-<meta property="article:tag" content="Backtracking">
-<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="BFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;IpgtwV7.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;cfyFNNu.png">
 
 
 
@@ -92,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="30-Day Challenge 1 - Generate Parentheses" height="28">
+                <img src="/images/logo.svg" alt="Algorithm Daily - Binary Tree Level Order Traversal" height="28">
             
             </a>
         </div>
@@ -146,7 +146,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 1 - Generate Parentheses">
+            <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
         </span>
     </div>
     
@@ -154,17 +154,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time>
+                <time class="level-item has-text-grey" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 165 words)
+                    2 minutes read (About 245 words)
                 </span>
                 
                 
@@ -173,23 +173,32 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                30-Day Challenge 1 - Generate Parentheses
+                Algorithm Daily - Binary Tree Level Order Traversal
             
         </h1>
         <div class="content">
-            <blockquote>
-<p>排列組合問題常用的DFS解法<br>加一個”(“，未來就要用一個”)”來構成一組合法括號<br>紀錄可用的”(“與”)”數量<br>試著畫出這棵二元樹就清楚了</p>
-</blockquote>
-<h2 id="LeetCode-22-Generate-Parentheses"><a href="#LeetCode-22-Generate-Parentheses" class="headerlink" title="LeetCode - 22. Generate Parentheses"></a>LeetCode - 22. Generate Parentheses</h2><p>Given $n$ pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
-<p>For example, given $n = 3$, a solution set is:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;((()))&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;(()())&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;(())()&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;()(())&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;()()()&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+            <p>Tree traversal基本題</p>
+<h2 id="102-Binary-Tree-Level-Order-Traversal"><a href="#102-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. Binary Tree Level Order Traversal"></a>102. Binary Tree Level Order Traversal</h2><p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
+<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">9  20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;  \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> 15   7</span></pre></td></tr></table></figure>
+
 <a id="more"></a>
+<p>return its level order traversal as:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  [3],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [9,20],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  [15,7]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
 
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>DFS(s, open, close)</p>
-<p>$s$: current string<br>$open$: number of left parentheses can be appended to current string<br>$close$: number of right parentheses can be appended to current string<br>An answer is generated when $open = close = 0$ (base case)</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; generateParenthesis(<span class="hljs-keyword">int</span> n) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        dfs(<span class="hljs-string">""</span>, n, <span class="hljs-number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">int</span> open, <span class="hljs-keyword">int</span> close)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(open == <span class="hljs-number">0</span> &amp;&amp; close == <span class="hljs-number">0</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            ans.push_back(s);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(open)  dfs(s + <span class="hljs-string">"("</span>, open - <span class="hljs-number">1</span>, close + <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(close) dfs(s + <span class="hljs-string">")"</span>, open    , close - <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>就BFS</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        bfs(ans, root, <span class="hljs-number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment">// unordered_map&lt;int, vector&lt;int&gt;&gt; um;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; ans, TreeNode* root, <span class="hljs-keyword">int</span> depth)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-comment">// record</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-comment">// 檢查是否超過存取範圍</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(ans.size() &gt;  depth) &#123; <span class="hljs-comment">// 沒超過</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">            ans[depth].push_back(root-&gt;val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;                  <span class="hljs-comment">// 超過範圍，新增一層</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vec&#123;root-&gt;val&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            ans.push_back(vec);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">      </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        bfs(ans, root-&gt;left, depth + <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        bfs(ans, root-&gt;right, depth + <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
 
-<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>Huh…</p>
+
+
+
+<p>再補一題N-ary的版本</p>
+<h2 id="429-N-ary-Tree-Level-Order-Traversal"><a href="#429-N-ary-Tree-Level-Order-Traversal" class="headerlink" title="429. N-ary Tree Level Order Traversal"></a>429. N-ary Tree Level Order Traversal</h2><p><img src="https://i.imgur.com/cfyFNNu.png" alt></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Input: root &#x3D; [1,null,3,2,4,null,5,6]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Output: [[1],[3,2,4],[5,6]]</span></pre></td></tr></table></figure>
+
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// Definition for a Node.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">class Node &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">public:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    int val;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    vector&lt;Node*&gt; children;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    Node() &#123;&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    Node(int _val) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">        val = _val;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    Node(int _val, vector&lt;Node*&gt; _children) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">        val = _val;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">        children = _children;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">    &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; levelOrder(Node* root) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        bfs(ans, root, <span class="hljs-number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; ans, Node* root, <span class="hljs-keyword">int</span> depth)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(ans.size() &gt;  depth) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">            ans[depth].push_back(root-&gt;val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vec&#123;root-&gt;val&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">            ans.push_back(vec);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(root-&gt;children.size() != <span class="hljs-number">0</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> child : root-&gt;children) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">                bfs(ans, child, depth + <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+
+<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>$O(n)$</p>
 
         </div>
         
@@ -197,7 +206,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Backtracking/" rel="tag">Backtracking</a>, <a class="has-link-grey -link" href="/tags/DFS/" rel="tag">DFS</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/BFS/" rel="tag">BFS</a>, <a class="has-link-grey -link" href="/tags/Tree/" rel="tag">Tree</a>
                 </div>
             </div>
         </div>
@@ -214,17 +223,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/17/30-day-challenge-algo-2/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">30-Day Challenge 2 - Binary Tree Level Order Traversal</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/">
-                <span class="level-item">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/16/algorithm-daily-generate-parentheses/">
+                <span class="level-item">Algorithm Daily - Generate Parentheses</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -240,8 +242,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2020/01/16/30-day-challenge-algo-1/';
-        this.page.identifier = '2020/01/16/30-day-challenge-algo-1/';
+        this.page.url = 'https://syokujinau.github.io/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/';
+        this.page.identifier = '2020/01/17/algorithm-daily-binary-tree-level-order-traversal/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -426,9 +428,9 @@
                 <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/Algorithm/30-Day-Challenge/">
+        <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
             <span class="level-start">
-                <span class="level-item">30-Day Challenge</span>
+                <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
@@ -515,18 +517,18 @@
         
         <article class="media">
             
-            <a href="/2020/01/17/30-day-challenge-algo-2/" class="media-left">
+            <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 2 - Binary Tree Level Order Traversal">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/30-day-challenge-algo-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 2 - Binary Tree Level Order Traversal</a>
+                    <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
                 </div>
             </div>
@@ -534,18 +536,18 @@
         
         <article class="media">
             
-            <a href="/2020/01/16/30-day-challenge-algo-1/" class="media-left">
+            <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 1 - Generate Parentheses">
+                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="Algorithm Daily - Generate Parentheses">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time></div>
-                    <a href="/2020/01/16/30-day-challenge-algo-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 1 - Generate Parentheses</a>
+                    <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
                 </div>
             </div>
@@ -1279,7 +1281,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="30-Day Challenge 1 - Generate Parentheses" height="28">
+                    <img src="/images/logo.svg" alt="Algorithm Daily - Binary Tree Level Order Traversal" height="28">
                 
                 </a>
                 <p class="is-size-7">

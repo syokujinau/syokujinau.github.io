@@ -7,17 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: 30-Day Challenge - YC</title>
+<title>Algorithm Daily - Generate Parentheses - YC</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="YC">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;categories&#x2F;Algorithm&#x2F;30-Day-Challenge&#x2F;index.html">
+    <meta name="description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Daily - Generate Parentheses">
+<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2020&#x2F;01&#x2F;16&#x2F;algorithm-daily-generate-parentheses&#x2F;index.html">
 <meta property="og:site_name" content="YC">
-<meta property="og:image" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;IpgtwV7.png">
+<meta property="article:published_time" content="2020-01-16T03:36:47.000Z">
+<meta property="article:modified_time" content="2020-01-20T07:29:40.000Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Backtracking">
+<meta property="article:tag" content="DFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;images&#x2F;og_image.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;IpgtwV7.png">
 
 
 
@@ -79,13 +86,13 @@
 
 <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="YC" height="28">
+                <img src="/images/logo.svg" alt="Algorithm Daily - Generate Parentheses" height="28">
             
             </a>
         </div>
@@ -134,89 +141,13 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li><a href="/categories/Algorithm/">Algorithm</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">30-Day Challenge</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/01/17/30-day-challenge-algo-2/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 2 - Binary Tree Level Order Traversal">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 245 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/01/17/30-day-challenge-algo-2/">30-Day Challenge 2 - Binary Tree Level Order Traversal</a>
-            
-        </h1>
-        <div class="content">
-            <p>Tree traversal基本題</p>
-<h2 id="102-Binary-Tree-Level-Order-Traversal"><a href="#102-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. Binary Tree Level Order Traversal"></a>102. Binary Tree Level Order Traversal</h2><p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">9  20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;  \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> 15   7</span></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/01/17/30-day-challenge-algo-2/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/01/16/30-day-challenge-algo-1/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 1 - Generate Parentheses">
-        </a>
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="Algorithm Daily - Generate Parentheses">
+        </span>
     </div>
     
     <div class="card-content article ">
@@ -226,7 +157,7 @@
                 <time class="level-item has-text-grey" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                 </div>
                 
                 
@@ -242,7 +173,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/01/16/30-day-challenge-algo-1/">30-Day Challenge 1 - Generate Parentheses</a>
+                Algorithm Daily - Generate Parentheses
             
         </h1>
         <div class="content">
@@ -252,16 +183,25 @@
 <h2 id="LeetCode-22-Generate-Parentheses"><a href="#LeetCode-22-Generate-Parentheses" class="headerlink" title="LeetCode - 22. Generate Parentheses"></a>LeetCode - 22. Generate Parentheses</h2><p>Given $n$ pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
 <p>For example, given $n = 3$, a solution set is:</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;((()))&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;(()())&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;(())()&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;()(())&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;()()()&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>DFS(s, open, close)</p>
+<p>$s$: current string<br>$open$: number of left parentheses can be appended to current string<br>$close$: number of right parentheses can be appended to current string<br>An answer is generated when $open = close = 0$ (base case)</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; generateParenthesis(<span class="hljs-keyword">int</span> n) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        dfs(<span class="hljs-string">""</span>, n, <span class="hljs-number">0</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; ans;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">int</span> open, <span class="hljs-keyword">int</span> close)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(open == <span class="hljs-number">0</span> &amp;&amp; close == <span class="hljs-number">0</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            ans.push_back(s);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(open)  dfs(s + <span class="hljs-string">"("</span>, open - <span class="hljs-number">1</span>, close + <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(close) dfs(s + <span class="hljs-string">")"</span>, open    , close - <span class="hljs-number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+
+<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>Huh…</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/01/16/30-day-challenge-algo-1/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Backtracking/" rel="tag">Backtracking</a>, <a class="has-link-grey -link" href="/tags/DFS/" rel="tag">DFS</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -271,16 +211,59 @@
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Algorithm Daily - Binary Tree Level Order Traversal</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/">
+                <span class="level-item">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://syokujinau.github.io/2020/01/16/algorithm-daily-generate-parentheses/';
+        this.page.identifier = '2020/01/16/algorithm-daily-generate-parentheses/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
     
         
 <div class="card widget">
@@ -443,9 +426,9 @@
                 <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/Algorithm/30-Day-Challenge/">
+        <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
             <span class="level-start">
-                <span class="level-item">30-Day Challenge</span>
+                <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
@@ -522,7 +505,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             <div class="card widget">
     <div class="card-content">
@@ -532,18 +515,18 @@
         
         <article class="media">
             
-            <a href="/2020/01/17/30-day-challenge-algo-2/" class="media-left">
+            <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 2 - Binary Tree Level Order Traversal">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/30-day-challenge-algo-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 2 - Binary Tree Level Order Traversal</a>
+                    <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
                 </div>
             </div>
@@ -551,18 +534,18 @@
         
         <article class="media">
             
-            <a href="/2020/01/16/30-day-challenge-algo-1/" class="media-left">
+            <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 1 - Generate Parentheses">
+                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="Algorithm Daily - Generate Parentheses">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time></div>
-                    <a href="/2020/01/16/30-day-challenge-algo-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 1 - Generate Parentheses</a>
+                    <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
                 </div>
             </div>
@@ -1282,775 +1265,6 @@
 </div>
         
         </div>
-    
-</div>
-
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Recent
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/01/17/30-day-challenge-algo-2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 2 - Binary Tree Level Order Traversal">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/30-day-challenge-algo-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 2 - Binary Tree Level Order Traversal</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/16/30-day-challenge-algo-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="30-Day Challenge 1 - Generate Parentheses">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time></div>
-                    <a href="/2020/01/16/30-day-challenge-algo-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">30-Day Challenge 1 - Generate Parentheses</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/30-Day-Challenge/">30-Day Challenge</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
-                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/mOo5sDC.jpg" alt="BeagleBone eMMC 更新Debian至最新版本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-08T13:48:41.000Z">2019-11-08</time></div>
-                    <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone eMMC 更新Debian至最新版本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/dWZ74DZ.png" alt="設置BeagleBone嵌入式硬體開發環境">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T09:11:14.000Z">2019-10-16</time></div>
-                    <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="title has-link-black-ter is-size-6 has-text-weight-normal">設置BeagleBone嵌入式硬體開發環境</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            Archives
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">8</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Tags
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/AI/">
-                        <span class="tag">AI</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ARM/">
-                        <span class="tag">ARM</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/AWS/">
-                        <span class="tag">AWS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Algorithm/">
-                        <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">7</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
-                        <span class="tag">Angstrom Linux</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Anki/">
-                        <span class="tag">Anki</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/BFS/">
-                        <span class="tag">BFS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Backtracking/">
-                        <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/BeagleBone/">
-                        <span class="tag">BeagleBone</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/C3-js/">
-                        <span class="tag">C3.js</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CSS/">
-                        <span class="tag">CSS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CentOS/">
-                        <span class="tag">CentOS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DFS/">
-                        <span class="tag">DFS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DSP/">
-                        <span class="tag">DSP</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Debian/">
-                        <span class="tag">Debian</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Decision-Tree/">
-                        <span class="tag">Decision Tree</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Deep-Learning/">
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DynamoDB/">
-                        <span class="tag">DynamoDB</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES6/">
-                        <span class="tag">ES6</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Embedded/">
-                        <span class="tag">Embedded</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
-                        <span class="tag">Embedded Linux</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Facebook/">
-                        <span class="tag">Facebook</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Firebase/">
-                        <span class="tag">Firebase</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/FreeRTOS/">
-                        <span class="tag">FreeRTOS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
-                        <span class="tag">Google Compute Engine</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HTML/">
-                        <span class="tag">HTML</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HTTPS/">
-                        <span class="tag">HTTPS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IEEE754/">
-                        <span class="tag">IEEE754</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IoT/">
-                        <span class="tag">IoT</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/JavaScript/">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Jupyter/">
-                        <span class="tag">Jupyter</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/K-Means/">
-                        <span class="tag">K-Means</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/KNN/">
-                        <span class="tag">KNN</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linear-Regression/">
-                        <span class="tag">Linear Regression</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linux/">
-                        <span class="tag">Linux</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/LoRa/">
-                        <span class="tag">LoRa</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
-                        <span class="tag">Logistic Regrassion</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
-                        <span class="tag">MJPEG-Streamer</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MQTT/">
-                        <span class="tag">MQTT</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Machine-Learning/">
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Minecraft/">
-                        <span class="tag">Minecraft</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
-                        <span class="tag">Multual exclusion</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ngrok/">
-                        <span class="tag">Ngrok</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Node-js/">
-                        <span class="tag">Node.js</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/NodeRED/">
-                        <span class="tag">NodeRED</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Operating-System/">
-                        <span class="tag">Operating System</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Promise/">
-                        <span class="tag">Promise</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Python/">
-                        <span class="tag">Python</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Random-Forest/">
-                        <span class="tag">Random Forest</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
-                        <span class="tag">Raspberry Pi</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React/">
-                        <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/STM32/">
-                        <span class="tag">STM32</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SVM/">
-                        <span class="tag">SVM</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Scikit-learn/">
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Semaphore/">
-                        <span class="tag">Semaphore</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tensorflow/">
-                        <span class="tag">Tensorflow</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Time-complexity/">
-                        <span class="tag">Time complexity</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tree/">
-                        <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Verilog/">
-                        <span class="tag">Verilog</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Web/">
-                        <span class="tag">Web</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/base64/">
-                        <span class="tag">base64</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/imgur/">
-                        <span class="tag">imgur</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/jQuery/">
-                        <span class="tag">jQuery</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/jupyter/">
-                        <span class="tag">jupyter</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/matplotlib/">
-                        <span class="tag">matplotlib</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/npm/">
-                        <span class="tag">npm</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
     
 </div>
 
@@ -2065,7 +1279,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="YC" height="28">
+                    <img src="/images/logo.svg" alt="Algorithm Daily - Generate Parentheses" height="28">
                 
                 </a>
                 <p class="is-size-7">

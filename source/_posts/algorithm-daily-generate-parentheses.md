@@ -1,12 +1,12 @@
 ---
-title: 30-Day Challenge 1 - Generate Parentheses
+title: Algorithm Daily - Generate Parentheses
 date: 2020-01-16 11:36:47
 tags:
 - Algorithm
 - Backtracking
 - DFS
 categories:
-- [Algorithm, 30-Day Challenge]
+- [Algorithm, LeetCode]
 thumbnail: https://i.imgur.com/IpgtwV7.png
 ---
 

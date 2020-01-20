@@ -1,13 +1,13 @@
 ---
-title: 30-Day Challenge 2 - Binary Tree Level Order Traversal
+title: Algorithm Daily - Binary Tree Level Order Traversal
 date: 2020-01-17 15:01:46
 tags:
 - Algorithm
 - Tree
 - BFS
 categories:
-- [Algorithm, 30-Day Challenge]
-thumbnail: https://i.imgur.com/IpgtwV7.png
+- [Algorithm, LeetCode]
+thumbnail: https://i.imgur.com/cfyFNNu.png
 ---
 
 
