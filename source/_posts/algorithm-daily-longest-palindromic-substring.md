@@ -31,14 +31,16 @@ Output: "bb"
 
 初始設最大值max_len為0
 i從0到n
-以下兩個case的迴文子字串取較大的值 
+以下兩個case的迴文子字串長度取較大的值 
+
 1. 奇數長度迴文子字串以s[i]為中心擴散 (e.g. "aba", i = 1)
 2. 偶數長度迴文子字串以s[i]、s[i + 1]擴散 (e.g. "abba", i = 1)
+
 若比max_len則更新，並用start紀錄該迴文子字串起始點
 
 ## Code
 
-```
+```cpp
 class Solution {
 public:
     string longestPalindrome(string s) {
