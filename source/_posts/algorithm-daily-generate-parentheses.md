@@ -7,7 +7,7 @@ tags:
 - DFS
 categories:
 - [Algorithm, LeetCode]
-thumbnail: https://i.imgur.com/IpgtwV7.png
+thumbnail: https://i.imgur.com/hivsaxA.png
 ---
 
 > 排列組合問題常用的DFS解法
