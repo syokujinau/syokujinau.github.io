@@ -1,6 +1,6 @@
 ---
 title: Algorithm Daily - Generate Parentheses
-date: 2020-01-16 11:36:47
+date: 2019-12-16 11:36:47
 tags:
 - Algorithm
 - Backtracking

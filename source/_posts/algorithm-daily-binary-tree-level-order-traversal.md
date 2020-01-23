@@ -1,6 +1,6 @@
 ---
 title: Algorithm Daily - Binary Tree Level Order Traversal
-date: 2020-01-17 15:01:46
+date: 2019-12-17 15:01:46
 tags:
 - Algorithm
 - Tree

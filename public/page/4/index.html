@@ -139,6 +139,69 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/03/02/how-https-works/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/1SpDhK2.jpg" alt="草履蟲也能懂的HTTPS">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-02T13:14:47.000Z">2019-03-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 583 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/03/02/how-https-works/">草履蟲也能懂的HTTPS</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>參考自<a href="https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351" target="_blank" rel="noopener">HTTPS explained with carrier pigeons</a></p>
+</blockquote>
+<p>試想一個簡單的情境，Alice跟Bob想互相用飛鴿傳書寄信，但是送信過程可能被Mallory攔截下來偷看內容…</p>
+<ul>
+<li>方法一，使用<a href="https://zh.wikipedia.org/wiki/%E5%87%B1%E6%92%92%E5%AF%86%E7%A2%BC" target="_blank" rel="noopener">凱薩密碼</a>(Caesar cipher，推移字母替代原文，因為知道加密方法就能解密，所以屬於對稱式加密)，這時Alice跟Bob想先傳送這個密碼，但是Mallory會攔截，然後就能解碼Alice跟Bob的信件內容，除非Alice跟Bob先私下見面制定密碼。</li>
+<li>方法二，當Bob想寄信給Alice，Bob先傳一隻不帶訊息的鴿子，Alice在讓鴿子帶上沒上鎖的盒子，自己留著盒子的鑰匙，然後傳給Bob，Bob收到沒上鎖的盒子後，放入信件並鎖上，傳回給Alice，這時候如果鴿子被攔截，Mallory也無法打開，因為只有Alice有這個盒子的鑰匙，這就是所謂的公鑰與私鑰，雖然叫做公鑰，但是作用是<strong>盒子</strong>，打開盒子的叫做私鑰。</li>
+</ul>
+<p>Q: 當Bob想傳訊息給Alice，如何確定這個盒子來自Alice?<br>A: Alice在盒子上簽名。<br>Q: 這時候問題又來了，Bob怎麼認得這個簽名是Alice的，而不是Mallory偽造的?<br>A: 這時候交給公正的第三方Ted來負責簽名。</p>
+<p>Ted很有名，所以大家都認得他的簽名，而且Ted知道這個盒子是Alice請他簽名的，所以Mallory不能攔截盒子然後再請Ted簽名。</p>
+<p><em>Ted就是所謂的Certification Authorities。</em></p>
+<p>雖然Alice與Bob有了安全的方法寄信，這時候他們發現每次都要經過這麼麻煩的程序，所以他們決定在寄信前用盒子傳凱薩密碼(方法二)，這樣他們就不用私下見面制定密碼了，然後之後傳訊息都透過凱薩密碼(方法一)加解密即可。<br>這就是HTTPS運作的概念，只是跑這些流程的速度比鴿子快多了而已。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/02/28/introduction-to-asymptotic-notation/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/K6F6Ojx.jpg" alt="Introduction to Asymptotic Notation and Analysis of Algorithms">
         </a>
@@ -413,68 +476,6 @@ $$
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/02/03/js-promise-execute-sequentially/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 238 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/03/js-promise-execute-sequentially/">JavaScript 筆記 - 依序執行function</a>
-            
-        </h1>
-        <div class="content">
-            <p><img src="https://i.imgur.com/atfAxVR.png" alt><br>之前做C3.js圖表平移效果，網頁載入後平移9次，於是寫了9次callback</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">1</span>)&#125;, <span class="hljs-number">1000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">2</span>)&#125;, <span class="hljs-number">2000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">3</span>)&#125;, <span class="hljs-number">3000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">4</span>)&#125;, <span class="hljs-number">4000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">5</span>)&#125;, <span class="hljs-number">5000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">6</span>)&#125;, <span class="hljs-number">6000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">7</span>)&#125;, <span class="hljs-number">7000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">8</span>)&#125;, <span class="hljs-number">8000</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">9</span>)&#125;, <span class="hljs-number">9000</span>);</span></pre></td></tr></table></figure>
-
-<p>(｀・ω・´)……..</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/03/js-promise-execute-sequentially/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -549,7 +550,7 @@ $$
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            38
+                            39
                         </p>
                     </a>
                 </div>
@@ -670,7 +671,7 @@ $$
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -678,7 +679,7 @@ $$
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -747,7 +748,7 @@ $$
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 12px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 12px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -762,16 +763,16 @@ $$
         
         <article class="media">
             
-            <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
+            <a href="/2019/12/23/algorithm-daily-longest-palindromic-substring/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Longest Palindromic Substring">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-23T14:26:31.000Z">2019-12-23</time></div>
+                    <a href="/2019/12/23/algorithm-daily-longest-palindromic-substring/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Longest Palindromic Substring</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -781,7 +782,26 @@ $$
         
         <article class="media">
             
-            <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="media-left">
+            <a href="/2019/12/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-17T07:01:46.000Z">2019-12-17</time></div>
+                    <a href="/2019/12/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/algorithm-daily-generate-parentheses/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="Algorithm Daily - Generate Parentheses">
                 </p>
@@ -789,8 +809,8 @@ $$
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time></div>
-                    <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T03:36:47.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -836,25 +856,6 @@ $$
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/dWZ74DZ.png" alt="設置BeagleBone嵌入式硬體開發環境">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T09:11:14.000Z">2019-10-16</time></div>
-                    <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="title has-link-black-ter is-size-6 has-text-weight-normal">設置BeagleBone嵌入式硬體開發環境</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -867,12 +868,12 @@ $$
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">January 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1068,7 +1069,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1089,7 +1090,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/BFS/">
                         <span class="tag">BFS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1446,7 +1447,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1532,16 +1533,16 @@ $$
         
         <article class="media">
             
-            <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
+            <a href="/2019/12/23/algorithm-daily-longest-palindromic-substring/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Longest Palindromic Substring">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-23T14:26:31.000Z">2019-12-23</time></div>
+                    <a href="/2019/12/23/algorithm-daily-longest-palindromic-substring/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Longest Palindromic Substring</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -1551,7 +1552,26 @@ $$
         
         <article class="media">
             
-            <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="media-left">
+            <a href="/2019/12/17/algorithm-daily-binary-tree-level-order-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Algorithm Daily - Binary Tree Level Order Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-17T07:01:46.000Z">2019-12-17</time></div>
+                    <a href="/2019/12/17/algorithm-daily-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Binary Tree Level Order Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/algorithm-daily-generate-parentheses/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/IpgtwV7.png" alt="Algorithm Daily - Generate Parentheses">
                 </p>
@@ -1559,8 +1579,8 @@ $$
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T03:36:47.000Z">2020-01-16</time></div>
-                    <a href="/2020/01/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T03:36:47.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/algorithm-daily-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Algorithm Daily - Generate Parentheses</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -1606,25 +1626,6 @@ $$
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/dWZ74DZ.png" alt="設置BeagleBone嵌入式硬體開發環境">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T09:11:14.000Z">2019-10-16</time></div>
-                    <a href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/" class="title has-link-black-ter is-size-6 has-text-weight-normal">設置BeagleBone嵌入式硬體開發環境</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1637,12 +1638,12 @@ $$
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
+            <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">January 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1838,7 +1839,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1859,7 +1860,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/BFS/">
                         <span class="tag">BFS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2216,7 +2217,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
