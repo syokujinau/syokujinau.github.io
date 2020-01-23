@@ -62,8 +62,8 @@ public:
 
             int cur = max(getLength(i, i), getLength(i, i + 1)); // O(n)
             
-            if(cur > max_len) {
-                max_len = cur;
+            if(cur > max_len) { // update
+                max_len = cur; 
                 start = i - (max_len - 1) / 2;
             }
             
