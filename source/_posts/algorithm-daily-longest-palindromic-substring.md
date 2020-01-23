@@ -7,7 +7,7 @@ tags:
 - BFS
 categories:
 - [Algorithm, LeetCode]
-thumbnail: https://i.imgur.com/cfyFNNu.png
+thumbnail: https://i.imgur.com/L7Ap4sE.png
 ---
 
 ## 5. Longest Palindromic Substring
