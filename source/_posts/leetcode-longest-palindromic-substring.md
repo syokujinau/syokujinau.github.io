@@ -3,8 +3,7 @@ title: LeetCode - Longest Palindromic Substring
 date: 2019-12-23 22:26:31
 tags:
 - Algorithm
-- Tree
-- BFS
+- DP
 categories:
 - [Algorithm, LeetCode]
 thumbnail: https://i.imgur.com/L7Ap4sE.png
