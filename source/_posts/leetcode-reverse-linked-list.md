@@ -1,5 +1,5 @@
 ---
-title: leetcode-reverse-linked-list
+title: LeetCode - Reverse Linked List
 date: 2019-12-13 22:26:31
 tags:
 - Algorithm
