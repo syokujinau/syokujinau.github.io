@@ -1,5 +1,5 @@
 ---
-title: Algorithm Daily - Generate Parentheses
+title: LeetCode - Generate Parentheses
 date: 2019-12-16 11:36:47
 tags:
 - Algorithm
