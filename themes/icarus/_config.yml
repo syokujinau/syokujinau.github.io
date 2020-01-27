@@ -118,9 +118,9 @@ widgets:
         # Where should the widget be placed, left or right
         position: left
         # Author name to be shown in the profile widget
-        author: YC
+        author: YC's blog
         # Title of the author to be shown in the profile widget
-        author_title: 我就爛
+        author_title: 後悔
         # Author's current location to be shown in the profile widget
         location: Taipei, Taiwan #Earth, Solar System
         # Path or URL to the avatar to be shown in the profile widget

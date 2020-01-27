@@ -1,8 +1,10 @@
 ---
-title: about
+title: About
 date: 2018-01-31 17:42:52
 ---
 
-## YC
+## YC (Lin Yu-Chien)
 
-放筆記的地方，怕自己忘記= =
+應該不會有人來看吧?
+
+Mail: `npr286rx@gmail.com`
