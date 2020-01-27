@@ -218,7 +218,7 @@
     
     <div class="card-image">
         <a href="/2019/03/02/how-https-works/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/1SpDhK2.jpg" alt="草履蟲也能懂的HTTPS">
+            <img class="thumbnail" src="https://i.imgur.com/1SpDhK2.jpg" alt="用生活化的例子解釋HTTPS">
         </a>
     </div>
     
@@ -236,7 +236,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 583 words)
+                    4 minutes read (About 586 words)
                 </span>
                 
                 
@@ -245,25 +245,25 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/03/02/how-https-works/">草履蟲也能懂的HTTPS</a>
+                <a class="has-link-black-ter" href="/2019/03/02/how-https-works/">用生活化的例子解釋HTTPS</a>
             
         </h1>
         <div class="content">
-            <blockquote>
-<p>參考自<a href="https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351" target="_blank" rel="noopener">HTTPS explained with carrier pigeons</a></p>
-</blockquote>
-<p>試想一個簡單的情境，Alice跟Bob想互相用飛鴿傳書寄信，但是送信過程可能被Mallory攔截下來偷看內容…</p>
+            <p>試想一個簡單的情境，Alice跟Bob想互相用飛鴿傳書寄信，但是送信過程可能被Mallory攔截下來偷看內容…</p>
 <ul>
-<li>方法一，使用<a href="https://zh.wikipedia.org/wiki/%E5%87%B1%E6%92%92%E5%AF%86%E7%A2%BC" target="_blank" rel="noopener">凱薩密碼</a>(Caesar cipher，推移字母替代原文，因為知道加密方法就能解密，所以屬於對稱式加密)，這時Alice跟Bob想先傳送這個密碼，但是Mallory會攔截，然後就能解碼Alice跟Bob的信件內容，除非Alice跟Bob先私下見面制定密碼。</li>
+<li>方法一，使用<a href="https://zh.wikipedia.org/wiki/%E5%87%B1%E6%92%92%E5%AF%86%E7%A2%BC" target="_blank" rel="noopener">凱薩密碼</a>(Caesar cipher，推移字母替代原文，知道加密方法就能解密，所以屬於對稱式加密)，這時Alice跟Bob想先傳送這個密碼，但是Mallory會攔截，然後就能解碼Alice跟Bob的信件內容，除非Alice跟Bob先私下見面制定密碼。</li>
 <li>方法二，當Bob想寄信給Alice，Bob先傳一隻不帶訊息的鴿子，Alice在讓鴿子帶上沒上鎖的盒子，自己留著盒子的鑰匙，然後傳給Bob，Bob收到沒上鎖的盒子後，放入信件並鎖上，傳回給Alice，這時候如果鴿子被攔截，Mallory也無法打開，因為只有Alice有這個盒子的鑰匙，這就是所謂的公鑰與私鑰，雖然叫做公鑰，但是作用是<strong>盒子</strong>，打開盒子的叫做私鑰。</li>
 </ul>
-<p>Q: 當Bob想傳訊息給Alice，如何確定這個盒子來自Alice?<br>A: Alice在盒子上簽名。<br>Q: 這時候問題又來了，Bob怎麼認得這個簽名是Alice的，而不是Mallory偽造的?<br>A: 這時候交給公正的第三方Ted來負責簽名。</p>
-<p>Ted很有名，所以大家都認得他的簽名，而且Ted知道這個盒子是Alice請他簽名的，所以Mallory不能攔截盒子然後再請Ted簽名。</p>
-<p><em>Ted就是所謂的Certification Authorities。</em></p>
-<p>雖然Alice與Bob有了安全的方法寄信，這時候他們發現每次都要經過這麼麻煩的程序，所以他們決定在寄信前用盒子傳凱薩密碼(方法二)，這樣他們就不用私下見面制定密碼了，然後之後傳訊息都透過凱薩密碼(方法一)加解密即可。<br>這就是HTTPS運作的概念，只是跑這些流程的速度比鴿子快多了而已。</p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/02/how-https-works/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>

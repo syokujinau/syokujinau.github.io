@@ -7,18 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Matlab 常用作圖函數 - YC</title>
+<title>Matlab常用作圖函數 - YC</title>
 
 
     <meta name="description" content="Symbolic functionezplot可以直接輸入字串 1fx &#x3D; &#39;10*sin(x)&#39;;2h &#x3D; ezplot(fx);   與ezplot不同，fplot的第一個參數是匿名函式，第二個參數可指定x軸範圍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matlab 常用作圖函數">
+<meta property="og:title" content="Matlab常用作圖函數">
 <meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;07&#x2F;19&#x2F;matlab-plot-functions&#x2F;index.html">
 <meta property="og:site_name" content="YC">
 <meta property="og:description" content="Symbolic functionezplot可以直接輸入字串 1fx &#x3D; &#39;10*sin(x)&#39;;2h &#x3D; ezplot(fx);   與ezplot不同，fplot的第一個參數是匿名函式，第二個參數可指定x軸範圍">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;ZuCwVX4.png">
 <meta property="article:published_time" content="2019-07-19T03:44:07.000Z">
-<meta property="article:modified_time" content="2020-01-27T03:06:46.000Z">
+<meta property="article:modified_time" content="2020-01-27T07:10:16.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Matlab">
 <meta name="twitter:card" content="summary">
@@ -90,7 +90,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Matlab 常用作圖函數" height="28">
+                <img src="/images/logo.svg" alt="Matlab常用作圖函數" height="28">
             
             </a>
         </div>
@@ -144,7 +144,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/ZuCwVX4.png" alt="Matlab 常用作圖函數">
+            <img class="thumbnail" src="https://i.imgur.com/ZuCwVX4.png" alt="Matlab常用作圖函數">
         </span>
     </div>
     
@@ -162,7 +162,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 224 words)
+                    6 minutes read (About 881 words)
                 </span>
                 
                 
@@ -171,7 +171,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Matlab 常用作圖函數
+                Matlab常用作圖函數
             
         </h1>
         <div class="content">
@@ -192,14 +192,77 @@
 
 <p><img src="https://i.imgur.com/Qhe8B5V.png" alt></p>
 <h2 id="Function-limits"><a href="#Function-limits" class="headerlink" title="Function limits"></a>Function limits</h2><p>使用<code>limit</code>求$\lim_{x\to 5}  \frac{x^2 - 25}{x^2+x-30}$，並作圖。</p>
-<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fx <span class="hljs-built_in">=</span> (x^<span class="hljs-number">2</span> - <span class="hljs-number">25</span>) / (x^<span class="hljs-number">2</span>+x-<span class="hljs-number">30</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">fplot(fx, [-<span class="hljs-number">10</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">a <span class="hljs-built_in">=</span> <span class="hljs-number">5</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">lim5 <span class="hljs-built_in">=</span> limit(fx, x, a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">plot([<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*a, get(gca, <span class="hljs-string">'ylim'</span>), <span class="hljs-string">'r--'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">plot(get(gca, <span class="hljs-string">'xlim'</span>), [<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*lim5, <span class="hljs-string">'r--'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">title(<span class="hljs-string">'$$f(x) = \frac&#123;x^2 - 25&#125;&#123;x^2+x-30&#125;$$'</span>,<span class="hljs-string">'interpreter'</span>,<span class="hljs-string">'latex'</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x</span></pre></td></tr></table></figure>
+
+<p>用<code>syms</code>宣告<strong>symbolic variables</strong>，可視為一個placeholder，這樣就不用宣告特定x的vector，Matlab會幫我們解析表達式。</p>
+<p>若宣告為vector形式，<code>x = [-10:.01:10]</code>稱為<strong>numeric variables</strong></p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fx <span class="hljs-built_in">=</span> (x^<span class="hljs-number">2</span> - <span class="hljs-number">25</span>) / (x^<span class="hljs-number">2</span>+x-<span class="hljs-number">30</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fplot(fx, [-<span class="hljs-number">10</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">a <span class="hljs-built_in">=</span> <span class="hljs-number">5</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">lim5 <span class="hljs-built_in">=</span> limit(fx, x, a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">plot([<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*a, get(gca, <span class="hljs-string">'ylim'</span>), <span class="hljs-string">'r--'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">plot(get(gca, <span class="hljs-string">'xlim'</span>), [<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*lim5, <span class="hljs-string">'r--'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">title(<span class="hljs-string">'$$f(x) = \frac&#123;x^2 - 25&#125;&#123;x^2+x-30&#125;$$'</span>,<span class="hljs-string">'interpreter'</span>,<span class="hljs-string">'latex'</span>)</span></pre></td></tr></table></figure>
 
 <p><img src="https://i.imgur.com/jITma8a.png" alt></p>
 <p>計算$x\to -6$的左極限與右極限</p>
 <figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">limit(fx, x, -<span class="hljs-number">6</span>, <span class="hljs-string">'left'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">limit(fx, x, -<span class="hljs-number">6</span>, <span class="hljs-string">'right'</span>)</span></pre></td></tr></table></figure>
 
-<h2 id="Function-Derivatives"><a href="#Function-Derivatives" class="headerlink" title="Function Derivatives"></a>Function Derivatives</h2><p>$$f(x) = \frac{e^{sin(x)^x}}{3^x cos(x)}$$</p>
-<p>// TBD</p>
+<h2 id="Function-Derivatives"><a href="#Function-Derivatives" class="headerlink" title="Function Derivatives"></a>Function Derivatives</h2><ol>
+<li>求$f(x) = sin(x)$導數並作圖</li>
+<li>回傳$f(x)$與$\frac{df(x)}{dx}$在$x=\pi / 3$的<strong>symbolic expression</strong></li>
+</ol>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x <span class="hljs-comment">% symbolic variables</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> sin(x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df <span class="hljs-built_in">=</span> diff(f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">subplot(<span class="hljs-number">211</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">fplot(f)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">fplot(df)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">legend([<span class="hljs-string">'f(x) = '</span> char(f)], [<span class="hljs-string">'df = '</span> char(df)])</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/einqTrv.png" alt></p>
+<p><code>subs</code>: Symbolic substitution</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a <span class="hljs-built_in">=</span> pi / <span class="hljs-number">3</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">subs(f, a)   <span class="hljs-comment">% 3^(1/2)/2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">subs(df, a)  <span class="hljs-comment">% 1/2</span></span></pre></td></tr></table></figure>
+
+<p>一樣的函數，在numeric運算，注意會有取樣間隔與導數的vector長度的問題</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Ts <span class="hljs-built_in">=</span> .<span class="hljs-number">001</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">t <span class="hljs-built_in">=</span> -<span class="hljs-number">5</span>:Ts:<span class="hljs-number">5</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">y <span class="hljs-built_in">=</span> sin(t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">dy <span class="hljs-built_in">=</span> diff(y) * <span class="hljs-number">1</span>/Ts; <span class="hljs-comment">% 這裡是discrete derivatives，所以輸出的vector長度會比原本少1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">subplot(<span class="hljs-number">212</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">plot(t, y)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">plot(t(<span class="hljs-number">1</span>:end-<span class="hljs-number">1</span>), dy)  <span class="hljs-comment">% t少取一個才會跟dy長度一樣</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">legend(&#123;<span class="hljs-string">'y(t)'</span>, <span class="hljs-string">'dy'</span>&#125;)</span></pre></td></tr></table></figure>
+
+
+<hr>
+<p>接下來</p>
+<ol>
+<li><code>fplot</code>畫出以下函數與其導函數的圖形</li>
+<li><code>pretty</code>在console印出數學式</li>
+<li>縱軸範圍-300到300</li>
+</ol>
+<p>$$f(x) = \frac{e^{sin(x)^x}}{3^x cos(x)}$$</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> exp(sin(x))^x/(<span class="hljs-number">3</span>^x * cos(x));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df <span class="hljs-built_in">=</span> diff(f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">pretty(f)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/JExYWaZ.png" alt></p>
+<p>可用來對照有沒有打錯函數</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pretty(df)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/5EtGIsw.png" alt><br>嗯…雖然還是醜醜的，但是相對好閱讀</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">figure(<span class="hljs-number">8</span>), clf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fplot(f, <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">fplot(df, <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">legend(&#123;<span class="hljs-string">'f(x)'</span>, <span class="hljs-string">'df'</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">set(gca, <span class="hljs-string">'ylim'</span>, [-<span class="hljs-number">300</span> <span class="hljs-number">300</span>])</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/eN6TExS.png" alt></p>
+<h2 id="Function-integration"><a href="#Function-integration" class="headerlink" title="Function integration"></a>Function integration</h2><p>求$f(x) = x^4$ 不定積分並作圖</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> x^<span class="hljs-number">4</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">figure(<span class="hljs-number">9</span>), clf, hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">fplot(f, [-<span class="hljs-number">2</span> <span class="hljs-number">2</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">fplot(intf, [-<span class="hljs-number">2</span> <span class="hljs-number">2</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">legend([<span class="hljs-string">'f(x) = '</span> char(f)], [<span class="hljs-string">'\int f dx = '</span> char(intf) <span class="hljs-string">'+C'</span>])</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/21O7qUM.png" alt></p>
+<ol>
+<li>分別對x與y做$f(x,y) = x^2 + y^3$分部積分</li>
+<li>用<code>subs</code>代入$(x, y) = (4, 3)$求值</li>
+</ol>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fxy <span class="hljs-built_in">=</span> x^<span class="hljs-number">2</span> + y^<span class="hljs-number">3</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">int(fxy, x) <span class="hljs-comment">% x^3/3 + x*y^3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">int(fxy, y) <span class="hljs-comment">% x^2*y + y^4/4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">subs(int(fxy, x), [x y], [<span class="hljs-number">4</span> <span class="hljs-number">3</span>]) <span class="hljs-comment">% 388/3</span></span></pre></td></tr></table></figure>
+
+
+<hr>
+<p>對以下函數不定積分</p>
+<p>$$f(x)=\frac{sec(x) log(tan(x)sin(x) + sin(x)) }{e^x}$$</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> sec(x) * log(tan(x)*sin(x) + sin(x)) / exp(x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">figure(<span class="hljs-number">10</span>), clf, hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">fplot(f, [-<span class="hljs-number">20</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr></table></figure>
+
+<p>若直接用<code>int</code>求</p>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span></pre></td></tr></table></figure>
+
+<p>將會回傳int((exp(-x)<em>log(sin(x) + sin(x)</em>tan(x)))/cos(x),x)，代表這個函數沒有一個symbolic的解</p>
+<p>較好的方式是用numerical方法去近似，也就是代入一個vector的每個值到匿名函數去求解</p>
+<ol>
+<li><code>integral</code> - Numerically evaluate integral</li>
+<li>匿名函數要用element-wise運算</li>
+<li>積分後<code>real</code>取實部，用<code>plot</code>畫出</li>
+</ol>
+<figure class="highlight m hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">syms x </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">f <span class="hljs-built_in">=</span> sec(x) * log(tan(x)*sin(x) + sin(x)) / exp(x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">figure(<span class="hljs-number">10</span>), clf, hold on</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">fplot(f, [-<span class="hljs-number">20</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">% cacluate numerically</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">intvec <span class="hljs-built_in">=</span> linspace(-<span class="hljs-number">20</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">intf2 <span class="hljs-built_in">=</span> zeros(size(intvec)); <span class="hljs-comment">% initialize</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">funcf <span class="hljs-built_in">=</span> @(x) sec(x) .* log(tan(x).*sin(x) + sin(x)) ./ exp(x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">for i <span class="hljs-built_in">=</span> <span class="hljs-number">1</span>:length(intvec)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    intf2(i) <span class="hljs-built_in">=</span> integral(funcf, intvec(<span class="hljs-number">1</span>), intvec(i));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment">%   Q = INTEGRAL(FUN,A,B) approximates the integral of function FUN from A</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment">%   to B using global adaptive quadrature and default error tolerances.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">end</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">plot(intvec, real(intf2), <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/WLgP9jY.png" alt></p>
 
         </div>
         
@@ -1321,7 +1384,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Matlab 常用作圖函數" height="28">
+                    <img src="/images/logo.svg" alt="Matlab常用作圖函數" height="28">
                 
                 </a>
                 <p class="is-size-7">
