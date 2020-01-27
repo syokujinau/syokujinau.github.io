@@ -1,5 +1,5 @@
 ---
-title: Matlab常用作圖函數
+title: Matlab常用函數 - 作圖與微分積分求解
 date: 2019-07-19 11:44:07
 tags:
 - Matlab
