@@ -59,24 +59,25 @@ public:
 ```cpp
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode* itr = head;
-        ListNode* head2 = NULL;
-        while(itr) {
-            
-            insert(head2, itr->val);
-            
-            itr = itr->next;
-        }
-        
-        return head2;
-    }
     
-    void insert(ListNode* head, int val) { // add to head
+    ListNode* reverseList(ListNode* head) {
+
+        ListNode* head2 = NULL;
+
+        for(ListNode* itr = head; itr != NULL; itr = itr->next) // O(n)
+            insert(head2, itr->val); // add to head
+
+        return head2;
+        
+    }
+
+
+    void insert(ListNode*& head, int val) { // add to head
         ListNode* newNode = new ListNode(val);
         newNode->next = head;
         head = newNode;
     }
+
 };
 ```
 
