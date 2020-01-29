@@ -250,7 +250,7 @@ fplot(f, [-20 10], 'linew', 2)
 
 intf = int(f);
 
-% cacluate numerically
+% calculate numerically
 
 intvec = linspace(-20, 10, 100);
 intf2 = zeros(size(intvec)); % initialize
@@ -267,7 +267,75 @@ end
 plot(intvec, real(intf2), 'linew', 2)
 ```
 
-![](https://i.imgur.com/WLgP9jY.png)
+![](https://i.imgur.com/bC6x2u0.png)
+
+
+## Solving Differential Equations
+
+常見電路分析，電容與電感在時域是微分項，也會有初始電壓等情況(initial condition)，透過matlab可以驗證電路行為。
+
+1. 求解以下微分方程式
+    * General solution
+    * Particular solution $y(0) = \{2,1, 0.75,0.5 \}$
+2. 使用`syms`, `diff`, `dsolve`, `meshgrid`, `ezplot`, `quiver`
 
 
 
+$$\frac{dy}{dt} = e^{-t} - 2y$$
+
+
+```m 
+syms y(t)
+
+eq = diff(y) == exp(-t) - 2*y;
+```
+
+`dsolve`基本用法
+
+```m
+dsolve(eq) % exp(-t) + C1*exp(-2*t)
+
+dsolve(eq, y(0) == 2) % exp(-t) + exp(-2*t)
+```
+
+畫出背景的gradient vector
+* `meshgrid`: $2 \leq x \leq 3, -1 \leq y \leq 2$分別為30點與32點的網格
+* `quiver`: 參數為x、y座標、正規化向量、箭頭大小
+
+```m
+% slope curves
+[t1, y1] = meshgrid(linspace(-2, 3, 30), linspace(-1, 2, 32));
+f = exp(-t1) - 2*y1;  
+L = sqrt(1^2 + f.^2); 
+
+% plot
+figure(11), clf, hold on
+h = quiver(t1, y1, 1./L, f./L, .5); 
+```
+
+h是個placeholder，用來設置樣式，例如將箭頭顏色設成灰色
+
+```m
+set(h,'color', [.8 .8 .8])
+```
+![](https://i.imgur.com/yK1Ih10.png)
+
+
+
+用`ezplot`畫出不同initial value的解的曲線
+
+```m
+% initial values
+initvals = [2 1 .75 .5];
+
+% draw solution curves for the initial values
+h1 = zeros(size(initvals));
+for i = 1:length(initvals)
+    h1(i) = ezplot(dsolve(eq, y(0) == initvals(i)), [min(t1(:)) max(t1(:))]);
+end
+
+% set axis limit
+axis([min(t1(:)) max(t1(:)) min(y1(:)) max(y1(:))])
+```
+
+![](https://i.imgur.com/auNfnUK.png)
