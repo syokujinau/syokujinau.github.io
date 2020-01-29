@@ -1,6 +1,6 @@
 ---
 title: LeetCode - Generate Parentheses
-date: 2019-12-16 11:36:47
+date: 2019-10-16 11:36:47
 tags:
 - Algorithm
 - Backtracking

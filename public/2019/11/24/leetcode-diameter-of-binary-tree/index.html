@@ -7,23 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>LeetCode - Longest Palindromic Substring - YC&#39;s Blog</title>
+<title>Leetcode - Diameter of Binary Tree - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="5. Longest Palindromic Substring求最長迴文子字串 Example 1: 1Input: &quot;babad&quot;2Output: &quot;bab&quot;  Example 2: 1Input: &quot;cbbd&quot;2Output: &quot;bb&quot;">
+    <meta name="description" content="Tree資料結構的操作與postorder traversal 543. Diameter of Binary TreeGiven a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode - Longest Palindromic Substring">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;12&#x2F;23&#x2F;leetcode-longest-palindromic-substring&#x2F;index.html">
+<meta property="og:title" content="Leetcode - Diameter of Binary Tree">
+<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;11&#x2F;24&#x2F;leetcode-diameter-of-binary-tree&#x2F;index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="5. Longest Palindromic Substring求最長迴文子字串 Example 1: 1Input: &quot;babad&quot;2Output: &quot;bab&quot;  Example 2: 1Input: &quot;cbbd&quot;2Output: &quot;bb&quot;">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;L7Ap4sE.png">
-<meta property="article:published_time" content="2019-12-23T14:26:31.000Z">
-<meta property="article:modified_time" content="2020-01-24T10:35:38.000Z">
+<meta property="og:description" content="Tree資料結構的操作與postorder traversal 543. Diameter of Binary TreeGiven a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;vYQljRI.png">
+<meta property="article:published_time" content="2019-11-24T03:36:47.000Z">
+<meta property="article:modified_time" content="2020-01-29T09:18:44.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Algorithm">
-<meta property="article:tag" content="DP">
+<meta property="article:tag" content="Tree">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;L7Ap4sE.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;vYQljRI.png">
 
 
 
@@ -91,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="LeetCode - Longest Palindromic Substring" height="28">
+                <img src="/images/logo.svg" alt="Leetcode - Diameter of Binary Tree" height="28">
             
             </a>
         </div>
@@ -145,7 +145,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/L7Ap4sE.png" alt="LeetCode - Longest Palindromic Substring">
+            <img class="thumbnail" src="https://i.imgur.com/vYQljRI.png" alt="Leetcode - Diameter of Binary Tree">
         </span>
     </div>
     
@@ -153,7 +153,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-23T14:26:31.000Z">2019-12-23</time>
+                <time class="level-item has-text-grey" datetime="2019-11-24T03:36:47.000Z">2019-11-24</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
@@ -163,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 232 words)
+                    a minute read (About 213 words)
                 </span>
                 
                 
@@ -172,27 +172,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                LeetCode - Longest Palindromic Substring
+                Leetcode - Diameter of Binary Tree
             
         </h1>
         <div class="content">
-            <h2 id="5-Longest-Palindromic-Substring"><a href="#5-Longest-Palindromic-Substring" class="headerlink" title="5. Longest Palindromic Substring"></a>5. Longest Palindromic Substring</h2><p>求最長迴文子字串</p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Output: &quot;bab&quot;</span></pre></td></tr></table></figure>
+            <p>Tree資料結構的操作與postorder traversal</p>
+<h2 id="543-Diameter-of-Binary-Tree"><a href="#543-Diameter-of-Binary-Tree" class="headerlink" title="543. Diameter of Binary Tree"></a>543. Diameter of Binary Tree</h2><p>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.</p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Given a binary tree</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">          1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">         &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        2   3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       &#x2F; \     </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      4   5</span></pre></td></tr></table></figure>
 
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Input: &quot;cbbd&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Output: &quot;bb&quot;</span></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>postorder traversal會訪問所有tree node，所以一定會經過左右子樹高度最長的root(如下圖node 2)，構成題目定義的直徑，在traversal過程一定會經過此點，若有更長的直徑則更新diameter的值</p>
+<img src="https://i.imgur.com/RkN7cMD.png" width="50%">
+
 <a id="more"></a>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>初始設最大值max_len為0<br>i從0到n<br>以下兩個case的迴文子字串長度取較大的值 </p>
-<ol>
-<li>奇數長度迴文子字串以s[i]為中心擴散 (e.g. “aba”, i = 1)</li>
-<li>偶數長度迴文子字串以s[i]、s[i + 1]擴散 (e.g. “abba”, i = 1)</li>
-</ol>
-<p>若比max_len則更新，並用start紀錄該迴文子字串起始點</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">auto</span> getLength = [&amp;](<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j) &#123; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-comment">// return the length of longest palindromic substring</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-keyword">while</span>(i&gt;= <span class="hljs-number">0</span> &amp;&amp; j &lt; s.size() &amp;&amp; s[i] == s[j]) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                i--;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">                j++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-keyword">return</span> j - i - <span class="hljs-number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">int</span> max_len = <span class="hljs-number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.size(); ++i) &#123; <span class="hljs-comment">// O(n)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-keyword">int</span> cur = max(getLength(i, i), getLength(i, i + <span class="hljs-number">1</span>)); <span class="hljs-comment">// O(n)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            <span class="hljs-keyword">if</span>(cur &gt; max_len) &#123; <span class="hljs-comment">// update</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">                max_len = cur; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">                start = i - (max_len - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> s.substr(start, max_len);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
 
-<h3 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h3><p>$O(n^2)$</p>
-<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>用C++11 Lambda來簡化寫法，參考<a href="https://blog.gtwang.org/programming/lambda-expression-in-c11/" target="_blank" rel="noopener">C++11 Lambda Expression 語法教學與範例</a></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> * Definition for a binary tree node.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> * struct TreeNode &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> *     int val;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> *     TreeNode *left;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> *     TreeNode *right;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> * &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">diameterOfBinaryTree</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">int</span> diameter = <span class="hljs-number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        postorder(root, diameter);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> diameter;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">postorder</span><span class="hljs-params">(TreeNode* root, <span class="hljs-keyword">int</span>&amp; diameter)</span> </span>&#123; <span class="hljs-comment">// LRD: postorder traversal</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">int</span> lh = postorder(root-&gt;left, diameter);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">int</span> rh = postorder(root-&gt;right, diameter);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        diameter = max(diameter, lh + rh); <span class="hljs-comment">// update max </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="hljs-keyword">return</span> max(lh, rh) + <span class="hljs-number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+
+<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>$O(n)$</p>
 
         </div>
         
@@ -200,7 +196,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/DP/" rel="tag">DP</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Tree/" rel="tag">Tree</a>
                 </div>
             </div>
         </div>
@@ -218,16 +214,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/24/leetcode-diameter-of-binary-tree/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Leetcode - Diameter of Binary Tree</span>
+                <span class="level-item">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/17/leetcode-binary-tree-level-order-traversal/">
-                <span class="level-item">Leetcode - Binary Tree Level Order Traversal</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/23/leetcode-longest-palindromic-substring/">
+                <span class="level-item">LeetCode - Longest Palindromic Substring</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -243,8 +239,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2019/12/23/leetcode-longest-palindromic-substring/';
-        this.page.identifier = '2019/12/23/leetcode-longest-palindromic-substring/';
+        this.page.url = 'https://syokujinau.github.io/2019/11/24/leetcode-diameter-of-binary-tree/';
+        this.page.identifier = '2019/11/24/leetcode-diameter-of-binary-tree/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -518,7 +514,45 @@
         
         <article class="media">
             
-            <a href="/2019/12/24/leetcode-diameter-of-binary-tree/" class="media-left">
+            <a href="/2020/01/09/matlab-plot-functions/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ZuCwVX4.png" alt="Matlab常用函數 - 作圖與微分積分求解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-09T03:44:07.000Z">2020-01-09</time></div>
+                    <a href="/2020/01/09/matlab-plot-functions/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matlab常用函數 - 作圖與微分積分求解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
+                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/24/leetcode-diameter-of-binary-tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/vYQljRI.png" alt="Leetcode - Diameter of Binary Tree">
                 </p>
@@ -526,8 +560,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T03:36:47.000Z">2019-12-24</time></div>
-                    <a href="/2019/12/24/leetcode-diameter-of-binary-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Diameter of Binary Tree</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T03:36:47.000Z">2019-11-24</time></div>
+                    <a href="/2019/11/24/leetcode-diameter-of-binary-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Diameter of Binary Tree</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -537,7 +571,7 @@
         
         <article class="media">
             
-            <a href="/2019/12/23/leetcode-longest-palindromic-substring/" class="media-left">
+            <a href="/2019/11/23/leetcode-longest-palindromic-substring/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/L7Ap4sE.png" alt="LeetCode - Longest Palindromic Substring">
                 </p>
@@ -545,8 +579,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-23T14:26:31.000Z">2019-12-23</time></div>
-                    <a href="/2019/12/23/leetcode-longest-palindromic-substring/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Longest Palindromic Substring</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T14:26:31.000Z">2019-11-23</time></div>
+                    <a href="/2019/11/23/leetcode-longest-palindromic-substring/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Longest Palindromic Substring</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -556,56 +590,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/17/leetcode-binary-tree-level-order-traversal/" class="media-left">
+            <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Leetcode - Binary Tree Level Order Traversal">
+                    <img class="thumbnail" src="https://i.imgur.com/mOo5sDC.jpg" alt="BeagleBone eMMC 更新Debian至最新版本">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-17T07:01:46.000Z">2019-12-17</time></div>
-                    <a href="/2019/12/17/leetcode-binary-tree-level-order-traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Binary Tree Level Order Traversal</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-08T13:48:41.000Z">2019-11-08</time></div>
+                    <a href="/2019/11/08/update-latest-Debian-img-on-beaglebone/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeagleBone eMMC 更新Debian至最新版本</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/16/leetcode-maximum-depth-of-binary-tree/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/tzJxftO.jpg" alt="LeetCode - Maximum Depth of Binary Tree">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T04:26:31.000Z">2019-12-16</time></div>
-                    <a href="/2019/12/16/leetcode-maximum-depth-of-binary-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Maximum Depth of Binary Tree</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/16/leetcode-generate-parentheses/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/hivsaxA.png" alt="LeetCode - Generate Parentheses">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T03:36:47.000Z">2019-12-16</time></div>
-                    <a href="/2019/12/16/leetcode-generate-parentheses/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Generate Parentheses</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/Embedded-Linux/">Embedded Linux</a>
                     </p>
                 </div>
             </div>
@@ -623,12 +619,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2019/12/">
+            <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
-                    <span class="level-item">December 2019</span>
+                    <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -639,7 +635,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -650,7 +646,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -661,18 +657,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1314,7 +1299,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="LeetCode - Longest Palindromic Substring" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode - Diameter of Binary Tree" height="28">
                 
                 </a>
                 <p class="is-size-7">
