@@ -10,8 +10,7 @@ thumbnail: https://i.imgur.com/QXgmni1.png
 ---
 
 
-算是腦筋急轉吧，事實上沒有真的delete node
-據說是微軟面試題...，題目要我們在沒給Linked-list的head情況下刪除該node
+據說是微軟面試題...算是腦筋急轉吧，事實上沒有真的delete node而是直接skip該node。
 
 ## 237. Delete Node in a Linked List
 
