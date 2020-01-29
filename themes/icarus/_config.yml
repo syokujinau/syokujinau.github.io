@@ -118,13 +118,13 @@ widgets:
         # Where should the widget be placed, left or right
         position: left
         # Author name to be shown in the profile widget
-        author: YC's blog
+        author: YC's Blog
         # Title of the author to be shown in the profile widget
-        author_title: 後悔
+        author_title: Lin Yu-Chien
         # Author's current location to be shown in the profile widget
         location: Taipei, Taiwan #Earth, Solar System
         # Path or URL to the avatar to be shown in the profile widget
-        avatar: /myimages/fukurou.png
+        avatar: /myimages/yc.png
         # Email address for the Gravatar to be shown in the profile widget
         gravatar: 
         # Path or URL for the follow button

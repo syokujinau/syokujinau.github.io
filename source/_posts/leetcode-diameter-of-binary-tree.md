@@ -1,5 +1,5 @@
 ---
-title: leetcode-diameter-of-binary-tree
+title: Leetcode - Diameter of Binary Tree
 date: 2019-12-24 11:36:47
 tags:
 - Algorithm
@@ -27,7 +27,7 @@ Given a binary tree
 
 ## Solution
 
-DFS會訪問所有tree node，所以一定會經過左右子樹高度最長的root(如下圖node 2)，構成題目定義的直徑，在postorder traversal過程一定會經過此點，若有更長的直徑則更新diameter的值
+postorder traversal會訪問所有tree node，所以一定會經過左右子樹高度最長的root(如下圖node 2)，構成題目定義的直徑，在traversal過程一定會經過此點，若有更長的直徑則更新diameter的值
 
 
 <img src="https://i.imgur.com/NBSn3P5.png" width="50%" />
