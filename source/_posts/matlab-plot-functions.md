@@ -265,6 +265,7 @@ for i = 1:length(intvec)
 end
 
 plot(intvec, real(intf2), 'linew', 2)
+legend(['f(x)'], ['\int f dx'])
 ```
 
 ![](https://i.imgur.com/bC6x2u0.png)
@@ -339,3 +340,4 @@ axis([min(t1(:)) max(t1(:)) min(y1(:)) max(y1(:))])
 ```
 
 ![](https://i.imgur.com/auNfnUK.png)
+
