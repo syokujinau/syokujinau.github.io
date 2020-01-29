@@ -30,7 +30,7 @@ Given a binary tree
 postorder traversal會訪問所有tree node，所以一定會經過左右子樹高度最長的root(如下圖node 2)，構成題目定義的直徑，在traversal過程一定會經過此點，若有更長的直徑則更新diameter的值
 
 
-<img src="https://i.imgur.com/NBSn3P5.png" width="50%" />
+<img src="https://i.imgur.com/RkN7cMD.png" width="50%" />
 
 <!-- more -->
 
