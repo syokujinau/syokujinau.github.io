@@ -11,7 +11,7 @@ thumbnail: https://i.imgur.com/jhZIzAu.png
 ---
 
 
-<!-- ## LeetCode - 17. Letter Combinations of a Phone Number -->
+## [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
 
 Given a string containing digits from *2-9* inclusive, return all possible letter combinations that the number could represent.
 
@@ -33,11 +33,14 @@ Although the above answer is in lexicographical order, your answer could be in a
 
 ## Solution
 
-DFS(text, idx)
+```
+DFS(text, i)
+```
 
-按鍵對應第$idx$個字母
+$text$ := 目前字串
+$digits_i$ := 數字鍵，對應字母從key取得，例如"2"對應"abc"
 
-<img src="https://i.imgur.com/eVd46af.png" width="50%" />
+<img src="https://i.imgur.com/x3scwxE.png" />
 
 ## Code
 
@@ -50,17 +53,17 @@ public:
     string _digits;
     vector<string> key;
 
-    void dfs(string text, int idx) {
-        if(idx == n) {
+    void dfs(string text, int i) {
+        if(i == n) { // leaf 
             ans.push_back(text);
-            return;
+            return; 
         }
 
-        string letters = key[_digits[idx] - '0'];
+        string letters = key[_digits[i] - '0'];
 
-        for(int i = 0; i < letters.size(); i++) {
-            text.push_back(letters[i]);
-            dfs(text, idx + 1);
+        for(char c : letters) {
+            text.push_back(c);
+            dfs(text, i + 1);
             text.pop_back();
         }
 
