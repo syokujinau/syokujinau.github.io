@@ -139,6 +139,74 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 925 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
+            
+        </h1>
+        <div class="content">
+            <p>本篇使用Eclipse IDE(<a href="https://www.openstm32.org/System%2BWorkbench%2Bfor%2BSTM32" target="_blank" rel="noopener">openSTM32 System Workbench</a>)在STMF411RE板子上引入FreeRTOS函式庫以及設置SEGGER SystemView在Debugger視覺化執行中的Tasks</p>
+<h2 id="FreeRTOS"><a href="#FreeRTOS" class="headerlink" title="FreeRTOS"></a>FreeRTOS</h2><p><img src="https://www.freertos.org/wp-content/uploads/2018/07/logo-1.jpg" alt></p>
+<p>到<a href="https://www.freertos.org/" target="_blank" rel="noopener">FreeRTOS</a>下載kernel</p>
+<ol>
+<li>Create <code>Config</code> and <code>Third-Party</code></li>
+</ol>
+<ol start="2">
+<li>FreeRTOS可以砍Source&gt;protable中其他部需要的，如下圖</li>
+</ol>
+<p><a href="https://tinyurl.com/y3d4zdhy" target="_blank" rel="noopener"><img src="https://i.imgur.com/DDdDRuJ.png" alt></a></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/11/24/leetcode-diameter-of-binary-tree/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/vYQljRI.png" alt="Leetcode - Diameter of Binary Tree">
         </a>
@@ -369,68 +437,6 @@
             <div class="level-start">
                 <div class="level-item">
                 <a class="button is-size-7 is-light" href="/2019/11/01/leetcode-maximum-depth-of-binary-tree/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/10/17/leetcode-binary-tree-level-order-traversal/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/cfyFNNu.png" alt="Leetcode - Binary Tree Level Order Traversal">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-17T07:01:46.000Z">2019-10-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 245 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/10/17/leetcode-binary-tree-level-order-traversal/">Leetcode - Binary Tree Level Order Traversal</a>
-            
-        </h1>
-        <div class="content">
-            <p>Tree traversal基本題</p>
-<h2 id="102-Binary-Tree-Level-Order-Traversal"><a href="#102-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. Binary Tree Level Order Traversal"></a>102. Binary Tree Level Order Traversal</h2><p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">9  20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;  \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> 15   7</span></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/17/leetcode-binary-tree-level-order-traversal/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -767,6 +773,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/jhZIzAu.png" alt="LeetCode - Letter Combinations of a Phone Number">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T03:16:47.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Letter Combinations of a Phone Number</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/leetcode-delete-node-in-a-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/QXgmni1.png" alt="LeetCode - Delete Node in a Linked List">
@@ -803,25 +828,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
-                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -850,7 +856,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -872,7 +878,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1611,6 +1617,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/jhZIzAu.png" alt="LeetCode - Letter Combinations of a Phone Number">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T03:16:47.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Letter Combinations of a Phone Number</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/leetcode-delete-node-in-a-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/QXgmni1.png" alt="LeetCode - Delete Node in a Linked List">
@@ -1647,25 +1672,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time></div>
-                    <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1694,7 +1700,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1716,7 +1722,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
