@@ -11,7 +11,7 @@ thumbnail: https://i.imgur.com/jhZIzAu.png
 ---
 
 
-## LeetCode - 17. Letter Combinations of a Phone Number
+<!-- ## LeetCode - 17. Letter Combinations of a Phone Number -->
 
 Given a string containing digits from *2-9* inclusive, return all possible letter combinations that the number could represent.
 
@@ -37,7 +37,7 @@ DFS(text, idx)
 
 按鍵對應第$idx$個字母
 
-<img src="hhttps://i.imgur.com/eVd46af.png" width="50%" />
+<img src="https://i.imgur.com/eVd46af.png" width="50%" />
 
 ## Code
 
