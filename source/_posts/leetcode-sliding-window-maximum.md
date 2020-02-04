@@ -46,7 +46,7 @@ public:
 
 ### Complexity
 
-Time: $O(n*k)$
+Time: $O(nk)$
 Space: $O(1)$
 
 
@@ -116,21 +116,21 @@ int MonotonicQueue::max() const {
 
 class Solution {
 public:
-	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-		vector<int> ans;
-		
-		MonotonicQueue mq;
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> ans;
 
-		for(int i = 0; i < nums.size(); i++) {
-			mq.push(nums[i]);
-			if(i - k + 1 >= 0) { // window start index, record answer
-				ans.push_back(mq.max());
-				if(nums[i - k + 1] == mq.max()) mq.pop(); // next window doesn't include first element of current window
-			}
-		}
+        MonotonicQueue mq;
 
-		return ans;
-	}
+        for(int i = 0; i < nums.size(); i++) {
+            mq.push(nums[i]);
+            if(i - k + 1 >= 0) { // window start index, record answer
+                ans.push_back(mq.max());
+                if(nums[i - k + 1] == mq.max()) mq.pop(); // next window doesn't include first element of current window
+            }
+        }
+
+        return ans;
+    }
 };
 ```
 ### Complexity

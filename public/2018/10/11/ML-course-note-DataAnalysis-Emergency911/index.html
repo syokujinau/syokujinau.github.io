@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html  lang="en">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 4.1.0" />
+<meta name="generator" content="Hexo 4.2.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <title>Emergency - 911 Calls 資料分析 - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="Dataset : Kaggle - Emergency - 911 Calls &#x2F; Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1import numpy as np2import pandas as pd3import matplotlib.pyplot as plt4im">
+    <meta name="description" content="Dataset : Kaggle - Emergency - 911 Calls &#x2F; Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1234import numpy as npimport pandas as pdimport matplotlib.pyplot as pltim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Emergency - 911 Calls 資料分析">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2018&#x2F;10&#x2F;11&#x2F;ML-course-note-DataAnalysis-Emergency911&#x2F;index.html">
+<meta property="og:url" content="https://syokujinau.github.io/2018/10/11/ML-course-note-DataAnalysis-Emergency911/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="Dataset : Kaggle - Emergency - 911 Calls &#x2F; Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1import numpy as np2import pandas as pd3import matplotlib.pyplot as plt4im">
-<meta property="og:image" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:description" content="Dataset : Kaggle - Emergency - 911 Calls &#x2F; Montgomery County, PA  使用Python套件 數據分析 NumPy Pandas   資料視覺化 matplotlib Seaborn    1234import numpy as npimport pandas as pdimport matplotlib.pyplot as pltim">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://syokujinau.github.io/images/og_image.png">
 <meta property="article:published_time" content="2018-10-11T09:12:32.000Z">
-<meta property="article:modified_time" content="2020-01-16T03:20:14.000Z">
+<meta property="article:modified_time" content="2020-02-04T10:06:50.661Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Scikit-learn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;images&#x2F;og_image.png">
+<meta name="twitter:image" content="https://syokujinau.github.io/images/og_image.png">
 
 
 
@@ -83,10 +84,10 @@
     
 
 
-<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="is-2-column">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
@@ -170,7 +171,7 @@
             
         </h1>
         <div class="content">
-            <blockquote>
+            <html><head></head><body><blockquote>
 <p>Dataset : <a href="https://www.kaggle.com/mchirico/montcoalert" target="_blank" rel="noopener">Kaggle - Emergency - 911 Calls / Montgomery County, PA</a></p>
 </blockquote>
 <h2 id="使用Python套件"><a href="#使用Python套件" class="headerlink" title="使用Python套件"></a>使用Python套件</h2><ul>
@@ -185,53 +186,53 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
 <a id="more"></a>
-<h2 id="讀取dataset"><a href="#讀取dataset" class="headerlink" title="讀取dataset"></a>讀取dataset</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'911.csv'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df.info()</span></pre></td></tr></table></figure>
+<h2 id="讀取dataset"><a href="#讀取dataset" class="headerlink" title="讀取dataset"></a>讀取dataset</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="hljs-string">'911.csv'</span>)</span><br><span class="line">df.info()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.imgur.com/fQKB5ib.png" alt></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df.head()</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.imgur.com/ceW88aL.png" alt></p>
-<h2 id="撥打911最多的5個郵遞區號"><a href="#撥打911最多的5個郵遞區號" class="headerlink" title="撥打911最多的5個郵遞區號"></a>撥打911最多的5個郵遞區號</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'zip'</span>].value_counts().head()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 19401.0    6979</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 19464.0    6643</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 19403.0    4854</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 19446.0    4748</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 19406.0    3174</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Name: zip, dtype: int64</span></span></pre></td></tr></table></figure>
+<h2 id="撥打911最多的5個郵遞區號"><a href="#撥打911最多的5個郵遞區號" class="headerlink" title="撥打911最多的5個郵遞區號"></a>撥打911最多的5個郵遞區號</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'zip'</span>].value_counts().head()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment"># 19401.0    6979</span></span><br><span class="line"><span class="hljs-comment"># 19464.0    6643</span></span><br><span class="line"><span class="hljs-comment"># 19403.0    4854</span></span><br><span class="line"><span class="hljs-comment"># 19446.0    4748</span></span><br><span class="line"><span class="hljs-comment"># 19406.0    3174</span></span><br><span class="line"><span class="hljs-comment"># Name: zip, dtype: int64</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="撥打911最多的5個鄉鎮"><a href="#撥打911最多的5個鄉鎮" class="headerlink" title="撥打911最多的5個鄉鎮"></a>撥打911最多的5個鄉鎮</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'twp'</span>].value_counts().head()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># LOWER MERION    8443</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># ABINGTON        5977</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># NORRISTOWN      5890</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># UPPER MERION    5227</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># CHELTENHAM      4575</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Name: twp, dtype: int64</span></span></pre></td></tr></table></figure>
+<h2 id="撥打911最多的5個鄉鎮"><a href="#撥打911最多的5個鄉鎮" class="headerlink" title="撥打911最多的5個鄉鎮"></a>撥打911最多的5個鄉鎮</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'twp'</span>].value_counts().head()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># LOWER MERION    8443</span></span><br><span class="line"><span class="hljs-comment"># ABINGTON        5977</span></span><br><span class="line"><span class="hljs-comment"># NORRISTOWN      5890</span></span><br><span class="line"><span class="hljs-comment"># UPPER MERION    5227</span></span><br><span class="line"><span class="hljs-comment"># CHELTENHAM      4575</span></span><br><span class="line"><span class="hljs-comment"># Name: twp, dtype: int64</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="title欄有幾筆唯一的資料"><a href="#title欄有幾筆唯一的資料" class="headerlink" title="title欄有幾筆唯一的資料"></a>title欄有幾筆唯一的資料</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># len(df['title'].unique()) </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'title'</span>].nunique()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 110</span></span></pre></td></tr></table></figure>
+<h2 id="title欄有幾筆唯一的資料"><a href="#title欄有幾筆唯一的資料" class="headerlink" title="title欄有幾筆唯一的資料"></a>title欄有幾筆唯一的資料</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># len(df['title'].unique()) </span></span><br><span class="line">df[<span class="hljs-string">'title'</span>].nunique()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 110</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="分析title欄的類別，新增Reason欄位"><a href="#分析title欄的類別，新增Reason欄位" class="headerlink" title="分析title欄的類別，新增Reason欄位"></a>分析title欄的類別，新增Reason欄位</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#先取出類別</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">x = df[<span class="hljs-string">'title'</span>].iloc[<span class="hljs-number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">x.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>] <span class="hljs-comment"># 'EMS'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 新增Reasons欄位</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Reason'</span>] = df[<span class="hljs-string">'title'</span>].apply(<span class="hljs-keyword">lambda</span> title: title.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">df</span></pre></td></tr></table></figure>
+<h2 id="分析title欄的類別，新增Reason欄位"><a href="#分析title欄的類別，新增Reason欄位" class="headerlink" title="分析title欄的類別，新增Reason欄位"></a>分析title欄的類別，新增Reason欄位</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#先取出類別</span></span><br><span class="line">x = df[<span class="hljs-string">'title'</span>].iloc[<span class="hljs-number">0</span>]</span><br><span class="line">x.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>] <span class="hljs-comment"># 'EMS'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 新增Reasons欄位</span></span><br><span class="line">df[<span class="hljs-string">'Reason'</span>] = df[<span class="hljs-string">'title'</span>].apply(<span class="hljs-keyword">lambda</span> title: title.split(<span class="hljs-string">':'</span>)[<span class="hljs-number">0</span>])</span><br><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.imgur.com/IXvkZaS.png" alt></p>
-<h2 id="各種Reason案件數量"><a href="#各種Reason案件數量" class="headerlink" title="各種Reason案件數量"></a>各種Reason案件數量</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Reason'</span>].value_counts()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># EMS        48877</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Traffic    35695</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Fire       14920</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Name: Reason, dtype: int64</span></span></pre></td></tr></table></figure>
+<h2 id="各種Reason案件數量"><a href="#各種Reason案件數量" class="headerlink" title="各種Reason案件數量"></a>各種Reason案件數量</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Reason'</span>].value_counts()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># EMS        48877</span></span><br><span class="line"><span class="hljs-comment"># Traffic    35695</span></span><br><span class="line"><span class="hljs-comment"># Fire       14920</span></span><br><span class="line"><span class="hljs-comment"># Name: Reason, dtype: int64</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>使用Seaborn產生圖表</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Reason'</span>, data = df, palette = <span class="hljs-string">'viridis'</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Reason'</span>, data = df, palette = <span class="hljs-string">'viridis'</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/ZD3TXUI.png" alt></p>
 <h2 id="分析timeStamp，新增Hour、Month、Day-of-Week欄位"><a href="#分析timeStamp，新增Hour、Month、Day-of-Week欄位" class="headerlink" title="分析timeStamp，新增Hour、Month、Day of Week欄位"></a>分析timeStamp，新增Hour、Month、Day of Week欄位</h2><blockquote>
 <p>使用pandas的to_datetime轉成Date Time物件</p>
 </blockquote>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># str</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'timeStamp'</span>] = pd.to_datetime(df[<span class="hljs-string">'timeStamp'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># pandas._libs.tslibs.timestamps.Timestamp</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">time = df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">time.hour <span class="hljs-comment"># 取出hour值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 新增欄位</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Hour'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.hour)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Month'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.month)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.dayofweek)</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># str</span></span><br><span class="line"></span><br><span class="line">df[<span class="hljs-string">'timeStamp'</span>] = pd.to_datetime(df[<span class="hljs-string">'timeStamp'</span>])</span><br><span class="line">type(df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]) <span class="hljs-comment"># pandas._libs.tslibs.timestamps.Timestamp</span></span><br><span class="line"></span><br><span class="line">time = df[<span class="hljs-string">'timeStamp'</span>].iloc[<span class="hljs-number">0</span>]</span><br><span class="line">time.hour <span class="hljs-comment"># 取出hour值</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 新增欄位</span></span><br><span class="line">df[<span class="hljs-string">'Hour'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.hour)</span><br><span class="line">df[<span class="hljs-string">'Month'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.month)</span><br><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'timeStamp'</span>].apply(<span class="hljs-keyword">lambda</span> time: time.dayofweek)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>重新mapping星期幾的欄位</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dmap = &#123;<span class="hljs-number">0</span>:<span class="hljs-string">'Mon'</span>,<span class="hljs-number">1</span>:<span class="hljs-string">'Tue'</span>,<span class="hljs-number">2</span>:<span class="hljs-string">'Wed'</span>,<span class="hljs-number">3</span>:<span class="hljs-string">'Thu'</span>,<span class="hljs-number">4</span>:<span class="hljs-string">'Fri'</span>,<span class="hljs-number">5</span>:<span class="hljs-string">'Sat'</span>,<span class="hljs-number">6</span>:<span class="hljs-string">'Sun'</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'Day of Week'</span>].map(dmap)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">df</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dmap = {<span class="hljs-number">0</span>:<span class="hljs-string">'Mon'</span>,<span class="hljs-number">1</span>:<span class="hljs-string">'Tue'</span>,<span class="hljs-number">2</span>:<span class="hljs-string">'Wed'</span>,<span class="hljs-number">3</span>:<span class="hljs-string">'Thu'</span>,<span class="hljs-number">4</span>:<span class="hljs-string">'Fri'</span>,<span class="hljs-number">5</span>:<span class="hljs-string">'Sat'</span>,<span class="hljs-number">6</span>:<span class="hljs-string">'Sun'</span>}</span><br><span class="line">df[<span class="hljs-string">'Day of Week'</span>] = df[<span class="hljs-string">'Day of Week'</span>].map(dmap)</span><br><span class="line">df</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/7RFPfp2.png" alt></p>
 <p>用Seaborn產生橫軸為<strong>Day of Week</strong>計量圖表</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Day of Week'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)<span class="hljs-comment"># 把legend放外面避免重疊</span></span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Day of Week'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span><br><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)<span class="hljs-comment"># 把legend放外面避免重疊</span></span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.imgur.com/eKNApQ6.png" alt></p>
 <p><strong>Month</strong>為橫軸</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Month'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="hljs-string">'Month'</span>, data = df, hue = <span class="hljs-string">'Reason'</span>, palette = <span class="hljs-string">'viridis'</span>) </span><br><span class="line">plt.legend(bbox_to_anchor= (<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc = <span class="hljs-number">2</span>, borderaxespad = <span class="hljs-number">0.</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/PZ9rkgR.png" alt></p>
 <h2 id="Day-of-Week對Hour的Heat-map"><a href="#Day-of-Week對Hour的Heat-map" class="headerlink" title="Day of Week對Hour的Heat map"></a>Day of Week對Hour的Heat map</h2><blockquote>
 <p>需使用<strong>groupby</strong>與<strong>unstack</strong>重構dataFrame</p>
 </blockquote>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">dayHour = df.groupby(by = [<span class="hljs-string">'Day of Week'</span>, <span class="hljs-string">'Hour'</span>]).count()[<span class="hljs-string">'Reason'</span>].unstack()</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dayHour = df.groupby(by = [<span class="hljs-string">'Day of Week'</span>, <span class="hljs-string">'Hour'</span>]).count()[<span class="hljs-string">'Reason'</span>].unstack()</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/tS1xDVb.png" alt></p>
 <p>用新的dataFrame產生Heat map</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">12</span>,<span class="hljs-number">6</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sns.heatmap(dayHour, cmap = <span class="hljs-string">'viridis'</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="hljs-number">12</span>,<span class="hljs-number">6</span>))</span><br><span class="line">sns.heatmap(dayHour, cmap = <span class="hljs-string">'viridis'</span>)</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/pfpk1Q2.png" alt></p>
-
+</body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -343,7 +344,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            47
+                            48
                         </p>
                     </a>
                 </div>
@@ -464,7 +465,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">16</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -472,7 +473,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">10</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -541,7 +542,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 14px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14px;">DFS</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 14px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 12px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 14px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14px;">DFS</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 16px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -594,6 +595,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/20/leetocde-Convert-Sorted-Array-to-Binary-Search-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/UfACFnW.png" alt="Leetcode - Convert Sorted Array to Binary Search Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-20T10:23:31.000Z">2019-12-20</time></div>
+                    <a href="/2019/12/20/leetocde-Convert-Sorted-Array-to-Binary-Search-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Convert Sorted Array to Binary Search Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/jhZIzAu.png" alt="LeetCode - Letter Combinations of a Phone Number">
@@ -630,25 +650,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/01/leetCode-minimum-insertion-steps-to-make-a-string-palindrome/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/KovlkXs.png" alt="LeetCode - Minimum Insertion Steps to Make a String Palindrome">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T05:26:31.000Z">2019-12-01</time></div>
-                    <a href="/2019/12/01/leetCode-minimum-insertion-steps-to-make-a-string-palindrome/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Minimum Insertion Steps to Make a String Palindrome</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -677,7 +678,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -873,7 +874,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">15</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -894,7 +895,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/BFS/">
                         <span class="tag">BFS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1314,7 +1315,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1566,7 +1567,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="/js/insight.js" defer></script>
 <link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>

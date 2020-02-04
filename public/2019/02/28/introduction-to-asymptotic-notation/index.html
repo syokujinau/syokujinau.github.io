@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html  lang="en">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 4.1.0" />
+<meta name="generator" content="Hexo 4.2.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -13,17 +13,18 @@
     <meta name="description" content="Big-O: $O$ $$ O(g(n)) &#x3D; \left \{ f(n) \space | \space \exists c, n_0 &gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$       Omega: $\Omega$ $$ \Omega (g(n)) &#x3D; \l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Asymptotic Notation and Analysis of Algorithms">
-<meta property="og:url" content="https:&#x2F;&#x2F;syokujinau.github.io&#x2F;2019&#x2F;02&#x2F;28&#x2F;introduction-to-asymptotic-notation&#x2F;index.html">
+<meta property="og:url" content="https://syokujinau.github.io/2019/02/28/introduction-to-asymptotic-notation/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
 <meta property="og:description" content="Big-O: $O$ $$ O(g(n)) &#x3D; \left \{ f(n) \space | \space \exists c, n_0 &gt; 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \} $$       Omega: $\Omega$ $$ \Omega (g(n)) &#x3D; \l">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;K6F6Ojx.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/K6F6Ojx.jpg">
 <meta property="article:published_time" content="2019-02-28T04:05:54.000Z">
-<meta property="article:modified_time" content="2020-01-16T03:20:14.000Z">
+<meta property="article:modified_time" content="2020-02-04T10:06:50.665Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Time complexity">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;K6F6Ojx.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/K6F6Ojx.jpg">
 
 
 
@@ -83,10 +84,10 @@
     
 
 
-<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="is-2-column">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-main">
+    <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
@@ -176,7 +177,7 @@
             
         </h1>
         <div class="content">
-            <h2 id="Big-O-O"><a href="#Big-O-O" class="headerlink" title="Big-O: $O$"></a>Big-O: $O$</h2>
+            <html><head></head><body><h2 id="Big-O-O"><a href="#Big-O-O" class="headerlink" title="Big-O: $O$"></a>Big-O: $O$</h2>
 $$
 O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
 $$
@@ -226,19 +227,19 @@ $$
 <h3 id="Prove-that-f-n-in-O-g-n-space-g-n-in-O-h-n-Rightarrow-f-n-in-O-h-n"><a href="#Prove-that-f-n-in-O-g-n-space-g-n-in-O-h-n-Rightarrow-f-n-in-O-h-n" class="headerlink" title="Prove that $f(n) \in O(g(n)), \space g(n) \in O(h(n)) \Rightarrow f(n) \in O(h(n))$"></a>Prove that $f(n) \in O(g(n)), \space g(n) \in O(h(n)) \Rightarrow f(n) \in O(h(n))$</h3><p>$\because f(n) \in O(g(n)) \therefore \exists c_1, n_1, s.t. f(n) \leq c_1 g(n), \space \forall n \geq n_1$</p>
 <p>$\because g(n) \in O(h(n)) \therefore \exists c_2, n_2, s.t. g(n) \leq c_2 h(n), \space \forall n \geq n_2$</p>
 <p>where $n \geq max(n_1, n_2)$, let $max(n_1, n_2) = n_0$</p>
-<p>$f(n) \leq c_1 g(n) \leq c_1 \cdot c_2 h(n)$, let $c_1 \cdot c_2 = c &gt; 0$</p>
+<p>$f(n) \leq c_1 g(n) \leq c_1 \cdot c_2 h(n)$, let $c_1 \cdot c_2 = c > 0$</p>
 <p>$\Rightarrow f(n) \leq c \cdot h(n) \space \forall n \geq n_0$</p>
 <p>$\therefore f(n) \in O(h(n))$</p>
 <h3 id="Prove-that-f-n-in-o-g-n-g-n-in-o-h-n-Rightarrow-f-n-in-o-h-n"><a href="#Prove-that-f-n-in-o-g-n-g-n-in-o-h-n-Rightarrow-f-n-in-o-h-n" class="headerlink" title="Prove that $f(n) \in o(g(n)), g(n) \in o(h(n)) \Rightarrow f(n) \in o(h(n))$"></a>Prove that $f(n) \in o(g(n)), g(n) \in o(h(n)) \Rightarrow f(n) \in o(h(n))$</h3><blockquote>
 <p>需先定出$c_1, c_2$否則$n_1, n_2$會隨$c_1, c_2$變化，所以不能用$Big-O$的方法證明</p>
 </blockquote>
-<p>Want to prove: $f(n) \in o(h(n))$<br>Need: $\forall c &gt;0$, let $c_1 = 2, c_2 = \frac{C}{2}$ (只要$c_1 \times c_2 = c$即可)</p>
-<p>$f(n) \in o(g(n)) \Rightarrow \exists n_1 &gt; 0, \space s.t. \space f(n) \leq c_1 g(n), \space \forall n \geq n_1$ </p>
+<p>Want to prove: $f(n) \in o(h(n))$<br>Need: $\forall c >0$, let $c_1 = 2, c_2 = \frac{C}{2}$ (只要$c_1 \times c_2 = c$即可)</p>
+<p>$f(n) \in o(g(n)) \Rightarrow \exists n_1 > 0, \space s.t. \space f(n) \leq c_1 g(n), \space \forall n \geq n_1$ </p>
 <p><strong>其中$n_1$是$c_1$的函數 $\Rightarrow n_1(c_1)$，這也是需要固定$c_1、c_2$的原因</strong></p>
-<p>$g(n) \in o(h(n)) \Rightarrow \exists n_2 &gt; 0, \space s.t. \space g(n) \leq c_2 h(n), \space \forall n \geq n_2$ </p>
+<p>$g(n) \in o(h(n)) \Rightarrow \exists n_2 > 0, \space s.t. \space g(n) \leq c_2 h(n), \space \forall n \geq n_2$ </p>
 <p>When $n \geq max(n_1, n_2), \space f(n) \leq c_1 \cdot g(n) \leq c_1 \cdot c_2 h(n)$</p>
-<p>let $c_1 \cdot c_2 = c &gt; 0$</p>
-<p>$\exists n_0 &gt; 0, \space s.t. f(n) \leq c \cdot h(n), \space \forall n \leq n_0$</p>
+<p>let $c_1 \cdot c_2 = c > 0$</p>
+<p>$\exists n_0 > 0, \space s.t. f(n) \leq c \cdot h(n), \space \forall n \leq n_0$</p>
 <p>$\Rightarrow f(n) \in o(h(n))$</p>
 <h2 id="Reflexivity"><a href="#Reflexivity" class="headerlink" title="Reflexivity"></a>Reflexivity</h2><p>$f(n) \in \Theta (f(n))$</p>
 <h2 id="Symmetry"><a href="#Symmetry" class="headerlink" title="Symmetry"></a>Symmetry</h2><p>$f(n) \in \Theta (g(n)) \space iff \space g(n) \in \Theta (f(n))$</p>
@@ -246,7 +247,7 @@ $$
 <p>$f(n) \in o(g(n)) \space iff \space g(n) \in \omega (f(n))$</p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="1-There-exists-two-functions-f-n-、g-n-space-s-t-f-n-notin-O-g-n-and-g-n-notin-O-f-n"><a href="#1-There-exists-two-functions-f-n-、g-n-space-s-t-f-n-notin-O-g-n-and-g-n-notin-O-f-n" class="headerlink" title="1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$"></a>1. There exists two functions $f(n)、g(n), \space s.t. f(n) \notin O(g(n))$ and $g(n) \notin O(f(n))$</h3><p>example:</p>
 <p>$f(n) = n$</p>
-<p>$\space g(n) = \begin{cases} &amp; 1  \text{ , if n is even} \ &amp; n^2 \text{ , if  n is odd } \end{cases}$</p>
+<p>$\space g(n) = \begin{cases} & 1  \text{ , if n is even} \ & n^2 \text{ , if  n is odd } \end{cases}$</p>
 <img alt src="https://i.imgur.com/gJtn9cr.png" width="50%">
 
 
@@ -259,9 +260,9 @@ $$
 <h3 id="3-If-g-n-in-O-f-n-and-g-n-in-omega-h-n-then-f-n-in-omega-h-n"><a href="#3-If-g-n-in-O-f-n-and-g-n-in-omega-h-n-then-f-n-in-omega-h-n" class="headerlink" title="3. If $g(n) \in O(f(n))$ and $g(n) \in \omega (h(n))$ then $f(n) \in \omega (h(n))$"></a>3. If $g(n) \in O(f(n))$ and $g(n) \in \omega (h(n))$ then $f(n) \in \omega (h(n))$</h3><p>$\because g(n) \in O(f(n))$</p>
 <p>$\therefore g(n) \leq c_{1} \cdot f(n) \space \space \forall n \geq n_{0}$</p>
 <p>$\because g(n) \in \omega (h(n))$</p>
-<p>$\therefore g(n) &gt; c_{2} \cdot h(n) \space \space \forall n \geq n_{0}$</p>
-<p>$c_{2} \cdot h(n) &lt; g(n) \leq c_{1} \cdot f(n)$</p>
-<p>$\Rightarrow f(n) &gt; c_{3} \cdot h(n) \space \space \forall n \geq n_{0}$ where $c_{3}$ and $n_{0}$ are positive constants</p>
+<p>$\therefore g(n) > c_{2} \cdot h(n) \space \space \forall n \geq n_{0}$</p>
+<p>$c_{2} \cdot h(n) < g(n) \leq c_{1} \cdot f(n)$</p>
+<p>$\Rightarrow f(n) > c_{3} \cdot h(n) \space \space \forall n \geq n_{0}$ where $c_{3}$ and $n_{0}$ are positive constants</p>
 <p>$\Rightarrow f(n) \in \omega (h(n))$ </p>
 <h1 id="Recurrence-Relations"><a href="#Recurrence-Relations" class="headerlink" title="Recurrence Relations"></a>Recurrence Relations</h1><h2 id="Substitution-Method"><a href="#Substitution-Method" class="headerlink" title="Substitution Method"></a>Substitution Method</h2><ol>
 <li><p>Guess: $T(k) \leq c \cdot k^4, \space \forall k$, for some const. $c$</p>
@@ -270,7 +271,7 @@ $$
 <ul>
 <li><p>Base case: $k = 1$, need $T(1) \leq c \cdot 1^{4} \Rightarrow c \geq 1$</p>
 </li>
-<li><p>Assume true for $k &lt; n$, when $k = n$, $T(n) = 4T( \frac{n}{2} ) + n \leq 4 \left [  c \cdot   \left ( \frac{n}{2}\right )^{4} \right ] + n = c \cdot n^{4} + (- \frac{3}{4} c n^{4} + n) \leq c \cdot n^{4}$成立<br>若$(- \frac{3}{4} c n^{4} + n) \leq 0 \Rightarrow c \geq \frac{4}{3}$</p>
+<li><p>Assume true for $k < n$, when $k = n$, $T(n) = 4T( \frac{n}{2} ) + n \leq 4 \left [  c \cdot   \left ( \frac{n}{2}\right )^{4} \right ] + n = c \cdot n^{4} + (- \frac{3}{4} c n^{4} + n) \leq c \cdot n^{4}$成立<br>若$(- \frac{3}{4} c n^{4} + n) \leq 0 \Rightarrow c \geq \frac{4}{3}$</p>
 <p>$\Rightarrow T(k) \leq c \cdot k^{4} \space \forall c \geq \frac{4}{3}$</p>
 <p>$\Rightarrow T(k) = O(k^{4})$</p>
 </li>
@@ -281,7 +282,7 @@ $$
 <li>Guess: $T(k) \leq c \cdot k^2, \space \forall k$, for some const. $c$</li>
 <li>Verify:<ul>
 <li>Base case: $k = 1$, need $T(1) \leq c \cdot 1^2 \Rightarrow c \geq 1$</li>
-<li>Assume true for $k &lt; n$, when $k = n$, $T(n) = 4T( \frac{n}{2} ) + n \leq \left [  c \cdot   \left ( \frac{n}{2} \right )^{2}  \right ] + n = cn^{2} + n \leq c \cdot n^2$,必不成立，所以修正猜測</li>
+<li>Assume true for $k < n$, when $k = n$, $T(n) = 4T( \frac{n}{2} ) + n \leq \left [  c \cdot   \left ( \frac{n}{2} \right )^{2}  \right ] + n = cn^{2} + n \leq c \cdot n^2$,必不成立，所以修正猜測</li>
 </ul>
 </li>
 </ol>
@@ -292,7 +293,7 @@ $$
 <ul>
 <li><p>Base case: $k = 1, \space T(1) \leq c_1 \cdot 1^{2} + c_2 \cdot 1$<br>$\Rightarrow need \space c_1 + c_2 \geq 1$</p>
 </li>
-<li><p>Assume true for $k &lt; n$<br>when $k = n, \space T(n) = 4T(\frac{n}{2}) + n \leq \left [  c_1 \left (  \frac{n}{2} \right )^{2} + c_2 \left ( \frac{n}{2} \right ) \right ] + n = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) n \leq c_1 n^{2} + c_2 n$</p>
+<li><p>Assume true for $k < n$<br>when $k = n, \space T(n) = 4T(\frac{n}{2}) + n \leq \left [  c_1 \left (  \frac{n}{2} \right )^{2} + c_2 \left ( \frac{n}{2} \right ) \right ] + n = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) = c_1 n^{2} + c_2 n + \left ( 1 + c_2 \right ) n \leq c_1 n^{2} + c_2 n$</p>
 <p>$\Rightarrow 1 + c_2 \leq 0 \Rightarrow c_2 \leq -1$</p>
 <p>for some const. $c_1 = 2, c_2 = -1$</p>
 <p>$T(n) \leq 2n^{2} - n \in O(n)$</p>
@@ -335,18 +336,18 @@ $$
 <p>$$<br>T(n) = aT(\frac{n}{b}) + f(n)<br>$$</p>
 <p>$$<br>a \geq 1, b \geq 1, f(n) \text{ is asymptotically positive}, \forall n \text{ sufficiently large}<br>$$</p>
 <ul>
-<li><strong>case 1</strong>: $f(n) = O(n^{log_{b}a} \cdot n^{-\varepsilon })$ where $\varepsilon &gt; 0$ $\Rightarrow T(n) = \Theta (n^{log_{b}a})$</li>
+<li><strong>case 1</strong>: $f(n) = O(n^{log_{b}a} \cdot n^{-\varepsilon })$ where $\varepsilon > 0$ $\Rightarrow T(n) = \Theta (n^{log_{b}a})$</li>
 <li><strong>case 2</strong>: $f(n) = \Theta(n^{log_{b}a}  \cdot log^{k}n)$ where $k \geq 0 \Rightarrow T(n) = \Theta (f(n)log_{2}n)$</li>
-<li><strong>case 3</strong>: $f(n) = \Omega (n^{log_{b}a} \cdot n^{\varepsilon})$ where $\varepsilon &gt; 0$ and $af(\frac{n}{b}) \leq cf(n)$, for some $c &lt; 1 \space \forall n \Rightarrow T(n) = \Theta (f(n))$</li>
+<li><strong>case 3</strong>: $f(n) = \Omega (n^{log_{b}a} \cdot n^{\varepsilon})$ where $\varepsilon > 0$ and $af(\frac{n}{b}) \leq cf(n)$, for some $c < 1 \space \forall n \Rightarrow T(n) = \Theta (f(n))$</li>
 </ul>
 <h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><h4 id="1-T-n-4T-frac-n-2-n"><a href="#1-T-n-4T-frac-n-2-n" class="headerlink" title="1. $T(n) = 4T(\frac{n}{2}) + n$"></a>1. $T(n) = 4T(\frac{n}{2}) + n$</h4><p>$a=4, b=2$</p>
-<p>$f(n) = n = O(n^{2} \cdot n^{- \varepsilon})$ where $0 &lt; \varepsilon &lt; 1$</p>
+<p>$f(n) = n = O(n^{2} \cdot n^{- \varepsilon})$ where $0 < \varepsilon < 1$</p>
 <p>Apply master theorem <strong>case 1</strong></p>
 <p>$\Rightarrow T(n) = \Theta (n^{2})$</p>
 <p>Q: 為什麼master theorem不需要初始條件? $T(1) = 1$, $T(1) = 10$, $T(1) = 100$有什麼差別?<br>A: 初始條件只會影響$n^{2}$的係數</p>
 <h4 id="2-T-n-3T-frac-n-2-8n"><a href="#2-T-n-3T-frac-n-2-8n" class="headerlink" title="2. $T(n) = 3T(\frac{n}{2}) + 8n$"></a>2. $T(n) = 3T(\frac{n}{2}) + 8n$</h4><p>$a=3, b=2$</p>
 <p>$n^{log_{b}a} = n^{log_{2}3} = n^{1.585…}$</p>
-<p>$f(n) = 8n = O(n^{log_{2}3} \cdot n^{-\varepsilon})$ where $0 &lt; \varepsilon &lt; 0.5$</p>
+<p>$f(n) = 8n = O(n^{log_{2}3} \cdot n^{-\varepsilon})$ where $0 < \varepsilon < 0.5$</p>
 <p>Apply master theorem <strong>case 3</strong></p>
 <p>$\Rightarrow T(n) =\Theta (n^{log_{2}3})$</p>
 <h4 id="3-T-n-4T-frac-n-2-n-2-log-10-n"><a href="#3-T-n-4T-frac-n-2-n-2-log-10-n" class="headerlink" title="3. $T(n) = 4T(\frac{n}{2}) + n^{2}log^{10}n$"></a>3. $T(n) = 4T(\frac{n}{2}) + n^{2}log^{10}n$</h4><p>$a=4,b=2$, $n^{log_{b}a} = n^{2}$</p>
@@ -354,7 +355,7 @@ $$
 <p>Apply master theorem <strong>case 2</strong></p>
 <p>$\Rightarrow T(n) = \Theta (n^{2}log^{11}n)$</p>
 <h4 id="4-T-n-4T-frac-n-2-n-3"><a href="#4-T-n-4T-frac-n-2-n-3" class="headerlink" title="4. $T(n) = 4T(\frac{n}{2}) + n^{3}$"></a>4. $T(n) = 4T(\frac{n}{2}) + n^{3}$</h4><p>$a=4, b=2$, $n^{log_{b}a}= n^{2}$</p>
-<p>$f(n) = n^{3}= \Omega (n^{2} \cdot n^{\varepsilon})$, where $0 &lt; \varepsilon \leq 1$</p>
+<p>$f(n) = n^{3}= \Omega (n^{2} \cdot n^{\varepsilon})$, where $0 < \varepsilon \leq 1$</p>
 <p>Apply master theorem <strong>case 3</strong></p>
 <p>$\Rightarrow T(n) = \Theta (n^{3})$</p>
 <h4 id="5-T-n-2T-sqrt-n-log-2-n-T-2-0"><a href="#5-T-n-2T-sqrt-n-log-2-n-T-2-0" class="headerlink" title="5. $T(n) = 2T(\sqrt{n}) + log_{2}n$, $T(2)=0$"></a>5. $T(n) = 2T(\sqrt{n}) + log_{2}n$, $T(2)=0$</h4><p>這題較特殊，要先變數變換</p>
@@ -377,13 +378,13 @@ $$
 <p>$= n^{log_{b}a}T(1) + \left [ a^{i-1}f(\frac{n}{b^{i-1}}) + \dots +a^{2} f(\frac{n}{b^{2}}) + af(\frac{n}{b}) +f(n) \right ]$</p>
 <p>上式主要分2項，哪邊較大會決定哪個case</p>
 <p>$\left [ a^{i-1}f(\frac{n}{b^{i-1}}) + \dots +a^{2} f(\frac{n}{b^{2}}) + af(\frac{n}{b}) +f(n) \right ]$裡面最大的一項為$f(n)$</p>
-<p>$\therefore af(\frac{n}{b}) \leq c \cdot f(n)$, $c &lt; 1$會成立，依此類推可得$a^{2}f(\frac{n}{b^{2}}) \leq c \cdot af(\frac{n}{b}) \leq c^{2}f(n)$</p>
+<p>$\therefore af(\frac{n}{b}) \leq c \cdot f(n)$, $c < 1$會成立，依此類推可得$a^{2}f(\frac{n}{b^{2}}) \leq c \cdot af(\frac{n}{b}) \leq c^{2}f(n)$</p>
 <p>$\Rightarrow \left [ a^{i-1}f(\frac{n}{b^{i-1}}) + \dots +a^{2} f(\frac{n}{b^{2}}) + af(\frac{n}{b}) +f(n) \right ] \leq \left [ \dots + c^{2}f(n) + cf(n) + f(n) \right ]$</p>
 <p>因此$T(n)$可寫成</p>
 <p>$T(n) = n^{log_{b}a} \cdot T(1) + \left [ \dots +a^{2} f(\frac{n}{b^{2}}) + af(\frac{n}{b}) +f(n)  \right ]$</p>
 <p>$\leq n^{log_{b}a} \cdot T(1) + \left [ \dots + c^{2}f(n) + cf(n) + f(n) \right ]$</p>
 <p>$T(n) \leq n^{log_{b}a}T(1) + \frac{f(n)}{1-c} \in \Theta (f(n))$</p>
-
+</body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -495,7 +496,7 @@ $$
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            47
+                            48
                         </p>
                     </a>
                 </div>
@@ -616,7 +617,7 @@ $$
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">16</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -624,7 +625,7 @@ $$
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">10</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -693,7 +694,7 @@ $$
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 14px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14px;">DFS</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 14px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 12px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 14px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14px;">DFS</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 16px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -746,6 +747,25 @@ $$
         
         <article class="media">
             
+            <a href="/2019/12/20/leetocde-Convert-Sorted-Array-to-Binary-Search-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/UfACFnW.png" alt="Leetcode - Convert Sorted Array to Binary Search Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-20T10:23:31.000Z">2019-12-20</time></div>
+                    <a href="/2019/12/20/leetocde-Convert-Sorted-Array-to-Binary-Search-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Convert Sorted Array to Binary Search Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/16/leetcode-letter-combinations-of-a-phone-number/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/jhZIzAu.png" alt="LeetCode - Letter Combinations of a Phone Number">
@@ -782,25 +802,6 @@ $$
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/01/leetCode-minimum-insertion-steps-to-make-a-string-palindrome/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/KovlkXs.png" alt="LeetCode - Minimum Insertion Steps to Make a String Palindrome">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T05:26:31.000Z">2019-12-01</time></div>
-                    <a href="/2019/12/01/leetCode-minimum-insertion-steps-to-make-a-string-palindrome/" class="title has-link-black-ter is-size-6 has-text-weight-normal">LeetCode - Minimum Insertion Steps to Make a String Palindrome</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -829,7 +830,7 @@ $$
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1025,7 +1026,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">15</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -1046,7 +1047,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/BFS/">
                         <span class="tag">BFS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1466,7 +1467,7 @@ $$
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1718,7 +1719,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="/js/insight.js" defer></script>
 <link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>
