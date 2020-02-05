@@ -1,5 +1,5 @@
 ---
-title: leetcode Maximum Product of Splitted Binary Tree
+title: Leetcode - Maximum Product of Splitted Binary Tree
 date: 2020-01-09 16:22:37
 tags:
 - Algorithm
