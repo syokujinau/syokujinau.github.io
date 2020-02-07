@@ -143,6 +143,79 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-11T09:10:42.000Z">2018-10-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1042 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/10/11/ML-course-note-LinearRegression/">Linear Regression - Boston house-prices dataset  房價預測模型</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><blockquote>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html</a></p>
+</blockquote>
+<h2 id="引入Libraries"><a href="#引入Libraries" class="headerlink" title="引入Libraries"></a>引入Libraries</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="讀取Dataset"><a href="#讀取Dataset" class="headerlink" title="讀取Dataset"></a>讀取Dataset</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_boston</span><br><span class="line">boston = load_boston()</span><br><span class="line">print(boston.DESCR) <span class="hljs-comment">#查看說明文件</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>CRIM：城鎮人均犯罪率</li>
+<li>ZN：佔地面積超過25,000平方英尺的住宅用地比例。</li>
+<li>INDUS：每個城鎮的非零售業務面積比例</li>
+<li>CHAS：Charles River虛擬變量（如果管道限制河流則= 1;否則為0）</li>
+<li>NOX：一氧化氮濃度（每千萬份）</li>
+<li>RM：每棟住宅的平均房間數</li>
+<li>AGE：1940年以前建造的自住單位比例</li>
+<li>DIS：到波士頓五個就業中心的加權距離</li>
+<li>RAD：徑向高速公路的可達性指數</li>
+<li>TAX：每10,000美元的全額房產稅率</li>
+<li>PTRATIO：城鎮的學生與教師比例</li>
+<li>B：1000（Bk - 0.63）^ 2其中Bk是城鎮黑人的比例</li>
+<li>LSTAT：人口狀況下降％</li>
+<li>MEDV：自住房屋的中位數價值(單位: USD1000)</li></ul></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/10/11/ML-course-note-LinearRegression/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2018-10-11T09:09:28.000Z">2018-10-11</time>
                 
                 <div class="level-item">
@@ -383,60 +456,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-09-27T09:48:04.000Z">2017-09-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 179 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2017/09/27/modelSim-create-project-note/">ModelSim 專案建立&amp;模擬 步驟</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="Step-1-用文字編輯器撰寫程式碼"><a href="#Step-1-用文字編輯器撰寫程式碼" class="headerlink" title="Step 1: 用文字編輯器撰寫程式碼"></a>Step 1: 用文字編輯器撰寫程式碼</h2><p>隨意路徑隨意(<strong>不要有中文</strong>)</p>
-<p><img src="https://i.imgur.com/0QXYbTk.png" alt></p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2017/09/27/modelSim-create-project-note/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -444,7 +463,7 @@
         <div class="pagination-previous">
             <a class="is-flex-grow has-text-black-ter" href="/page/9/">Previous</a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
+        <div class="pagination-next">
             <a class="is-flex-grow has-text-black-ter" href="/page/11/">Next</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
@@ -456,6 +475,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
             
             <li><a class="pagination-link is-current" href="/page/10/">10</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
             
         </ul>
     </nav>
@@ -505,7 +526,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            50
+                            51
                         </p>
                     </a>
                 </div>
@@ -626,7 +647,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">18</span>
+                <span class="level-item tag">19</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -634,7 +655,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">13</span>
+                <span class="level-item tag">14</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -703,7 +724,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 12px;">AI</a> <a href="/tags/ARM/" style="font-size: 16px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 12px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 14px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 14px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14px;">DFS</a> <a href="/tags/DP/" style="font-size: 14px;">DP</a> <a href="/tags/DSP/" style="font-size: 12px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 12px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 12px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 14px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 12px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 12px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 18px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 14px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 12px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 12px;">React</a> <a href="/tags/STM32/" style="font-size: 16px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 12px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 12px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 11.67px;">AI</a> <a href="/tags/ARM/" style="font-size: 15px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 13.33px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 13.33px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 15px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.67px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.67px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.67px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 13.33px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.67px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.67px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.67px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 16.67px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 13.33px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.67px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.67px;">React</a> <a href="/tags/STM32/" style="font-size: 15px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.67px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18.33px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.67px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -850,7 +871,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1035,7 +1056,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">18</span>
+                        <span class="tag is-grey">19</span>
                     </a>
                 </div>
                 
@@ -1105,7 +1126,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/DFS/">
                         <span class="tag">DFS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1476,7 +1497,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1694,7 +1715,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1879,7 +1900,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">18</span>
+                        <span class="tag is-grey">19</span>
                     </a>
                 </div>
                 
@@ -1949,7 +1970,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/DFS/">
                         <span class="tag">DFS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -2320,7 +2341,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
