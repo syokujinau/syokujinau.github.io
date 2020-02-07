@@ -36,7 +36,7 @@ Nachos 是一個教學用作業系統平臺,它必須簡單而且有一定的擴
 Nachos 的主體是用 C++的一個子集來實現的。目前物件導向語言日漸流行,它能夠清楚地描述作業系統各個部分的介面。Nachos 沒有用到物件導向語言的所有特徵,如繼承性、多態性等,所以它的代碼就更容易閱讀和理解。
 
 
-## 6. Nachos的實驗環境
+## Nachos的實驗環境
 
 
 ### 所需軟體 
@@ -98,6 +98,39 @@ Print integer:7
 Print integer:6
 return value:0
 ```
+
+## Nachos的目錄結構
+
+以上作業系統可以發現在工作目錄下生成一個名為 nachos-4.0 的目錄。該目錄中含有:
+
+| 檔名 | 類型 | 內容 |
+|---|---|---|
+|copyright|文件|Nachos的版權|
+|readme|文件|Nachos的readme資訊|
+|nachos.ps|文件|Nachos 的介紹文檔(Postscript 格式)|
+|c++example|目錄|有關 C++介紹和實例|
+|doc|目錄|Nachos 各個部分介紹和原有的作業要求|
+|code|目錄|Nachos 各個部分的原始程式碼|
+
+
+最主要的部分是 Nachos 的原始程式碼部分。它的目錄結構是:
+
+| 檔名 | 類型 | 內容 |
+|---|---|---|
+|Makefile|文件|Nachos 的 Makefile 文件。當 Nachos 需要移植到其它系統時,可以修改 Makefile.dep 中的 HOST 參數|
+|Makefile.common|文件| |
+|Makefile.dep|文件| |
+|machine|目錄|虛擬機器類比部分原始程式碼|
+|threads|目錄|Nachos 執行緒管理部分原始程式碼|
+|filesys|目錄|Nachos 檔案系統管理部分原始程式碼|
+|userprog|目錄|Nachos 使用者程式部分原始程式碼|
+|network|目錄|Nachos 網路管理部分原始程式碼|
+|vm|目錄|Nachos 虛擬記憶體管理部分原始程式碼|
+|test|目錄|一些測試用應用程式|
+|bin|目錄|包含有使用者程式目的碼變換的程式|
+
+
+
 
 
 ## 參考
