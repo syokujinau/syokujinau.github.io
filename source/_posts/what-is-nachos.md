@@ -38,6 +38,19 @@ Nachos 的主體是用 C++的一個子集來實現的。目前物件導向語言
 
 ## Nachos的實驗環境
 
+### 軟體架構
+
+![](https://i.imgur.com/bslYvc7.png)
+
+
+### 下載與安裝虛擬機
+
+* Oracle VM VirtualBox
+    * https://www.virtualbox.org/
+* Download 32-bit Ubuntu 14.04 
+    * http://releases.ubuntu.com/14.04/
+
+
 
 ### 所需軟體 
 
