@@ -190,7 +190,7 @@ Result：
 
 **There two tasks which used the same UART data register (resource), therefore, the synchronization like usages of semaphores, mutexes, etc.** -->
 
-交互顯示task-1與task-2的字串，但因為他們的priority一樣，所以他們會在資料傳輸中互相preempt，因為這兩個task共用UART data register，可以用semaphores, mutexes等來保護critical section，以下用簡單的key方法解決。
+交互顯示task-1與task-2的字串，但因為他們的priority一樣，且共用UART data register，所以他們會在資料傳輸中互相preempt，可以用semaphores, mutexes等來保護critical section，以下用簡單的key方法解決。
 
 #### UART_ACCESS_KEY and taskYIELD()
 

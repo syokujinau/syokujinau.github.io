@@ -19,7 +19,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/I3hWsho.png">
 <meta property="article:published_time" content="2020-02-07T12:25:38.000Z">
-<meta property="article:modified_time" content="2020-02-07T13:41:36.683Z">
+<meta property="article:modified_time" content="2020-02-07T13:45:19.924Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Embedded">
 <meta property="article:tag" content="Operating System">
@@ -164,7 +164,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1064 words)
+                    7 minutes read (About 1059 words)
                 </span>
                 
                 
@@ -235,7 +235,7 @@
 
 **There two tasks which used the same UART data register (resource), therefore, the synchronization like usages of semaphores, mutexes, etc.** -->
 
-<p>交互顯示task-1與task-2的字串，但因為他們的priority一樣，所以他們會在資料傳輸中互相preempt，因為這兩個task共用UART data register，可以用semaphores, mutexes等來保護critical section，以下用簡單的key方法解決。</p>
+<p>交互顯示task-1與task-2的字串，但因為他們的priority一樣，且共用UART data register，所以他們會在資料傳輸中互相preempt，可以用semaphores, mutexes等來保護critical section，以下用簡單的key方法解決。</p>
 <h4 id="UART-ACCESS-KEY-and-taskYIELD"><a href="#UART-ACCESS-KEY-and-taskYIELD" class="headerlink" title="UART_ACCESS_KEY and taskYIELD()"></a>UART_ACCESS_KEY and taskYIELD()</h4><!-- * `UART_ACCESS_KEY` stands for a key, **if the key is available**, the task is able to access critial section.
 * `taskYIELD()` api of FreeRTOS can **manually trigger the context switch** and **force task to leave CPU**, otherwise task-2 may not have the chance to get the key. -->
 
