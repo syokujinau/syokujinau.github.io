@@ -28,6 +28,7 @@ paragraph = """An aircraft is a vehicle that is able to fly by gaining support f
 
 Tokenization是指將整份文件分離出單字、句子、片語等等
 
+<!-- more -->
 
 ```python
 nltk.sent_tokenize(paragraph)

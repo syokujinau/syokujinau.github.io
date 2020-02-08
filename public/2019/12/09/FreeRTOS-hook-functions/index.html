@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>FreeRTOS - Hook Function - YC&#39;s Blog</title>
+
+
+    <meta name="description" content="FreeRTOS Hook Function Idle task hook function RTOS Tick hook function Dynamic memory allocation (Malloc) faild hook function  Stack overflow hook function  必要時實做這些hook function，當有該事件發生rtos就會自動執行他們  I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FreeRTOS - Hook Function">
+<meta property="og:url" content="https://syokujinau.github.io/2019/12/09/FreeRTOS-hook-functions/index.html">
+<meta property="og:site_name" content="YC&#39;s Blog">
+<meta property="og:description" content="FreeRTOS Hook Function Idle task hook function RTOS Tick hook function Dynamic memory allocation (Malloc) faild hook function  Stack overflow hook function  必要時實做這些hook function，當有該事件發生rtos就會自動執行他們  I">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/rjbUjJo.png">
+<meta property="article:published_time" content="2019-12-09T04:32:58.000Z">
+<meta property="article:modified_time" content="2020-02-08T12:18:48.242Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Embedded">
+<meta property="article:tag" content="Operating System">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/rjbUjJo.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/myimages/hexo-logo.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="FreeRTOS - Hook Function" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/rjbUjJo.png" alt="FreeRTOS - Hook Function">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-09T04:32:58.000Z">2019-12-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 895 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                FreeRTOS - Hook Function
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="FreeRTOS-Hook-Function"><a href="#FreeRTOS-Hook-Function" class="headerlink" title="FreeRTOS Hook Function"></a><a href="https://www.freertos.org/a00016.html" target="_blank" rel="noopener">FreeRTOS Hook Function</a></h2><ul>
+<li>Idle task hook function</li>
+<li>RTOS Tick hook function</li>
+<li>Dynamic memory allocation (Malloc) faild hook function </li>
+<li>Stack overflow hook function</li>
+</ul>
+<p>必要時實做這些hook function，當有該事件發生rtos就會自動執行他們</p>
+<!-- ![](https://i.imgur.com/1zP1mS3.png)
+ -->
+<h2 id="Idle-Task-Hook-Function"><a href="#Idle-Task-Hook-Function" class="headerlink" title="Idle Task Hook Function"></a>Idle Task Hook Function</h2><p>idle task作為閒置時rtos的要做的工作，要在<strong>FreeRTOSConfig.h</strong>中設定<code>configUSE_IDLE_HOOK</code>為1，並實做<code>void vApplicationIdleHook(void);</code>，一般可以在閒置中降低mcu運算量節能功耗</p>
+<!-- 
+![](https://i.imgur.com/q9N4Icz.png) -->
+
+<a id="more"></a>
+
+<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationIdleHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_IDLE_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// idle task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="RTOS-Tick-Hook-Function"><a href="#RTOS-Tick-Hook-Function" class="headerlink" title="RTOS Tick Hook Function"></a>RTOS Tick Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationTickHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_TICK_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// tick task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Malloc-Failed-Hook-Function"><a href="#Malloc-Failed-Hook-Function" class="headerlink" title="Malloc Failed Hook Function"></a>Malloc Failed Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationMallocFailedHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_MALLOC_FAILED_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// malloc failed task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Stack-Overflow-Hook-Function"><a href="#Stack-Overflow-Hook-Function" class="headerlink" title="Stack Overflow Hook Function"></a>Stack Overflow Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationStackOverflowHook</span><span class="hljs-params">(TaskHandle_t xTask, <span class="hljs-keyword">signed</span> <span class="hljs-keyword">char</span> *pcTaskName)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_FOR_STACK_OVERFLOW should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// stack overflow task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<!-- ![](https://i.imgur.com/lBOFnvt.png) -->
+
+
+
+<!-- ![](https://i.imgur.com/qoee8Sl.png) -->
+
+
+
+
+<!-- ![](https://i.imgur.com/I0XIfM4.png) -->
+
+
+
+<!-- ![](https://i.imgur.com/W35Bupi.png) -->
+
+<!-- * see project5 on Github
+    * `FreeRTOSConfig.h`
+        * `#define configUSE_IDLE_HOOK 1`
+        * implement `vApplicationIdleHook()` -->
+
+<!-- ![](https://i.imgur.com/3EPePCg.png)
+
+
+![](https://i.imgur.com/KZlbLpj.png) -->
+
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><blockquote>
+<p>使用硬體: <a href="https://www.st.com/en/evaluation-tools/nucleo-f411re.html" target="_blank" rel="noopener">NUCLEO-F411RE</a><br><img src="https://i.imgur.com/dSYfyEi.png" width="60%"><br>data brief: <a href="https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf" target="_blank" rel="noopener">https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf</a></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f4xx.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"FreeRTOS.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"task.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><string.h></span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><stdint.h></span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><stdio.h></span></span></span><br><span class="line">			</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// task handle for task notification</span></span><br><span class="line">TaskHandle_t xTaskHandle1 = <span class="hljs-literal">NULL</span>;</span><br><span class="line">TaskHandle_t xTaskHandle2 = <span class="hljs-literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// prototypes</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prevSetupUart</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preSetupGPIO</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prvSetupHardware</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printMsg</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *msg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// UART</span></span><br><span class="line"><span class="hljs-keyword">char</span> user_msg[<span class="hljs-number">250</span>] = {<span class="hljs-number">0</span>};</span><br><span class="line"><span class="hljs-comment">// task handler prototypes</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask1_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask2_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Global variable for flags</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FALSE        0</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TRUE         1</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NOT_PRESSED  FALSE</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRESSED      TRUE</span></span><br><span class="line"><span class="hljs-keyword">uint8_t</span> button_status_flag = NOT_PRESSED;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>{</span><br><span class="line">	<span class="hljs-comment">// SEGGER</span></span><br><span class="line">	DWT->CTRL |= (<span class="hljs-number">1</span> << <span class="hljs-number">0</span>);</span><br><span class="line">	<span class="hljs-comment">// 1. Reset the RCC clock config to the default reset state.</span></span><br><span class="line">	<span class="hljs-comment">// HSI On, PLL Off, system clock = cpu clock = 16MHz</span></span><br><span class="line">	RCC_DeInit();</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 2. update the SystemCoreClock variable</span></span><br><span class="line">	SystemCoreClockUpdate();</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 3. set up peripherals</span></span><br><span class="line">	prvSetupHardware();</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// UART</span></span><br><span class="line">	<span class="hljs-built_in">sprintf</span>(user_msg, <span class="hljs-string">"Task block APIs\r\n"</span>);</span><br><span class="line">	printMsg(user_msg);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// SEGGER</span></span><br><span class="line">	SEGGER_SYSVIEW_Conf();</span><br><span class="line">	SEGGER_SYSVIEW_Start();</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 4. Create LED and Button Task</span></span><br><span class="line">	xTaskCreate(</span><br><span class="line">			vTask1_handler,</span><br><span class="line">			<span class="hljs-string">"Task 1"</span>,</span><br><span class="line">			<span class="hljs-number">500</span>, <span class="hljs-comment">// 500 words</span></span><br><span class="line">			<span class="hljs-literal">NULL</span>,</span><br><span class="line">			<span class="hljs-number">2</span>,</span><br><span class="line">			&xTaskHandle1</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	xTaskCreate(</span><br><span class="line">			vTask2_handler,</span><br><span class="line">			<span class="hljs-string">"Task 2"</span>,</span><br><span class="line">			<span class="hljs-number">500</span>,</span><br><span class="line">			<span class="hljs-literal">NULL</span>,</span><br><span class="line">			<span class="hljs-number">2</span>,</span><br><span class="line">			&xTaskHandle2</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 5. Start Scheduler</span></span><br><span class="line">	vTaskStartScheduler();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">for</span>(;;);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask1_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {</span><br><span class="line">		<span class="hljs-built_in">sprintf</span>(user_msg, <span class="hljs-string">"Status of the LED is %d\r\n"</span>, GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5));</span><br><span class="line">		printMsg(user_msg);</span><br><span class="line">		<span class="hljs-comment">// vTaskDelay(1000); // 1000 ticks and tick rate is 1000Hz (1 ms), this line will delay 1000 ms</span></span><br><span class="line">		vTaskDelay(pdMS_TO_TICKS(<span class="hljs-number">1000</span>)); <span class="hljs-comment">// or use the micro</span></span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask2_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {</span><br><span class="line">		GPIO_ToggleBits(GPIOA, GPIO_Pin_5);</span><br><span class="line">		vTaskDelay(pdMS_TO_TICKS(<span class="hljs-number">1000</span>)); <span class="hljs-comment">// or use the micro</span></span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prevSetupUart</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">	<span class="hljs-comment">// peripheral related initialization</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 1. Enable the UART2 and GPIOA Peripheral clock</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);</span><br><span class="line">	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 2.</span></span><br><span class="line">	<span class="hljs-comment">// PA2: UART2_TX</span></span><br><span class="line">	<span class="hljs-comment">// PA3: UART2_RX</span></span><br><span class="line">	<span class="hljs-comment">// Alternate function configuration of MCU pins to behave as UART2 Tx, Rx</span></span><br><span class="line">	GPIO_InitTypeDef gpio_uart_pins;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-built_in">memset</span>(&gpio_uart_pins, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(gpio_uart_pins)); <span class="hljs-comment">// clear the structure</span></span><br><span class="line">	gpio_uart_pins.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;</span><br><span class="line">	gpio_uart_pins.GPIO_Mode = GPIO_Mode_AF;</span><br><span class="line">	gpio_uart_pins.GPIO_PuPd = GPIO_PuPd_UP; <span class="hljs-comment">// for idle state</span></span><br><span class="line"></span><br><span class="line">	GPIO_Init(GPIOA, &gpio_uart_pins);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 3. AF mode settings for the pins</span></span><br><span class="line">	GPIO_PinAFConfig(</span><br><span class="line">			GPIOA,            <span class="hljs-comment">// PA2</span></span><br><span class="line">			GPIO_PinSource2,  <span class="hljs-comment">// PA2</span></span><br><span class="line">			GPIO_AF_USART2</span><br><span class="line">	);</span><br><span class="line">	GPIO_PinAFConfig(</span><br><span class="line">			GPIOA,            <span class="hljs-comment">// PA3</span></span><br><span class="line">			GPIO_PinSource3,  <span class="hljs-comment">// PA3</span></span><br><span class="line">			GPIO_AF_USART2</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 4. UART parameter initializations</span></span><br><span class="line">	USART_InitTypeDef uart2_init;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-built_in">memset</span>(&uart2_init, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(uart2_init)); <span class="hljs-comment">// clear the structure</span></span><br><span class="line">	uart2_init.USART_BaudRate = <span class="hljs-number">115200</span>;</span><br><span class="line">	uart2_init.USART_HardwareFlowControl = USART_HardwareFlowControl_None;</span><br><span class="line">	uart2_init.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;</span><br><span class="line">	uart2_init.USART_Parity = USART_Parity_No;</span><br><span class="line">	uart2_init.USART_StopBits = USART_StopBits_1;</span><br><span class="line">	uart2_init.USART_WordLength = USART_WordLength_8b;</span><br><span class="line"></span><br><span class="line">	USART_Init(</span><br><span class="line">			USART2,</span><br><span class="line">			&uart2_init</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 5. Enable the UART2 peripheral</span></span><br><span class="line">	USART_Cmd(USART2, ENABLE);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preSetupGPIO</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 1. Enable AHB1</span></span><br><span class="line">	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);</span><br><span class="line">	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE); <span class="hljs-comment">// for EXTI configuration</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 2. Initialize GPIO</span></span><br><span class="line">	GPIO_InitTypeDef led_init,</span><br><span class="line">					 btn_init;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// led init structure</span></span><br><span class="line">	led_init.GPIO_Mode  = GPIO_Mode_OUT;</span><br><span class="line">	led_init.GPIO_OType = GPIO_OType_PP;</span><br><span class="line">	led_init.GPIO_Pin   = GPIO_Pin_5;</span><br><span class="line">	led_init.GPIO_PuPd  = GPIO_PuPd_NOPULL;</span><br><span class="line">	led_init.GPIO_Speed = GPIO_Medium_Speed;</span><br><span class="line"></span><br><span class="line">	GPIO_Init(GPIOA, &led_init);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// button init structure</span></span><br><span class="line">	btn_init.GPIO_Mode  = GPIO_Mode_IN;</span><br><span class="line">	btn_init.GPIO_Pin   = GPIO_Pin_13;</span><br><span class="line">	btn_init.GPIO_PuPd  = GPIO_PuPd_NOPULL;</span><br><span class="line">	btn_init.GPIO_Speed = GPIO_Medium_Speed;</span><br><span class="line"></span><br><span class="line">	GPIO_Init(GPIOC, &btn_init);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prvSetupHardware</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">	<span class="hljs-comment">// setup Button and LED</span></span><br><span class="line">	preSetupGPIO();</span><br><span class="line">	<span class="hljs-comment">// setup UART2</span></span><br><span class="line">	prevSetupUart();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printMsg</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *msg)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">uint32_t</span> i = <span class="hljs-number">0</span>; i < <span class="hljs-built_in">strlen</span>(msg); i++) {</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">while</span>(USART_GetFlagStatus(USART2, USART_FLAG_TXE) != SET); <span class="hljs-comment">// waiting if transmit data register empty flag doesn't set.</span></span><br><span class="line">		USART_SendData(USART2, msg[i]);</span><br><span class="line"></span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">while</span>(USART_GetFlagStatus(USART2, USART_FLAG_TC) != SET);</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationIdleHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">	<span class="hljs-comment">// Go to sleep mode for power saving</span></span><br><span class="line">	__WFI();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Embedded/" rel="tag">Embedded</a>, <a class="has-link-grey -link" href="/tags/Operating-System/" rel="tag">Operating System</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/13/leetcode-delete-node-in-a-linked-list/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">LeetCode - Delete Node in a Linked List</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/01/leetCode-minimum-insertion-steps-to-make-a-string-palindrome/">
+                <span class="level-item">LeetCode - Minimum Insertion Steps to Make a String Palindrome</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://syokujinau.github.io/2019/12/09/FreeRTOS-hook-functions/';
+        this.page.identifier = '2019/12/09/FreeRTOS-hook-functions/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/myimages/yc.png" alt="YC&#39;s Blog">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        YC&#39;s Blog
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Lin Yu-Chien
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Taipei, Taiwan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            56
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            77
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Algorithm/">
+            <span class="level-start">
+                <span class="level-item">Algorithm</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
+            <span class="level-start">
+                <span class="level-item">LeetCode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">14</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/">
+            <span class="level-start">
+                <span class="level-item">Embedded</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Embedded/ARM/">
+            <span class="level-start">
+                <span class="level-item">ARM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
+            <span class="level-start">
+                <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/IoT/">
+            <span class="level-start">
+                <span class="level-item">IoT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Miscellaneous/">
+            <span class="level-start">
+                <span class="level-item">Miscellaneous</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">15</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Web/">
+            <span class="level-start">
+                <span class="level-item">Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 11.43px;">AI</a> <a href="/tags/ARM/" style="font-size: 14.29px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.43px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 12.86px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.86px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14.29px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.86px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.43px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.43px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 14.29px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.86px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.43px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.43px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.43px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 17.14px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.57px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.43px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.43px;">React</a> <a href="/tags/STM32/" style="font-size: 14.29px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.43px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18.57px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.43px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/10/leetcode-sliding-window-maximum/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/XjzWrok.png" alt="Leetcode - Sliding Window Maximum">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-10T07:41:40.000Z">2020-01-10</time></div>
+                    <a href="/2020/01/10/leetcode-sliding-window-maximum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Sliding Window Maximum</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/09/leetcode-Maximum-Product-of-Splitted-Binary-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/4FeMPNb.png" alt="Leetcode - Maximum Product of Splitted Binary Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-09T08:22:37.000Z">2020-01-09</time></div>
+                    <a href="/2020/01/09/leetcode-Maximum-Product-of-Splitted-Binary-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Maximum Product of Splitted Binary Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/09/matlab-plot-functions/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ZuCwVX4.png" alt="Matlab常用函數 - 作圖與微分積分求解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-09T03:44:07.000Z">2020-01-09</time></div>
+                    <a href="/2020/01/09/matlab-plot-functions/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matlab常用函數 - 作圖與微分積分求解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/xj14dYO.png" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-08T03:32:58.000Z">2020-01-08</time></div>
+                    <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS API Interface, Synchronization &amp; Coding Style</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T12:25:38.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">19</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
+                        <span class="tag">Angstrom Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BFS/">
+                        <span class="tag">BFS</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BST/">
+                        <span class="tag">BST</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Backtracking/">
+                        <span class="tag">Backtracking</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BeagleBone/">
+                        <span class="tag">BeagleBone</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C3-js/">
+                        <span class="tag">C3.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DFS/">
+                        <span class="tag">DFS</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DP/">
+                        <span class="tag">DP</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debian/">
+                        <span class="tag">Debian</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deque-STL/">
+                        <span class="tag">Deque STL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
+                        <span class="tag">Embedded Linux</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeRTOS/">
+                        <span class="tag">FreeRTOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IEEE754/">
+                        <span class="tag">IEEE754</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linked-list/">
+                        <span class="tag">Linked-list</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matlab/">
+                        <span class="tag">Matlab</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Multiset-STL/">
+                        <span class="tag">Multiset STL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLTK/">
+                        <span class="tag">NLTK</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Operating-System/">
+                        <span class="tag">Operating System</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Queue/">
+                        <span class="tag">Queue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sliding-Window/">
+                        <span class="tag">Sliding Window</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/String/">
+                        <span class="tag">String</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tree/">
+                        <span class="tag">Tree</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="FreeRTOS - Hook Function" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 John Doe&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'true'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
