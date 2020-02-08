@@ -7,24 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>FreeRTOS Task Creation 與 Semi-hosting (USART) 設定 - YC&#39;s Blog</title>
+<title>FreeRTOS API Interface, Synchronization &amp; Coding Style - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="通常一個應用可以將個功能切分為多個task，各個task的資料相互傳遞、存取皆可透過FreeRTOS的kernel services完成，本篇紀錄基本的task creation API並設定semi-hosting在eclipse開發環境印出uart傳遞至PC的資料。  每次產生task，FreeRTOS會做以下動作   RTOS的Task可視為作業系統課本提到的process  在cont">
+    <meta name="description" content="API Interface這張圖是FreeRTOS與硬體的關係，提供Semaphore, Queue, Timer, Task 等kernel services，來讓我們架構上層的應用，該應用可以包含n個task，透過kernel與device driver (Board support package Layer)溝通，執行各種操作，例如UART driver, SPI driver等，在由dr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
-<meta property="og:url" content="https://syokujinau.github.io/2020/02/07/RTOS-Task-Creation-and-semihosting-settings/index.html">
+<meta property="og:title" content="FreeRTOS API Interface, Synchronization &amp; Coding Style">
+<meta property="og:url" content="https://syokujinau.github.io/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="通常一個應用可以將個功能切分為多個task，各個task的資料相互傳遞、存取皆可透過FreeRTOS的kernel services完成，本篇紀錄基本的task creation API並設定semi-hosting在eclipse開發環境印出uart傳遞至PC的資料。  每次產生task，FreeRTOS會做以下動作   RTOS的Task可視為作業系統課本提到的process  在cont">
+<meta property="og:description" content="API Interface這張圖是FreeRTOS與硬體的關係，提供Semaphore, Queue, Timer, Task 等kernel services，來讓我們架構上層的應用，該應用可以包含n個task，透過kernel與device driver (Board support package Layer)溝通，執行各種操作，例如UART driver, SPI driver等，在由dr">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/I3hWsho.png">
-<meta property="article:published_time" content="2020-02-07T12:25:38.000Z">
-<meta property="article:modified_time" content="2020-02-07T13:45:19.924Z">
+<meta property="og:image" content="https://i.imgur.com/xj14dYO.png">
+<meta property="article:published_time" content="2020-01-08T03:32:58.000Z">
+<meta property="article:modified_time" content="2020-02-08T03:36:53.872Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Embedded">
 <meta property="article:tag" content="Operating System">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/I3hWsho.png">
+<meta name="twitter:image" content="https://i.imgur.com/xj14dYO.png">
 
 
 
@@ -92,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定" height="28">
+                <img src="/images/logo.svg" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style" height="28">
             
             </a>
         </div>
@@ -146,7 +146,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
+            <img class="thumbnail" src="https://i.imgur.com/xj14dYO.png" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style">
         </span>
     </div>
     
@@ -154,7 +154,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-07T12:25:38.000Z">2020-02-07</time>
+                <time class="level-item has-text-grey" datetime="2020-01-08T03:32:58.000Z">2020-01-08</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
@@ -164,7 +164,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1059 words)
+                    3 minutes read (About 480 words)
                 </span>
                 
                 
@@ -173,81 +173,97 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                FreeRTOS Task Creation 與 Semi-hosting (USART) 設定
+                FreeRTOS API Interface, Synchronization &amp; Coding Style
             
         </h1>
         <div class="content">
-            <html><head></head><body><img src="https://i.imgur.com/XdMD09Y.jpg" width="40%">
+            <html><head></head><body><h2 id="API-Interface"><a href="#API-Interface" class="headerlink" title="API Interface"></a>API Interface</h2><p>這張圖是FreeRTOS與硬體的關係，提供Semaphore, Queue, Timer, Task 等kernel services，來讓我們架構上層的應用，該應用可以包含n個task，透過kernel與device driver (<a href="https://www.freertos.org/FreeRTOS-Plus/BSP_Solutions/FreeRTOS_BSP.html" target="_blank" rel="noopener">Board support package Layer</a>)溝通，執行各種操作，例如UART driver, SPI driver等，在由driver控制硬體週邊（SPI, I2C, Timer, GPIOs, etc），FreeRTOS完全不包含任何跟硬體周邊有關的程式。</p>
+<!-- ![](https://i.imgur.com/Ogsi4gZ.png) -->
+<p><img src="https://i.imgur.com/Bos9Ird.png" alt></p>
+<!-- * Create Task, Semaphore, Queue... , we actually consume the system heap.
+    * ![](https://i.imgur.com/6NXRxpo.png) -->
 
-<p>通常一個應用可以將個功能切分為多個task，各個task的資料相互傳遞、存取皆可透過FreeRTOS的kernel services完成，本篇紀錄基本的task creation API並設定semi-hosting在eclipse開發環境印出uart傳遞至PC的資料。</p>
-<p><img src="https://i.imgur.com/4TwZB3B.png" alt></p>
-<p>每次產生task，FreeRTOS會做以下動作</p>
-<p><img src="https://i.imgur.com/lNcoiyz.png" alt></p>
-<blockquote>
-<p>RTOS的Task可視為作業系統課本提到的process</p>
-</blockquote>
-<p>在context switch時，usStackDepth為stack空間來儲存local variables以及context of task </p>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BaseType_t <span class="hljs-title">xTaskCreate</span><span class="hljs-params">(    </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    TaskFunction_t pvTaskCode,  </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> pcName,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    configSTACK_DEPTH_TYPE usStackDepth, <span class="hljs-comment">// 給定該task的stack空間,單位是words</span></span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">void</span> *pvParameters,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    UBaseType_t uxPriority,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    TaskHandle_t *pxCreatedTask <span class="hljs-comment">// task handler指向TCB位址</span></span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
-
+<p>用FreeRTOS API產生Task, Semaphore, Queue…等, 會消耗system heap的記憶體</p>
+<p><img src="https://i.imgur.com/R1ldlqY.png" alt></p>
 <a id="more"></a>
 
+<!-- * FreeRTOS have 5 Heap management schemes, the first one only can malloc but not free heap memory.
+    * ![](https://i.imgur.com/CrxEMtT.png)
+ -->
+
+<p>FreeRTOS提供五種heap management schemes，第一種只能malloc，不能free heap memory，也可以寫自己定義的scheme</p>
+<p><img src="https://i.imgur.com/pIRwVLB.png" alt></p>
+<h2 id="RTOS同步-Synchronization"><a href="#RTOS同步-Synchronization" class="headerlink" title="RTOS同步(Synchronization)"></a>RTOS同步(Synchronization)</h2><p>RTOS需要能處理同步問題，用Producer & Consumer描述task的行為</p>
+<p><img src="https://i.imgur.com/X8obreX.png" alt></p>
 <!-- 
-* task handler指向TCB
-![](https://i.imgur.com/CsHm6Bk.png) -->
+![](https://i.imgur.com/v3Maf0E.png) -->
 
-<!-- * What happens when a TASK be created?
-    * [![](https://i.imgur.com/sP7QPk4.png)
-](https://www.udemy.com/course/mastering-rtos-hands-on-with-freertos-arduino-and-stm32fx/learn/lecture/6383708#questions/7078890)
- -->
-
-<p>task配置在ram記憶體中的heap section</p>
-<p> <img src="https://i.imgur.com/LA20ceU.png" alt></p>
-<p>單一task在round robin scheduler的執行模式</p>
-<!-- ![](https://i.imgur.com/cr52kkR.png)
- -->
-
-<p><img src="https://i.imgur.com/4u2UEQe.png" alt></p>
-<h2 id="設定semi-host"><a href="#設定semi-host" class="headerlink" title="設定semi-host"></a>設定semi-host</h2><!-- > [完整流程](https://www.udemy.com/course/mastering-rtos-hands-on-with-freertos-arduino-and-stm32fx/learn/lecture/12831652#questions/8121341) -->
-
-<p>STM32 debugger提供semihosting功能，下圖target是arm開發板，只有在debug mode可以使用，讓host的電腦幫我們做printf等指令。</p>
-<!-- ![](https://i.imgur.com/evZw4bF.png) -->
-<p><img src="https://i.imgur.com/Gpyp9OX.png" alt></p>
-<p>照以下步驟設定</p>
+<p>可以做到signaling的方法有下列幾種</p>
 <ol>
-<li>GCC Linker加入參數<code>-specs=rdimon.specs -lc -lrdimon</code><br><img src="https://i.imgur.com/TSkIo5v.png" alt><br>按apply > OK</li>
-<li>Debug configuration of your application <code>monitor arm semihosting enable</code><br><img src="https://i.imgur.com/uGnAmtA.png" alt></li>
-<li>In main.c use <figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialise_monitor_handles</span><span class="hljs-params">()</span></span>;</span><br><span class="line">initialise_monitor_handles();</span><br></pre></td></tr></tbody></table></figure></li>
-<li>Check <code>Exclude</code> for syscalls.c<br><img src="https://i.imgur.com/wbZc4QL.png" alt></li>
+<li>Events (Flags)</li>
+<li>Semaphores (Counting & Binary)</li>
+<li>Mutex</li>
+<li>Queue and Message Queue</li>
+<li>Pips</li>
+<li>Mailboxes</li>
+<li>Signals (UNIX like signals)</li>
 </ol>
-<h3 id="USE-SEMIHOSTING-Preprocessor"><a href="#USE-SEMIHOSTING-Preprocessor" class="headerlink" title="USE SEMIHOSTING Preprocessor"></a>USE SEMIHOSTING Preprocessor</h3><p>在有使用semi-hosting的程式碼加上directives(指示詞)，並按照下圖設置，如果defined symbols的列表中有<code>USE_SEMIHOSTING</code>的話編譯前preporcessor就會包含這個#ifdef的區塊。</p>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> USE_SEMIHOSTING</span></span><br><span class="line"><span class="hljs-comment">// used for semihosting</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialise_monitor_handles</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/91e1vBy.png" alt></p>
-<h2 id="UART-Communication-with-PC"><a href="#UART-Communication-with-PC" class="headerlink" title="UART Communication with PC"></a>UART Communication with PC</h2><h3 id="UART-GPIO-Configuration"><a href="#UART-GPIO-Configuration" class="headerlink" title="UART GPIO Configuration"></a>UART GPIO Configuration</h3><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prevSetupUart</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">	<span class="hljs-comment">// peripheral related initialization</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 1. Enable the UART2 and GPIOA Peripheral clock</span></span><br><span class="line">	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);</span><br><span class="line">	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 2.</span></span><br><span class="line">	<span class="hljs-comment">// PA2: UART2_TX</span></span><br><span class="line">	<span class="hljs-comment">// PA3: UART2_RX</span></span><br><span class="line">	<span class="hljs-comment">// Alternate function configuration of MCU pins to behave as UART2 Tx, Rx</span></span><br><span class="line">	GPIO_InitTypeDef gpio_uart_pins;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-built_in">memset</span>(&gpio_uart_pins, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(gpio_uart_pins)); <span class="hljs-comment">// clear the structure</span></span><br><span class="line">	gpio_uart_pins.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;</span><br><span class="line">	gpio_uart_pins.GPIO_Mode = GPIO_Mode_AF;</span><br><span class="line">	gpio_uart_pins.GPIO_PuPd = GPIO_PuPd_UP; <span class="hljs-comment">// for idle state</span></span><br><span class="line"></span><br><span class="line">	GPIO_Init(GPIOA, &gpio_uart_pins);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 3. AF mode settings for the pins</span></span><br><span class="line">	GPIO_PinAFConfig(</span><br><span class="line">			GPIOA,            <span class="hljs-comment">// PA2</span></span><br><span class="line">			GPIO_PinSource2,  <span class="hljs-comment">// PA2</span></span><br><span class="line">			GPIO_AF_USART2</span><br><span class="line">	);</span><br><span class="line">	GPIO_PinAFConfig(</span><br><span class="line">			GPIOA,            <span class="hljs-comment">// PA3</span></span><br><span class="line">			GPIO_PinSource3,  <span class="hljs-comment">// PA3</span></span><br><span class="line">			GPIO_AF_USART2</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// 4. UART parameter initializations</span></span><br><span class="line">	USART_InitTypeDef uart2_init;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-built_in">memset</span>(&uart2_init, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(uart2_init)); <span class="hljs-comment">// clear the structure</span></span><br><span class="line">	uart2_init.USART_BaudRate = <span class="hljs-number">115200</span>;</span><br><span class="line">	uart2_init.USART_HardwareFlowControl = USART_HardwareFlowControl_None;</span><br><span class="line">	uart2_init.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;</span><br><span class="line">	uart2_init.USART_Parity = USART_Parity_No;</span><br><span class="line">	uart2_init.USART_StopBits = USART_StopBits_1;</span><br><span class="line">	uart2_init.USART_WordLength = USART_WordLength_8b;</span><br><span class="line"></span><br><span class="line">	USART_Init(</span><br><span class="line">			USART2,</span><br><span class="line">			&uart2_init</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>因為IDLE state在UART是高電位(logic 1)<br><img src="https://i.imgur.com/yz94KmL.png" alt><br>所以 <code>gpio_uart_pins.GPIO_PuPd</code>需設成<code>GPIO_PuPd_UP;</code></p>
-</blockquote>
-<h3 id="Create-Tasks"><a href="#Create-Tasks" class="headerlink" title="Create Tasks"></a>Create Tasks</h3><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask1_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){</span><br><span class="line">		printMsg(<span class="hljs-string">"Hello, I'm task-1\r\n"</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask2_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){</span><br><span class="line">		printMsg(<span class="hljs-string">"Hello, I'm task-1\r\n"</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>Result：<br><img src="https://i.imgur.com/a3MelSd.png" alt></p>
-<!-- The strings sent from task-1 and task-2 show alternately, because they are same priority, the tasks actually preempted each other in the middle of transmissiom.
-
-**There two tasks which used the same UART data register (resource), therefore, the synchronization like usages of semaphores, mutexes, etc.** -->
-
-<p>交互顯示task-1與task-2的字串，但因為他們的priority一樣，且共用UART data register，所以他們會在資料傳輸中互相preempt，可以用semaphores, mutexes等來保護critical section，以下用簡單的key方法解決。</p>
-<h4 id="UART-ACCESS-KEY-and-taskYIELD"><a href="#UART-ACCESS-KEY-and-taskYIELD" class="headerlink" title="UART_ACCESS_KEY and taskYIELD()"></a>UART_ACCESS_KEY and taskYIELD()</h4><!-- * `UART_ACCESS_KEY` stands for a key, **if the key is available**, the task is able to access critial section.
-* `taskYIELD()` api of FreeRTOS can **manually trigger the context switch** and **force task to leave CPU**, otherwise task-2 may not have the chance to get the key. -->
-
-<p><code>UART_ACCESS_KEY</code> 代表鑰匙，如果鑰匙可取得, 則此task可存取critial section，<code>taskYIELD()</code> api 可以主動觸發context switch並<strong>強制task離開CPU</strong>, 否則task-2沒有機會取得鑰匙。</p>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask1_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span>(UART_ACCESS_KEY == AVAILABLE) {</span><br><span class="line">        </span><br><span class="line">            UART_ACCESS_KEY = NON_AVAILABLE;</span><br><span class="line">            printMsg(<span class="hljs-string">"Hello, I'm task-1\r\n"</span>);</span><br><span class="line">            UART_ACCESS_KEY = AVAILABLE;</span><br><span class="line">            taskYIELD();</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vTask2_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *params)</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span>(UART_ACCESS_KEY == AVAILABLE) {</span><br><span class="line"></span><br><span class="line">            UART_ACCESS_KEY = NON_AVAILABLE;</span><br><span class="line">            printMsg(<span class="hljs-string">"Hello, I'm task-2\r\n"</span>);</span><br><span class="line">            UART_ACCESS_KEY = AVAILABLE;</span><br><span class="line">            taskYIELD();</span><br><span class="line"></span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<!-- ![](https://i.imgur.com/5SMNwxs.png) -->
 
 
 
-<p>Result：<br><img src="https://i.imgur.com/qAy6N2N.png" alt></p>
-<blockquote>
-<p>source code: <a href="https://github.com/syokujinau/ARM_RTOS_Projects/blob/master/RTOS_Workspace/STM32_UART/src/main.c" target="_blank" rel="noopener">https://github.com/syokujinau/ARM_RTOS_Projects/blob/master/RTOS_Workspace/STM32_UART/src/main.c</a></p>
-</blockquote>
+<h2 id="FreeRTOS-Coding-Style"><a href="#FreeRTOS-Coding-Style" class="headerlink" title="FreeRTOS Coding Style"></a>FreeRTOS Coding Style</h2><h3 id="Macros"><a href="#Macros" class="headerlink" title="Macros"></a>Macros</h3><p>巨集的前綴可以知道有在哪個檔案中被定義，通常前綴是小寫<br>例如：FreeRTOSConfig.h中定義<code>configUSE_PREEMPTION</code></p>
+<!-- 
+![](https://i.imgur.com/QIuY0Ss.png)
+ -->
+
+<h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>變數的命名慣例：</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>prefix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>unsigned long</td>
+<td><code>ul</code></td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td><code>us</code></td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td><code>uc</code></td>
+</tr>
+<tr>
+<td>non stdint</td>
+<td><code>x</code></td>
+</tr>
+<tr>
+<td>unsigned non stdint</td>
+<td><code>u</code></td>
+</tr>
+<tr>
+<td>enumerate</td>
+<td><code>e</code></td>
+</tr>
+</tbody></table>
+<p>指標則會再加個<code>p</code>，例如uint16_t的指標是<code>pus</code></p>
+<!-- ![](https://i.imgur.com/X9UEJEE.png)
+ -->
+
+<!--  
+![](https://i.imgur.com/FVMPI9N.png) -->
+
+
+
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p>函式的命名慣例是前綴代表回傳值的類型，而<code>v</code>代表void<br>例如：task.c內定義的vTaskDelete()，回傳void</p>
+<p>此外file scope static function (private function)的前綴是<code>prv</code></p>
+<!-- 
+![](https://i.imgur.com/YGUoqns.png) -->
+
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -290,10 +306,17 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/09/matlab-plot-functions/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Matlab常用函數 - 作圖與微分積分求解</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/10/leetcode-sliding-window-maximum/">
-                <span class="level-item">Leetcode - Sliding Window Maximum</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/">
+                <span class="level-item">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -309,8 +332,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2020/02/07/RTOS-Task-Creation-and-semihosting-settings/';
-        this.page.identifier = '2020/02/07/RTOS-Task-Creation-and-semihosting-settings/';
+        this.page.url = 'https://syokujinau.github.io/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/';
+        this.page.identifier = '2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -371,7 +394,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            53
+                            54
                         </p>
                     </a>
                 </div>
@@ -508,7 +531,7 @@
                 <span class="level-item">Embedded</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Embedded/ARM/">
@@ -532,7 +555,7 @@
                 <span class="level-item">FreeRTOS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/IoT/">
@@ -569,7 +592,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 11.43px;">AI</a> <a href="/tags/ARM/" style="font-size: 14.29px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.43px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 12.86px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.86px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14.29px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.86px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.43px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.43px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 11.43px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.86px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.43px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.43px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.43px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 17.14px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 15.71px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.43px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.43px;">React</a> <a href="/tags/STM32/" style="font-size: 14.29px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.43px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18.57px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.43px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 11.67px;">AI</a> <a href="/tags/ARM/" style="font-size: 15px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 13.33px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 13.33px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 15px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.67px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.67px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.67px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 13.33px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 13.33px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.67px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.67px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.67px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 16.67px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 16.67px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.67px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.67px;">React</a> <a href="/tags/STM32/" style="font-size: 15px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.67px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18.33px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.67px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -581,25 +604,6 @@
         <h3 class="menu-label">
             Recent
         </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/02/07/RTOS-Task-Creation-and-semihosting-settings/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-07T12:25:38.000Z">2020-02-07</time></div>
-                    <a href="/2020/02/07/RTOS-Task-Creation-and-semihosting-settings/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
         
         <article class="media">
             
@@ -660,18 +664,37 @@
         
         <article class="media">
             
-            <a href="/2019/12/25/leetcode-Same-Tree/" class="media-left">
+            <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/iW3HqoU.png" alt="Leetcode - Same Tree">
+                    <img class="thumbnail" src="https://i.imgur.com/xj14dYO.png" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T04:22:31.000Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/leetcode-Same-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Same Tree</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-08T03:32:58.000Z">2020-01-08</time></div>
+                    <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS API Interface, Synchronization &amp; Coding Style</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T12:25:38.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                     </p>
                 </div>
             </div>
@@ -689,23 +712,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1056,7 +1068,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Embedded/">
                         <span class="tag">Embedded</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1259,7 +1271,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Operating-System/">
                         <span class="tag">Operating System</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1444,7 +1456,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定" height="28">
+                    <img src="/images/logo.svg" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style" height="28">
                 
                 </a>
                 <p class="is-size-7">

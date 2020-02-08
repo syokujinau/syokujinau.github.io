@@ -1,6 +1,6 @@
 ---
 title: FreeRTOS Task Creation 與 Semi-hosting (USART) 設定
-date: 2020-02-07 20:25:38
+date: 2020-01-07 20:25:38
 tags:
 - Embedded
 - Operating System
@@ -12,6 +12,12 @@ thumbnail: https://i.imgur.com/I3hWsho.png
 <img src="https://i.imgur.com/XdMD09Y.jpg" width="40%">
  
 通常一個應用可以將個功能切分為多個task，各個task的資料相互傳遞、存取皆可透過FreeRTOS的kernel services完成，本篇紀錄基本的task creation API並設定semi-hosting在eclipse開發環境印出uart傳遞至PC的資料。
+
+> 我使用的硬體是[NUCLEO-F411RE](https://www.st.com/en/evaluation-tools/nucleo-f411re.html)
+> 然而只要有對應的port.c就能在不同硬體上使用FreeRTOS
+> <img src="https://i.imgur.com/dSYfyEi.png" width="40%">
+> data brief: https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf
+
 
 ![](https://i.imgur.com/4TwZB3B.png)
 
