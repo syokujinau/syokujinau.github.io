@@ -52,6 +52,7 @@ Space: $O(1)$
 
 ## Method 2 - BST
 
+
 ```cpp
 class Solution {
 public:
@@ -76,6 +77,7 @@ public:
   }
 };
 ```
+
 
 ### Complexity
 
