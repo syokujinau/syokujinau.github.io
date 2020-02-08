@@ -9,7 +9,7 @@ categories:
 thumbnail: https://i.imgur.com/rjbUjJo.png
 ---
 
-## [FreeRTOS Hook Function](https://www.freertos.org/a00016.html)
+> 參考：https://www.freertos.org/a00016.html
 
 
 * Idle task hook function
