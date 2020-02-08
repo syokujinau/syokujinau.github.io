@@ -90,11 +90,15 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, signed char *pcTaskName) 
 ![](https://i.imgur.com/KZlbLpj.png) -->
 
 
+
 ## Example 
+
+要讓mcu進入sleep mode，可用WFI(Wait for interrupt)這個16-bit Thumb instruction，適用於Cortex-M0, M3, M4與M7系列，當執行`__WFI()`，processor會暫停clock，停止指令執行，直到下個中斷發生或者進入debug模式，用於有條件的進入sleep狀態，有分normal與deep sleep mode。
 
 > 使用硬體: [NUCLEO-F411RE](https://www.st.com/en/evaluation-tools/nucleo-f411re.html)
 > <img src="https://i.imgur.com/dSYfyEi.png" width="60%">
 > data brief: https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf
+
 
 ```c
 #include "stm32f4xx.h"
