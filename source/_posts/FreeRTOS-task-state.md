@@ -1,6 +1,6 @@
 ---
 title: FreeRTOS - Task States
-date: 2020-02-09 16:57:19
+date: 2019-12-13 06:57:19
 tags:
 - Embedded
 - Operating System
