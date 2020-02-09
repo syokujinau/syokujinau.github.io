@@ -6,9 +6,10 @@ tags:
 - Operating System
 categories:
 - [Embedded, FreeRTOS]
-thumbnail: https://i.imgur.com/rjbUjJo.png
+thumbnail: https://i.imgur.com/KTjjsL2.png
 ---
 
+<img src="https://i.imgur.com/kIXupfv.png" width="45%" />
 
 
 FreeRTOS同樣也有task state，創造task後配置記憶體空間，進入waiting list等待scheduler選取才進去CPU執行(Running state)
