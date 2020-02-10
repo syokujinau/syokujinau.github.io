@@ -140,69 +140,6 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 minutes read (About 1567 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/11/stm32-dsp-fir-low-pass-filter/">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
-            
-        </h1>
-        <div class="content">
-            <!-- <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1"> --><html><head></head><body><h1 id="FIR-fliter"><a href="#FIR-fliter" class="headerlink" title="FIR fliter"></a>FIR fliter</h1><blockquote>
-<p>This project will go through the setup steps for DSP application on ARM CortexM4 processor  </p>
-</blockquote>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient $b[n]$ is multiplied by a state variable which equals a previous input sample $x[n]$.</p>
-<img src="https://render.githubusercontent.com/render/math?math=y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]"></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/11/stm32-dsp-fir-low-pass-filter/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
         <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
         </a>
@@ -477,6 +414,73 @@
 
 
 
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1847 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/04/14/algorithm-design-dynamic-programming/">演算法設計 - Dynamic Programming</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p>基本設計概念:</p>
+<ul>
+<li>Solve a <strong>pre-determined</strong> set of problems</li>
+<li>Memorize solutions to all subproblems</li>
+</ul>
+<h2 id="Unique-Path"><a href="#Unique-Path" class="headerlink" title="Unique Path"></a>Unique Path</h2><p>走到(i, j)的位置，只有可能來自上面或左邊<br>令$P(i, j)$表示走到(i, j)位置的方法數</p>
+<p>$$<br>P(i, j) = \begin{cases}<br>1 & \text{ if } i=0 \newline<br>1 & \text{ if } j=0 \newline<br>P(i-1, j) + P(i, j-1) & \text{ if } i \geq 1, j \geq 1<br>\end{cases}<br>$$</p>
+<p>又稱為state equation</p>
+<p><a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">62. Unique Paths</a></p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/04/14/algorithm-design-dynamic-programming/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
     
 <div class="card card-transparent">
@@ -551,7 +555,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            58
+                            57
                         </p>
                     </a>
                 </div>
@@ -764,25 +768,6 @@
         
         <article class="media">
             
-            <a href="/2020/02/10/FreeRTOS%E9%9D%A2%E8%A9%A6%E9%A1%8C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FreeRTOS面試題">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T02:20:17.000Z">2020-02-10</time></div>
-                    <a href="/2020/02/10/FreeRTOS%E9%9D%A2%E8%A9%A6%E9%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS面試題</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2020/01/10/leetcode-sliding-window-maximum/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/XjzWrok.png" alt="Leetcode - Sliding Window Maximum">
@@ -857,6 +842,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T12:25:38.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
         
@@ -867,17 +871,6 @@
             Archives
         </h3>
         <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/01/">
@@ -1644,25 +1637,6 @@
         
         <article class="media">
             
-            <a href="/2020/02/10/FreeRTOS%E9%9D%A2%E8%A9%A6%E9%A1%8C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FreeRTOS面試題">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-10T02:20:17.000Z">2020-02-10</time></div>
-                    <a href="/2020/02/10/FreeRTOS%E9%9D%A2%E8%A9%A6%E9%A1%8C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS面試題</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2020/01/10/leetcode-sliding-window-maximum/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/XjzWrok.png" alt="Leetcode - Sliding Window Maximum">
@@ -1737,6 +1711,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T12:25:38.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
     
@@ -1747,17 +1740,6 @@
             Archives
         </h3>
         <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/01/">
