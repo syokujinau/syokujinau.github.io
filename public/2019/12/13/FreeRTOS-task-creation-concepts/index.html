@@ -7,25 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>LeetCode - Generate Parentheses - YC&#39;s Blog</title>
+<title>FreeRTOS - Task Creation觀念彙整 - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
+    <meta name="description" content="建立一個stack為512 bytes的task需要佔用多少記憶體空間？ 512 + sizeof(TCB) bytes 同時Task Control Block也在stack中動態配置。TCB結構可FreeRTOS內核原始碼的task.c中找到。   TCB結構的第一個成員是？  task state  task size  task priority  指向task stack頂端的指">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode - Generate Parentheses">
-<meta property="og:url" content="https://syokujinau.github.io/2019/10/16/leetcode-generate-parentheses/index.html">
+<meta property="og:title" content="FreeRTOS - Task Creation觀念彙整">
+<meta property="og:url" content="https://syokujinau.github.io/2019/12/13/FreeRTOS-task-creation-concepts/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="排列組合問題常用的DFS解法加一個”(“，未來就要用一個”)”來構成一組合法括號紀錄可用的”(“與”)”數量試著畫出這棵二元樹就清楚了  LeetCode - 22. Generate ParenthesesGiven $n$ pairs of parentheses, write a function to generate all combinations of well-formed pa">
+<meta property="og:description" content="建立一個stack為512 bytes的task需要佔用多少記憶體空間？ 512 + sizeof(TCB) bytes 同時Task Control Block也在stack中動態配置。TCB結構可FreeRTOS內核原始碼的task.c中找到。   TCB結構的第一個成員是？  task state  task size  task priority  指向task stack頂端的指">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/hivsaxA.png">
-<meta property="article:published_time" content="2019-10-16T03:36:47.000Z">
-<meta property="article:modified_time" content="2020-02-04T10:06:50.665Z">
+<meta property="og:image" content="https://i.imgur.com/qLhg02D.png">
+<meta property="article:published_time" content="2019-12-13T03:01:28.000Z">
+<meta property="article:modified_time" content="2020-02-10T03:47:10.757Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Algorithm">
-<meta property="article:tag" content="Backtracking">
-<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="Embedded">
+<meta property="article:tag" content="Operating System">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/hivsaxA.png">
+<meta name="twitter:image" content="https://i.imgur.com/qLhg02D.png">
 
 
 
@@ -93,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="LeetCode - Generate Parentheses" height="28">
+                <img src="/images/logo.svg" alt="FreeRTOS - Task Creation觀念彙整" height="28">
             
             </a>
         </div>
@@ -147,7 +146,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/hivsaxA.png" alt="LeetCode - Generate Parentheses">
+            <img class="thumbnail" src="https://i.imgur.com/qLhg02D.png" alt="FreeRTOS - Task Creation觀念彙整">
         </span>
     </div>
     
@@ -155,17 +154,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-16T03:36:47.000Z">2019-10-16</time>
+                <time class="level-item has-text-grey" datetime="2019-12-13T03:01:28.000Z">2019-12-13</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 165 words)
+                    3 minutes read (About 421 words)
                 </span>
                 
                 
@@ -174,31 +173,90 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                LeetCode - Generate Parentheses
+                FreeRTOS - Task Creation觀念彙整
             
         </h1>
         <div class="content">
-            <html><head></head><body><blockquote>
-<p>排列組合問題常用的DFS解法<br>加一個”(“，未來就要用一個”)”來構成一組合法括號<br>紀錄可用的”(“與”)”數量<br>試著畫出這棵二元樹就清楚了</p>
-</blockquote>
-<h2 id="LeetCode-22-Generate-Parentheses"><a href="#LeetCode-22-Generate-Parentheses" class="headerlink" title="LeetCode - 22. Generate Parentheses"></a>LeetCode - 22. Generate Parentheses</h2><p>Given $n$ pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
-<p>For example, given $n = 3$, a solution set is:</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  "((()))",</span><br><span class="line">  "(()())",</span><br><span class="line">  "(())()",</span><br><span class="line">  "()(())",</span><br><span class="line">  "()()()"</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
+            <html><head></head><body><img src="https://i.imgur.com/kIXupfv.png" width="45%">
+
+
+<ol>
+<li>建立一個stack為512 bytes的task需要佔用多少記憶體空間？<ul>
+<li>512 + sizeof(TCB) bytes</li>
+<li>同時Task Control Block也在stack中動態配置。TCB結構可FreeRTOS內核原始碼的<a href="https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/82e80521124c6e96e5fdb3538a2533f994e2db8f/tasks.c#L252" target="_blank" rel="noopener">task.c</a>中找到。</li>
+</ul>
+</li>
+<li>TCB結構的第一個成員是？<ul>
+<li><input disabled type="checkbox"> task state</li>
+<li><input disabled type="checkbox"> task size</li>
+<li><input disabled type="checkbox"> task priority</li>
+<li><input checked disabled type="checkbox"> 指向task stack頂端的指標</li>
+</ul>
+</li>
+</ol>
 <a id="more"></a>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>DFS(s, open, close)</p>
-<p>$s$: current string<br>$open$: number of left parentheses can be appended to current string<br>$close$: number of right parentheses can be appended to current string<br>An answer is generated when $open = close = 0$ (base case)</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-built_in">vector</span><<span class="hljs-built_in">string</span>> <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{</span><br><span class="line">        </span><br><span class="line">        dfs(<span class="hljs-string">""</span>, n, <span class="hljs-number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-built_in">vector</span><<span class="hljs-built_in">string</span>> ans;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">int</span> open, <span class="hljs-keyword">int</span> close)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(open == <span class="hljs-number">0</span> && close == <span class="hljs-number">0</span>) {</span><br><span class="line">            ans.push_back(s);</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">if</span>(open)  dfs(s + <span class="hljs-string">"("</span>, open - <span class="hljs-number">1</span>, close + <span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-keyword">if</span>(close) dfs(s + <span class="hljs-string">")"</span>, open    , close - <span class="hljs-number">1</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>Huh…</p>
-</body></html>
+<ol start="3">
+<li>直到啟動scheduler以前task都不會執行？<ul>
+<li>true</li>
+<li>透過<code>vTaskStartScheduler()</code>啟動</li>
+</ul>
+</li>
+<li>FreeRTOS的預設scheduler是基於哪種scheduling algorithm？<ul>
+<li>priority based preemptive scheduling</li>
+</ul>
+</li>
+<li>在priority based preemptive scheduling下，有高優先權與低優先權的2個task，目前CPU由高優先權task佔用，如何使低優先權task能夠執行？<ul>
+<li>對高優先權task的blocking, suspending 或 task yielding 可使低優先權task得到CPU使用權</li>
+</ul>
+</li>
+<li>是否可以靜態配置task與靜態配置的優點？<ul>
+<li>可</li>
+<li>優點：RTOS物件可以置於特定位址(RAM的全域空間)、最大ram使用量可在link time被決定而不是run time、開發者不需考慮動態配置失敗的問題、讓FreeRTOS可使用在禁止動態配置記憶體的應用</li>
+<li><a href="https://www.freertos.org/xTaskCreateStatic.html" target="_blank" rel="noopener">https://www.freertos.org/xTaskCreateStatic.html</a></li>
+<li><a href="https://www.freertos.org/Static_Vs_Dynamic_Memory_Allocation.html" target="_blank" rel="noopener">https://www.freertos.org/Static_Vs_Dynamic_Memory_Allocation.html</a></li>
+</ul>
+</li>
+<li>宣告並初始化在task函式中的靜態變數實際上佔用哪個記憶體空間？ <img src="https://i.imgur.com/ssVObuI.png" alt><ul>
+<li><input disabled type="checkbox"> stack of task</li>
+<li><input disabled type="checkbox"> stack of RAM</li>
+<li><input disabled type="checkbox"> heap of RAM </li>
+<li><input checked disabled type="checkbox"> global space of RAM</li>
+</ul>
+</li>
+<li>宣告並初始化在task函式中的非靜態變數實際上佔用哪個記憶體空間？ <img src="https://i.imgur.com/zNuL8pU.png" alt><ul>
+<li><input checked disabled type="checkbox"> stack of task</li>
+<li><input disabled type="checkbox"> stack of RAM</li>
+<li><input disabled type="checkbox"> heap of RAM </li>
+<li><input disabled type="checkbox"> global space of RAM</li>
+</ul>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Backtracking/" rel="tag">Backtracking</a>, <a class="has-link-grey -link" href="/tags/DFS/" rel="tag">DFS</a>
+                    <a class="has-link-grey -link" href="/tags/Embedded/" rel="tag">Embedded</a>, <a class="has-link-grey -link" href="/tags/Operating-System/" rel="tag">Operating System</a>
                 </div>
             </div>
         </div>
@@ -216,16 +274,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/16/setup-eclipse-ide-cross-compiler-tool-chain-for-beaglebone-hardware/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/13/leetcode-delete-node-in-a-linked-list/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">設置BeagleBone嵌入式硬體開發環境</span>
+                <span class="level-item">LeetCode - Delete Node in a Linked List</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/08/beaglebone-boot-process/">
-                <span class="level-item">使用 Angstrom Demo Linux Kernel 測試 BeagleBone 開機程序</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/13/FreeRTOS-task-state/">
+                <span class="level-item">FreeRTOS - Task States</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -241,8 +299,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2019/10/16/leetcode-generate-parentheses/';
-        this.page.identifier = '2019/10/16/leetcode-generate-parentheses/';
+        this.page.url = 'https://syokujinau.github.io/2019/12/13/FreeRTOS-task-creation-concepts/';
+        this.page.identifier = '2019/12/13/FreeRTOS-task-creation-concepts/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1379,7 +1437,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="LeetCode - Generate Parentheses" height="28">
+                    <img src="/images/logo.svg" alt="FreeRTOS - Task Creation觀念彙整" height="28">
                 
                 </a>
                 <p class="is-size-7">
