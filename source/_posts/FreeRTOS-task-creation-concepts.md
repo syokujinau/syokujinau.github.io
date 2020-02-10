@@ -14,13 +14,12 @@ thumbnail: https://i.imgur.com/qLhg02D.png
 
 1. 建立一個stack為512 bytes的task需要佔用多少記憶體空間？
 	* 512 + sizeof(TCB) bytes
-	* 同時Task Control Block也在stack中動態配置。TCB結構可FreeRTOS內核原始碼的[task.c](https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/82e80521124c6e96e5fdb3538a2533f994e2db8f/tasks.c#L252)中找到。
+	* 同時Task Control Block也在stack中動態配置。TCB結構可在FreeRTOS kernel原始碼的[task.c](https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/82e80521124c6e96e5fdb3538a2533f994e2db8f/tasks.c#L252)中找到。
 2. TCB結構的第一個成員是？
 	* [ ]  task state
 	* [ ]  task size
 	* [ ]  task priority
 	* [x]  指向task stack頂端的指標
-
 <!-- more -->
 3. 直到啟動scheduler以前task都不會執行？
 	* true
