@@ -46,7 +46,7 @@ thumbnail: https://i.imgur.com/Jimal0z.png
 14. 在cotext switching時有哪些register會被存到stack中？
 	* R0, R1, R2, R3, R12, LR, PC, xPSR
 	* ![](https://i.imgur.com/eelQzC1.png)
-	* 其中PSP為private stack pointer
+	* [註] PSP (Private Stack Pointer), MSP (Main Stack Pointer)
 15. 哪個FreeRTOS函數會設置SVC,PendSV, SysTick exceptions？
 	* vPortStartScheduler()
 16. SysTick timer是ARM Cortex-M處理器外的週邊
