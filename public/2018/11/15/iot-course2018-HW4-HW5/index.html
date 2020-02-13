@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 4.2.0" />
+<meta name="generator" content="Hexo 4.0.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -11,21 +11,15 @@
 
 
     <meta name="description" content="HW41.分別針對不同Spreading Factor情況下LoRa在移動下（可騎承腳踏車、搭公車、搭捷運、搭貓纜）所傳送資料的狀況做記錄（例：Packet Error Rate） 頻率設定位置: setFrequency() in the file: Sketchbook\libraries\RadioHead\RH_RF95.cpp;Line 114: setFrequency(918.7);">
+<meta name="keywords" content="Raspberry Pi,IoT,LoRa,NodeRED,MQTT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arduino LoRa Shield通訊實驗與NodeRED">
 <meta property="og:url" content="https://syokujinau.github.io/2018/11/15/iot-course2018-HW4-HW5/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
 <meta property="og:description" content="HW41.分別針對不同Spreading Factor情況下LoRa在移動下（可騎承腳踏車、搭公車、搭捷運、搭貓纜）所傳送資料的狀況做記錄（例：Packet Error Rate） 頻率設定位置: setFrequency() in the file: Sketchbook\libraries\RadioHead\RH_RF95.cpp;Line 114: setFrequency(918.7);">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.imgur.com/gYUb3E9.jpg">
-<meta property="article:published_time" content="2018-11-15T00:05:08.000Z">
-<meta property="article:modified_time" content="2020-02-04T10:06:50.665Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Raspberry Pi">
-<meta property="article:tag" content="IoT">
-<meta property="article:tag" content="LoRa">
-<meta property="article:tag" content="NodeRED">
-<meta property="article:tag" content="MQTT">
+<meta property="og:updated_time" content="2019-12-09T05:56:12.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/gYUb3E9.jpg">
 
@@ -132,7 +126,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;" target="_blank" rel="noopener">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -197,7 +191,7 @@
 
 
 <p><strong>RPi Serial monitor with timestamp</strong></p>
-<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> pytz <span class="hljs-keyword">import</span> timezone <span class="hljs-comment"># pip install pytz</span></span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"><span class="hljs-keyword">import</span> serial</span><br><span class="line"></span><br><span class="line">ser = serial.Serial(<span class="hljs-string">'/dev/ttyACM0'</span>, <span class="hljs-number">9600</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">    u = datetime.now(timezone(<span class="hljs-string">'Asia/Taipei'</span>))</span><br><span class="line">    print(u.strftime(<span class="hljs-string">'%H:%M:%S.%f'</span>)[:<span class="hljs-number">-3</span>] + <span class="hljs-string">" >> "</span> + ser.readline())</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> pytz <span class="hljs-keyword">import</span> timezone <span class="hljs-comment"># pip install pytz</span></span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"><span class="hljs-keyword">import</span> serial</span><br><span class="line"></span><br><span class="line">ser = serial.Serial(<span class="hljs-string">'/dev/ttyACM0'</span>, <span class="hljs-number">9600</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:</span><br><span class="line">    u = datetime.now(timezone(<span class="hljs-string">'Asia/Taipei'</span>))</span><br><span class="line">    print(u.strftime(<span class="hljs-string">'%H:%M:%S.%f'</span>)[:<span class="hljs-number">-3</span>] + <span class="hljs-string">" >> "</span> + ser.readline())</span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.imgur.com/UsF3nJs.png" alt></p>
 <blockquote>
 <p>使用樹莓派讀取serial好處是可以有準確的unix timestamp，只要有行動電源與手機(AP)就能到戶外進行實測，並直接將結果存成log.txt檔案放在RPi</p>
@@ -242,7 +236,25 @@
 <h2 id="Publish溫溼度-DHT22-資料"><a href="#Publish溫溼度-DHT22-資料" class="headerlink" title="Publish溫溼度(DHT22)資料"></a>Publish溫溼度(DHT22)資料</h2><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><SPI.h></span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><Ethernet.h></span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string"><PubSubClient.h></span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"DHT.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DHTPIN 2     <span class="hljs-comment">// what digital pin we're connected to</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DHTTYPE DHT22   <span class="hljs-comment">// DHT 22  (AM2302), AM2321</span></span></span><br><span class="line"><span class="hljs-function">DHT <span class="hljs-title">dht</span><span class="hljs-params">(DHTPIN, DHTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// set MAC address</span></span><br><span class="line"><span class="hljs-keyword">static</span> byte mac[] = { <span class="hljs-number">0xF0</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0xCB</span>, <span class="hljs-number">0x4B</span>, <span class="hljs-number">0x7C</span>, <span class="hljs-number">0x9F</span> };</span><br><span class="line"><span class="hljs-comment">// set server and UNO IP adderss </span></span><br><span class="line"><span class="hljs-function">IPAddress <span class="hljs-title">ip</span><span class="hljs-params">(<span class="hljs-number">192</span>, <span class="hljs-number">168</span>, <span class="hljs-number">0</span>, <span class="hljs-number">108</span>)</span></span>;</span><br><span class="line"><span class="hljs-function">IPAddress <span class="hljs-title">server</span><span class="hljs-params">(<span class="hljs-number">192</span>, <span class="hljs-number">168</span>, <span class="hljs-number">0</span>, <span class="hljs-number">105</span>)</span></span>; <span class="hljs-comment">// broker ip</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Client ID</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> clientID[] = <span class="hljs-string">"uno"</span>;</span><br><span class="line"><span class="hljs-comment">// topic</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> topic[] = <span class="hljs-string">"home/dht22"</span>;</span><br><span class="line"></span><br><span class="line">String msgStr = <span class="hljs-string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">char</span> json[<span class="hljs-number">25</span>];</span><br><span class="line"></span><br><span class="line">EthernetClient ethClient;        <span class="hljs-comment">// Ethernet object</span></span><br><span class="line"><span class="hljs-function">PubSubClient <span class="hljs-title">client</span><span class="hljs-params">(ethClient)</span></span>;  <span class="hljs-comment">// MQTT object basedon Ethernet</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{</span><br><span class="line">  Serial.begin(<span class="hljs-number">9600</span>);</span><br><span class="line">    </span><br><span class="line">  dht.begin();</span><br><span class="line">    </span><br><span class="line">  client.setServer(server, <span class="hljs-number">1883</span>); <span class="hljs-comment">//broker and port</span></span><br><span class="line">  Ethernet.begin(mac, ip);        <span class="hljs-comment">// initialize Ethernet</span></span><br><span class="line"></span><br><span class="line">  delay(<span class="hljs-number">1500</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{</span><br><span class="line">  <span class="hljs-keyword">if</span> (!client.connected()) {</span><br><span class="line">    reconnect();</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  client.loop(); <span class="hljs-comment">// update MQTT client</span></span><br><span class="line">  </span><br><span class="line">  <span class="hljs-keyword">float</span> h = dht.readHumidity()</span><br><span class="line">  <span class="hljs-keyword">float</span> t = dht.readTemperature();<span class="hljs-comment">// Read temperature as Celsius (the default)</span></span><br><span class="line"> </span><br><span class="line">  <span class="hljs-comment">// JSON format string</span></span><br><span class="line">  msgStr = msgStr + <span class="hljs-string">"{\"temp\":"</span> + (String)t + <span class="hljs-string">",\"humid\":"</span> + (String)h + <span class="hljs-string">"}"</span>;</span><br><span class="line">  <span class="hljs-comment">// turn to char array, store in json</span></span><br><span class="line">  msgStr.toCharArray(json, <span class="hljs-number">25</span>);</span><br><span class="line">  </span><br><span class="line">  client.publish(topic, json);</span><br><span class="line"> </span><br><span class="line">  msgStr = <span class="hljs-string">""</span>; <span class="hljs-comment">// clean</span></span><br><span class="line">  </span><br><span class="line">  delay(<span class="hljs-number">5000</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>加溫溼度的nodes<br><img src="https://i.imgur.com/kGZEpaM.png" alt></p>
-</body></html>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -305,7 +317,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -354,7 +366,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            59
+                            60
                         </p>
                     </a>
                 </div>
@@ -378,7 +390,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            77
+                            79
                         </p>
                     </a>
                 </div>
@@ -475,7 +487,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">19</span>
+                <span class="level-item tag">20</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -483,7 +495,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">15</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -552,7 +564,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 11.25px;">AI</a> <a href="/tags/ARM/" style="font-size: 13.75px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.25px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 12.5px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.5px;">BeagleBone</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 13.75px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.5px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.25px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.25px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 17.5px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.5px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.25px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.25px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.25px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 16.25px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.75px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.25px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.25px;">React</a> <a href="/tags/STM32/" style="font-size: 13.75px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.25px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 17.5px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.25px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 11.25px;">AI</a> <a href="/tags/ARM/" style="font-size: 13.75px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.25px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 12.5px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.5px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 13.75px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.5px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.25px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.25px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 17.5px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.5px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 10px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.25px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.25px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.25px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 16.25px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.75px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.25px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.25px;">React</a> <a href="/tags/STM32/" style="font-size: 13.75px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.25px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 17.5px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.25px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -710,7 +722,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -895,7 +907,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">19</span>
+                        <span class="tag is-grey">20</span>
                     </a>
                 </div>
                 
@@ -938,6 +950,13 @@
                     <a class="tags has-addons" href="/tags/BeagleBone/">
                         <span class="tag">BeagleBone</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Binary-Search/">
+                        <span class="tag">Binary Search</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1077,6 +1096,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/HTTPS/">
                         <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hash-Table/">
+                        <span class="tag">Hash Table</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1548,7 +1574,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     
     
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;" target="_blank" rel="noopener">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
