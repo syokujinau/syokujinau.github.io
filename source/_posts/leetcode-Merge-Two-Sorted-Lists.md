@@ -77,8 +77,7 @@ public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {        
         ListNode l3(0);
         ListNode* ptr3 = &l3;
-        
-        
+          
         while(l1 && l2) {
             if(l1->val < l2->val) {
                 ptr3->next = l1;
@@ -96,3 +95,5 @@ public:
     }
 };
 ```
+
+l3是一個dummy node，好處是執行完這個函式的stack就會自動釋放記憶體。
