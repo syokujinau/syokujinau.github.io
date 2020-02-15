@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 4.2.0" />
+<meta name="generator" content="Hexo 4.0.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -11,18 +11,15 @@
 
 
     <meta name="description" content="非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)並用cufflinks作圖幫助我們做初步的資料分析dataset來自scikit-learn  函式庫12345678910111213import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as sn">
+<meta name="keywords" content="Machine Learning,K-Means">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K-Means-Clustering演算法 - 腫瘤分類">
 <meta property="og:url" content="https://syokujinau.github.io/2018/10/12/ML-course-note-K-means/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
 <meta property="og:description" content="非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)並用cufflinks作圖幫助我們做初步的資料分析dataset來自scikit-learn  函式庫12345678910111213import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as sn">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://syokujinau.github.io/images/og_image.png">
-<meta property="article:published_time" content="2018-10-12T09:16:19.000Z">
-<meta property="article:modified_time" content="2020-02-04T10:06:50.661Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Machine Learning">
-<meta property="article:tag" content="K-Means">
+<meta property="og:updated_time" content="2020-02-15T05:47:18.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://syokujinau.github.io/images/og_image.png">
 
@@ -129,7 +126,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;" target="_blank" rel="noopener">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -174,7 +171,7 @@
             <html><head></head><body><blockquote>
 <p>非監督式機器學習演算法，本文將依照資料集的features來分類良性或惡性腫瘤(乳癌)<br>並用cufflinks作圖幫助我們做初步的資料分析<br>dataset來自<a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html" target="_blank" rel="noopener">scikit-learn</a></p>
 </blockquote>
-<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> plotly.offline <span class="hljs-keyword">import</span> download_plotlyjs, init_notebook_mode, plot, iplot</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> cufflinks <span class="hljs-keyword">as</span> cf</span><br><span class="line"><span class="hljs-comment"># For Notebooks</span></span><br><span class="line">init_notebook_mode(connected=<span class="hljs-literal">True</span>)</span><br><span class="line"><span class="hljs-comment"># For offline use</span></span><br><span class="line">cf.go_offline()</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> plotly.offline <span class="hljs-keyword">import</span> download_plotlyjs, init_notebook_mode, plot, iplot</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> cufflinks <span class="hljs-keyword">as</span> cf</span><br><span class="line"><span class="hljs-comment"># For Notebooks</span></span><br><span class="line">init_notebook_mode(connected=<span class="hljs-keyword">True</span>)</span><br><span class="line"><span class="hljs-comment"># For offline use</span></span><br><span class="line">cf.go_offline()</span><br></pre></td></tr></tbody></table></figure>
 <a id="more"></a>
 <h2 id="scikit-learn資料集"><a href="#scikit-learn資料集" class="headerlink" title="scikit-learn資料集"></a>scikit-learn資料集</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_breast_cancer</span><br><span class="line"></span><br><span class="line">data = load_breast_cancer()</span><br><span class="line">data.keys()</span><br><span class="line"><span class="hljs-comment"># print(data.DESCR)</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(data.data, columns= data.feature_names)</span><br><span class="line">df[<span class="hljs-string">'target'</span>] = data.target</span><br><span class="line"></span><br><span class="line">df.head()</span><br></pre></td></tr></tbody></table></figure>
 
@@ -192,19 +189,37 @@
 <h3 id="分群結果"><a href="#分群結果" class="headerlink" title="分群結果"></a>分群結果</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kmeans.labels_</span><br></pre></td></tr></tbody></table></figure>
 
 <p>array([0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1,<br>       1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1,<br>       1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,<br>       1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,<br>       0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1,<br>       1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1,<br>       0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1,<br>       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1,<br>       1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1,<br>       1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,<br>       1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br>       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1])</p>
-<h3 id="視覺化比較分類結果"><a href="#視覺化比較分類結果" class="headerlink" title="視覺化比較分類結果"></a>視覺化比較分類結果</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-literal">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = kmeans.labels_)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="視覺化比較分類結果"><a href="#視覺化比較分類結果" class="headerlink" title="視覺化比較分類結果"></a>視覺化比較分類結果</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-keyword">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = kmeans.labels_)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/rC33hjL.png" alt></p>
 <p>很明顯良性惡性的結果label反了(因為n_clusters=2，所以類型非0即1)，所以修改預測數值 (此步驟不一定要做)</p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func = <span class="hljs-keyword">lambda</span> x : <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> x ==<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></span><br><span class="line">predictions = np.array([func(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> kmeans.labels_])</span><br></pre></td></tr></tbody></table></figure>
 
 <p>再次作圖</p>
-<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-literal">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = predictions)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, (ax1, ax2) = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, sharey=<span class="hljs-keyword">True</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))</span><br><span class="line">ax1.set_title(<span class="hljs-string">'K Means'</span>)</span><br><span class="line">ax1.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = predictions)</span><br><span class="line">ax2.set_title(<span class="hljs-string">'Original'</span>)</span><br><span class="line">ax2.scatter(df[<span class="hljs-string">'mean radius'</span>], df[<span class="hljs-string">'mean texture'</span>], c = df[<span class="hljs-string">'target'</span>])</span><br></pre></td></tr></tbody></table></figure>
 
 <p><img src="https://i.imgur.com/2RVe9nG.png" alt></p>
 <p>評估預測準確度</p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span>  classification_report, confusion_matrix</span><br><span class="line">print(confusion_matrix(df[<span class="hljs-string">'target'</span>], predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">""" </span></span><br><span class="line"><span class="hljs-string">[[130  82]</span></span><br><span class="line"><span class="hljs-string"> [  1 356]]</span></span><br><span class="line"><span class="hljs-string">"""</span> </span><br><span class="line"> </span><br><span class="line">print(classification_report(df[<span class="hljs-string">'target'</span>], predictions))</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">            precision    recall  f1-score   support</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">          0       0.99      0.61      0.76       212</span></span><br><span class="line"><span class="hljs-string">          1       0.81      1.00      0.90       357</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">avg / total       0.88      0.85      0.84       569</span></span><br><span class="line"><span class="hljs-string">"""</span></span><br></pre></td></tr></tbody></table></figure>
-</body></html>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -267,7 +282,7 @@
 
 <div id="disqus_thread">
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
     </div>
 </div>
@@ -316,7 +331,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            63
+                            64
                         </p>
                     </a>
                 </div>
@@ -437,7 +452,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">23</span>
+                <span class="level-item tag">24</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -445,7 +460,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">18</span>
+                <span class="level-item tag">19</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -514,7 +529,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/ARM/" style="font-size: 13.33px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.11px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 13.33px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.22px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 14.44px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.22px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.11px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.11px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.11px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.22px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 10px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.11px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.11px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12.22px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 15.56px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.89px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 14.44px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.11px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.11px;">React</a> <a href="/tags/STM32/" style="font-size: 13.33px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 11.11px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.11px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 17.78px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.11px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 11.25px;">AI</a> <a href="/tags/ARM/" style="font-size: 13.75px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/BFS/" style="font-size: 11.25px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 13.75px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12.5px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 11.25px;">Binary Search</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 15px;">DFS</a> <a href="/tags/DP/" style="font-size: 12.5px;">DP</a> <a href="/tags/DSP/" style="font-size: 11.25px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11.25px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 17.5px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12.5px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 10px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11.25px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11.25px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12.5px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 16.25px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.75px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11.25px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11.25px;">React</a> <a href="/tags/STM32/" style="font-size: 13.75px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 11.25px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11.25px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 18.75px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11.25px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -539,6 +554,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
                     <a href="/2020/01/17/leetcode-Serialize-and-Deserialize-Binary-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Serialize and Deserialize Binary Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/15/leetcode-Two-Sum-IV-Input-is-a-BST/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/GFPryLX.jpg" alt="Leetcode - Two Sum IV - Input is a BST">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T04:01:46.000Z">2020-01-15</time></div>
+                    <a href="/2020/01/15/leetcode-Two-Sum-IV-Input-is-a-BST/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Two Sum IV - Input is a BST</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                     </p>
@@ -603,25 +637,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/xj14dYO.png" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-08T03:32:58.000Z">2020-01-08</time></div>
-                    <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FreeRTOS API Interface, Synchronization &amp; Coding Style</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a> / <a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -639,7 +654,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -857,7 +872,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">23</span>
+                        <span class="tag is-grey">24</span>
                     </a>
                 </div>
                 
@@ -906,7 +921,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Binary-Search/">
                         <span class="tag">Binary Search</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1326,7 +1341,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
@@ -1524,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     
     
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;" target="_blank" rel="noopener">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
