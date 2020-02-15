@@ -232,7 +232,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1328 words)
+                    22 minutes read (About 3333 words)
                 </span>
                 
                 
@@ -250,7 +250,19 @@
 <p>conda安裝nltk後引入函式庫，第一次使用可由<code>nltk.download()</code>下載所需檔案</p>
 <h2 id="Tokenization"><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paragraph = <span class="hljs-string">"""An aircraft is a vehicle that is able to fly by gaining support from the air. It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines. Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons. The human activity that surrounds aircraft is called aviation. The science of aviation, including designing and building aircraft, is called aeronautics. Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers. Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others."""</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p>Tokenization是指將整份文件分離出單字、句子、片語等等</p></body></html>
+<p>Tokenization是指將整份文件分離出單字、句子、片語等等</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.sent_tokenize(paragraph)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+<pre><code>['An aircraft is a vehicle that is able to fly by gaining support from the air.',
+ 'It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines.',
+ 'Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons.',
+ 'The human activity that surrounds aircraft is called aviation.',
+ 'The science of aviation, including designing and building aircraft, is called aeronautics.',
+ 'Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers.',
+ 'Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others.']</code></pre></body></html>
         </div>
         
         
