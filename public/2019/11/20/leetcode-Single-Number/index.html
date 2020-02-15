@@ -7,21 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>FreeRTOS - Hook Function - YC&#39;s Blog</title>
+<title>Leetcode - Single Number - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="參考：https:&#x2F;&#x2F;www.freertos.org&#x2F;a00016.html   Idle task hook function RTOS Tick hook function Dynamic memory allocation (Malloc) faild hook function  Stack overflow hook function  必要時實做這些hook function，當有">
-<meta name="keywords" content="Embedded,Operating System">
+    <meta name="description" content="136. Single NumberGiven a non-empty array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you impleme">
+<meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FreeRTOS - Hook Function">
-<meta property="og:url" content="https://syokujinau.github.io/2019/12/09/FreeRTOS-hook-functions/index.html">
+<meta property="og:title" content="Leetcode - Single Number">
+<meta property="og:url" content="https://syokujinau.github.io/2019/11/20/leetcode-Single-Number/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="參考：https:&#x2F;&#x2F;www.freertos.org&#x2F;a00016.html   Idle task hook function RTOS Tick hook function Dynamic memory allocation (Malloc) faild hook function  Stack overflow hook function  必要時實做這些hook function，當有">
+<meta property="og:description" content="136. Single NumberGiven a non-empty array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you impleme">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.imgur.com/rjbUjJo.png">
-<meta property="og:updated_time" content="2020-02-15T05:47:18.617Z">
+<meta property="og:image" content="https://i.imgur.com/u66DsYI.jpg">
+<meta property="og:updated_time" content="2020-02-15T10:30:53.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/rjbUjJo.png">
+<meta name="twitter:image" content="https://i.imgur.com/u66DsYI.jpg">
 
 
 
@@ -89,7 +89,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="FreeRTOS - Hook Function" height="28">
+                <img src="/images/logo.svg" alt="Leetcode - Single Number" height="28">
             
             </a>
         </div>
@@ -143,7 +143,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/rjbUjJo.png" alt="FreeRTOS - Hook Function">
+            <img class="thumbnail" src="https://i.imgur.com/u66DsYI.jpg" alt="Leetcode - Single Number">
         </span>
     </div>
     
@@ -151,17 +151,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-09T04:32:58.000Z">2019-12-09</time>
+                <time class="level-item has-text-grey" datetime="2019-11-20T02:23:31.000Z">2019-11-20</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 377 words)
+                    a minute read (About 124 words)
                 </span>
                 
                 
@@ -170,68 +170,27 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                FreeRTOS - Hook Function
+                Leetcode - Single Number
             
         </h1>
         <div class="content">
-            <html><head></head><body><blockquote>
-<p>參考：<a href="https://www.freertos.org/a00016.html" target="_blank" rel="noopener">https://www.freertos.org/a00016.html</a></p>
-</blockquote>
-<ul>
-<li>Idle task hook function</li>
-<li>RTOS Tick hook function</li>
-<li>Dynamic memory allocation (Malloc) faild hook function </li>
-<li>Stack overflow hook function</li>
-</ul>
-<p>必要時實做這些hook function，當有該事件發生rtos就會自動執行他們</p>
-<!-- ![](https://i.imgur.com/1zP1mS3.png)
- -->
-<h2 id="Idle-Task-Hook-Function"><a href="#Idle-Task-Hook-Function" class="headerlink" title="Idle Task Hook Function"></a>Idle Task Hook Function</h2><p>idle task作為閒置時rtos的要做的工作，要在<strong>FreeRTOSConfig.h</strong>中設定<code>configUSE_IDLE_HOOK</code>為1，並實做<code>void vApplicationIdleHook(void);</code>，一般可以在閒置中降低mcu運算量節能功耗</p>
-<!-- 
-![](https://i.imgur.com/q9N4Icz.png) -->
+            <html><head></head><body><h2 id="136-Single-Number"><a href="#136-Single-Number" class="headerlink" title="136. Single Number"></a><a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">136. Single Number</a></h2><p>Given a non-empty array of integers, every element appears twice except for one. Find that single one.</p>
+<p>Note:</p>
+<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,1]</span><br><span class="line">Output: 1</span><br></pre></td></tr></tbody></table></figure>
 
 <a id="more"></a>
 
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationIdleHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_IDLE_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// idle task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>利用以下性質，來找到唯一不成對的數字</p>
+<ol>
+<li>任何boolean variable自己與自己xor為0</li>
+<li>xor具有交換律(Commutative)，所以不管如何打亂順序都不影響結果</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(<span class="hljs-built_in">vector</span><<span class="hljs-keyword">int</span>>& nums)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> el : nums) x ^= el;</span><br><span class="line">        <span class="hljs-keyword">return</span> x;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="RTOS-Tick-Hook-Function"><a href="#RTOS-Tick-Hook-Function" class="headerlink" title="RTOS Tick Hook Function"></a>RTOS Tick Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationTickHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_TICK_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// tick task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Malloc-Failed-Hook-Function"><a href="#Malloc-Failed-Hook-Function" class="headerlink" title="Malloc Failed Hook Function"></a>Malloc Failed Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationMallocFailedHook</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_MALLOC_FAILED_HOOK should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// malloc failed task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Stack-Overflow-Hook-Function"><a href="#Stack-Overflow-Hook-Function" class="headerlink" title="Stack Overflow Hook Function"></a>Stack Overflow Hook Function</h2><figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vApplicationStackOverflowHook</span><span class="hljs-params">(TaskHandle_t xTask, <span class="hljs-keyword">signed</span> <span class="hljs-keyword">char</span> *pcTaskName)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// configUSE_FOR_STACK_OVERFLOW should be 1 in FreeRTOSConfig.h</span></span><br><span class="line">    <span class="hljs-comment">// stack overflow task implementation </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<!-- ![](https://i.imgur.com/lBOFnvt.png) -->
-
-
-
-<!-- ![](https://i.imgur.com/qoee8Sl.png) -->
-
-
-
-
-<!-- ![](https://i.imgur.com/I0XIfM4.png) -->
-
-
-
-<!-- ![](https://i.imgur.com/W35Bupi.png) -->
-
-<!-- * see project5 on Github
-    * `FreeRTOSConfig.h`
-        * `#define configUSE_IDLE_HOOK 1`
-        * implement `vApplicationIdleHook()` -->
-
-<!-- ![](https://i.imgur.com/3EPePCg.png)
-
-
-![](https://i.imgur.com/KZlbLpj.png) -->
-
-
-
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>要讓mcu進入sleep mode，可用WFI(Wait for interrupt)這個16-bit Thumb instruction，適用於Cortex-M0, M3, M4與M7系列，當執行<code>__WFI()</code>，processor會暫停clock，停止指令執行，直到下個中斷發生或者進入debug模式，用於有條件的進入sleep狀態，有分normal與deep sleep mode。</p>
-<blockquote>
-<p>使用硬體: <a href="https://www.st.com/en/evaluation-tools/nucleo-f411re.html" target="_blank" rel="noopener">NUCLEO-F411RE</a><br><img src="https://i.imgur.com/dSYfyEi.png" width="60%"><br>data brief: <a href="https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf" target="_blank" rel="noopener">https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf</a></p>
-</blockquote>
-<script src="https://gist.github.com/syokujinau/2476d7f76a9f27769b8f83266a64e717.js"></script><script>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h2><p>$O(n)$</p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -256,7 +215,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Embedded/" rel="tag">Embedded</a>, <a class="has-link-grey -link" href="/tags/Operating-System/" rel="tag">Operating System</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>
                 </div>
             </div>
         </div>
@@ -274,16 +233,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/13/FreeRTOS-task-state/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/23/leetcode-longest-palindromic-substring/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">FreeRTOS - Task States</span>
+                <span class="level-item">LeetCode - Longest Palindromic Substring</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/01/leetcode-minimum-insertion-steps-to-make-a-string-palindrome/">
-                <span class="level-item">LeetCode - Minimum Insertion Steps to Make a String Palindrome</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/17/leetcode-Balanced-Binary-Tree/">
+                <span class="level-item">Leetcode - Balanced Binary Tree</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -299,8 +258,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2019/12/09/FreeRTOS-hook-functions/';
-        this.page.identifier = '2019/12/09/FreeRTOS-hook-functions/';
+        this.page.url = 'https://syokujinau.github.io/2019/11/20/leetcode-Single-Number/';
+        this.page.identifier = '2019/11/20/leetcode-Single-Number/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1451,7 +1410,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="FreeRTOS - Hook Function" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode - Single Number" height="28">
                 
                 </a>
                 <p class="is-size-7">

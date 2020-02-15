@@ -139,6 +139,70 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/23/leetcode-reverse-linked-list/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/wlOQ9yw.jpg" alt="Leetcode - Reverse Linked List">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-23T14:26:31.000Z">2019-09-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 125 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/23/leetcode-reverse-linked-list/">Leetcode - Reverse Linked List</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p>有兩種方法，iteration & recursion</p>
+<h2 id="206-Reverse-Linked-List"><a href="#206-Reverse-Linked-List" class="headerlink" title="206. Reverse Linked List"></a>206. Reverse Linked List</h2><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: 1->2->3->4->5->NULL</span><br><span class="line">Output: 5->4->3->2->1->NULL</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="Method-1-recursion"><a href="#Method-1-recursion" class="headerlink" title="Method 1 - recursion"></a>Method 1 - recursion</h3><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="hljs-comment"> * struct ListNode {</span></span><br><span class="line"><span class="hljs-comment"> *     int val;</span></span><br><span class="line"><span class="hljs-comment"> *     ListNode *next;</span></span><br><span class="line"><span class="hljs-comment"> *     ListNode(int x) : val(x), next(NULL) {}</span></span><br><span class="line"><span class="hljs-comment"> * };</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">NULL</span> || head->next == <span class="hljs-literal">NULL</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> head;</span><br><span class="line">        </span><br><span class="line">        ListNode* ptr = head->next;</span><br><span class="line">        head->next = <span class="hljs-literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode* head2 = reverseList(ptr);</span><br><span class="line">        </span><br><span class="line">        ptr->next = head;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> head2;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/23/leetcode-reverse-linked-list/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
         </a>
@@ -433,68 +497,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/08/27/what-is-nachos/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/K75CZHO.png" alt="Nachos - 教學用作業系統">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T11:21:17.000Z">2019-08-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 minutes read (About 1822 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/27/what-is-nachos/">Nachos - 教學用作業系統</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>Nachos作為教學用作業系統,需要實現簡潔並且儘量縮小與實際作業系統之間的差距,適合作為作業系統課程的教學實踐平臺。Nachos 是加州大學伯克萊分校在作業系統課程中已多次使用的作業系統課程設計平臺,在國內外很多大學中得到了應用,它在作業系統教學方面具有以下幾優點:</p>
-<h2 id="1-採用通用虛擬機器"><a href="#1-採用通用虛擬機器" class="headerlink" title="1. 採用通用虛擬機器"></a>1. 採用通用虛擬機器</h2><p>Nachos 是建立在一個軟體類比的虛擬機器之上的,模擬了 MIPS R2/3000 的指令集、主記憶體、中斷系統、網路以及磁片系統等作業系統所必須的硬體系統。許多現代作業系統大多是先在用軟體類比的硬體上建立並測試,最後才在真正的硬體上運行。用軟體類比硬體的可靠性比真實硬體高得多,不會因為硬體故障而導致系統出錯,便於測試。虛擬機器可以在運行時報告詳盡的出錯資訊,更重要的是採用虛擬機器使 Nachos 的移植變得非常容易,在不同機器上移植 Nachos,只需對虛擬機器部分作移植即可。</p>
-<p>採用 R2/3000 指令集的原因是該指令集為 RISC 指令集,其指令數目比較少。Nachos虛擬機器類比了其中的 63 條指令。由於 R2/3000 指令集是一個比較常用的指令集,許多現有的編譯器如 gc++能夠直接將 C 或 C++來源程式編譯成該指令集的目標代碼,於是就不必編寫編譯器,讀者就可以直接用 C/C++語言編寫應用程式,使得在 Nachos 上開發大型的應用程式也成為可能。</p>
-<h2 id="2-使用並實現了作業系統中的一些新的概念"><a href="#2-使用並實現了作業系統中的一些新的概念" class="headerlink" title="2. 使用並實現了作業系統中的一些新的概念"></a>2. 使用並實現了作業系統中的一些新的概念</h2><p>隨著電腦技術和作業系統技術的不斷發展,產生了很多新的概念。Nachos 將這些新概念融入作業系統教學中,包括網路、執行緒和分散式應用。而且 Nachos 以執行緒作為一個基本概念講述,取代了行程在以前作業系統教學中的地位。Nachos 的虛擬機器使得網路的實現相當簡單。與 MINIX 不同,Nachos 只是一個在宿主機上運行的一個行程。在同一個宿主機上可以運行多個 Nachos 行程,各個行程可以相互通訊,作為一個全互連網路的一個節點;行程之間通過 Socket 進行通訊,類比了一個全互連網路。</p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/27/what-is-nachos/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -569,7 +571,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            64
+                            65
                         </p>
                     </a>
                 </div>
@@ -690,7 +692,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">24</span>
+                <span class="level-item tag">25</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -698,7 +700,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">19</span>
+                <span class="level-item tag">20</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -914,7 +916,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1110,7 +1112,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">24</span>
+                        <span class="tag is-grey">25</span>
                     </a>
                 </div>
                 
@@ -1797,7 +1799,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1993,7 +1995,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">24</span>
+                        <span class="tag is-grey">25</span>
                     </a>
                 </div>
                 
