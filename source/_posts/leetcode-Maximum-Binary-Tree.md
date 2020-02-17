@@ -52,10 +52,6 @@ Output: return the tree root node representing the following tree:
 class Solution {
 public:
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {        
-        
-        vector<int> ary{0, 1,2,3,4,5};
-        // cout << distance(ary.begin(), max_element(ary.begin() + l, ary.begin() + r + 1));
-        
         return trav(nums, 0, nums.size() - 1);
     }
     
