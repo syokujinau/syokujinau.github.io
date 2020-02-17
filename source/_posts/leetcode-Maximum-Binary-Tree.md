@@ -52,12 +52,16 @@ Output: return the tree root node representing the following tree:
 class Solution {
 public:
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {        
+        
+        vector<int> ary{0, 1,2,3,4,5};
+        // cout << distance(ary.begin(), max_element(ary.begin() + l, ary.begin() + r + 1));
+        
         return trav(nums, 0, nums.size() - 1);
     }
     
     TreeNode* trav(vector<int>& nums, int l, int r) {
         if(l <= r) {
-            int idx = idxMax(nums, l, r);
+            int idx = distance(nums.begin(), max_element(nums.begin() + l, nums.begin() + r + 1));
             TreeNode* root = new TreeNode(nums[idx]);
             root->left = trav(nums, l, idx - 1);
             root->right = trav(nums, idx + 1, r);
@@ -66,12 +70,9 @@ public:
         
         return NULL;
     }
-    
-    int idxMax(vector<int>& nums, int l, int r) { 
-        int Max = INT_MIN;
-        for(int i = l; i <= r; i++) if (nums[i] > Max) Max = nums[i];
-        for(int i = l; i <= r; i++) if (nums[i] == Max) return i;
-        return -1;
-    }
 };
 ```
+
+## Note
+
+`max_element(nums.begin() + l, nums.begin() + r + 1))`回傳指向$index = l$ to $r$中最大值的iterator，`distance(itr1, itr2)`回傳itr1到itr2的距離
