@@ -139,6 +139,73 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/04/14/algorithm-design-dynamic-programming/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/RPQGyZx.jpg" alt="演算法設計 - Dynamic Programming">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-14T09:44:07.000Z">2019-04-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1847 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/04/14/algorithm-design-dynamic-programming/">演算法設計 - Dynamic Programming</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p>基本設計概念:</p>
+<ul>
+<li>Solve a <strong>pre-determined</strong> set of problems</li>
+<li>Memorize solutions to all subproblems</li>
+</ul>
+<h2 id="Unique-Path"><a href="#Unique-Path" class="headerlink" title="Unique Path"></a>Unique Path</h2><p>走到(i, j)的位置，只有可能來自上面或左邊<br>令$P(i, j)$表示走到(i, j)位置的方法數</p>
+<p>$$<br>P(i, j) = \begin{cases}<br>1 & \text{ if } i=0 \newline<br>1 & \text{ if } j=0 \newline<br>P(i-1, j) + P(i, j-1) & \text{ if } i \geq 1, j \geq 1<br>\end{cases}<br>$$</p>
+<p>又稱為state equation</p>
+<p><a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">62. Unique Paths</a></p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/04/14/algorithm-design-dynamic-programming/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/04/14/algorithm-design-greedy/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
         </a>
@@ -411,85 +478,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/02/28/introduction-to-asymptotic-notation/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/K6F6Ojx.jpg" alt="Introduction to Asymptotic Notation and Analysis of Algorithms">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-28T04:05:54.000Z">2019-02-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    13 minutes read (About 1996 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/28/introduction-to-asymptotic-notation/">Introduction to Asymptotic Notation and Analysis of Algorithms</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="Big-O-O"><a href="#Big-O-O" class="headerlink" title="Big-O: $O$"></a>Big-O: $O$</h2>
-$$
-O(g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \leq c \cdot g(n) \space \space , \forall n \geq n_0 \right \}
-$$
-
-
-
-
-<img alt="bigO" src="https://i.imgur.com/9hS03jF.png" width="60%">
-
-<h2 id="Omega-Omega"><a href="#Omega-Omega" class="headerlink" title="Omega: $\Omega$"></a>Omega: $\Omega$</h2>
-$$
-\Omega (g(n)) = \left \{ f(n) \space | \space \exists c, n_0 > 0, \space s.t. f(n) \geq c \cdot g(n) \space \space ,  \forall n \geq n_0 \right \}
-$$ 
-
-
-
-<h2 id="Theta-Theta"><a href="#Theta-Theta" class="headerlink" title="Theta: $\Theta$"></a>Theta: $\Theta$</h2>
-$$
-\Theta (g(n)) = \left \{ f(n) \space | \space \exists c_1, c_2, n_0 > 0, \space s.t. c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \space \space , \forall n \geq n_0  \right \}
-$$</body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/28/introduction-to-asymptotic-notation/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -564,7 +552,7 @@ $$</body></html>
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            73
                         </p>
                     </a>
                 </div>
@@ -685,7 +673,7 @@ $$</body></html>
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">32</span>
+                <span class="level-item tag">33</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -693,7 +681,7 @@ $$</body></html>
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">27</span>
+                <span class="level-item tag">28</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -920,7 +908,7 @@ $$</body></html>
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1116,7 +1104,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">33</span>
                     </a>
                 </div>
                 
@@ -1592,7 +1580,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
@@ -1821,7 +1809,7 @@ $$</body></html>
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2017,7 +2005,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">33</span>
                     </a>
                 </div>
                 
@@ -2493,7 +2481,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 

@@ -1,5 +1,5 @@
 ---
-title: LeetCode - Generate Parentheses
+title: Leetcode - Generate Parentheses
 date: 2019-10-16 11:36:47
 tags:
 - Algorithm

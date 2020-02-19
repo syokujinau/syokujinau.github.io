@@ -149,6 +149,66 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/11/01/leetcode-maximum-depth-of-binary-tree/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/tzJxftO.jpg" alt="LeetCode - Maximum Depth of Binary Tree">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-01T04:26:31.000Z">2019-11-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 82 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/01/leetcode-maximum-depth-of-binary-tree/">LeetCode - Maximum Depth of Binary Tree</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="104-Maximum-Depth-of-Binary-Tree"><a href="#104-Maximum-Depth-of-Binary-Tree" class="headerlink" title="104. Maximum Depth of Binary Tree"></a>104. Maximum Depth of Binary Tree</h2><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p><img src="https://i.imgur.com/0RQQEU5.gif" alt></p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode* root)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">int</span> d = <span class="hljs-number">1</span>, max_d = <span class="hljs-number">0</span>;</span><br><span class="line">        preorder(root, d, max_d);</span><br><span class="line">        <span class="hljs-keyword">return</span> max_d;             </span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">preorder</span><span class="hljs-params">(TreeNode* root, <span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span>& max_d)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(!root) </span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        max_d = max(d, max_d);</span><br><span class="line">        <span class="hljs-keyword">if</span>(root->left)  preorder(root->left, d+<span class="hljs-number">1</span>, max_d);</span><br><span class="line">        <span class="hljs-keyword">if</span>(root->right) preorder(root->right, d+<span class="hljs-number">1</span>, max_d);</span><br><span class="line">        <span class="hljs-keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/01/leetcode-maximum-depth-of-binary-tree/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/10/21/leetcode-Check-If-N-and-Its-Double-Exist/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/kaAQ5tH.png" alt="Leetcode - Check If N and Its Double Exist">
         </a>
@@ -415,7 +475,7 @@
     
     <div class="card-image">
         <a href="/2019/10/16/leetcode-generate-parentheses/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/hivsaxA.png" alt="LeetCode - Generate Parentheses">
+            <img class="thumbnail" src="https://i.imgur.com/hivsaxA.png" alt="Leetcode - Generate Parentheses">
         </a>
     </div>
     
@@ -442,7 +502,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/10/16/leetcode-generate-parentheses/">LeetCode - Generate Parentheses</a>
+                <a class="has-link-black-ter" href="/2019/10/16/leetcode-generate-parentheses/">Leetcode - Generate Parentheses</a>
             
         </h1>
         <div class="content">
@@ -751,77 +811,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/04/14/algorithm-design-greedy/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 456 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/04/14/algorithm-design-greedy/">演算法設計 - Greedy Algorithm</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>Greedy演算法的設計精神</p>
-<ol>
-<li>Build a solution in small steps</li>
-<li>At each step optimize locally</li>
-</ol>
-<h2 id="Meeting-Scheduling"><a href="#Meeting-Scheduling" class="headerlink" title="Meeting Scheduling"></a>Meeting Scheduling</h2><p>給予$M_1, M_2, \dots, M_n$個會議<br>$M_i$的開會時間從$s_i$到$t_i$<br>求最多可參加幾場會議</p>
-<p>Greedy想要<strong>盡可能</strong>的每一步都取目前最佳解法，並且嘗試證明沒有比這個方法更好的解法，<strong>期待</strong>而<strong>不保證</strong>會得到整體最佳解。</p>
-<p>以下列出一些可能的greedy解法</p>
-<p>$greedy1$. 選離目前$t_i - s_i$最短的</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greedy :            |------|</span><br><span class="line">optimal: |-------------| |------------|</span><br></pre></td></tr></tbody></table></figure>
-
-<p>$greedy2$. 選離目前最少衝突的會議</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">            |----|        |----|</span><br><span class="line">            |----|        |----|</span><br><span class="line">greedy :           |----|</span><br><span class="line">optimal: |----||-----| |----| |----|</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/14/algorithm-design-greedy/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -890,7 +879,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            73
                         </p>
                     </a>
                 </div>
@@ -1011,7 +1000,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">32</span>
+                <span class="level-item tag">33</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -1019,7 +1008,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">27</span>
+                <span class="level-item tag">28</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -1246,7 +1235,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1442,7 +1431,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">33</span>
                     </a>
                 </div>
                 
@@ -1918,7 +1907,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
@@ -2147,7 +2136,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2343,7 +2332,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">33</span>
                     </a>
                 </div>
                 
@@ -2819,7 +2808,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
