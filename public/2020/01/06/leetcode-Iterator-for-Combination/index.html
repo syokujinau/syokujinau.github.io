@@ -7,25 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>React開發環境設定 - YC&#39;s Blog</title>
+<title>Leetcode - Iterator for Combination - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="Babel Setup Babel是一種ES6編譯器，因為有些瀏覽器未支援新語法，所以需要轉換舊版語法  123npm initnpm install -g babel-cli@6.24.1npm install babel-preset-react@6.24.1 babel-preset-env@1.5.2  Compile1babel src&#x2F;app.js --out-file&#x3D;public&#x2F;">
+    <meta name="description" content="1286. Iterator for CombinationDesign an Iterator class, which has:  A constructor that takes a string characters of sorted distinct lowercase English letters and a number combinationLength as argument">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React開發環境設定">
-<meta property="og:url" content="https://syokujinau.github.io/2019/02/17/react-js-v16-setup/index.html">
+<meta property="og:title" content="Leetcode - Iterator for Combination">
+<meta property="og:url" content="https://syokujinau.github.io/2020/01/06/leetcode-Iterator-for-Combination/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="Babel Setup Babel是一種ES6編譯器，因為有些瀏覽器未支援新語法，所以需要轉換舊版語法  123npm initnpm install -g babel-cli@6.24.1npm install babel-preset-react@6.24.1 babel-preset-env@1.5.2  Compile1babel src&#x2F;app.js --out-file&#x3D;public&#x2F;">
+<meta property="og:description" content="1286. Iterator for CombinationDesign an Iterator class, which has:  A constructor that takes a string characters of sorted distinct lowercase English letters and a number combinationLength as argument">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/5VOk9jX.png">
-<meta property="article:published_time" content="2019-02-17T05:23:37.000Z">
-<meta property="article:modified_time" content="2020-02-04T10:06:50.665Z">
+<meta property="og:image" content="https://i.imgur.com/2bcBdqb.png">
+<meta property="article:published_time" content="2020-01-06T05:41:11.000Z">
+<meta property="article:modified_time" content="2020-02-21T07:27:09.337Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="ES6">
-<meta property="article:tag" content="React">
-<meta property="article:tag" content="npm">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Backtracking">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/5VOk9jX.png">
+<meta name="twitter:image" content="https://i.imgur.com/2bcBdqb.png">
 
 
 
@@ -93,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="React開發環境設定" height="28">
+                <img src="/images/logo.svg" alt="Leetcode - Iterator for Combination" height="28">
             
             </a>
         </div>
@@ -147,7 +146,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/5VOk9jX.png" alt="React開發環境設定">
+            <img class="thumbnail" src="https://i.imgur.com/2bcBdqb.png" alt="Leetcode - Iterator for Combination">
         </span>
     </div>
     
@@ -155,17 +154,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-17T05:23:37.000Z">2019-02-17</time>
+                <time class="level-item has-text-grey" datetime="2020-01-06T05:41:11.000Z">2020-01-06</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 148 words)
+                    2 minutes read (About 279 words)
                 </span>
                 
                 
@@ -174,33 +173,56 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                React開發環境設定
+                Leetcode - Iterator for Combination
             
         </h1>
         <div class="content">
-            <html><head></head><body><h2 id="Babel-Setup"><a href="#Babel-Setup" class="headerlink" title="Babel Setup"></a>Babel Setup</h2><blockquote>
-<p>Babel是一種ES6編譯器，因為有些瀏覽器未支援新語法，所以需要轉換舊版語法</p>
-</blockquote>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">npm install -g babel-cli@6.24.1</span><br><span class="line">npm install babel-preset-react@6.24.1 babel-preset-env@1.5.2</span><br></pre></td></tr></tbody></table></figure>
+            <html><head></head><body><h2 id="1286-Iterator-for-Combination"><a href="#1286-Iterator-for-Combination" class="headerlink" title="1286. Iterator for Combination"></a><a href="https://leetcode.com/problems/iterator-for-combination/" target="_blank" rel="noopener">1286. Iterator for Combination</a></h2><p>Design an Iterator class, which has:</p>
+<ul>
+<li>A constructor that takes a string characters of sorted distinct lowercase English letters and a number combinationLength as arguments.</li>
+<li>A function next() that returns the next combination of length combinationLength in lexicographical order.</li>
+<li>A function hasNext() that returns True if and only if there exists a next combination.</li>
+</ul>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CombinationIterator iterator = new CombinationIterator("abc", 2); // creates the iterator.</span><br><span class="line"></span><br><span class="line">iterator.next(); // returns "ab"</span><br><span class="line">iterator.hasNext(); // returns true</span><br><span class="line">iterator.next(); // returns "ac"</span><br><span class="line">iterator.hasNext(); // returns true</span><br><span class="line">iterator.next(); // returns "bc"</span><br><span class="line">iterator.hasNext(); // returns false</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a>Compile</h3><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel src/app.js --out-file=public/scripts/app.js --presets=env,react</span><br></pre></td></tr></tbody></table></figure>
-<p>更改即時編譯，搭配<a href="https://www.npmjs.com/package/live-server" target="_blank" rel="noopener">live-server</a>使用更方便</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch</span><br></pre></td></tr></tbody></table></figure>
+
+
 <a id="more"></a>
-<h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├─public</span><br><span class="line">│  │─index.html</span><br><span class="line">│  └─scripts</span><br><span class="line">│     └─app.js</span><br><span class="line">└─src</span><br><span class="line">   └─app.js</span><br></pre></td></tr></tbody></table></figure>
 
-<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">html</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">html</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">head</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">title</span>></span>Basic<span class="hljs-tag"></<span class="hljs-name">title</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">head</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>></span><span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/react@16.0.0/umd/react.development.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/scripts/app.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">html</span>></span></span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// src/app.js</span></span><br><span class="line"><span class="hljs-keyword">const</span> render = <span class="hljs-function"><span class="hljs-params">()</span> =></span> {</span><br><span class="line">    <span class="hljs-keyword">const</span> jsx = (</span><br><span class="line">        <div></span><br><span class="line">            <h1>My APP<<span class="hljs-regexp">/h1></span></span><br><span class="line"><span class="hljs-regexp">        </</span>div></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    ReactDOM.render(jsx, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">render();</span><br></pre></td></tr></tbody></table></figure>
-
-</body></html>
+<p>Constraints:</p>
+<ul>
+<li><code>1 <= combinationLength <= characters.length <= 15</code></li>
+<li>There will be at most <code>10^4</code> function calls per test.</li>
+<li>It’s guaranteed that all calls of the function <code>next</code> are valid.</li>
+</ul>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>$C^n_r$組合數為$\frac{n!}{(n-r)!r!}$<br>參數<code>characters</code>的長度是$n$，<code>combinationLength</code>就是$r$<br>建構子<code>CombinationIterator</code>被呼叫時用dfs搜尋生成所有組合，當遞迴深度$d$到達$r$就是leaf，紀錄並回傳</p>
+<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CombinationIterator</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-built_in">vector</span><<span class="hljs-built_in">string</span>> ans;</span><br><span class="line">    <span class="hljs-keyword">int</span> idx;</span><br><span class="line">    </span><br><span class="line">    CombinationIterator(<span class="hljs-built_in">string</span> characters, <span class="hljs-keyword">int</span> combinationLength) {</span><br><span class="line">        </span><br><span class="line">        idx = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-built_in">string</span> cur = <span class="hljs-string">""</span>;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        function<<span class="hljs-keyword">void</span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)> dfs = [&] (<span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span> s) {</span><br><span class="line">            <span class="hljs-keyword">if</span>(d == combinationLength) {</span><br><span class="line">                ans.push_back(cur);</span><br><span class="line">                <span class="hljs-keyword">return</span>;</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = s; i < characters.size(); ++i) {</span><br><span class="line">                cur.push_back(characters[i]);</span><br><span class="line">                dfs(d + <span class="hljs-number">1</span>, i + <span class="hljs-number">1</span>);</span><br><span class="line">                cur.pop_back();</span><br><span class="line">            }</span><br><span class="line">        };</span><br><span class="line">        </span><br><span class="line">        dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment">// for(string s : ans) cout << s << " "; cout << endl;</span></span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> ans[idx++];</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> idx < ans.size();</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Your CombinationIterator object will be instantiated and called as such:</span></span><br><span class="line"><span class="hljs-comment"> * CombinationIterator* obj = new CombinationIterator(characters, combinationLength);</span></span><br><span class="line"><span class="hljs-comment"> * string param_1 = obj->next();</span></span><br><span class="line"><span class="hljs-comment"> * bool param_2 = obj->hasNext();</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ES6/" rel="tag">ES6</a>, <a class="has-link-grey -link" href="/tags/React/" rel="tag">React</a>, <a class="has-link-grey -link" href="/tags/npm/" rel="tag">npm</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Backtracking/" rel="tag">Backtracking</a>
                 </div>
             </div>
         </div>
@@ -218,16 +240,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/28/introduction-to-asymptotic-notation/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Introduction to Asymptotic Notation and Analysis of Algorithms</span>
+                <span class="level-item">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/15/anki-japanese-support-and-awesomeTTS/">
-                <span class="level-item">Anki - 使用AwesomeTTS與Japanese Support自動產生振假名與發音</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/02/leetcode-Find-the-Duplicate-Number/">
+                <span class="level-item">Leetcode - Find the Duplicate Number</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -243,8 +265,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2019/02/17/react-js-v16-setup/';
-        this.page.identifier = '2019/02/17/react-js-v16-setup/';
+        this.page.url = 'https://syokujinau.github.io/2020/01/06/leetcode-Iterator-for-Combination/';
+        this.page.identifier = '2020/01/06/leetcode-Iterator-for-Combination/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1413,7 +1435,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="React開發環境設定" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode - Iterator for Combination" height="28">
                 
                 </a>
                 <p class="is-size-7">

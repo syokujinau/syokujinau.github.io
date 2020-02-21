@@ -140,6 +140,79 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/12/09/FreeRTOS-hook-functions/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/rjbUjJo.png" alt="FreeRTOS - Hook Function">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-09T04:32:58.000Z">2019-12-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 377 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/09/FreeRTOS-hook-functions/">FreeRTOS - Hook Function</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><blockquote>
+<p>參考：<a href="https://www.freertos.org/a00016.html" target="_blank" rel="noopener">https://www.freertos.org/a00016.html</a></p>
+</blockquote>
+<ul>
+<li>Idle task hook function</li>
+<li>RTOS Tick hook function</li>
+<li>Dynamic memory allocation (Malloc) faild hook function </li>
+<li>Stack overflow hook function</li>
+</ul>
+<p>必要時實做這些hook function，當有該事件發生rtos就會自動執行他們</p>
+<!-- ![](https://i.imgur.com/1zP1mS3.png)
+ -->
+<h2 id="Idle-Task-Hook-Function"><a href="#Idle-Task-Hook-Function" class="headerlink" title="Idle Task Hook Function"></a>Idle Task Hook Function</h2><p>idle task作為閒置時rtos的要做的工作，要在<strong>FreeRTOSConfig.h</strong>中設定<code>configUSE_IDLE_HOOK</code>為1，並實做<code>void vApplicationIdleHook(void);</code>，一般可以在閒置中降低mcu運算量節能功耗</p>
+<!-- 
+![](https://i.imgur.com/q9N4Icz.png) --></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/12/09/FreeRTOS-hook-functions/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/12/07/leetcode-Permutations/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/DLgkt0w.png" alt="Leetcode - Permutations">
         </a>
@@ -398,71 +471,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/11/24/leetcode-diameter-of-binary-tree/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/vYQljRI.png" alt="Leetcode - Diameter of Binary Tree">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-24T03:36:47.000Z">2019-11-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 213 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/11/24/leetcode-diameter-of-binary-tree/">Leetcode - Diameter of Binary Tree</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>Tree資料結構的操作與postorder traversal</p>
-<h2 id="543-Diameter-of-Binary-Tree"><a href="#543-Diameter-of-Binary-Tree" class="headerlink" title="543. Diameter of Binary Tree"></a>543. Diameter of Binary Tree</h2><p>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.</p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree</span><br><span class="line">          1</span><br><span class="line">         / \</span><br><span class="line">        2   3</span><br><span class="line">       / \     </span><br><span class="line">      4   5</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>postorder traversal會訪問所有tree node，所以一定會經過左右子樹高度最長的root(如下圖node 2)，構成題目定義的直徑，在traversal過程一定會經過此點，若有更長的直徑則更新diameter的值</p>
-<img src="https://i.imgur.com/RkN7cMD.png" width="50%"></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/11/24/leetcode-diameter-of-binary-tree/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -537,7 +545,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            74
+                            75
                         </p>
                     </a>
                 </div>
@@ -658,7 +666,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">34</span>
+                <span class="level-item tag">35</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -666,7 +674,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">29</span>
+                <span class="level-item tag">30</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -871,7 +879,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1089,7 +1097,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">34</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
@@ -1131,7 +1139,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -1772,7 +1780,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1990,7 +1998,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">34</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
@@ -2032,7 +2040,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 

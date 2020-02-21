@@ -140,6 +140,71 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/03/03/centOS-jupyter-notebook-server/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/IYjQsLQ.png" alt="CentOS架設Jupyter notebook server">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-03T15:10:54.000Z">2019-03-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 578 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/03/03/centOS-jupyter-notebook-server/">CentOS架設Jupyter notebook server</a>
+            
+        </h1>
+        <div class="content">
+            <!-- title: CentOS架設Jupyter notebook server --><html><head></head><body><h1 id="Step1-新增CentOS使用者"><a href="#Step1-新增CentOS使用者" class="headerlink" title="Step1: 新增CentOS使用者"></a>Step1: 新增CentOS使用者</h1><figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser jpynb</span><br><span class="line">sudo su</span><br><span class="line">passwd jpynb</span><br><span class="line">gpasswd -a jpynb wheel <span class="hljs-comment">#給予使用者 sudo 權限</span></span><br><span class="line">lid -g wheel</span><br></pre></td></tr></tbody></table></figure>
+
+<p>之後就能用該組帳號密碼ssh進入/home/jpynb</p>
+<h1 id="Step2-安裝jupyter"><a href="#Step2-安裝jupyter" class="headerlink" title="Step2: 安裝jupyter"></a>Step2: 安裝jupyter</h1><figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install python-pip</span><br><span class="line">sudo yum install python3-pip</span><br><span class="line"></span><br><span class="line">sudo pip install ipython[all]</span><br><span class="line">sudo pip3 install ipython[all]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>這時輸入以下指令，初步測試是否安裝成功</p>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --no-browser</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/03/centOS-jupyter-notebook-server/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/03/02/how-https-works/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/1SpDhK2.jpg" alt="用生活化的例子解釋HTTPS">
         </a>
@@ -414,69 +479,6 @@ $$</body></html>
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/02/10/imgur-upload/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/vNiihJ9.jpg" alt="Imgur upload API 上傳圖片">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-10T03:55:00.000Z">2019-02-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 141 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/10/imgur-upload/">Imgur upload API 上傳圖片</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><iframe width="100%" height="300" src="//jsfiddle.net/syokujinau/p07sejcd/embedded/js,html,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-
-<h1 id="註冊應用程式"><a href="#註冊應用程式" class="headerlink" title="註冊應用程式"></a>註冊應用程式</h1><p><a href="https://api.imgur.com/oauth2/addclient" target="_blank" rel="noopener">https://api.imgur.com/oauth2/addclient</a><br><img src="https://i.imgur.com/kNyS0IW.png" alt></p>
-<p>勾選 OAuth 2.0 without callback URL<br>然後就會有Client ID</p>
-<h1 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"imgur"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"imgur"</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">"image/*"</span> <span class="hljs-attr">data-max-size</span>=<span class="hljs-string">"5000"</span>/></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">form</span>></span></span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/10/imgur-upload/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -551,7 +553,7 @@ $$</body></html>
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            74
+                            75
                         </p>
                     </a>
                 </div>
@@ -672,7 +674,7 @@ $$</body></html>
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">34</span>
+                <span class="level-item tag">35</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -680,7 +682,7 @@ $$</body></html>
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">29</span>
+                <span class="level-item tag">30</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -885,7 +887,7 @@ $$</body></html>
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1103,7 +1105,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">34</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
@@ -1145,7 +1147,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -1786,7 +1788,7 @@ $$</body></html>
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -2004,7 +2006,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">34</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
@@ -2046,7 +2048,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
