@@ -51,26 +51,24 @@ public:
         vector<int> ans{-1, -1};
         
         function<void(int, int)> findStartIndex = [&] (int l, int r) {
-            if(l > r) return;
-            
+            if(l > r) return;            
             int mid = (r + l) / 2;
             if(nums[mid] == target) {
                 ans[0] = mid;
-                if(mid > 0 && nums[mid - 1] == target) findStartIndex(0, mid - 1);
+                findStartIndex(l, mid - 1);
             }
-            else if (nums[mid] > target) findStartIndex(0, mid - 1);
+            else if (nums[mid] > target) findStartIndex(l, mid - 1);
             else                         findStartIndex(mid + 1, r);
         };
         
         function<void(int, int)> findEndIndex = [&] (int l, int r) {
-            if(l > r) return;
-            
+            if(l > r) return;            
             int mid = (r + l) / 2;
             if(nums[mid] == target) {
                 ans[1] = mid;
-                if(mid < n - 1 && nums[mid + 1] == target) findEndIndex(mid + 1, r);
+                findEndIndex(mid + 1, r);
             }
-            else if (nums[mid] > target) findEndIndex(0, mid - 1);
+            else if (nums[mid] > target) findEndIndex(l, mid - 1);
             else                         findEndIndex(mid + 1, r);
         };
                 
