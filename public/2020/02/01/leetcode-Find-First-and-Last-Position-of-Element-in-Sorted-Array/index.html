@@ -7,23 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Matlab常用函數 - 作圖與微分積分求解 - YC&#39;s Blog</title>
+<title>Leetcode - Find First and Last Position of Element in Sorted Array - YC&#39;s Blog</title>
 
 
-    <meta name="description" content="Symbolic functionezplot可以直接輸入字串 12fx &#x3D; &#39;10*sin(x)&#39;;h &#x3D; ezplot(fx);   與ezplot不同，fplot的第一個參數是匿名函式，第二個參數可指定x軸範圍">
+    <meta name="description" content="34. Find First and Last Position of Element in Sorted ArrayGiven an array of integers nums sorted in ascending order, find the starting and ending position of a given target value. Your algorithm’s ru">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matlab常用函數 - 作圖與微分積分求解">
-<meta property="og:url" content="https://syokujinau.github.io/2020/01/09/matlab-plot-functions/index.html">
+<meta property="og:title" content="Leetcode - Find First and Last Position of Element in Sorted Array">
+<meta property="og:url" content="https://syokujinau.github.io/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
-<meta property="og:description" content="Symbolic functionezplot可以直接輸入字串 12fx &#x3D; &#39;10*sin(x)&#39;;h &#x3D; ezplot(fx);   與ezplot不同，fplot的第一個參數是匿名函式，第二個參數可指定x軸範圍">
+<meta property="og:description" content="34. Find First and Last Position of Element in Sorted ArrayGiven an array of integers nums sorted in ascending order, find the starting and ending position of a given target value. Your algorithm’s ru">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/ZuCwVX4.png">
-<meta property="article:published_time" content="2020-01-09T03:44:07.000Z">
-<meta property="article:modified_time" content="2020-02-04T10:06:50.665Z">
+<meta property="og:image" content="https://i.imgur.com/3f60CAV.png">
+<meta property="article:published_time" content="2020-02-01T15:13:01.000Z">
+<meta property="article:modified_time" content="2020-02-22T15:33:25.981Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Matlab">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Binary Search">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/ZuCwVX4.png">
+<meta name="twitter:image" content="https://i.imgur.com/3f60CAV.png">
 
 
 
@@ -91,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Matlab常用函數 - 作圖與微分積分求解" height="28">
+                <img src="/images/logo.svg" alt="Leetcode - Find First and Last Position of Element in Sorted Array" height="28">
             
             </a>
         </div>
@@ -145,7 +146,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/ZuCwVX4.png" alt="Matlab常用函數 - 作圖與微分積分求解">
+            <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
         </span>
     </div>
     
@@ -153,17 +154,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-09T03:44:07.000Z">2020-01-09</time>
+                <time class="level-item has-text-grey" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1161 words)
+                    2 minutes read (About 291 words)
                 </span>
                 
                 
@@ -172,135 +173,55 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Matlab常用函數 - 作圖與微分積分求解
+                Leetcode - Find First and Last Position of Element in Sorted Array
             
         </h1>
         <div class="content">
-            <html><head></head><body><h2 id="Symbolic-function"><a href="#Symbolic-function" class="headerlink" title="Symbolic function"></a>Symbolic function</h2><p><code>ezplot</code>可以直接輸入字串</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fx <span class="hljs-built_in">=</span> <span class="hljs-string">'10*sin(x)'</span>;</span><br><span class="line">h <span class="hljs-built_in">=</span> ezplot(fx);</span><br></pre></td></tr></tbody></table></figure>
+            <html><head></head><body><h2 id="34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="34. Find First and Last Position of Element in Sorted Array"></a><a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">34. Find First and Last Position of Element in Sorted Array</a></h2><p>Given an array of integers <code>nums</code> sorted in ascending order, find the starting and ending position of a given <code>target</code> value.</p>
+<p>Your algorithm’s runtime complexity must be in the order of $O(log n)$.</p>
+<p>If the target is not found in the array, return <code>[-1, -1]</code>.</p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [5,7,7,8,8,10], target = 8</span><br><span class="line">Output: [3,4]</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="https://i.imgur.com/mpZ9KDr.png" alt></p>
-<p>與<code>ezplot</code>不同，<code>fplot</code>的第一個參數是匿名函式，第二個參數可指定x軸範圍</p>
 <a id="more"></a>
 
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fy <span class="hljs-built_in">=</span> @(y) <span class="hljs-number">10</span>*sin(y) + tan(y/<span class="hljs-number">2</span>)/<span class="hljs-number">10</span>;</span><br><span class="line">h <span class="hljs-built_in">=</span> fplot(fy, [-<span class="hljs-number">15</span> <span class="hljs-number">5</span>]);</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/VyVudmW.png" alt></p>
-<h2 id="Implicit-function"><a href="#Implicit-function" class="headerlink" title="Implicit function"></a>Implicit function</h2><figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fts <span class="hljs-built_in">=</span> @(r,t,s) <span class="hljs-number">2</span>.^(t.*s) + r.*s - t.*s.^(<span class="hljs-number">1</span>/<span class="hljs-number">3</span>);</span><br><span class="line">h <span class="hljs-built_in">=</span> fimplicit3(fts);</span><br><span class="line">rotate3d on, axis image</span><br><span class="line">set(h, <span class="hljs-string">'linestyle'</span>, <span class="hljs-string">'none'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/ZuCwVX4.png" alt></p>
-<h2 id="Polar-function"><a href="#Polar-function" class="headerlink" title="Polar function"></a>Polar function</h2><figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cardioid <span class="hljs-built_in">=</span> @(t) <span class="hljs-number">2</span>*(<span class="hljs-number">1</span>-cos(t));</span><br><span class="line">h <span class="hljs-built_in">=</span> ezpolar(cardioid);</span><br><span class="line">set(h, <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'color'</span>, <span class="hljs-string">'r'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/Qhe8B5V.png" alt></p>
-<h2 id="Function-limits"><a href="#Function-limits" class="headerlink" title="Function limits"></a>Function limits</h2><p>使用<code>limit</code>求$\lim_{x\to 5}  \frac{x^2 - 25}{x^2+x-30}$，並作圖。</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syms x</span><br></pre></td></tr></tbody></table></figure>
-
-<p>用<code>syms</code>宣告<strong>symbolic variables</strong>，可視為一個placeholder，這樣就不用宣告特定x的vector，Matlab會幫我們解析表達式。</p>
-<p>若宣告為vector形式，<code>x = [-10:.01:10]</code>稱為<strong>numeric variables</strong></p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fx <span class="hljs-built_in">=</span> (x^<span class="hljs-number">2</span> - <span class="hljs-number">25</span>) / (x^<span class="hljs-number">2</span>+x-<span class="hljs-number">30</span>);</span><br><span class="line">fplot(fx, [-<span class="hljs-number">10</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br><span class="line"></span><br><span class="line">a <span class="hljs-built_in">=</span> <span class="hljs-number">5</span>;</span><br><span class="line">lim5 <span class="hljs-built_in">=</span> limit(fx, x, a);</span><br><span class="line"></span><br><span class="line">hold on</span><br><span class="line">plot([<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*a, get(gca, <span class="hljs-string">'ylim'</span>), <span class="hljs-string">'r--'</span>)</span><br><span class="line">plot(get(gca, <span class="hljs-string">'xlim'</span>), [<span class="hljs-number">1</span> <span class="hljs-number">1</span>]*lim5, <span class="hljs-string">'r--'</span>)</span><br><span class="line">title(<span class="hljs-string">'$$f(x) = \frac{x^2 - 25}{x^2+x-30}$$'</span>,<span class="hljs-string">'interpreter'</span>,<span class="hljs-string">'latex'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/jITma8a.png" alt></p>
-<p>計算$x\to -6$的左極限與右極限</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">limit(fx, x, -<span class="hljs-number">6</span>, <span class="hljs-string">'left'</span>)</span><br><span class="line">limit(fx, x, -<span class="hljs-number">6</span>, <span class="hljs-string">'right'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="Function-Derivatives"><a href="#Function-Derivatives" class="headerlink" title="Function Derivatives"></a>Function Derivatives</h2><ol>
-<li>求$f(x) = sin(x)$導數並作圖</li>
-<li>回傳$f(x)$與$\frac{df(x)}{dx}$在$x=\pi / 3$的<strong>symbolic expression</strong></li>
-</ol>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">syms x <span class="hljs-comment">% symbolic variables</span></span><br><span class="line">f <span class="hljs-built_in">=</span> sin(x);</span><br><span class="line">df <span class="hljs-built_in">=</span> diff(f);</span><br><span class="line"></span><br><span class="line">subplot(<span class="hljs-number">211</span>)</span><br><span class="line">fplot(f)</span><br><span class="line">hold on</span><br><span class="line">fplot(df)</span><br><span class="line"></span><br><span class="line">legend([<span class="hljs-string">'f(x) = '</span> char(f)], [<span class="hljs-string">'df = '</span> char(df)])</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/einqTrv.png" alt></p>
-<p><code>subs</code>: Symbolic substitution</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a <span class="hljs-built_in">=</span> pi / <span class="hljs-number">3</span>;</span><br><span class="line">subs(f, a)   <span class="hljs-comment">% 3^(1/2)/2</span></span><br><span class="line">subs(df, a)  <span class="hljs-comment">% 1/2</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>一樣的函數，在numeric運算，注意會有取樣間隔與導數的vector長度的問題</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Ts <span class="hljs-built_in">=</span> .<span class="hljs-number">001</span>;</span><br><span class="line">t <span class="hljs-built_in">=</span> -<span class="hljs-number">5</span>:Ts:<span class="hljs-number">5</span>;</span><br><span class="line">y <span class="hljs-built_in">=</span> sin(t);</span><br><span class="line">dy <span class="hljs-built_in">=</span> diff(y) * <span class="hljs-number">1</span>/Ts; <span class="hljs-comment">% 這裡是discrete derivatives，所以輸出的vector長度會比原本少1</span></span><br><span class="line">subplot(<span class="hljs-number">212</span>)</span><br><span class="line">plot(t, y)</span><br><span class="line">hold on</span><br><span class="line">plot(t(<span class="hljs-number">1</span>:end-<span class="hljs-number">1</span>), dy)  <span class="hljs-comment">% t少取一個才會跟dy長度一樣</span></span><br><span class="line">legend({<span class="hljs-string">'y(t)'</span>, <span class="hljs-string">'dy'</span>})</span><br></pre></td></tr></tbody></table></figure>
-
-
-<hr>
-<p>接下來</p>
-<ol>
-<li><code>fplot</code>畫出以下函數與其導函數的圖形</li>
-<li><code>pretty</code>在console印出數學式</li>
-<li>縱軸範圍-300到300</li>
-</ol>
-<p>$$f(x) = \frac{e^{sin(x)^x}}{3^x cos(x)}$$</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">syms x</span><br><span class="line">f <span class="hljs-built_in">=</span> exp(sin(x))^x/(<span class="hljs-number">3</span>^x * cos(x));</span><br><span class="line">df <span class="hljs-built_in">=</span> diff(f);</span><br><span class="line"></span><br><span class="line">pretty(f)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/JExYWaZ.png" alt></p>
-<p>可用來對照有沒有打錯函數</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pretty(df)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/5EtGIsw.png" alt><br>嗯…雖然還是醜醜的，但是相對好閱讀</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">figure(<span class="hljs-number">8</span>), clf</span><br><span class="line">fplot(f, <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br><span class="line">hold on</span><br><span class="line">fplot(df, <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br><span class="line">legend({<span class="hljs-string">'f(x)'</span>, <span class="hljs-string">'df'</span>})</span><br><span class="line">set(gca, <span class="hljs-string">'ylim'</span>, [-<span class="hljs-number">300</span> <span class="hljs-number">300</span>])</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/eN6TExS.png" alt></p>
-<h2 id="Function-integration"><a href="#Function-integration" class="headerlink" title="Function integration"></a>Function integration</h2><p>求$f(x) = x^4$ 不定積分並作圖</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syms x</span><br><span class="line">f <span class="hljs-built_in">=</span> x^<span class="hljs-number">4</span>;</span><br><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span><br><span class="line"></span><br><span class="line">figure(<span class="hljs-number">9</span>), clf, hold on</span><br><span class="line">fplot(f, [-<span class="hljs-number">2</span> <span class="hljs-number">2</span>])</span><br><span class="line">fplot(intf, [-<span class="hljs-number">2</span> <span class="hljs-number">2</span>])</span><br><span class="line">legend([<span class="hljs-string">'f(x) = '</span> char(f)], [<span class="hljs-string">'\int f dx = '</span> char(intf) <span class="hljs-string">'+C'</span>])</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/21O7qUM.png" alt></p>
-<ol>
-<li>分別對x與y做$f(x,y) = x^2 + y^3$分部積分</li>
-<li>用<code>subs</code>代入$(x, y) = (4, 3)$求值</li>
-</ol>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syms x y</span><br><span class="line">fxy <span class="hljs-built_in">=</span> x^<span class="hljs-number">2</span> + y^<span class="hljs-number">3</span>;</span><br><span class="line"></span><br><span class="line">int(fxy, x) <span class="hljs-comment">% x^3/3 + x*y^3</span></span><br><span class="line"></span><br><span class="line">int(fxy, y) <span class="hljs-comment">% x^2*y + y^4/4</span></span><br><span class="line"></span><br><span class="line">subs(int(fxy, x), [x y], [<span class="hljs-number">4</span> <span class="hljs-number">3</span>]) <span class="hljs-comment">% 388/3</span></span><br></pre></td></tr></tbody></table></figure>
-
-
-<hr>
-<p>對以下函數不定積分</p>
-<p>$$f(x)=\frac{sec(x) log(tan(x)sin(x) + sin(x)) }{e^x}$$</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">syms x </span><br><span class="line">f <span class="hljs-built_in">=</span> sec(x) * log(tan(x)*sin(x) + sin(x)) / exp(x);</span><br><span class="line"></span><br><span class="line">figure(<span class="hljs-number">10</span>), clf, hold on</span><br><span class="line">fplot(f, [-<span class="hljs-number">20</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<p>若直接用<code>int</code>求</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>將會回傳int((exp(-x)<em>log(sin(x) + sin(x)</em>tan(x)))/cos(x),x)，代表這個函數沒有一個symbolic的解</p>
-<p>較好的方式是用numerical方法去近似，也就是代入一個vector的每個值到匿名函數去求解</p>
-<ol>
-<li><code>integral</code> - Numerically evaluate integral</li>
-<li>匿名函數要用element-wise運算</li>
-<li>積分後<code>real</code>取實部，用<code>plot</code>畫出</li>
-</ol>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">syms x </span><br><span class="line">f <span class="hljs-built_in">=</span> sec(x) * log(tan(x)*sin(x) + sin(x)) / exp(x);</span><br><span class="line"></span><br><span class="line">figure(<span class="hljs-number">10</span>), clf, hold on</span><br><span class="line">fplot(f, [-<span class="hljs-number">20</span> <span class="hljs-number">10</span>], <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">intf <span class="hljs-built_in">=</span> int(f);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">% calculate numerically</span></span><br><span class="line"></span><br><span class="line">intvec <span class="hljs-built_in">=</span> linspace(-<span class="hljs-number">20</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>);</span><br><span class="line">intf2 <span class="hljs-built_in">=</span> zeros(size(intvec)); <span class="hljs-comment">% initialize</span></span><br><span class="line"></span><br><span class="line">funcf <span class="hljs-built_in">=</span> @(x) sec(x) .* log(tan(x).*sin(x) + sin(x)) ./ exp(x);</span><br><span class="line"></span><br><span class="line">for i <span class="hljs-built_in">=</span> <span class="hljs-number">1</span>:length(intvec)</span><br><span class="line">    intf2(i) <span class="hljs-built_in">=</span> integral(funcf, intvec(<span class="hljs-number">1</span>), intvec(i));</span><br><span class="line">    <span class="hljs-comment">%   Q = INTEGRAL(FUN,A,B) approximates the integral of function FUN from A</span></span><br><span class="line">    <span class="hljs-comment">%   to B using global adaptive quadrature and default error tolerances.</span></span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">plot(intvec, real(intf2), <span class="hljs-string">'linew'</span>, <span class="hljs-number">2</span>)</span><br><span class="line">legend([<span class="hljs-string">'f(x)'</span>], [<span class="hljs-string">'\int f dx'</span>])</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/bC6x2u0.png" alt></p>
-<h2 id="Solving-Differential-Equations"><a href="#Solving-Differential-Equations" class="headerlink" title="Solving Differential Equations"></a>Solving Differential Equations</h2><p>常見電路分析，電容與電感在時域是微分項，也會有初始電壓等情況(initial condition)，透過matlab可以驗證電路行為。</p>
-<ol>
-<li>求解以下微分方程式<ul>
-<li>General solution</li>
-<li>Particular solution $y(0) = {2,1, 0.75,0.5 }$</li>
-</ul>
-</li>
-<li>使用<code>syms</code>, <code>diff</code>, <code>dsolve</code>, <code>meshgrid</code>, <code>ezplot</code>, <code>quiver</code></li>
-</ol>
-<p>$$\frac{dy}{dt} = e^{-t} - 2y$$</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">syms y(t)</span><br><span class="line"></span><br><span class="line">eq <span class="hljs-built_in">=</span> diff(y) <span class="hljs-built_in">=</span><span class="hljs-built_in">=</span> exp(-t) - <span class="hljs-number">2</span>*y;</span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>dsolve</code>基本用法</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dsolve(eq) <span class="hljs-comment">% exp(-t) + C1*exp(-2*t)</span></span><br><span class="line"></span><br><span class="line">dsolve(eq, y(<span class="hljs-number">0</span>) <span class="hljs-built_in">=</span><span class="hljs-built_in">=</span> <span class="hljs-number">2</span>) <span class="hljs-comment">% exp(-t) + exp(-2*t)</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>畫出背景的gradient vector</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>本題提示：</p>
 <ul>
-<li><code>meshgrid</code>: $2 \leq x \leq 3, -1 \leq y \leq 2$分別為30點與32點的網格</li>
-<li><code>quiver</code>: 參數為x、y座標、正規化向量、箭頭大小</li>
+<li>sorted </li>
+<li>target</li>
+<li>O(log n)</li>
 </ul>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">% slope curves</span></span><br><span class="line">[t1, y1] <span class="hljs-built_in">=</span> meshgrid(linspace(-<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">30</span>), linspace(-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">32</span>));</span><br><span class="line">f <span class="hljs-built_in">=</span> exp(-t1) - <span class="hljs-number">2</span>*y1;  </span><br><span class="line">L <span class="hljs-built_in">=</span> sqrt(<span class="hljs-number">1</span>^<span class="hljs-number">2</span> + f.^<span class="hljs-number">2</span>); </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">% plot</span></span><br><span class="line">figure(<span class="hljs-number">11</span>), clf, hold on</span><br><span class="line">h <span class="hljs-built_in">=</span> quiver(t1, y1, <span class="hljs-number">1</span>./L, f./L, .<span class="hljs-number">5</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>明顯提示是用Binary Search… 如果有其他方法歡迎下面留言：）</p>
+<p>本來想在一個Binary Search中同時遞迴找起始與結束的index，但是如果nums與target都是同一個數字例如[5,5,5,5,5], target = 5，此時就會變成$O(n)$造成超時，所以用2個Binary Search，分別找起始與結束，總體還是$O(logn)$。</p>
+<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-built_in">vector</span><<span class="hljs-keyword">int</span>> <span class="hljs-title">searchRange</span><span class="hljs-params">(<span class="hljs-built_in">vector</span><<span class="hljs-keyword">int</span>>& nums, <span class="hljs-keyword">int</span> target)</span> </span>{</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> n = nums.size();</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-built_in">vector</span><<span class="hljs-keyword">int</span>> ans{<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>};</span><br><span class="line">        </span><br><span class="line">        function<<span class="hljs-keyword">void</span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)> findStartIndex = [&] (<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r) {</span><br><span class="line">            <span class="hljs-keyword">if</span>(l > r) <span class="hljs-keyword">return</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">int</span> mid = (r + l) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid] == target) {</span><br><span class="line">                ans[<span class="hljs-number">0</span>] = mid;</span><br><span class="line">                <span class="hljs-keyword">if</span>(mid > <span class="hljs-number">0</span> && nums[mid - <span class="hljs-number">1</span>] == target) findStartIndex(<span class="hljs-number">0</span>, mid - <span class="hljs-number">1</span>);</span><br><span class="line">            }</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] > target) findStartIndex(<span class="hljs-number">0</span>, mid - <span class="hljs-number">1</span>);</span><br><span class="line">            <span class="hljs-keyword">else</span>                         findStartIndex(mid + <span class="hljs-number">1</span>, r);</span><br><span class="line">        };</span><br><span class="line">        </span><br><span class="line">        function<<span class="hljs-keyword">void</span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)> findEndIndex = [&] (<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r) {</span><br><span class="line">            <span class="hljs-keyword">if</span>(l > r) <span class="hljs-keyword">return</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">int</span> mid = (r + l) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[mid] == target) {</span><br><span class="line">                ans[<span class="hljs-number">1</span>] = mid;</span><br><span class="line">                <span class="hljs-keyword">if</span>(mid < n - <span class="hljs-number">1</span> && nums[mid + <span class="hljs-number">1</span>] == target) findEndIndex(mid + <span class="hljs-number">1</span>, r);</span><br><span class="line">            }</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] > target) findEndIndex(<span class="hljs-number">0</span>, mid - <span class="hljs-number">1</span>);</span><br><span class="line">            <span class="hljs-keyword">else</span>                         findEndIndex(mid + <span class="hljs-number">1</span>, r);</span><br><span class="line">        };</span><br><span class="line">                </span><br><span class="line">        findStartIndex(<span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>);</span><br><span class="line">        findEndIndex(<span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<p>h是個placeholder，用來設置樣式，例如將箭頭顏色設成灰色</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set(h,<span class="hljs-string">'color'</span>, [.<span class="hljs-number">8</span> .<span class="hljs-number">8</span> .<span class="hljs-number">8</span>])</span><br></pre></td></tr></tbody></table></figure>
-<p><img src="https://i.imgur.com/yK1Ih10.png" alt></p>
-<p>用<code>ezplot</code>畫出不同initial value的解的曲線</p>
-<figure class="highlight m hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">% initial values</span></span><br><span class="line">initvals <span class="hljs-built_in">=</span> [<span class="hljs-number">2</span> <span class="hljs-number">1</span> .<span class="hljs-number">75</span> .<span class="hljs-number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">% draw solution curves for the initial values</span></span><br><span class="line">h1 <span class="hljs-built_in">=</span> zeros(size(initvals));</span><br><span class="line">for i <span class="hljs-built_in">=</span> <span class="hljs-number">1</span>:length(initvals)</span><br><span class="line">    h1(i) <span class="hljs-built_in">=</span> ezplot(dsolve(eq, y(<span class="hljs-number">0</span>) <span class="hljs-built_in">=</span><span class="hljs-built_in">=</span> initvals(i)), [min(t1(:)) max(t1(:))]);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">% set axis limit</span></span><br><span class="line">axis([min(t1(:)) max(t1(:)) min(y1(:)) max(y1(:))])</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://i.imgur.com/auNfnUK.png" alt></p>
-</body></html>
+<h2 id="Time-complexity"><a href="#Time-complexity" class="headerlink" title="Time complexity"></a>Time complexity</h2><p>$O(log n)$</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Matlab/" rel="tag">Matlab</a>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Binary-Search/" rel="tag">Binary Search</a>
                 </div>
             </div>
         </div>
@@ -318,16 +239,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/09/leetcode-Maximum-Product-of-Splitted-Binary-Tree/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/03/leetcode-Sum-of-Nodes-with-Even-Valued-Grandparent/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Leetcode - Maximum Product of Splitted Binary Tree</span>
+                <span class="level-item">Leetcode - Sum of Nodes with Even-Valued Grandparent</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/">
-                <span class="level-item">FreeRTOS API Interface, Synchronization &amp; Coding Style</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/17/leetcode-Serialize-and-Deserialize-Binary-Tree/">
+                <span class="level-item">Leetcode - Serialize and Deserialize Binary Tree</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -343,8 +264,8 @@
         
 <script>
     var disqus_config = function () {
-        this.page.url = 'https://syokujinau.github.io/2020/01/09/matlab-plot-functions/';
-        this.page.identifier = '2020/01/09/matlab-plot-functions/';
+        this.page.url = 'https://syokujinau.github.io/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/';
+        this.page.identifier = '2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/';
     };
     (function() {
         var d = document, s = d.createElement('script');  
@@ -1513,7 +1434,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Matlab常用函數 - 作圖與微分積分求解" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode - Find First and Last Position of Element in Sorted Array" height="28">
                 
                 </a>
                 <p class="is-size-7">
