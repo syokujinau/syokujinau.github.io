@@ -43,8 +43,9 @@ Explanation: The square root of 8 is 2.82842..., and since
 $\sqrt{x}$一定在$1$ ~ $x$之間，二分搜尋這個範圍
 
 以下方法避免integer overflow
-* 使用`int mid = l + (r - l) / 2;`而不是`int mid = (l + r) / 2`
-* 檢查`x / mid == mid`而不是檢查`mid * mid == x`
+* 使用 `int mid = l + (r - l) / 2;` 而不是 `int mid = (l + r) / 2`
+* 檢查 `x / mid == mid` 而不是檢查 `mid * mid == x`
+
 當非法邊界`l > r`成立時，$r$是答案
 
 ```cpp
