@@ -7,18 +7,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: STM32 - YC&#39;s Blog</title>
+<title>Leetcode - Sqrt(x) - YC&#39;s Blog</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="YC&#39;s Blog">
-<meta property="og:url" content="https://syokujinau.github.io/tags/STM32/index.html">
+    <meta name="description" content="69. Sqrt(x)Implement int sqrt(int x). Compute and return the square root of x, where x is guaranteed to be a non-negative integer. Since the return type is an integer, the decimal digits are truncated">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode - Sqrt(x)">
+<meta property="og:url" content="https://syokujinau.github.io/2019/10/25/leetcode-Sqrtx/index.html">
 <meta property="og:site_name" content="YC&#39;s Blog">
+<meta property="og:description" content="69. Sqrt(x)Implement int sqrt(int x). Compute and return the square root of x, where x is guaranteed to be a non-negative integer. Since the return type is an integer, the decimal digits are truncated">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://syokujinau.github.io/images/og_image.png">
+<meta property="og:image" content="https://i.imgur.com/acDnDar.png">
+<meta property="article:published_time" content="2019-10-25T12:31:16.000Z">
+<meta property="article:modified_time" content="2020-02-23T12:34:51.604Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Binary Search">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://syokujinau.github.io/images/og_image.png">
+<meta name="twitter:image" content="https://i.imgur.com/acDnDar.png">
 
 
 
@@ -80,13 +86,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="YC&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="Leetcode - Sqrt(x)" height="28">
             
             </a>
         </div>
@@ -135,312 +141,155 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/acDnDar.png" alt="Leetcode - Sqrt(x)">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-25T12:31:16.000Z">2019-10-25</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 194 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Leetcode - Sqrt(x)
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="69-Sqrt-x"><a href="#69-Sqrt-x" class="headerlink" title="69. Sqrt(x)"></a><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="noopener">69. Sqrt(x)</a></h2><p>Implement <code>int sqrt(int x)</code>.</p>
+<p>Compute and return the square root of x, where x is guaranteed to be a non-negative integer.</p>
+<p>Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.</p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4</span><br><span class="line">Output: 2</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Example 2:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: 8</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The square root of 8 is 2.82842..., and since </span><br><span class="line">             the decimal part is truncated, 2 is returned.</span><br></pre></td></tr></tbody></table></figure>
+
+<a id="more"></a>
+
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>$\sqrt{x}$一定在$1$ ~ $x$之間，二分搜尋這個範圍</p>
+<p>以下方法避免integer overflow</p>
+<ul>
+<li>使用<code>int mid = l + (r - l) / 2;</code>而不是<code>int mid = (l + r) / 2</code></li>
+<li>檢查<code>x / mid == mid</code>而不是檢查<code>mid * mid == x</code><br>當非法邊界<code>l > r</code>成立時，$r$是答案</li>
+</ul>
+<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{</span><br><span class="line">                </span><br><span class="line">        function<<span class="hljs-keyword">int</span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)> <span class="hljs-built_in">sqrt</span> = [&] (<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r) {</span><br><span class="line">            <span class="hljs-keyword">if</span>(l > r)              <span class="hljs-keyword">return</span> r;            </span><br><span class="line">            <span class="hljs-keyword">int</span> mid = l + (r - l) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>(x / mid == mid)     <span class="hljs-keyword">return</span> mid;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x / mid < mid) <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(l, mid - <span class="hljs-number">1</span>);</span><br><span class="line">            <span class="hljs-keyword">else</span>                   <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(mid + <span class="hljs-number">1</span>, r); </span><br><span class="line">        }; </span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>, x);</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a>Time Complexity</h2><p>$O(log n)$</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Algorithm/" rel="tag">Algorithm</a>, <a class="has-link-grey -link" href="/tags/Binary-Search/" rel="tag">Binary Search</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/01/leetcode-maximum-depth-of-binary-tree/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">LeetCode - Maximum Depth of Binary Tree</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/21/leetcode-Check-If-N-and-Its-Double-Exist/">
+                <span class="level-item">Leetcode - Check If N and Its Double Exist</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">STM32</a></li>
-        </ul>
-        </nav>
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://syokujinau.github.io/2019/10/25/leetcode-Sqrtx/';
+        this.page.identifier = '2019/10/25/leetcode-Sqrtx/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
     </div>
 </div>
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/P0LXKC1.png" alt="使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-24T10:16:27.000Z">2019-11-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 925 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/">使用STM32安裝RTOS與除錯 - 下載FreeRTOS與SEGGER SystemView</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>本篇使用Eclipse IDE(<a href="https://www.openstm32.org/System%2BWorkbench%2Bfor%2BSTM32" target="_blank" rel="noopener">openSTM32 System Workbench</a>)在STMF411RE板子上引入FreeRTOS函式庫以及設置SEGGER SystemView在Debugger視覺化執行中的Tasks</p>
-<h2 id="FreeRTOS"><a href="#FreeRTOS" class="headerlink" title="FreeRTOS"></a>FreeRTOS</h2><p><img src="https://www.freertos.org/wp-content/uploads/2018/07/logo-1.jpg" alt></p>
-<p>到<a href="https://www.freertos.org/" target="_blank" rel="noopener">FreeRTOS</a>下載kernel</p>
-<ol>
-<li>Create <code>Config</code> and <code>Third-Party</code></li>
-</ol>
-<ol start="2">
-<li>FreeRTOS可以砍Source>protable中其他部需要的，如下圖</li>
-</ol>
-<p><a href="https://tinyurl.com/y3d4zdhy" target="_blank" rel="noopener"><img src="https://i.imgur.com/DDdDRuJ.png" alt></a></p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/11/24/install-freeRTOS-and-SEGGER-SystemView/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 559 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/12/signal-statistics-CMSIS-DSP/">Signal Statistics and CMSIS-DSP</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="Mean-and-Standard-Deviation"><a href="#Mean-and-Standard-Deviation" class="headerlink" title="Mean and Standard Deviation"></a>Mean and Standard Deviation</h2><ul>
-<li>Mean 平均數<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE  \mu = \frac{1}{N}\sum^{N-1}_{i=0}x_i = \frac{x_0 + x_1 + \dots + x_{N-1}}{N}"></li>
-<li>物理意義: DC signal (Direct current) 直流分量</li>
-</ul>
-</li>
-<li>Deviation<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\large i">  deviates from the mean: <img src="https://render.githubusercontent.com/render/math?math=\large |x_i - \mu|"></li>
-<li>Average deviation: <img src="https://render.githubusercontent.com/render/math?math=\LARGE \frac{1}{N-1}\sum^{N-1}_{i=0}|x_i - \mu|"> </li>
-<li>物理意義: 訊號樣本點與平均之距離</li>
-</ul>
-</li>
-<li>Standard Deviation 標準差<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\large {\color{Red} P} \propto {\color{Orange} V^{ {\color{Orange}2} } }"> </li>
-<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE {\color{Red} \sigma} = R.M.S = \sqrt{\frac{1}{N-1}\sum^{N-1}_{i=0}(x_i - {\color{Orange} \mu})^{\color{Orange} 2}}"> </li>
-<li>物理意義: 顯示單一個測量值(電壓)與平均值間可能偏差的程度(功率)</li>
-</ul>
-</li>
-<li>Variance 變異數<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE {\color{Red} \sigma^{\color{Red}2}}$ = $\frac{1}{N-1}\sum^{N-1}_{i=0}(x_i - {\color{Orange} \mu})^{\color{Orange} 2}"></li>
-<li>物理意義: 描述訊號的波動範圍，表示訊號中交流分量的強弱，即交流訊號的平均功率</li>
-</ul>
-</li>
-<li>Signal ro Noise ratio (SNR)<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE SNR = \frac{\mu}{\sigma}"> </li>
-</ul>
-</li>
-<li>Coefficient of Variation<ul>
-<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE CV = \frac{\mu}{\sigma} \times 100"> 
-
-</li>
-</ul>
-</li>
-</ul></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/12/signal-statistics-CMSIS-DSP/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T09:04:10.000Z">2019-09-11</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 minutes read (About 1567 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/11/stm32-dsp-fir-low-pass-filter/">Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE</a>
-            
-        </h1>
-        <div class="content">
-            <!-- <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1"> --><html><head></head><body><h1 id="FIR-fliter"><a href="#FIR-fliter" class="headerlink" title="FIR fliter"></a>FIR fliter</h1><blockquote>
-<p>This project will go through the setup steps for DSP application on ARM CortexM4 processor  </p>
-</blockquote>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient $b[n]$ is multiplied by a state variable which equals a previous input sample $x[n]$.</p>
-<img src="https://render.githubusercontent.com/render/math?math=y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]"></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/11/stm32-dsp-fir-low-pass-filter/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/01/08/memory-illustrator/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/pCDuIRu.png" alt="Memory Illustrator">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-08T14:26:38.000Z">2019-01-08</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 191 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/01/08/memory-illustrator/">Memory Illustrator</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p><img src="https://i.imgur.com/xUicamV.png" alt></p>
-<p><a href="https://syokujinau.github.io/demo/MemoryIllustrator/"><img src="https://i.imgur.com/CExsoNY.png" width="100px"></a></p>
-<ol>
-<li>Image to teach user dump log file <a href="https://tinyurl.com/y4y7lcjl" target="_blank" rel="noopener">https://tinyurl.com/y4y7lcjl</a></li>
-</ol>
-<p>Input dump.txt</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0x200004CC  00 00 00 00 D9 AB 17 3F - 15 04 C2 BD 15 EF 43 3E .......?......C></span><br><span class="line">0x200004DC  00 00 80 3F 09 B8 D5 3E - F3 04 B5 3E 72 AD A0 3F ...?...>...>r..?</span><br><span class="line">0x200004EC  D7 B3 5D 3F 5E 83 EC 3E - B2 E4 A8 3F 8D 65 97 3F ..]?^..>...?.e.?</span><br><span class="line">0x200004FC  00 00 00 3F 8D 65 97 3F - B2 E4 A8 3F 5E 83 EC 3E ...?.e.?...?^..></span><br><span class="line">0x2000050C  D7 B3 5D 3F 72 AD A0 3F - F3 04 B5 3E 09 B8 D5 3E ..]?r..?...>...></span><br><span class="line">0x2000051C  00 00 80 3F 15 EF 43 3E - 15 04 C2 BD D9 AB 17 3F ...?..C>.......?</span><br><span class="line">0x2000052C  00 00 00 80 D9 AB 17 BF - 15 04 C2 3D 15 EF 43 BE ...........=..C.</span><br><span class="line">0x2000053C  00 00 80 BF 09 B8 D5 BE - F3 04 B5 BE 72 AD A0 BF ............r...</span><br><span class="line">0x2000054C  D7 B3 5D BF 5E 83 EC BE - B2 E4 A8 BF 8D 65 97 BF ..].^........e..</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/01/08/memory-illustrator/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 </div>
                 
 
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
     
         
 <div class="card widget">
@@ -682,7 +531,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             <div class="card widget">
     <div class="card-content">
@@ -1587,920 +1436,6 @@
 </div>
         
         </div>
-    
-</div>
-
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Recent
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T11:11:46.000Z">2020-02-17</time></div>
-                    <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Maximum Binary Tree</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/03/leetcode-Sum-of-Nodes-with-Even-Valued-Grandparent/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/36bECB4.png" alt="Leetcode - Sum of Nodes with Even-Valued Grandparent">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-03T08:51:06.000Z">2020-02-03</time></div>
-                    <a href="/2020/02/03/leetcode-Sum-of-Nodes-with-Even-Valued-Grandparent/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Sum of Nodes with Even-Valued Grandparent</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/17/leetcode-Serialize-and-Deserialize-Binary-Tree/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/U6acQmO.jpg" alt="Leetcode - Serialize and Deserialize Binary Tree">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-17T07:01:46.000Z">2020-01-17</time></div>
-                    <a href="/2020/01/17/leetcode-Serialize-and-Deserialize-Binary-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Serialize and Deserialize Binary Tree</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/15/leetcode-Two-Sum-IV-Input-is-a-BST/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/GFPryLX.jpg" alt="Leetcode - Two Sum IV - Input is a BST">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T04:01:46.000Z">2020-01-15</time></div>
-                    <a href="/2020/01/15/leetcode-Two-Sum-IV-Input-is-a-BST/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Two Sum IV - Input is a BST</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            Archives
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">10</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">14</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">8</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">8</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">8</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Tags
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/AI/">
-                        <span class="tag">AI</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ARM/">
-                        <span class="tag">ARM</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/AWS/">
-                        <span class="tag">AWS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Algorithm/">
-                        <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">39</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
-                        <span class="tag">Angstrom Linux</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Anki/">
-                        <span class="tag">Anki</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Array/">
-                        <span class="tag">Array</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/BFS/">
-                        <span class="tag">BFS</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/BST/">
-                        <span class="tag">BST</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Backtracking/">
-                        <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">9</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/BeagleBone/">
-                        <span class="tag">BeagleBone</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Binary-Search/">
-                        <span class="tag">Binary Search</span>
-                        <span class="tag is-grey">5</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/C3-js/">
-                        <span class="tag">C3.js</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CSS/">
-                        <span class="tag">CSS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CentOS/">
-                        <span class="tag">CentOS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DFS/">
-                        <span class="tag">DFS</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DP/">
-                        <span class="tag">DP</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DSP/">
-                        <span class="tag">DSP</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Debian/">
-                        <span class="tag">Debian</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Decision-Tree/">
-                        <span class="tag">Decision Tree</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Deep-Learning/">
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Deque-STL/">
-                        <span class="tag">Deque STL</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Divide-Conquer/">
-                        <span class="tag">Divide &amp; Conquer</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Dynamic-Programming/">
-                        <span class="tag">Dynamic Programming</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DynamoDB/">
-                        <span class="tag">DynamoDB</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES6/">
-                        <span class="tag">ES6</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Embedded/">
-                        <span class="tag">Embedded</span>
-                        <span class="tag is-grey">7</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
-                        <span class="tag">Embedded Linux</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Facebook/">
-                        <span class="tag">Facebook</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Firebase/">
-                        <span class="tag">Firebase</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/FreeRTOS/">
-                        <span class="tag">FreeRTOS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
-                        <span class="tag">Google Compute Engine</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HTML/">
-                        <span class="tag">HTML</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HTTPS/">
-                        <span class="tag">HTTPS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hash-Table/">
-                        <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IEEE754/">
-                        <span class="tag">IEEE754</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IoT/">
-                        <span class="tag">IoT</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/JavaScript/">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Jupyter/">
-                        <span class="tag">Jupyter</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/K-Means/">
-                        <span class="tag">K-Means</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/KNN/">
-                        <span class="tag">KNN</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linear-Regression/">
-                        <span class="tag">Linear Regression</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linked-list/">
-                        <span class="tag">Linked-list</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linux/">
-                        <span class="tag">Linux</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/LoRa/">
-                        <span class="tag">LoRa</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
-                        <span class="tag">Logistic Regrassion</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
-                        <span class="tag">MJPEG-Streamer</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MQTT/">
-                        <span class="tag">MQTT</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Machine-Learning/">
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Matlab/">
-                        <span class="tag">Matlab</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Minecraft/">
-                        <span class="tag">Minecraft</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Multiset-STL/">
-                        <span class="tag">Multiset STL</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
-                        <span class="tag">Multual exclusion</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/NLP/">
-                        <span class="tag">NLP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/NLTK/">
-                        <span class="tag">NLTK</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ngrok/">
-                        <span class="tag">Ngrok</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Node-js/">
-                        <span class="tag">Node.js</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/NodeRED/">
-                        <span class="tag">NodeRED</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Operating-System/">
-                        <span class="tag">Operating System</span>
-                        <span class="tag is-grey">10</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Promise/">
-                        <span class="tag">Promise</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Python/">
-                        <span class="tag">Python</span>
-                        <span class="tag is-grey">5</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Queue/">
-                        <span class="tag">Queue</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Random-Forest/">
-                        <span class="tag">Random Forest</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
-                        <span class="tag">Raspberry Pi</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React/">
-                        <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/STM32/">
-                        <span class="tag">STM32</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SVM/">
-                        <span class="tag">SVM</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Scikit-learn/">
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Semaphore/">
-                        <span class="tag">Semaphore</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Sliding-Window/">
-                        <span class="tag">Sliding Window</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/String/">
-                        <span class="tag">String</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tensorflow/">
-                        <span class="tag">Tensorflow</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Time-complexity/">
-                        <span class="tag">Time complexity</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tree/">
-                        <span class="tag">Tree</span>
-                        <span class="tag is-grey">13</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Verilog/">
-                        <span class="tag">Verilog</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Web/">
-                        <span class="tag">Web</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/base64/">
-                        <span class="tag">base64</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/imgur/">
-                        <span class="tag">imgur</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/jQuery/">
-                        <span class="tag">jQuery</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/jupyter/">
-                        <span class="tag">jupyter</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/matplotlib/">
-                        <span class="tag">matplotlib</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/npm/">
-                        <span class="tag">npm</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
     
 </div>
 
@@ -2515,7 +1450,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="YC&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode - Sqrt(x)" height="28">
                 
                 </a>
                 <p class="is-size-7">
