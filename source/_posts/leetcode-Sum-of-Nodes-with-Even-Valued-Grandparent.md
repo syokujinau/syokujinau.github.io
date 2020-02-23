@@ -41,7 +41,7 @@ Constraints:
 ## Solution
 
 
-典型的樹狀結構traversal，過程中若root是偶數就求sum of grandchild，遞迴求解。
+典型的樹狀結構traversal，過程中若root是偶數就求sum of grandchildren，遞迴求解。
 
 ```cpp
 /**
