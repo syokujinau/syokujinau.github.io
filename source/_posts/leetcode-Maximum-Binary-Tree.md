@@ -71,4 +71,4 @@ public:
 
 ## Note
 
-`max_element(nums.begin() + l, nums.begin() + r + 1))`回傳指向$index = l$ to $r$中最大值的iterator，`distance(itr1, itr2)`回傳itr1到itr2的距離
+`max_element(nums.begin() + l, nums.begin() + r + 1))`的範圍是$\[l, r+1) \Rightarrow [l, r]$，回傳$l$到$r$中最大值的iterator，`distance(itr1, itr2)`回傳itr1到itr2的距離
