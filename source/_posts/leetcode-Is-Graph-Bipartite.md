@@ -34,7 +34,7 @@ We can divide the vertices into two groups: {0, 2} and {1, 3}.
 
 <!-- more -->
 
-## Solution
+## Solution - DFS
 
 graph是以adjacency list表示無向圖，以一個flag(`isBip`)代表其為bipartite(二分圖)，其中visit紀錄是否拜訪過，每個node相鄰node必須是不同顏色。
 * 0: 未拜訪
@@ -75,4 +75,94 @@ public:
 
     }
 };
+```
+
+簡化寫法不用flag，以下方法在發現此圖不是不是二分圖時就會中止執行，執行效率較好。
+
+```cpp
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+    
+        vector<int> visit(graph.size(), 0); // 0-unknown, mark 1, 2
+        
+
+        function<bool(int, int)> isBipartite = [&](int prevMark, int node) {
+
+            if(visit[node] != 0) { // node has visited
+                // if the color of this node is the same as previous node, then it's NOT bipartite
+                return !(visit[node] == prevMark); 
+            }
+            // mark           
+            if(prevMark == 0) visit[node] = 1;
+            else              visit[node] = (prevMark == 1)? 2 : 1;
+            
+            for(int u : graph[node]) {
+                if(!isBipartite(visit[node], u)) return false;
+            }
+            
+            return true;
+        
+        };
+
+        for(int v = 0; v < graph.size(); ++v) {
+            if(visit[v] == 0 && !isBipartite(0, v)) return false;
+        }
+        
+        return true;
+
+    }
+};
+```
+
+
+## Solution - BFS
+
+```cpp
+// TBD
+```
+
+
+## Note
+
+DFS, BFS pseudo code 整理，用相鄰串列表示graph
+
+DFS: 
+*GeneralDFS*可以處理非連通的狀況
+
+```
+visited[n] = {0}
+
+dfs(v) {
+	visited[v] = 1
+	for u in adj[v]
+	    if(!visited[u])
+	        dfs(u)
+}
+
+GeneralDFS() {
+	for v = 1 to n 
+	    if(!visited[v])
+	        dfs(v)
+}
+```
+
+BFS:
+
+```
+visited[n] = {0}
+queue Q
+
+bfs(v) {
+	visited[v] = 1
+	Q.enqueue(v)
+	while(!Q.empty()) {
+		u = Q.dequeue()
+		for k in adj[u]
+			if(!visited[k])
+				visited[k] = 1
+				Q.enqueue(k)
+
+	}
+}
 ```
