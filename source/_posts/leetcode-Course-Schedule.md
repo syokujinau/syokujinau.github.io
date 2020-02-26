@@ -33,11 +33,12 @@ Explanation: There are a total of 2 courses to take.
 ## Solution
 
 $n$課程，每堂視為node $v_i$, $i = 0$ to $n-1$
-我將題目當作有向圖的**cycle detection**問題，拓樸排序也是一樣架構
+我將題目當作有向圖(directed graph)的**cycle detection**問題，拓樸排序也是一樣架構
 * $visited[i]$代表$v_i$被拜訪的狀態
 	* 0: 未拜訪
 	* 1: 拜訪中
 	* 2: 已拜訪
+    * 注意這是有向圖，無向圖(undirected graph)的只要未拜訪/已拜訪就能檢查cycle是否存在
 * 設一個flag紀錄cycle是否被發現
 	* 發現條件：拜訪visiting (`visited[i] == 1`)的node
 * DFS搜尋$v_0 ~ v_1$, 如下*Line 35*，每個node都要做dfs才能處理非連通的graph

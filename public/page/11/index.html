@@ -140,6 +140,149 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/10/arduino-freeRTOS-semaphore/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/4UVLZn1.png" alt="Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-10T07:48:30.000Z">2019-09-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1175 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/10/arduino-freeRTOS-semaphore/">Arduino與FreeRTOS - 簡介與Multual exclusion 解決方法</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p><img src="https://i.imgur.com/8rVf5V5.png" alt></p>
+<h2 id="RTOS"><a href="#RTOS" class="headerlink" title="RTOS"></a>RTOS</h2><p>一般談到OS常見像是Windows、macOS、Linux等等，稱為General Purpose OS，RTOS全名是Real-time Operating System，實時作業系統，FreeRTOS是個開源的RTOS作業系統，主要支援ARM系列微控制器，各個MCU vendor皆有對應的版本(主要在<code>port.c</code>定義)。</p>
+<p>RTOS必須對每個執行的critical operation有一個已知的maximum time，並能做到</p>
+<ul>
+<li>處理 interrupts 與 internal system exceptions</li>
+<li>維護 Critical Sections</li>
+<li>執行合適的 Scheduling Mechanism</li>
+</ul>
+<p>RTOS中事件觸發到能夠進入CPU的時間(<strong>Task switching latency</strong>)是定值，所以能夠在有限時間執行重要工作，並且IRQ觸發生到進入ISR的時間極短(<strong>Interrupt latency</strong>)，例如汽車中的安全氣囊，車禍發生，感應器偵測到衝擊(IRQ occurs)瞬間到使氣囊充氣(ISR handles)必須非常迅速才能有效保護車內人員。個人認為real-time涵義上，主要表達Task的執行是<strong>predictable</strong>，而非執行速度快(這應是由 clock 決定)。</p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/10/arduino-freeRTOS-semaphore/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/08/nltk-natural-language-processing-introduction/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/dGDBend.png" alt="Python - NLTK函式庫基本功能介紹與自然語言處理">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-08T09:23:16.000Z">2019-09-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    22 minutes read (About 3333 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/08/nltk-natural-language-processing-introduction/">Python - NLTK函式庫基本功能介紹與自然語言處理</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> nltk</span><br><span class="line"><span class="hljs-comment"># nltk.download()</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>conda安裝nltk後引入函式庫，第一次使用可由<code>nltk.download()</code>下載所需檔案</p>
+<h2 id="Tokenization"><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paragraph = <span class="hljs-string">"""An aircraft is a vehicle that is able to fly by gaining support from the air. It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines. Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons. The human activity that surrounds aircraft is called aviation. The science of aviation, including designing and building aircraft, is called aeronautics. Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers. Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others."""</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Tokenization是指將整份文件分離出單字、句子、片語等等</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.sent_tokenize(paragraph)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+<pre><code>['An aircraft is a vehicle that is able to fly by gaining support from the air.',
+ 'It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines.',
+ 'Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons.',
+ 'The human activity that surrounds aircraft is called aviation.',
+ 'The science of aviation, including designing and building aircraft, is called aeronautics.',
+ 'Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers.',
+ 'Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others.']</code></pre></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/08/nltk-natural-language-processing-introduction/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/08/27/what-is-nachos/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/K75CZHO.png" alt="Nachos - 教學用作業系統">
         </a>
@@ -350,154 +493,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/04/14/algorithm-design-greedy/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/sUq9XBU.jpg" alt="演算法設計 - Greedy Algorithm">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-14T09:43:51.000Z">2019-04-14</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 456 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/04/14/algorithm-design-greedy/">演算法設計 - Greedy Algorithm</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>Greedy演算法的設計精神</p>
-<ol>
-<li>Build a solution in small steps</li>
-<li>At each step optimize locally</li>
-</ol>
-<h2 id="Meeting-Scheduling"><a href="#Meeting-Scheduling" class="headerlink" title="Meeting Scheduling"></a>Meeting Scheduling</h2><p>給予$M_1, M_2, \dots, M_n$個會議<br>$M_i$的開會時間從$s_i$到$t_i$<br>求最多可參加幾場會議</p>
-<p>Greedy想要<strong>盡可能</strong>的每一步都取目前最佳解法，並且嘗試證明沒有比這個方法更好的解法，<strong>期待</strong>而<strong>不保證</strong>會得到整體最佳解。</p>
-<p>以下列出一些可能的greedy解法</p>
-<p>$greedy1$. 選離目前$t_i - s_i$最短的</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greedy :            |------|</span><br><span class="line">optimal: |-------------| |------------|</span><br></pre></td></tr></tbody></table></figure>
-
-<p>$greedy2$. 選離目前最少衝突的會議</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">            |----|        |----|</span><br><span class="line">            |----|        |----|</span><br><span class="line">greedy :           |----|</span><br><span class="line">optimal: |----||-----| |----| |----|</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/14/algorithm-design-greedy/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/13/algorithm-design-divide-and-conquer/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/q4Mqv51.jpg" alt="演算法設計 - Divide and Conquer">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-13T07:24:45.000Z">2019-03-13</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 300 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/13/algorithm-design-divide-and-conquer/">演算法設計 - Divide and Conquer</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>D&C演算法大致會是以下流程</p>
-<ol>
-<li>Split into subproblems</li>
-<li>Solve subproblems <strong>recursively</strong></li>
-<li>Merge solutions</li>
-</ol>
-<h2 id="Find-MaxMin"><a href="#Find-MaxMin" class="headerlink" title="Find MaxMin"></a>Find MaxMin</h2><p>給一序列$data = \left [ a_1, a_2, \dots , a_n \right ]$<br>只能用pairwise comparison，求這個序列的最大與最小值</p>
-<ul>
-<li>Brute force</li>
-</ul>
-<p>(n-1)次比較找到MAX，(n-2)次比較找到min，共需要$2n - 3$時間</p>
-<ul>
-<li>D&C</li>
-</ul>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MaxMin(data, <span class="hljs-number">1</span>, n) {</span><br><span class="line">    [Max1, min1] = MaxMin(data, <span class="hljs-number">1</span>, n/<span class="hljs-number">2</span>)</span><br><span class="line">    [Max2, min2] = MaxMin(data, n/<span class="hljs-number">2</span> + <span class="hljs-number">1</span>, n)</span><br><span class="line">    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">max</span>(Max1, Max2), <span class="hljs-built_in">min</span>(min1, min2)]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>$T(n) = 2T(\frac{n}{2}) + 2$, 若只有2數只需1次比較$T(2) = 1$</p>
-<p>$= \frac{3}{2}n - 2$</p>
-<h2 id="Max-Subsequence-Sum"><a href="#Max-Subsequence-Sum" class="headerlink" title="Max Subsequence Sum"></a>Max Subsequence Sum</h2></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/13/algorithm-design-divide-and-conquer/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -522,7 +517,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/16/">16</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/17/">17</a></li>
             
         </ul>
     </nav>
@@ -572,7 +567,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            80
+                            82
                         </p>
                     </a>
                 </div>
@@ -693,7 +688,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">40</span>
+                <span class="level-item tag">42</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -701,7 +696,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">35</span>
+                <span class="level-item tag">37</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -770,7 +765,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AI/" style="font-size: 11px;">AI</a> <a href="/tags/ARM/" style="font-size: 13px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/Array/" style="font-size: 11px;">Array</a> <a href="/tags/BFS/" style="font-size: 11px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 17px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 12px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 14px;">Binary Search</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 16px;">DFS</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/DSP/" style="font-size: 11px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 11px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/Divide-Conquer/" style="font-size: 10px;">Divide & Conquer</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 11px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 16px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 12px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 11px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 11px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 11px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 14px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 11px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 11px;">React</a> <a href="/tags/STM32/" style="font-size: 13px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 11px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 11px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 19px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 11px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+        <a href="/tags/AI/" style="font-size: 10.91px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.73px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/Array/" style="font-size: 11.82px;">Array</a> <a href="/tags/BFS/" style="font-size: 10.91px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 17.27px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 11.82px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 13.64px;">Binary Search</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 16.36px;">DFS</a> <a href="/tags/DP/" style="font-size: 11.82px;">DP</a> <a href="/tags/DSP/" style="font-size: 10.91px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 10.91px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/Divide-Conquer/" style="font-size: 10px;">Divide & Conquer</a> <a href="/tags/Dynamic-Programming/" style="font-size: 10px;">Dynamic Programming</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 10.91px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 15.45px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 11.82px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/Graph/" style="font-size: 10.91px;">Graph</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 10.91px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 10.91px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 10.91px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 11.82px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 14.55px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 18.18px;">Operating System</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10.91px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10.91px;">React</a> <a href="/tags/STM32/" style="font-size: 12.73px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10.91px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 10.91px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 19.09px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 10.91px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
     </div>
 </div>
     
@@ -906,7 +901,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -917,7 +912,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -1124,7 +1119,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">40</span>
+                        <span class="tag is-grey">42</span>
                     </a>
                 </div>
                 
@@ -1145,7 +1140,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Array/">
                         <span class="tag">Array</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1208,7 +1203,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/DFS/">
                         <span class="tag">DFS</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1327,7 +1322,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Graph/">
                         <span class="tag">Graph</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1828,7 +1823,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -1839,7 +1834,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -2046,7 +2041,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">40</span>
+                        <span class="tag is-grey">42</span>
                     </a>
                 </div>
                 
@@ -2067,7 +2062,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Array/">
                         <span class="tag">Array</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -2130,7 +2125,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/DFS/">
                         <span class="tag">DFS</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -2249,7 +2244,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Graph/">
                         <span class="tag">Graph</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

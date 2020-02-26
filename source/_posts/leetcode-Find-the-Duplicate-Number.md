@@ -6,7 +6,7 @@ tags:
 - Array
 categories:
 - [Algorithm, LeetCode]
-thumbnail: https://i.imgur.com/P9YKQjx.png
+thumbnail: https://i.imgur.com/NvYQ0Eo.png
 ---
 
 
@@ -38,7 +38,7 @@ Note:
 
 <!-- more -->
 
-## Solution
+## Solution 1
 
 主要限制在於空間複雜度O(1)，不能用其他陣列標記重複數字
 因為數字只有$1$ ~ $n-1$，所以一定能放到正確位置，例如$3$的正確位置是index = $2$，$nums[i]$的正確位置是index = $nums[i] - 1$
@@ -58,6 +58,27 @@ public:
     }
 };
 ```
+
+## Solution 2
+
+因為元素皆為正數，且元素減1都可以對應到合法的index，因此在對應的index元素加負號作為標記，若在標記時發現該位置已經是負數代表曾經出現過了。
+
+做法相同的題目還有[442. Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
+
+```cpp
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        for(int i = 0; i < nums.size(); ++i) {
+            int idx = abs(nums[i]) - 1;
+            if(nums[idx] < 0) return idx + 1;
+            nums[idx] *= -1;
+        }
+        return -1; // for compiling
+    }
+};
+```
+
 
 ## Complexity
 
