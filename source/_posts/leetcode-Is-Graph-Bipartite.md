@@ -134,16 +134,16 @@ DFS:
 visited[n] = {0}
 
 dfs(v) {
-	visited[v] = 1
-	for u in adj[v]
-	    if(!visited[u])
-	        dfs(u)
+    visited[v] = 1
+    for u in adj[v]
+        if(!visited[u])
+            dfs(u)
 }
 
 GeneralDFS() {
-	for v = 1 to n 
-	    if(!visited[v])
-	        dfs(v)
+    for v = 1 to n 
+        if(!visited[v])
+            dfs(v)
 }
 ```
 
@@ -154,15 +154,14 @@ visited[n] = {0}
 queue Q
 
 bfs(v) {
-	visited[v] = 1
-	Q.enqueue(v)
-	while(!Q.empty()) {
-		u = Q.dequeue()
-		for k in adj[u]
-			if(!visited[k])
-				visited[k] = 1
-				Q.enqueue(k)
-
-	}
+    visited[v] = 1
+    Q.enqueue(v)
+    while(!Q.empty()) {
+        u = Q.dequeue()
+        for k in adj[u]
+            if(!visited[k])
+                visited[k] = 1
+                Q.enqueue(k)
+    }
 }
 ```
