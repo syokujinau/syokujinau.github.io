@@ -86,11 +86,11 @@ public:
         
         function<bool(int)> dfs = [&](int v) {
             if(v == -1) return true;
-            
+            // mark
             visit[v]++;
             if(visit[v] > 1) return false;
-            dfs(leftChild[v]);
-            dfs(rightChild[v]);            
+            // recursion
+            if(!dfs(leftChild[v]) || !dfs(rightChild[v])) return false;              
    
             return true;
         };
