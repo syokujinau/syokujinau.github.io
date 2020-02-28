@@ -140,6 +140,70 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/12/14/leetcode-Maximum-Level-Sum-of-a-Binary-Tree/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/iJi4aVv.png" alt="Leetcode - Maximum Level Sum of a Binary Tree">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-13T16:33:21.000Z">2019-12-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 264 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/14/leetcode-Maximum-Level-Sum-of-a-Binary-Tree/">Leetcode - Maximum Level Sum of a Binary Tree</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="1161-Maximum-Level-Sum-of-a-Binary-Tree"><a href="#1161-Maximum-Level-Sum-of-a-Binary-Tree" class="headerlink" title="1161. Maximum Level Sum of a Binary Tree"></a><a href="https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/" target="_blank" rel="noopener">1161. Maximum Level Sum of a Binary Tree</a></h2><p>Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.</p>
+<p>Return the <strong>smallest</strong> level X such that the sum of all the values of nodes at level X is <strong>maximal</strong>.</p>
+<p>Example 1:</p>
+<img src="https://i.imgur.com/ndFAR2v.png" width="35%">
+
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,7,0,7,-8,null,null]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line">Level 1 sum = 1.</span><br><span class="line">Level 2 sum = 7 + 0 = 7.</span><br><span class="line">Level 3 sum = 7 + -8 = -1.</span><br><span class="line">So we return the level with the maximum sum which is level 2.</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/12/14/leetcode-Maximum-Level-Sum-of-a-Binary-Tree/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/12/13/leetcode-delete-node-in-a-linked-list/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/QXgmni1.png" alt="LeetCode - Delete Node in a Linked List">
         </a>
@@ -435,79 +499,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/12/09/FreeRTOS-hook-functions/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/rjbUjJo.png" alt="FreeRTOS - Hook Function">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-09T04:32:58.000Z">2019-12-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 377 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/09/FreeRTOS-hook-functions/">FreeRTOS - Hook Function</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><blockquote>
-<p>參考：<a href="https://www.freertos.org/a00016.html" target="_blank" rel="noopener">https://www.freertos.org/a00016.html</a></p>
-</blockquote>
-<ul>
-<li>Idle task hook function</li>
-<li>RTOS Tick hook function</li>
-<li>Dynamic memory allocation (Malloc) faild hook function </li>
-<li>Stack overflow hook function</li>
-</ul>
-<p>必要時實做這些hook function，當有該事件發生rtos就會自動執行他們</p>
-<!-- ![](https://i.imgur.com/1zP1mS3.png)
- -->
-<h2 id="Idle-Task-Hook-Function"><a href="#Idle-Task-Hook-Function" class="headerlink" title="Idle Task Hook Function"></a>Idle Task Hook Function</h2><p>idle task作為閒置時rtos的要做的工作，要在<strong>FreeRTOSConfig.h</strong>中設定<code>configUSE_IDLE_HOOK</code>為1，並實做<code>void vApplicationIdleHook(void);</code>，一般可以在閒置中降低mcu運算量節能功耗</p>
-<!-- 
-![](https://i.imgur.com/q9N4Icz.png) --></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/09/FreeRTOS-hook-functions/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -532,7 +523,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/17/">17</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/18/">18</a></li>
             
         </ul>
     </nav>
@@ -582,7 +573,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            85
+                            86
                         </p>
                     </a>
                 </div>
@@ -703,7 +694,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">45</span>
+                <span class="level-item tag">46</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -711,7 +702,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">40</span>
+                <span class="level-item tag">41</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -795,6 +786,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -869,25 +879,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -905,7 +896,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1134,7 +1125,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -1645,7 +1636,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1731,6 +1722,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -1805,25 +1815,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1841,7 +1832,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2070,7 +2061,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -2581,7 +2572,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 

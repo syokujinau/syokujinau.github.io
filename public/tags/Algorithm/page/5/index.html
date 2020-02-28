@@ -150,6 +150,70 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/23/leetcode-reverse-linked-list/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/wlOQ9yw.jpg" alt="Leetcode - Reverse Linked List">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-23T14:26:31.000Z">2019-09-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 125 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/23/leetcode-reverse-linked-list/">Leetcode - Reverse Linked List</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p>有兩種方法，iteration & recursion</p>
+<h2 id="206-Reverse-Linked-List"><a href="#206-Reverse-Linked-List" class="headerlink" title="206. Reverse Linked List"></a>206. Reverse Linked List</h2><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: 1->2->3->4->5->NULL</span><br><span class="line">Output: 5->4->3->2->1->NULL</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="Method-1-recursion"><a href="#Method-1-recursion" class="headerlink" title="Method 1 - recursion"></a>Method 1 - recursion</h3><figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="hljs-comment"> * struct ListNode {</span></span><br><span class="line"><span class="hljs-comment"> *     int val;</span></span><br><span class="line"><span class="hljs-comment"> *     ListNode *next;</span></span><br><span class="line"><span class="hljs-comment"> *     ListNode(int x) : val(x), next(NULL) {}</span></span><br><span class="line"><span class="hljs-comment"> * };</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">NULL</span> || head->next == <span class="hljs-literal">NULL</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> head;</span><br><span class="line">        </span><br><span class="line">        ListNode* ptr = head->next;</span><br><span class="line">        head->next = <span class="hljs-literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        ListNode* head2 = reverseList(ptr);</span><br><span class="line">        </span><br><span class="line">        ptr->next = head;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> head2;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/23/leetcode-reverse-linked-list/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/05/31/computational-complexity-theory/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
         </a>
@@ -593,7 +657,7 @@ $$</body></html>
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            85
+                            86
                         </p>
                     </a>
                 </div>
@@ -714,7 +778,7 @@ $$</body></html>
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">45</span>
+                <span class="level-item tag">46</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -722,7 +786,7 @@ $$</body></html>
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">40</span>
+                <span class="level-item tag">41</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -806,6 +870,25 @@ $$</body></html>
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -880,25 +963,6 @@ $$</body></html>
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -916,7 +980,7 @@ $$</body></html>
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1145,7 +1209,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -1656,7 +1720,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1742,6 +1806,25 @@ $$</body></html>
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -1816,25 +1899,6 @@ $$</body></html>
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1852,7 +1916,7 @@ $$</body></html>
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2081,7 +2145,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -2592,7 +2656,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 

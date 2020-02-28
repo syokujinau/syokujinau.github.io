@@ -140,6 +140,82 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/08/nltk-natural-language-processing-introduction/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/dGDBend.png" alt="Python - NLTK函式庫基本功能介紹與自然語言處理">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-08T09:23:16.000Z">2019-09-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    22 minutes read (About 3333 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/08/nltk-natural-language-processing-introduction/">Python - NLTK函式庫基本功能介紹與自然語言處理</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> nltk</span><br><span class="line"><span class="hljs-comment"># nltk.download()</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>conda安裝nltk後引入函式庫，第一次使用可由<code>nltk.download()</code>下載所需檔案</p>
+<h2 id="Tokenization"><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paragraph = <span class="hljs-string">"""An aircraft is a vehicle that is able to fly by gaining support from the air. It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines. Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons. The human activity that surrounds aircraft is called aviation. The science of aviation, including designing and building aircraft, is called aeronautics. Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers. Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others."""</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Tokenization是指將整份文件分離出單字、句子、片語等等</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.sent_tokenize(paragraph)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+<pre><code>['An aircraft is a vehicle that is able to fly by gaining support from the air.',
+ 'It counters the force of gravity by using either static lift or by using the dynamic lift of an airfoil, or in a few cases the downward thrust from jet engines.',
+ 'Common examples of aircraft include airplanes, helicopters, airships (including blimps), gliders, paramotors and hot air balloons.',
+ 'The human activity that surrounds aircraft is called aviation.',
+ 'The science of aviation, including designing and building aircraft, is called aeronautics.',
+ 'Crewed aircraft are flown by an onboard pilot, but unmanned aerial vehicles may be remotely controlled or self-controlled by onboard computers.',
+ 'Aircraft may be classified by different criteria, such as lift type, aircraft propulsion, usage and others.']</code></pre></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/08/nltk-natural-language-processing-introduction/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/08/27/what-is-nachos/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/K75CZHO.png" alt="Nachos - 教學用作業系統">
         </a>
@@ -421,83 +497,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/13/algorithm-design-divide-and-conquer/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/q4Mqv51.jpg" alt="演算法設計 - Divide and Conquer">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-13T07:24:45.000Z">2019-03-13</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 300 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/13/algorithm-design-divide-and-conquer/">演算法設計 - Divide and Conquer</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>D&C演算法大致會是以下流程</p>
-<ol>
-<li>Split into subproblems</li>
-<li>Solve subproblems <strong>recursively</strong></li>
-<li>Merge solutions</li>
-</ol>
-<h2 id="Find-MaxMin"><a href="#Find-MaxMin" class="headerlink" title="Find MaxMin"></a>Find MaxMin</h2><p>給一序列$data = \left [ a_1, a_2, \dots , a_n \right ]$<br>只能用pairwise comparison，求這個序列的最大與最小值</p>
-<ul>
-<li>Brute force</li>
-</ul>
-<p>(n-1)次比較找到MAX，(n-2)次比較找到min，共需要$2n - 3$時間</p>
-<ul>
-<li>D&C</li>
-</ul>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MaxMin(data, <span class="hljs-number">1</span>, n) {</span><br><span class="line">    [Max1, min1] = MaxMin(data, <span class="hljs-number">1</span>, n/<span class="hljs-number">2</span>)</span><br><span class="line">    [Max2, min2] = MaxMin(data, n/<span class="hljs-number">2</span> + <span class="hljs-number">1</span>, n)</span><br><span class="line">    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">max</span>(Max1, Max2), <span class="hljs-built_in">min</span>(min1, min2)]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>$T(n) = 2T(\frac{n}{2}) + 2$, 若只有2數只需1次比較$T(2) = 1$</p>
-<p>$= \frac{3}{2}n - 2$</p>
-<h2 id="Max-Subsequence-Sum"><a href="#Max-Subsequence-Sum" class="headerlink" title="Max Subsequence Sum"></a>Max Subsequence Sum</h2></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/13/algorithm-design-divide-and-conquer/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -522,7 +521,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/17/">17</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/18/">18</a></li>
             
         </ul>
     </nav>
@@ -572,7 +571,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            85
+                            86
                         </p>
                     </a>
                 </div>
@@ -693,7 +692,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">45</span>
+                <span class="level-item tag">46</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -701,7 +700,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">40</span>
+                <span class="level-item tag">41</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -785,6 +784,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -859,25 +877,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -895,7 +894,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1124,7 +1123,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -1635,7 +1634,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1721,6 +1720,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -1795,25 +1813,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1831,7 +1830,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2060,7 +2059,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -2571,7 +2570,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 

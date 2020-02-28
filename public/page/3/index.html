@@ -140,6 +140,67 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2020/01/11/leetcode-Maximum-Subarray/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/tJj4dyb.png" alt="Leetcode - Maximum Subarray">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-11T05:25:31.000Z">2020-01-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 414 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/11/leetcode-Maximum-Subarray/">Leetcode - Maximum Subarray</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="53-Maximum-Subarray"><a href="#53-Maximum-Subarray" class="headerlink" title="53. Maximum Subarray"></a><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">53. Maximum Subarray</a></h2><p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,1,-3,4,-1,2,1,-5,4],</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [4,-1,2,1] has the largest sum = 6.</span><br></pre></td></tr></tbody></table></figure></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/11/leetcode-Maximum-Subarray/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2020/01/10/leetcode-sliding-window-maximum/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/XjzWrok.png" alt="Leetcode - Sliding Window Maximum">
         </a>
@@ -390,78 +451,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T12:25:38.000Z">2020-01-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 1115 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/">FreeRTOS Task Creation 與 Semi-hosting (USART) 設定</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><img src="https://i.imgur.com/XdMD09Y.jpg" width="40%">
-
-<p>通常一個應用可以將個功能切分為多個task，各個task的資料相互傳遞、存取皆可透過FreeRTOS的kernel services完成，本篇紀錄基本的task creation API並設定semi-hosting在eclipse開發環境印出uart傳遞至PC的資料。</p>
-<blockquote>
-<p>我使用的硬體是<a href="https://www.st.com/en/evaluation-tools/nucleo-f411re.html" target="_blank" rel="noopener">NUCLEO-F411RE</a><br>然而只要有對應的port.c就能在不同硬體上使用FreeRTOS<br><img src="https://i.imgur.com/dSYfyEi.png" width="40%"><br>data brief: <a href="https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf" target="_blank" rel="noopener">https://www.st.com/resource/en/data_brief/nucleo-f411re.pdf</a></p>
-</blockquote>
-<p><img src="https://i.imgur.com/4TwZB3B.png" alt></p>
-<p>每次產生task，FreeRTOS會做以下動作</p>
-<p><img src="https://i.imgur.com/lNcoiyz.png" alt></p>
-<blockquote>
-<p>RTOS的Task可視為作業系統課本提到的process</p>
-</blockquote>
-<p>在context switch時，usStackDepth為stack空間來儲存local variables以及context of task </p>
-<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">BaseType_t <span class="hljs-title">xTaskCreate</span><span class="hljs-params">(    </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    TaskFunction_t pvTaskCode,  </span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> pcName,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    configSTACK_DEPTH_TYPE usStackDepth, <span class="hljs-comment">// 給定該task的stack空間,單位是words</span></span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    <span class="hljs-keyword">void</span> *pvParameters,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    UBaseType_t uxPriority,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">    TaskHandle_t *pxCreatedTask <span class="hljs-comment">// task handler指向TCB位址</span></span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">)</span></span>;</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -484,7 +473,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/17/">17</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/18/">18</a></li>
             
         </ul>
     </nav>
@@ -534,7 +523,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            85
+                            86
                         </p>
                     </a>
                 </div>
@@ -655,7 +644,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">45</span>
+                <span class="level-item tag">46</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -663,7 +652,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">40</span>
+                <span class="level-item tag">41</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -747,6 +736,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -821,25 +829,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -857,7 +846,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1086,7 +1075,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -1597,7 +1586,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1683,6 +1672,25 @@
         
         <article class="media">
             
+            <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/CXwHeX7.png" alt="Leetcode - Construct Binary Search Tree from Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T07:15:16.000Z">2020-02-27</time></div>
+                    <a href="/2020/02/27/leetcode-Construct-Binary-Search-Tree-from-Preorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Search Tree from Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/02/17/leetcode-Maximum-Binary-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/90Bep9s.png" alt="Leetcode - Maximum Binary Tree">
@@ -1757,25 +1765,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/3f60CAV.png" alt="Leetcode - Find First and Last Position of Element in Sorted Array">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T15:13:01.000Z">2020-02-01</time></div>
-                    <a href="/2020/02/01/leetcode-Find-First-and-Last-Position-of-Element-in-Sorted-Array/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find First and Last Position of Element in Sorted Array</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1793,7 +1782,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2022,7 +2011,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">45</span>
+                        <span class="tag is-grey">46</span>
                     </a>
                 </div>
                 
@@ -2533,7 +2522,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
