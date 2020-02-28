@@ -33,7 +33,7 @@ Output: [8,5,10,1,7,null,12]
 ## Solution
 
 
-preorder順序為"DLR"，每個陣列範圍$l ~ r$中，第一個一定是root，第二個一定是左子樹的root，令$rRootIdx$指向下一個比root大的index，也就是右子樹root所在，遞迴將樹建立起來。
+preorder順序為"DLR"，每個陣列範圍$l$ ~ $r$中，第一個一定是root，第二個一定是左子樹的root，令$rRootIdx$指向下一個比root大的index，也就是右子樹root所在，遞迴將樹建立起來。
 
 <img src="/myimages/20200227.png" width="35%" />
 
