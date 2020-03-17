@@ -11,7 +11,7 @@ thumbnail: https://i.imgur.com/t8tlrdP.jpg
 ---
 
 
-## [451. Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)\
+## [451. Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
 
 Given a string, sort it in decreasing order based on the frequency of characters.
 
