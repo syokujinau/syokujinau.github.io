@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>CVSD 2018 Fall Notebook - YC&#39;s Blog</title>
+
+
+    <meta name="description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;,~&amp;,|,~|,^,~^  ex: &amp;m Arithmetic Operators: +,-(放在">
+<meta name="keywords" content="Verilog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVSD 2018 Fall Notebook">
+<meta property="og:url" content="https://syokujinau.github.io/2018/11/12/cvsd-note/index.html">
+<meta property="og:site_name" content="YC&#39;s Blog">
+<meta property="og:description" content="Verilog基本語法Operators Bitwise Operators(每個bit都會做): ~(invert)加在兩變數中間變數之前 &amp;,|,^(XOR),~^(XNOR)    ex:~m,m&amp;n Unary Operators (加在變數之前，對自己的每個bit做運算，縮至一個bit)&amp;,~&amp;,|,~|,^,~^  ex: &amp;m Arithmetic Operators: +,-(放在">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.imgur.com/cH3pcP5.png">
+<meta property="og:updated_time" content="2020-03-18T09:04:57.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/cH3pcP5.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/myimages/hexo-logo.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133583967-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133583967-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="CVSD 2018 Fall Notebook" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;" target="_blank" rel="noopener">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/cH3pcP5.png" alt="CVSD 2018 Fall Notebook">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-11-12T06:56:09.000Z">2018-11-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    an hour read (About 7625 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                CVSD 2018 Fall Notebook
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="Verilog基本語法"><a href="#Verilog基本語法" class="headerlink" title="Verilog基本語法"></a>Verilog基本語法</h2><h3 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h3><ol>
+<li><strong>Bitwise Operators</strong>(每個bit都會做): <code>~</code>(invert)<br>加在兩變數中間變數之前 <code>&</code>,<code>|</code>,<code>^</code>(XOR),<code>~^</code>(XNOR)    ex:<code>~m</code>,<code>m&n</code></li>
+<li><strong>Unary Operators</strong> (加在變數之前，對自己的每個bit做運算，縮至一個bit)<br><code>&</code>,<code>~&</code>,<code>|</code>,<code>~|</code>,<code>^</code>,<code>~^</code>  ex: <code>&m</code></li>
+<li><strong>Arithmetic Operators</strong>: +,-(放在兩個數字中間當兩數相減、放在一個數字前面代表對他取二補數),(無號數的乘法),<code>/</code>,<code>%</code>(取餘數，這個指令不可合成) ex: <code>m+n</code></li>
+<li><strong>Logic Operators</strong>: <code>!</code>(not),<code>&&</code>,<code>||</code> ex:<code>!m</code></li>
+<li><strong>Equality Operators</strong>(比較數值): <code>==</code>  (數值是否相等?), <code>!=</code> (does not equal?) ex: <code>m==n</code></li>
+<li><strong>Identity Operators</strong>(不可合成，只用在testbench): <code>===</code> (是否等價?多考慮X、Z的狀態), <code>!==</code>  (是否不相同) ex: <code>m===n</code></li>
+<li><strong>Relational Operators</strong>: <code><</code>,<code>></code>,<code><=</code>,<code>>=</code></li>
+<li><strong>Logical Shift Operators</strong>: <code><<</code>,<code>>></code> ex: <code>m<<2</code>，代表m左移兩個bits，相當於4(補0)</li>
+<li><strong>Misc Operators</strong>: <code>條件?為真的值:為偽的值</code>(三元運算子),<code>{m,n}</code>(串接),<br><code>{n{m}}</code>(m重複n次)</li>
+</ol>
+<p><strong>Procedural Block</strong>: 出現<code>always@</code>或<code>initial</code></p>
+<a id="more"></a>
+<p><strong>Initial block</strong>: 在testbench中給初值</p>
+<p><strong>always@</strong>: 當條件改變時，總是會做…</p>
+<ol>
+<li><p>用於需要FF時<br>posedge/negedge:正/負緣觸發，若reset看clk為synchronous，不看為asynchronous</p>
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//下列為asynchronous</span></span><br><span class="line"><span class="hljs-keyword">always</span>@(<span class="hljs-keyword">posedge</span> clk, <span class="hljs-keyword">negedge</span> reset)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>用於需要條件判斷時(合成MUX)<br>出現在Procedure Block等號左邊的變數(output)要宣告成reg，因為這變數會因為某些條件改變而改變，所以需要存一段時間，但這不代表需要FF</p>
+</li>
+</ol>
+<p><strong>Assignment</strong><br>Continuous assignment:在procedural block的外面，用assign的方式給值，output要宣告成wire<br><strong>Procedural assignment</strong>:在procedural block中給值，output要宣告成reg，又分為blocking(用<code>=</code>，做完才做其他的事)或non-blocking(用<code><=</code>，會先把右手邊都做完，等到跳出block時，一起把值吐到左手邊去)</p>
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = b;</span><br><span class="line">b = a; </span><br><span class="line"><span class="hljs-comment">// 結果是 a=a</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b <= a; </span><br><span class="line">a <= b;  </span><br><span class="line"><span class="hljs-comment">// 結果是b update成 a的舊值，a update成 b的舊值 (swap)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CLR=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span><br><span class="line">CLR=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span><br><span class="line"><span class="hljs-comment">// 結果是一行一行做</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CLR<=#<span class="hljs-number">5</span> <span class="hljs-number">1</span>; </span><br><span class="line">CLR<=#<span class="hljs-number">4</span> <span class="hljs-number">0</span>; </span><br><span class="line"><span class="hljs-comment">// 結果是按照時間順序</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+<p>Logic分成combinational(根據不同的輸入產生不同的輸出，可用讓它自己找需要的參數)和sequential logic(還會跟之前的狀態有關，看sensitive list來合FF，不能用)</p>
+<p>邏輯判斷<br>case…default…</p>
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">case</span>(判斷條件) </span><br><span class="line">	<span class="hljs-number">8</span>’b1:</span><br><span class="line">      …</span><br><span class="line">    <span class="hljs-keyword">default</span>: 異常時，易判斷問題出在哪</span><br><span class="line"><span class="hljs-keyword">endcase</span></span><br></pre></td></tr></tbody></table></figure>
+<p>if…else…</p>
+<figure class="highlight verilog hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (判斷條件) ...</span><br><span class="line"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(判斷條件) ...</span><br><span class="line"><span class="hljs-keyword">else</span> ...</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果條件沒寫滿會不知道該怎麼辦，只好保持不動，產生latch<br>如果要告訴合成軟體說這就是所有會發生的情形，可以如下<br><code>Case(判斷條件) // synopsys fullcase</code></p>
+<h2 id="Ch1"><a href="#Ch1" class="headerlink" title="Ch1"></a>Ch1</h2><p><img src="https://i.imgur.com/D1ppIxm.png" alt="p.17"></p>
+<p>module name不要取數字，不要用特殊符號</p>
+<p><img src="https://i.imgur.com/647Fezh.png" alt="p.21"></p>
+<p><img src="https://i.imgur.com/kiCJb7E.png" alt="p.23"></p>
+<p><img src="https://i.imgur.com/m07Qnvu.png" alt="p.32"></p>
+<p><img src="https://i.imgur.com/3mczgZS.png" alt="p.45"></p>
+<p><img src="https://i.imgur.com/cwjuS0F.png" alt="p.46"></p>
+<p><img src="https://i.imgur.com/XOG3GCr.png" alt="p.48"></p>
+<p><img src="https://i.imgur.com/BAOQxTC.png" alt="p.49"></p>
+<p><img src="https://i.imgur.com/6abzsAk.png" alt></p>
+<p>變數前面的是vector，代表wordlength<br>變數後面的是number，代表有幾個</p>
+<p><img src="https://i.imgur.com/eQ6i0pk.png" alt="p.57"></p>
+<p><img src="https://i.imgur.com/JctdmG4.png" alt="p.58"></p>
+<p><img src="https://i.imgur.com/j8Jf7K3.png" alt="p.60"></p>
+<p>預設ns</p>
+<p><img src="https://i.imgur.com/P17fIxb.png" alt="p.82"></p>
+<p><img src="https://i.imgur.com/fHohXFd.png" alt="p.83"></p>
+<h2 id="Ch2"><a href="#Ch2" class="headerlink" title="Ch2"></a>Ch2</h2><p><img src="https://i.imgur.com/swBaWkX.png" alt="p.25"></p>
+<p>tri-state buffer盡量不要用，合成和P&R時會錯</p>
+<p><img src="https://i.imgur.com/E78fWA1.png" alt="p.26"></p>
+<p>優先順序由上到下</p>
+<p><img src="https://i.imgur.com/3COlSQd.png" alt="p.27"></p>
+<p>unsized constant在沒宣告時預設32 bits</p>
+<p><img src="https://i.imgur.com/WV54FDL.png" alt="p.40"></p>
+<p>combinational loop可簡化logic but CAD tool不支援，因為會被視為asynchronous而不斷執行，很難去預測答案</p>
+<p><img src="https://i.imgur.com/km7rKGl.png" alt="p.44"></p>
+<p><img src="https://i.imgur.com/QGy5ssA.png" alt="p.47"></p>
+<p><img src="https://i.imgur.com/L2w2Iqo.png" alt="p.49"></p>
+<p><img src="https://i.imgur.com/dmfHuh5.png" alt="p.54"></p>
+<p>always @ block用在<br>1.邏輯判斷<br>2.希望合成出DFF(Sequential circuit)</p>
+<p><img src="https://i.imgur.com/2TNxPgC.png" alt="p.55"></p>
+<p><img src="https://i.imgur.com/c7GbKZQ.png" alt="p.58"></p>
+<p><img src="https://i.imgur.com/8PCXjyf.png" alt="p.86"></p>
+<p><img src="https://i.imgur.com/3NSW46F.png" alt="p.87"></p>
+<p><img src="https://i.imgur.com/HzVRpbW.png" alt="p.88"></p>
+<p><img src="https://i.imgur.com/gX9xa6x.png" alt="p.89"></p>
+<p><img src="https://i.imgur.com/OL5ocoo.png" alt="p.98"></p>
+<h2 id="Ch3"><a href="#Ch3" class="headerlink" title="Ch3"></a>Ch3</h2><p><img src="https://i.imgur.com/CKQczvG.png" alt="p.4"></p>
+<img src="https://i.imgur.com/QkZ1ylz.png" width="60%">
+
+<p>timing包含兩種<br>(1)delay:元件的特性</p>
+<p>(2)clock period: 有多少的時間給我運算(兩個FF中間有多少時間)</p>
+<p>根據clock period的timing constraint，會去調整standard cell的size，以符合timing的限制<br>ex:希望加法器變快，會把standard cell的size加大，面積加大之後電路操作的速度會變快，delay會變小，就比較有機會符合clock period的規格</p>
+<p>所以圖中講的speed會隨delay而異<br>但由於clock period的限制，我們可能會調整面積去meet timing constraint，所以某種程度上，圖中的speed也會隨著調整clk period而改變</p>
+<p><img src="https://i.imgur.com/1ikQEwl.png" alt="p.13"></p>
+<p>跟don’t care比較永遠永遠都會是錯的</p>
+<p><img src="https://i.imgur.com/XWsThi0.png" alt="p.16"></p>
+<p><img src="https://i.imgur.com/FZQm0nj.png" alt="p.18"></p>
+<p>從design compiler得到的timing，是寬鬆的設計，如果要測量電路可以跑多快，可以一直把timing constraint(sdc檔中)往下降，直到出現negative slack為止</p>
+<p>在所有的輸出加register比較好，這樣可以確保三個電路會在同一個時間內算完，這樣電路會比較好做測試，因為從波形上可以看到穩定的數字，不會出現glitch，但需要看的點再加register就好，因為這會讓latency變差</p>
+<p><img src="https://i.imgur.com/tWOklxt.png" alt="p.19"></p>
+<p>DC不會optimize電路，只會optimize元件，如果沒做pipeline，電路可能會來不及算完<br>現在的tool會自動幫忙移動FF，只要把設計寫對之後加FF，tool就會做retiming</p>
+<p><img src="https://i.imgur.com/Jsw85Is.png" alt="p.20"></p>
+<p>把critical path 和其他電路分開，才能分別optimize</p>
+<p><img src="https://i.imgur.com/rgvDDQn.png" alt="p.22"></p>
+<p><img src="https://i.imgur.com/U1pMLSC.png" alt="p.23"></p>
+<p><img src="https://i.imgur.com/xna9MEz.png" alt="p.27"></p>
+<p>如果case沒寫滿會合出latch，這易受noise影響，因為latch是combinational的電路，只要輸入改變，輸出就會跟著改變</p>
+<p>[p.37]<br><img src="https://i.imgur.com/LSSx6m9.png" width="60%"></p>
+<p>[p.38]<br><img src="https://i.imgur.com/pWZXwmb.png" width="60%"></p>
+<p>signed會告訴compiler，MSB代表signed bit</p>
+<p><img src="https://i.imgur.com/nXuyeMT.png" alt="p.39"></p>
+<p>轉成signed的三種可能方式<br>(1)宣告時加<code>signed</code><br>ex: <code>wire signed [8:0] c</code>;<br>(2)在tb的<code>$display()</code>內，變數前加一個<code>$signed</code><br>(3)在tb的<code>$display()</code>內，數字前加一個s<br>ex: <code>9'sd1</code></p>
+<p>如果變數沒有宣告成signed bit，會預設為unsigned<br>比較時，若比較對象出現unsigned的比較，要轉為unsigned</p>
+<p><strong>signed跟unsigned的mapping</strong><br>從0開始由小到大先寫正整數，寫完之後接著由小到大寫負數</p>
+<p>Q:4 bits的範圍由幾到幾?<br>16個數字中，一個被0用掉，剩下15個分給正和負，負數會比正數多一個(因為正數有一個給0使用)<br>4bits => -8~+7</p>
+<p><img src="https://i.imgur.com/ZqkDli7.png" alt="p.40"></p>
+<p><img src="https://i.imgur.com/byC9krT.png" alt="p.42"></p>
+<p>如果debug要看陣列內的訊號，要加p.42最下面的兩行指令</p>
+<p><img src="https://i.imgur.com/FuivRaF.png" alt="p.43"></p>
+<p><img src="https://i.imgur.com/kJ5fIEU.png" alt></p>
+<p>如果合成後看到type有出現latch，要回頭把RTL的code改掉</p>
+<p>[p.75]<br><img src="https://i.imgur.com/SCkobJZ.png" width="60%"></p>
+<p>圖中的<code>datafile</code>是design好要餵給testbench吃test pattern的檔案</p>
+<p><img src="https://i.imgur.com/G0YMFby.png" alt="p.76"></p>
+<p><code>@</code>代表值要被放到哪個address，投影片中的address是採用16進制<br>ex:@100 => 1×16^2^+0×16^1^+0×16^0^=256</p>
+<p><img src="https://i.imgur.com/Gq1YVdB.png" alt="p.80"></p>
+<p>VCD(value change dump) format: 所有訊號轉變的波形檔，檔案較大<br>FSDB(fast signal database) format: 會做編碼和去掉不重要的，檔案較小<br>如果要看二維陣列的訊號，要加<code>+mda</code>，這是所有memory波形檔</p>
+<p>[p.84]<br><img src="https://i.imgur.com/E4G7etZ.png" width="60%"></p>
+<p>post-sim時要include sdf中，這樣才會看時間有沒有violate<br>sdf檔是在合成之後，會記錄時間資訊的檔案</p>
+<h2 id="Ch4"><a href="#Ch4" class="headerlink" title="Ch4"></a>Ch4</h2><p><img src="https://i.imgur.com/fjajOcI.png" alt="p.4"></p>
+<p>Latency是一個data進來到完成運算所需要的時間<br>Throughput是單位時間內可完成的運算量</p>
+<p><img src="https://i.imgur.com/F4yCJTN.png" alt="p.6"></p>
+<p>pipeline是插FF，如果在一個path插一個FF，切一刀之後delay不會變一半，因為插入FF的set-up time也要考慮</p>
+<p><img src="https://i.imgur.com/xNjvBiy.png" alt="p.11"></p>
+<p>電路的資料流是有方向性的，要確保cut-st上資料的流向要一致</p>
+<p><img src="https://i.imgur.com/bRr2Rpw.png" alt="p.15"></p>
+<p>多組元件平行進行，增加了Throughput，但要確保input能夠吃下這樣的loading</p>
+<p><img src="https://i.imgur.com/WtBPHVJ.png" alt="p.17"></p>
+<p><img src="https://i.imgur.com/d3zzHQF.png" alt="p.19"></p>
+<p>Retiming: tool會自動讓cell在FF間做移動</p>
+<p><img src="https://i.imgur.com/9qUmN74.png" alt="p.23"></p>
+<p><img src="https://i.imgur.com/2iKV4Cl.png" alt="p.25"></p>
+<p>N<del>node</del>: node的數量<br>C<del>L</del>: 後端tool才能optimize<br>V^2^<del>dd</del>: 這受限於製程，不能改<br>只能調整clock的頻率</p>
+<p><img src="https://i.imgur.com/U29hSnW.png" alt="p.27"></p>
+<p>以下的方法可以減少Power Consumption<br>(1)讓電路正常運作就好<br>(2)不要用的時候會關掉clk<br>(3)平常沒在運作時可以讓clk的速度變慢<br>(4)做不重要的動作時，可以把電壓降低<br>(5)減少不必要的切換，例如counter數完時，讓他停住不要再跳</p>
+<p><img src="https://i.imgur.com/Uf3SKSV.png" alt="p.61"></p>
+<p>glitch發生時，可以用FF去擋</p>
+<p><img src="https://i.imgur.com/dSlRDDv.png" alt="p.68"></p>
+<h2 id="Ch5-1"><a href="#Ch5-1" class="headerlink" title="Ch5-1"></a>Ch5-1</h2><table>
+<thead>
+<tr>
+<th><strong>考試重點</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set-up time: 這一筆資料不能太慢抵達 <br> FF在trigger時，存到rigister前，不能改變(因為clk不會立刻跳，電路不能跑太快) <br> T<del>clk</del> > T<del>CLKtoQ</del> + T<del>data</del>(combinational) + T<del>setup</del> - T<del>skew</del>  <br> hold time: 下一筆的資料不能太快來，否則會data feedthrogh，tool會自動插delay修正 <br> T<del>hold</del> < T<del>CLKtoQ</del> + T<del>data</del> - T<del>skew</del> <br> <img src="https://i.imgur.com/g6ItnCB.png" alt>  <br> <a href="https://www.cnblogs.com/poiu-elab/archive/2012/10/29/2745390.html" target="_blank" rel="noopener">STA Link</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>set-up time 的T<del>CLKtoQ</del>是從clk起來，一直到出現stable的輸出所需要的時間<br>hold time 的T<del>CLKtoQ</del>是從clk起來，一直到出現輸出所需要的時間，若要更嚴謹地不被下一筆資料做影響，下一筆的輸出可以是<strong>unstable</strong>的<br>另外set-up time 要取最長的path，而hold time要取最短的path做檢查</p>
+</blockquote>
+<p>成因：因為clock不是理想的，寫到FF內的暫存器時，不是一瞬間的 => set-up time。<br>set-up time: 這一筆資料被寫到暫存器所需要的時間，所以這一筆資料不能來的太慢(slow.db是用來確認setup time)。<br>成因：因為clock不是理想的，第一級的暫存器開關不會立刻關掉，下一筆資料如果來太快，會被寫入暫存器內部，所以資料需要維持一段時間不能變動 => hold time<br>hold time: 下一筆資料來之前所需要維持的時間，所以下一筆資料不能來的太快(fast.db是用來確認有無hold time violation)。</p>
+<p>set-up time 在檢查時要取==最慢==的path.<br>hold time 要取==最快==的path.</p>
+<p><strong>Q:如何解決violation</strong><br><strong>A:</strong> set-up time : 做retiming(調整FF的位置)，平均分攤每兩級FF之間的combinational logic time 或者是調大clock。<br>hold time : 插delay buffer。<br>直到滿足兩個不等式為止。</p>
+<p>skew time：因走線有寄生電容，線越長Clock越晚到，所以相較之下，Data會來得比較快<br>這一筆資料來得比較快，對setup time有利，所以不等式是用加的。<br>下一筆資料也來的比較快，所以對hold time不利，所以不等式是用減的。</p>
+<p><a href="http://vlsi-soc.blogspot.com/2013/03/clock-skew-implication-on-timing.html" target="_blank" rel="noopener">Clock Skew: Implication on Timing</a></p>
+<p>clock skew又稱作clock uncertainty，clock因為繞線以及layout等於因導致抵達各個register時的時間不一。<br>但是在<strong>STA階段無法準確知道哪個register收到的clock是快的或是慢的</strong>，所以design compiler在分析static timing analysis時，在分析setup time或hold time時必須一律以<strong>worst case</strong>來做分析。<br>“邏輯所能使用之clock period皆減少”<br>T<del>CLKtoQ</del> + T<del>data</del>(combinational) + T<del>setup</del> ==+== T<del>skew</del><br>T<del>hold</del> < T<del>CLKtoQ</del> + T<del>data</del> - T<del>skew</del></p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>考試重點</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Technology library:<code>.db</code>(給<strong>人</strong>看)、<code>.lib</code>(給<strong>機器</strong>看)，紀錄在不同操作環境下的cell的timing的資訊，提供給<code>dc(design compiler)</code>做<strong>合成</strong> <br>    PVT:Process Voltage Temperature <br> typical.db:中速製程 <br> <code>slow.db</code>:慢速製程，分析<strong>set-up time</strong> <br> <code>fast.db</code>:快速製程，分析<strong>hold-time</strong> <br> CPU跑超頻時=><strong>加大電壓</strong>或<strong>加液態氮(降溫)</strong>、電流取決於mobility、threshold voltage，會決定電路的操作速度而μ、V<del>t</del>隨溫度改變的趨勢不同，並不是一直降溫都會有用</td>
+</tr>
+</tbody></table>
+<p>design compiler會把.db和.lib互轉</p>
+<p>[p.6]<br><img src="
+" width="60%"><br><img src="https://i.imgur.com/xvvBjEp.png" width="80%"></p>
+<p>Design Ware Library 像合成的函式庫<br>HDL compiler會吃進RTL Design和Design Ware Library，轉成high level的gate level(例如:一群FF、MUX、加法器、乘法器、ALU)<br>Design compiler會吃進Design constraint和HDL Compiler給他的檔案，還有Design Ware Library給他的，輸出Optimized Gate-level Netlist，這個步驟才有吃進process的資訊</p>
+<p><strong>檔案的整理</strong></p>
+<p><strong>Design Ware Library</strong> 像合成的函式庫<br>HDL compiler會吃進RTL Design和Design Ware Library，轉成high level的gate level(例如:一群FF、MUX、加法器、乘法器、ALU)<br>Design compiler會吃進Design constraint和HDL Compiler給他的檔案，還有Design Ware Library給他的，輸出Optimized Gate-level Netlist，這個步驟才有吃進process的資訊</p>
+<p><strong>.db / .lib</strong>: Technology library:<code>.db</code>(給<strong>人</strong>看)、<code>.lib</code>(給<strong>機器</strong>看)，紀錄在不同操作環境下的cell的timing的資訊，提供給<code>dc(design compiler)</code>做<strong>合成</strong>用</p>
+<p><strong>.synopsys_dc.setup</strong>:設定環境的library，提供給DC做合成<br>ex:設定要去哪個(search) path尋找SRAM或I/O pad的cell、還有target (technology) library 為哪個操作環境的db，有設定才會認得SRAM和I/O pad，才會在area report反映在Macro的面積</p>
+<p><strong>.sdc檔</strong>(synopsys design constraints)  ，記載一些合成前的設定，提供給DC做合成<br>裡面有的內容如clk的period給多長來操作，clk長怎樣、不明朗的範圍多大、hold time多少、哪些block不要動且要設為ideal、一些會影響delay的設定、操作環境為何、set maximal area constraint、cost是以什麼考量為優先的、有沒有設定wire load model、線的推動力怎樣、input/output delay多大</p>
+<blockquote>
+<p>.sdc、main.tcl都是屬於自動化的腳本<br>以上都是提供給DC做合成用，以下是合成完後要提供給ncverilog做模擬用</p>
+</blockquote>
+<p><strong>_syn.v</strong>(Gate level netlist): 根據DC compiler吃的.sdc、HDL compiler提供的high gate level netlist、designware library的參數去合成gate level的netlist，提供給ncverilog做模擬用</p>
+<p><strong>.sdf</strong>(Standard Delay format)，紀錄一些時間的資訊，給ncverilog做模擬用<br>應該是根據合成前.sdc中的設定，萃取出一些的時間資訊，例如input delay、output delay、wire load model的delay為何、hold time為多少，然後提供給ncverilog做模擬</p>
+<p><strong>tsmc13.v</strong>(Process Library):提供合成後verilog netlist map 到 cell的 behavior 之後timing的資訊，提供給ncverilog做模擬用</p>
+<p><strong>.ddc</strong>:DC合成完後會儲存的工作檔</p>
+<p>[p.7]<br><img src="https://i.imgur.com/gK60zk2.png" width="80%"></p>
+<p>[p.13]<br><img src="https://i.imgur.com/kr13lvv.png" width="80%"><br><code>.synopsys_dc.setup</code> 環境設定的library，讀取DV和DC的指令然後開始執行，一定要跟DV/DC檔在同一個資料夾</p>
+<p>[p.13]<br><img src="https://i.imgur.com/kr13lvv.png" width="80%"><br>[p.15]<br><img src="https://i.imgur.com/P9K0zte.png" width="80%"></p>
+<p>.gds layout</p>
+<table>
+<thead>
+<tr>
+<th><strong>考試重點</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可以把要做的事情寫成文字檔(script)，這會跟開dv按按鍵的步驟都有對應<br>P&R要用script跑，通常在synthesis叫出GUI的機會不高，除非要找critical path去修negative slack，或者是要看合出來的東西是否正確</td>
+</tr>
+<tr>
+<td><figure class="highlight tcl hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># main.tcl</span></span><br><span class="line"><span class="hljs-comment"># Import Design</span></span><br><span class="line">read_file -<span class="hljs-keyword">format</span> verilog  <span class="hljs-string">"./CLE.v"</span></span><br><span class="line"></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line">link</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">source</span> -echo -verbose ./CLE_DC.sdc</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Compile Design</span></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span> high_fanout_net_threshold <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">uniquify</span><br><span class="line">set_fix_multiple_port_nets -all -buffer_constants [get_designs *]</span><br><span class="line"></span><br><span class="line">compile </span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Output Design</span></span><br><span class="line">current_design [get_designs CLE]</span><br><span class="line"></span><br><span class="line">remove_unconnected_ports -blast_buses [get_cells -hierarchical *]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">set</span> bus_inference_style {%s[%d]}</span><br><span class="line"><span class="hljs-keyword">set</span> bus_naming_style {%s[%d]}</span><br><span class="line"><span class="hljs-keyword">set</span> hdlout_internal_busses true</span><br><span class="line">change_names -hierarchy -rule verilog</span><br><span class="line">define_name_rules name_rule -allowed {a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _} -max_length <span class="hljs-number">255</span> -type cell</span><br><span class="line">define_name_rules name_rule -allowed {a-z A-Z <span class="hljs-number">0</span><span class="hljs-number">-9</span> _[]} -max_length <span class="hljs-number">255</span> -type net</span><br><span class="line">define_name_rules name_rule -map {{<span class="hljs-string">"\\*cell\\*"</span> <span class="hljs-string">"cell"</span>}}</span><br><span class="line">define_name_rules name_rule -case_insensitive</span><br><span class="line">change_names -hierarchy -rules name_rule</span><br><span class="line"></span><br><span class="line">write -<span class="hljs-keyword">format</span> ddc     -hierarchy -output <span class="hljs-string">"CLE_syn.ddc"</span></span><br><span class="line">write -<span class="hljs-keyword">format</span> verilog -hierarchy -output <span class="hljs-string">"CLE_syn.v"</span></span><br><span class="line">write_sdf -version <span class="hljs-number">2.1</span>  CLE_syn.sdf</span><br></pre></td></tr></tbody></table></figure></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><strong>考試重點</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名詞定義 <br> <img src="https://i.imgur.com/HlSKk5t.png" width="80%"> <br> 看圖 <br><img src="https://i.imgur.com/0MgTupN.png" width="80%"> <br> <img src="https://i.imgur.com/TYBj201.png" width="80%"></td>
+</tr>
+</tbody></table>
+<p><img src="https://i.imgur.com/CceleXN.png" alt="p.36"></p>
+<p>[p.40]<br><img src="https://i.imgur.com/eo2dZiH.png" width="60%"></p>
+<h2 id="Ch5-2"><a href="#Ch5-2" class="headerlink" title="Ch5-2"></a>Ch5-2</h2><p><img src="https://i.imgur.com/6FSfyDE.png" alt="p.3"></p>
+<p>也可以把上面的指令寫在<code>.sdc</code>檔</p>
+<p><code>dc_shell> set_clock_uncertainty 0.1 [get_clocks clk]</code></p>
+<p><img src="https://i.imgur.com/k2Dhnpm.png" alt="p.4"></p>
+<p>skew會讓data來得相較clock來說比較快，這一筆資料來得快，對set-up time有利，下一筆資料來得快，對hold time不利</p>
+<p>[p.5]<br><img src="https://i.imgur.com/7wtt08e.png" width="80%"></p>
+<p>clock uncertainty會讓能算的時間下降</p>
+<p><img src="https://i.imgur.com/liFwbpc.png" alt="p.9"></p>
+<p>false path代表這條路徑不可能會發生，要了解電路的樣子才能設，這是要DC不要檢查這條路徑</p>
+<ul>
+<li>Clock gating<br>Low power design<br>EN=1時為一般clk trigger的FF；EN=0時，module被gating掉，不會操作<br>Enable訊號一定是透過logic來的，可能會有glitch<br>tool合法化了一個clk gating cell，由Enable控制module是否會被打開</li>
+</ul>
+<p><img src="https://i.imgur.com/DhqVHmG.png" alt="p.10"></p>
+<p>clk gating cell有兩種合成的方法，楊老師Lab推薦第一種作法</p>
+<ol>
+<li>FF中，寫if而沒有else，在合成時會利用latch cell把module給關掉</li>
+<li>assign glk= clk & EN ， EN=0時，clk不會跳，但要在dc_shell中輸入指令，確保被換成clk gating cell</li>
+</ol>
+<p>area與process有關，算gate count時，要把logic都normalize成nand gate或nor gate</p>
+<p><img src="https://i.imgur.com/tE6A3qA.png" alt="p.11"></p>
+<p>dc_shell> set_max_area 0<br>希望達到的目標<br>最佳化問題有目標函數和限制函數，我們希望area越小越好，所以目標可以直接訂成0，DC會努力幫我們去壓面積，因為這不是我們的限制，所以不用擔心會過不了<br>但有時候壓面積會讓timing constraint過不了，兩者常常互相衝突</p>
+<p><img src="https://i.imgur.com/yFdA9a1.png" alt="p.12"></p>
+<p>這一頁投影片這個與Physical design的DRC不同<br>除了timing以外，這些參數的設定也會影響到delay的演算法<br>因為delay的算法是透過standard cell calibre在某個區間，透過查表算出來的，有一個較準的範圍，所以要讓電路操作在校準的環境</p>
+<p><img src="https://i.imgur.com/AJU5VDd.png" alt="p.13"></p>
+<p>一般我們performance先看timing，再看area，之後才會看power有多大<br>可以用 set_cost_priority來自訂他们的優先權</p>
+<p><img src="https://i.imgur.com/WyGN3qJ.png" alt="p.15"></p>
+<p>設dont_touch: RTL就不會在動<br>可能已經有額外利用DC花了很多時間把某些block給合成好，不希望DC再去更動合成好的block</p>
+<p><img src="https://i.imgur.com/1dTnp0K.png" alt="p.16"></p>
+<p>這會把module間的邊界打破，可以做到跨模組的優化，但會花很多時間，在職場上time to market也很重要</p>
+<p><img src="https://i.imgur.com/01l6ChF.png" alt="p.17"></p>
+<p>這比較少用，可以針對每個實體，create一個design，大家會有各自的counter</p>
+<p><strong>以上的步驟都是寫在.sdc檔中</strong></p>
+<p><img src="https://i.imgur.com/nQH6mBp.png" alt="p.24"></p>
+<p>如果出現負的slack，代表電路跑太慢，要切pipeline或者回去修正RTL的code</p>
+<p><img src="https://i.imgur.com/HbXYHQa.png" alt="p.25"></p>
+<p>圖中的橫軸是slack的長度，縱軸是path的數量<br>(1)設計要盡量讓所有的path都靠近0，切pipeline要把大家的時間切得差不多<br>(2)調整完之後再改變.sdc檔中的clk cycle，把clk往下壓<br>(3)重複(1)、(2)的動作直到不能再把clk壓下去為止<br>(4)如果不知道怎麼切pipeline，有最後一招可以去解slack，但記得這一招只能用一次<br>可以插一堆registers之後，下<code>optimize_register</code>的指令，讓DC幫我們優化</p>
+<blockquote>
+<p>optimize後的名字可能會看不懂，因為會產生很多設計以外的東西，且design會比較大(area buffer cost)</p>
+</blockquote>
+<p><img src="https://i.imgur.com/sfEGSwr.png" alt="p.26"></p>
+<p>有set wire load model時，會有Net Interconnect area和Total area(Total cell area + Net Interconnect area)，這兩項不用考慮，我們只要負責優化Combinational area(adder,乘法器、MUX…)和Noncombinational area(Sequential FF)<br>Macro/Black Box area指得是memory的面積 ex:SRAM的面積</p>
+<p><img src="https://i.imgur.com/hyt9zmB.png" alt="p.30"></p>
+<p>合成時就要考慮I/O pad<br>模擬時要有I/O pad的behavior檔</p>
+<p><img src="https://i.imgur.com/lssl4Vx.png" alt="p.32"></p>
+<p>slow.lib是給standard cell吃的環境<br>tpz013g3wc.lib是外圍pad<br>rom_1024×4_t13_slow_syn.lib是memory的library，裡面包含timing、power的資訊，透過DC可以轉成.db檔給機器看</p>
+<p><img src="https://i.imgur.com/1r3V9h6.png" alt="p.33"></p>
+<p><img src="https://i.imgur.com/sFMRbwq.png" alt="p.34"></p>
+<p><img src="https://i.imgur.com/M7y1nwN.png" alt="p.35"></p>
+<p>HW3中的CLE_DC.sdc</p>
+<p><img src="https://i.imgur.com/gAKfHAo.png" alt="p.36"></p>
+<p>.ddc檔是關design compiler之後的工作站存檔</p>
+<p><img src="https://i.imgur.com/ZVFbNO4.png" alt="p.37"></p>
+<p><img src="https://i.imgur.com/1c0ZbYK.png" alt="p.38"></p>
+<p><img src="https://i.imgur.com/wZ3JDWJ.png" alt="p.39"></p>
+<p>tsmc13.v是 CORE的behavior model，是用來跑模擬用的</p>
+<p><img src="https://i.imgur.com/l2B5DQL.png" alt="p.40"></p>
+<p><img src="https://i.imgur.com/onO2AHK.png" alt="p.41"></p>
+<h2 id="Ch6"><a href="#Ch6" class="headerlink" title="Ch6"></a>Ch6</h2><p><img src="https://i.imgur.com/USwcuag.png" alt="p.28"></p>
+<p>Fault Coverage是偵測出fault的數量與所有可能出現fault數量的比值</p>
+<p>[p.29]<br><img src="https://i.imgur.com/q4WwoEz.png" width="80%"></p>
+<p>and的特性，兩個輸入中若有一個是0，結果應該是0；若兩個輸入都是1，結果應該是1，當違反and gate的原則，就代表有錯誤，那這個fault就能夠被看到<br>測試的兩大重點</p>
+<ol>
+<li>Activate: 輸入的pattern要能夠讓fault被反映出來(選與fault相反的值，藉由這個特性可以回推部分test pattern該有的值)</li>
+<li></li>
+<li>Propagate: fault要能夠反映到輸出，不能被其他的logic gate擋下來(藉由這個特性可以回推其他test pattern該有的值)</li>
+</ol>
+<p><img src="https://i.imgur.com/bhfnVlX.png" alt></p>
+<p>應用and gate 和 or gate的天性，我們可以在activate fault之後，做implication，推回test pattern應該為多少</p>
+<p>如下圖，stuck at fault 就是將一 input 卡在錯誤的值，看 output 是否能夠被偵測到<br>(與原先 pattern 應得結果不同)，若有偵測到，表示 detect fault。</p>
+<img src="https://i.imgur.com/q4WwoEz.png" width="80%">
+
+<p>以下圖為例，<br></p>
+<ol>
+<li>s-a-0(D) => 我們首先要能 activate 它，就必須假設它為1，<br>再往回推要得到1所需要的條件(A=1、B=1)。<br></li>
+<li>為了能將錯誤表現出來，我們希望它能影響到 output 的值，也就是       propagation，<br>為了能將 0 的錯誤推至 output 需要 E=1 ，E=0 的話 D 不論為 0、1 都無法表現。</li>
+</ol>
+<img src="https://i.imgur.com/yndfYpL.png" width="80%">
+
+<p>(P.29 與 P.39 為考試重點)</p>
+<img src="https://i.imgur.com/LIBynic.png" width="80%">
+<img src="https://i.imgur.com/xjC35qx.png" width="80%">
+<img src="https://i.imgur.com/11Qa5Uz.png" width="80%">
+
+<p>下圖也是依照兩個原則<br></p>
+<ol>
+<li>activation : 7 條 wire 可以插 stuck at fault 。<br></li>
+<li>propagation : 看看你插的 fault 會不會改變 output 原先 pattern 正確的值。<br><br>注意 : 只需考慮 single stuck at fault ，一次只考慮一個 fault，其他假設都正確。</li>
+</ol>
+<img src="https://i.imgur.com/5gMYUjY.png" width="80%">
+<!--
+<img src="https://i.imgur.com/ApmoGHR.png" width="80%">
+
+<img src="https://i.imgur.com/42PRYYf.png" width="80%">
+
+<img src="https://i.imgur.com/HZd3Mnd.png" width="80%">
+
+<img src="https://i.imgur.com/pHyG6YB.png" width="80%">
+
+<img src="https://i.imgur.com/xAHgVyD.png" width="80%">
+-->
+
+
+<h2 id="Ch7"><a href="#Ch7" class="headerlink" title="Ch7"></a>Ch7</h2><p><img src="https://i.imgur.com/PVObFvX.png" alt="p.4"></p>
+<p><img src="https://i.imgur.com/tLWZ8kz.png" alt="p.10"></p>
+<p>四種data path<br>Start Point可能是Clock pin(CLK port)或者是PI(primary input)<br>End Point可能是PO(primary output)或者是data input pin(D)<br>所以會有四種可能的Path</p>
+<p>CLK port到FF的data input(D)<br>CLK port到PO<br>PI到FF的data input(D)<br>PI到PO</p>
+<p><img src="https://i.imgur.com/wAUJba4.png" alt="p.11"></p>
+<p>有幾個Start points?<br>PI: A,B,C有三個<br>CLK port有四個<br>共七個</p>
+<p>有幾個End points?<br>PO:O,Q,P有三個<br>FF的data input port有四個<br>共七個</p>
+<p>有幾條timing path?<br>底下圖中紅色的1+1+3+1+4+4+2=16</p>
+<p><img src="https://i.imgur.com/ABNlrGY.png" alt="p.15"></p>
+<p><考><br>到這個點為止需要多少時間<br>由前面往後算<br>所有要花的時間取最大值<br>每個edge都可以定義delay，delay的累積就是arrival time<br>multifanin要取大的delay，例如:中間NOR gate的input分別為0.65和0.7，要取比較慢的，所以是0.7+0.2</p>
+<p><img src="https://i.imgur.com/f0c18SF.png" alt="p.16"></p>
+<p><考><br>這個點還有多少時間可以使用<br>所有剩下的時間取最小值<br>Spec.的要求<br>要接到後面的電路，會被要求多少時間之前資料必須要被準備好<br>由後面往前算<br>希望PO的vertex在時間1.5的時候要收到資料<br>由後往前推時，如果有兩個以上的剩下時間，要取比較小的，再繼續往前把每一段需要的時間一直消耗，就可以算出每個vetex的required time是多少</p>
+<p><img src="https://i.imgur.com/AXHiprE.png" alt="p.17"></p>
+<p><考><br>required time - arrived time 可以得到slack graph<br>如果slack是負的，就是critical path，要讓slack>0，才不會有timing violation</p>
+<p><img src="https://i.imgur.com/WFFU2F2.png" alt="p.26"></p>
+<p><img src="https://i.imgur.com/VDBrtqf.png" alt="p.32"></p>
+<p>兩種方式造成clock latency</p>
+<ol>
+<li>off chip cause: 時脈產生器到晶片過程造成的delay<br>機台上有石英震盪器，到晶片的時間model出的行為</li>
+<li>on chip cause: 線長不同、擺置線寬不同，造成sequential吃到的clk不同</li>
+</ol>
+<p><img src="https://i.imgur.com/aw2dOzo.png" alt="p.33"></p>
+<p>取最大的跟最小的相減，代表clk可能會浮動的範圍<br>就算使用H tree的擺法<br>thermal noise造成clk到每一顆FF的時間略有不同<br>波型起來的地方可能會早一點或晚一點到<br>下去的地方可能早一點或晚一點下去<br>這些可以靠tool模擬出來</p>
+<p><img src="https://i.imgur.com/ljyiXjn.png" alt="p.36"></p>
+<p>哪些在設計中是false path，在SAT計算中永遠不會發生<br>電路中的某個path平常不會被操作到<br>ex:reset的block平常不會被觸發<br>ex:有個訊號不再被需要了(input vector永遠不會再觸發某一條path的功能)，別的vertex看那一條會是constant<br>ex:這個path不會再影響其他node甚至PO<br>ex:combinational loop不應該在電路中發生，所以被設為false(DC目前還沒有辦法做分析)<br>cf.跟之前所說的，set false path 故意設定false讓DC compiler不要去估timing analysis，不太一樣</p>
+<p><img src="https://i.imgur.com/LbQYYpF.png" alt="p.46"></p>
+<p><SOCV有教><br>setup-time 吃到combinational circuit的訊號後sequential circuit需要花一段時間才會把值propagate到output，必須要把這些結果計算起來<br>圖中沒事是On time<br>前面propagate太久壓縮到setup time</p>
+<p>這一筆資料在path上的值不可以來得太慢，是剩下的時間扣掉實際到達的時間</p>
+<p><img src="https://i.imgur.com/UQa7wwX.png" alt="p.51"></p>
+<p><img src="https://i.imgur.com/luckFaQ.png" alt="p.52"></p>
+<p>Hold time: combinational circuit算出值之後要被Sequenial circuit寫入，所以不能太快改變</p>
+<p>反過來減，下一筆資料，經過path不可以算得太快，值要維持得夠久，所以是arrival time減掉required time</p>
+<p><img src="https://i.imgur.com/yIDZ2Ug.png" alt="p.56"></p>
+<h2 id="以下為考古的問答題"><a href="#以下為考古的問答題" class="headerlink" title="以下為考古的問答題"></a>以下為考古的問答題</h2><p><strong>問答1: interconnect area如果是0，如何解決??</strong><br>就是沒設wire load，在.sdc檔　set_wire_load_model　有關</p>
+<p><code>Net Interconnect area</code>是0: 在set design constraint(.sdc)檔案中，如果沒有設定<code>set wire load model</code>，那cell間的走線面積就不會考慮，所以<code>interconnect area</code>會是0<br><code>set_wire_load_model -name tsmc13_wl10 -library slow</code></p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># CLE_DC.sdc</span><br><span class="line"># You can only modify clock period </span><br><span class="line"></span><br><span class="line">set cycle  10         ;#clock period defined by designer</span><br><span class="line"></span><br><span class="line">#don't modify the following part</span><br><span class="line">create_clock -period $cycle [get_ports  clk]</span><br><span class="line">set_dont_touch_network      [all_clocks]</span><br><span class="line">set_fix_hold                [all_clocks]</span><br><span class="line">set_clock_uncertainty  0.1  [all_clocks]</span><br><span class="line">set_clock_latency      0.5  [all_clocks]</span><br><span class="line">set_ideal_network           [get_ports clk]</span><br><span class="line"></span><br><span class="line">#Don't touch the basic env setting as below</span><br><span class="line">set_input_delay  1     -clock clk [remove_from_collection [all_inputs] [get_ports clk]]</span><br><span class="line">set_output_delay 1     -clock clk [all_outputs] </span><br><span class="line">set_load         1     [all_outputs]</span><br><span class="line">set_drive        1     [all_inputs]</span><br><span class="line"></span><br><span class="line">set_operating_conditions -max_library slow -max slow</span><br><span class="line">set_wire_load_model -name tsmc13_wl10 -library slow                        </span><br><span class="line"></span><br><span class="line">set_max_fanout 6 [all_inputs]</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><img src="https://i.imgur.com/sD0Luza.png" alt></p>
+<p><strong>問答2: 為什麼<code>Macro/Black Box area</code>是0?</strong><br>因為環境設定檔中，<code>.synopsys_dc.setup</code>內的SRAM路徑不對，DC找不到SRAM的library，認不得所以沒吃到Macro的面積<br><code>search_path</code>會去搜尋Macro cell的gate netlist path在哪裡<br><code>target_library</code>是放置Macro cell 的technology library的path在哪裡，透過<code>target_library</code>，我們會把<code>link_library</code> link到Macro的cell，這樣就能認得Macro的cell</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span><br><span class="line">set search_path      ". /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db  ./Memory/sram_1024x8_t13 $search_path"</span><br><span class="line">set target_library   "slow.db                     \</span><br><span class="line">					  typical.db</span><br><span class="line">					  fast.db</span><br><span class="line">                      sram_1024x8_t13_slow_syn.db \</span><br><span class="line">                     "</span><br><span class="line">set link_library     "* $target_library dw_foundation.sldb"</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># .synopsys_dc.setup</span><br><span class="line"># 1. Modify this file to fit your own environment.</span><br><span class="line"># 2. Copy this file synopsys_dc.setup to .synopsys_dc.setup</span><br><span class="line">#    and put this file in tool's invoking directory or your home directory.</span><br><span class="line">#	</span><br><span class="line"></span><br><span class="line">set company {NTUGIEE}</span><br><span class="line">set designer {Student}</span><br><span class="line"></span><br><span class="line">set search_path      ". /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db  ./Memory/sram_1024x8_t13 $search_path"</span><br><span class="line">set target_library   "slow.db                     \</span><br><span class="line">					  typical.db</span><br><span class="line">					  fast.db</span><br><span class="line">                      sram_1024x8_t13_slow_syn.db \</span><br><span class="line">                     "</span><br><span class="line">set link_library     "* $target_library dw_foundation.sldb"</span><br><span class="line">set symbol_library   "tsmc13.sdb generic.sdb"</span><br><span class="line">set synthetic_library "dw_foundation.sldb"</span><br><span class="line">set default_schematic_options {-size infinite}</span><br><span class="line"></span><br><span class="line">set hdlin_translate_off_skip_text "TRUE"</span><br><span class="line">set edifout_netlist_only "TRUE"</span><br><span class="line">set verilogout_no_tri true</span><br><span class="line"></span><br><span class="line">set hdlin_enable_presto_for_vhdl "TRUE"</span><br><span class="line">set sh_enable_line_editing true</span><br><span class="line">set sh_line_editing_mode emacs</span><br><span class="line">history keep 100</span><br><span class="line">alias h history</span><br><span class="line"></span><br><span class="line">set bus_inference_style {%s[%d]}</span><br><span class="line">set bus_naming_style {%s[%d]}</span><br><span class="line">set hdlout_internal_busses true</span><br><span class="line">define_name_rules name_rule -allowed {a-z A-Z 0-9 _} -max_length 255 -type cell</span><br><span class="line">define_name_rules name_rule -allowed {a-z A-Z 0-9 _[]} -max_length 255 -type net</span><br><span class="line">define_name_rules name_rule -map {{"\\*cell\\*" "cell"}}</span><br></pre></td></tr></tbody></table></figure>
+
+
+<p><strong>問答3: timing report是讓critcal path可以過timing的constraints，<br>如果過了5ns的constraints，把testbench改成4ns使否有機會meet constraints?</strong><br>有機會，如果測資走的不是critical path，那就有機會通過限制</p>
+<p><strong>問答4: Why we only focus on total cell area instead of total area?</strong><br>因為我們能夠掌握的只有RTL的design，而他會影響的面積是Cominational、Buffer、Non-combinational的area，wire的面積不是我們能決定的，而且這個面積在P&R之後才會比較準確</p>
+<p><strong>問答5: Why the total cell area will be underestimated if we don’t set wire load model?</strong><br>因為沒有設定wire model，那就不會考慮wire的delay，所以timing constraints會比較好通過<br>若今天把wire delay考慮回來，那timing constraints的條件會變得比較嚴苛，所以cell的面積必須要加大，讓操作速度變得比較快，才能通過constraints</p>
+<p><strong>問答6: 如果今天把.sdc中的clock period設小，area會怎麼改變?</strong><br>由於clock period變小，timing constraints的條件變嚴苛，需要更大的硬體面積才能通過timing的限制，所以area會變大<br>(area越大，delay越小)</p>
+<p><strong>問答7: 我們需要synthesis rom_1024×4_t13.v with DUT.v(我們設計的module)嗎?</strong><br>不用，因為.v檔已經有提供ncverilog模擬timing delay的資訊，不需要再合成<br>另外我們已經有合成後的.gds檔(layout檔)，所以不用再合成</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></body></html>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Verilog/" rel="tag">Verilog</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/11/15/iot-course2018-HW4-HW5/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Arduino LoRa Shield通訊實驗與NodeRED</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/10/22/bulid-a-facebook-bot/">
+                <span class="level-item">Fackbook Bot Webhook架設筆記</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://syokujinau.github.io/2018/11/12/cvsd-note/';
+        this.page.identifier = '2018/11/12/cvsd-note/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'yclin' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/myimages/yc.png" alt="YC&#39;s Blog">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        YC&#39;s Blog
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Lin Yu-Chien
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Taipei, Taiwan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            96
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            87
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="/" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/syokujinau">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://www.facebook.com/profile.php?id=100000544587033">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Algorithm/">
+            <span class="level-start">
+                <span class="level-item">Algorithm</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">56</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
+            <span class="level-start">
+                <span class="level-item">LeetCode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">51</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/">
+            <span class="level-start">
+                <span class="level-item">Embedded</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Embedded/ARM/">
+            <span class="level-start">
+                <span class="level-item">ARM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/Embedded-Linux/">
+            <span class="level-start">
+                <span class="level-item">Embedded Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Embedded/FreeRTOS/">
+            <span class="level-start">
+                <span class="level-item">FreeRTOS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/IoT/">
+            <span class="level-start">
+                <span class="level-item">IoT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Miscellaneous/">
+            <span class="level-start">
+                <span class="level-item">Miscellaneous</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">15</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Web/">
+            <span class="level-start">
+                <span class="level-item">Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 10.91px;">AI</a> <a href="/tags/ARM/" style="font-size: 12.73px;">ARM</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Angstrom-Linux/" style="font-size: 10px;">Angstrom Linux</a> <a href="/tags/Anki/" style="font-size: 10px;">Anki</a> <a href="/tags/Array/" style="font-size: 12.73px;">Array</a> <a href="/tags/BFS/" style="font-size: 10.91px;">BFS</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 18.18px;">Backtracking</a> <a href="/tags/BeagleBone/" style="font-size: 11.82px;">BeagleBone</a> <a href="/tags/Binary-Search/" style="font-size: 13.64px;">Binary Search</a> <a href="/tags/Binary-Tree/" style="font-size: 10px;">Binary Tree</a> <a href="/tags/C3-js/" style="font-size: 10px;">C3.js</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DFS/" style="font-size: 17.27px;">DFS</a> <a href="/tags/DP/" style="font-size: 11.82px;">DP</a> <a href="/tags/DSP/" style="font-size: 10.91px;">DSP</a> <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Deep-Learning/" style="font-size: 10.91px;">Deep Learning</a> <a href="/tags/Deque-STL/" style="font-size: 10px;">Deque STL</a> <a href="/tags/Divide-Conquer/" style="font-size: 10px;">Divide & Conquer</a> <a href="/tags/Dynamic-Programming/" style="font-size: 12.73px;">Dynamic Programming</a> <a href="/tags/DynamoDB/" style="font-size: 10px;">DynamoDB</a> <a href="/tags/ES6/" style="font-size: 10.91px;">ES6</a> <a href="/tags/Embedded/" style="font-size: 15.45px;">Embedded</a> <a href="/tags/Embedded-Linux/" style="font-size: 11.82px;">Embedded Linux</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/FreeRTOS/" style="font-size: 10px;">FreeRTOS</a> <a href="/tags/Google-Compute-Engine/" style="font-size: 10px;">Google Compute Engine</a> <a href="/tags/Graph/" style="font-size: 12.73px;">Graph</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Hash-Table/" style="font-size: 12.73px;">Hash Table</a> <a href="/tags/IEEE754/" style="font-size: 10px;">IEEE754</a> <a href="/tags/IoT/" style="font-size: 10.91px;">IoT</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Jupyter/" style="font-size: 10.91px;">Jupyter</a> <a href="/tags/K-Means/" style="font-size: 10px;">K-Means</a> <a href="/tags/KNN/" style="font-size: 10px;">KNN</a> <a href="/tags/Linear-Regression/" style="font-size: 10px;">Linear Regression</a> <a href="/tags/Linked-list/" style="font-size: 12.73px;">Linked-list</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Logistic-Regrassion/" style="font-size: 10px;">Logistic Regrassion</a> <a href="/tags/MJPEG-Streamer/" style="font-size: 10px;">MJPEG-Streamer</a> <a href="/tags/MQTT/" style="font-size: 10px;">MQTT</a> <a href="/tags/Machine-Learning/" style="font-size: 14.55px;">Machine Learning</a> <a href="/tags/Matlab/" style="font-size: 10px;">Matlab</a> <a href="/tags/Matrix/" style="font-size: 10px;">Matrix</a> <a href="/tags/Minecraft/" style="font-size: 10px;">Minecraft</a> <a href="/tags/Multiset/" style="font-size: 10px;">Multiset</a> <a href="/tags/Multiset-STL/" style="font-size: 10px;">Multiset STL</a> <a href="/tags/Multual-exclusion/" style="font-size: 10px;">Multual exclusion</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/NLTK/" style="font-size: 10px;">NLTK</a> <a href="/tags/Ngrok/" style="font-size: 10px;">Ngrok</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/NodeRED/" style="font-size: 10px;">NodeRED</a> <a href="/tags/Operating-System/" style="font-size: 16.36px;">Operating System</a> <a href="/tags/Priority-Queue/" style="font-size: 10px;">Priority Queue</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/Python/" style="font-size: 13.64px;">Python</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Random-Forest/" style="font-size: 10px;">Random Forest</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10.91px;">Raspberry Pi</a> <a href="/tags/React/" style="font-size: 10.91px;">React</a> <a href="/tags/STM32/" style="font-size: 12.73px;">STM32</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Scikit-learn/" style="font-size: 10px;">Scikit-learn</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/String/" style="font-size: 10.91px;">String</a> <a href="/tags/Tensorflow/" style="font-size: 10.91px;">Tensorflow</a> <a href="/tags/Time-complexity/" style="font-size: 10px;">Time complexity</a> <a href="/tags/Tree/" style="font-size: 19.09px;">Tree</a> <a href="/tags/Verilog/" style="font-size: 10.91px;">Verilog</a> <a href="/tags/Web/" style="font-size: 10px;">Web</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/imgur/" style="font-size: 10px;">imgur</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/13/leetcode-Subsets-II/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/obvWQaH.jpg" alt="Leetcode - Subset II">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:34:26.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/leetcode-Subsets-II/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Subset II</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/11/leetcode-House-Robber/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/znhaIgh.jpg" alt="Leetcode - House Robber">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-11T00:13:15.000Z">2020-03-11</time></div>
+                    <a href="/2020/03/11/leetcode-House-Robber/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - House Robber</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
+                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/IwyHHN1.jpg" alt="Leetcode - Construct Binary Tree from Preorder and Inorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T10:19:06.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Tree from Preorder and Inorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/01/leetcode-Best%20Time-to-Buy-and-Sell-Stock/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/noJgBj2.jpg" alt="Leetcode - Best Time to Buy and Sell Stock">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-01T10:43:17.000Z">2020-03-01</time></div>
+                    <a href="/2020/03/01/leetcode-Best%20Time-to-Buy-and-Sell-Stock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Best Time to Buy and Sell Stock</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">16</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AI/">
+                        <span class="tag">AI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ARM/">
+                        <span class="tag">ARM</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">56</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angstrom-Linux/">
+                        <span class="tag">Angstrom Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anki/">
+                        <span class="tag">Anki</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Array/">
+                        <span class="tag">Array</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BFS/">
+                        <span class="tag">BFS</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BST/">
+                        <span class="tag">BST</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Backtracking/">
+                        <span class="tag">Backtracking</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BeagleBone/">
+                        <span class="tag">BeagleBone</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Binary-Search/">
+                        <span class="tag">Binary Search</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Binary-Tree/">
+                        <span class="tag">Binary Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C3-js/">
+                        <span class="tag">C3.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CSS/">
+                        <span class="tag">CSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentOS/">
+                        <span class="tag">CentOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DFS/">
+                        <span class="tag">DFS</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DP/">
+                        <span class="tag">DP</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DSP/">
+                        <span class="tag">DSP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debian/">
+                        <span class="tag">Debian</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deep-Learning/">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Deque-STL/">
+                        <span class="tag">Deque STL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Divide-Conquer/">
+                        <span class="tag">Divide &amp; Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dynamic-Programming/">
+                        <span class="tag">Dynamic Programming</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DynamoDB/">
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded/">
+                        <span class="tag">Embedded</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedded-Linux/">
+                        <span class="tag">Embedded Linux</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Facebook/">
+                        <span class="tag">Facebook</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeRTOS/">
+                        <span class="tag">FreeRTOS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Compute-Engine/">
+                        <span class="tag">Google Compute Engine</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Graph/">
+                        <span class="tag">Graph</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hash-Table/">
+                        <span class="tag">Hash Table</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IEEE754/">
+                        <span class="tag">IEEE754</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IoT/">
+                        <span class="tag">IoT</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jupyter/">
+                        <span class="tag">Jupyter</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/K-Means/">
+                        <span class="tag">K-Means</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/KNN/">
+                        <span class="tag">KNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linear-Regression/">
+                        <span class="tag">Linear Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linked-list/">
+                        <span class="tag">Linked-list</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LoRa/">
+                        <span class="tag">LoRa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regrassion/">
+                        <span class="tag">Logistic Regrassion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MJPEG-Streamer/">
+                        <span class="tag">MJPEG-Streamer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MQTT/">
+                        <span class="tag">MQTT</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Machine-Learning/">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matlab/">
+                        <span class="tag">Matlab</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Minecraft/">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Multiset/">
+                        <span class="tag">Multiset</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Multiset-STL/">
+                        <span class="tag">Multiset STL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Multual-exclusion/">
+                        <span class="tag">Multual exclusion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLTK/">
+                        <span class="tag">NLTK</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ngrok/">
+                        <span class="tag">Ngrok</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Node-js/">
+                        <span class="tag">Node.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NodeRED/">
+                        <span class="tag">NodeRED</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Operating-System/">
+                        <span class="tag">Operating System</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Priority-Queue/">
+                        <span class="tag">Priority Queue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Promise/">
+                        <span class="tag">Promise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Queue/">
+                        <span class="tag">Queue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Random-Forest/">
+                        <span class="tag">Random Forest</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVM/">
+                        <span class="tag">SVM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scikit-learn/">
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sliding-Window/">
+                        <span class="tag">Sliding Window</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/String/">
+                        <span class="tag">String</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Time-complexity/">
+                        <span class="tag">Time complexity</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tree/">
+                        <span class="tag">Tree</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Verilog/">
+                        <span class="tag">Verilog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Web/">
+                        <span class="tag">Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/base64/">
+                        <span class="tag">base64</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/imgur/">
+                        <span class="tag">imgur</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jQuery/">
+                        <span class="tag">jQuery</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jupyter/">
+                        <span class="tag">jupyter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/matplotlib/">
+                        <span class="tag">matplotlib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/npm/">
+                        <span class="tag">npm</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="CVSD 2018 Fall Notebook" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 John Doe&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'true'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="Back to Top" href="javascript:;" target="_blank" rel="noopener">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
