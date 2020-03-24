@@ -139,6 +139,78 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/12/13/FreeRTOS-task-creation-concepts/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/qLhg02D.png" alt="FreeRTOS - Task Creation觀念彙整">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-13T03:01:28.000Z">2019-12-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 421 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/13/FreeRTOS-task-creation-concepts/">FreeRTOS - Task Creation觀念彙整</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><img src="https://i.imgur.com/kIXupfv.png" width="45%">
+
+
+<ol>
+<li>建立一個stack為512 bytes的task需要佔用多少記憶體空間？<ul>
+<li>512 + sizeof(TCB) bytes</li>
+<li>同時Task Control Block也在stack中動態配置。TCB結構可在FreeRTOS kernel原始碼的<a href="https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/82e80521124c6e96e5fdb3538a2533f994e2db8f/tasks.c#L252" target="_blank" rel="noopener">task.c</a>中找到。</li>
+</ul>
+</li>
+<li>TCB結構的第一個成員是？<ul>
+<li><input disabled type="checkbox"> task state</li>
+<li><input disabled type="checkbox"> task size</li>
+<li><input disabled type="checkbox"> task priority</li>
+<li><input checked disabled type="checkbox"> 指向task stack頂端的指標</li></ul></li></ol></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/12/13/FreeRTOS-task-creation-concepts/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/12/13/FreeRTOS-task-state/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/KTjjsL2.png" alt="FreeRTOS - Task States">
         </a>
@@ -404,78 +476,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/12/01/leetcode-minimum-insertion-steps-to-make-a-string-palindrome/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/KovlkXs.png" alt="LeetCode - Minimum Insertion Steps to Make a String Palindrome">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-01T05:26:31.000Z">2019-12-01</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 291 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/01/leetcode-minimum-insertion-steps-to-make-a-string-palindrome/">LeetCode - Minimum Insertion Steps to Make a String Palindrome</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="1312-Minimum-Insertion-Steps-to-Make-a-String-Palindrome"><a href="#1312-Minimum-Insertion-Steps-to-Make-a-String-Palindrome" class="headerlink" title="1312. Minimum Insertion Steps to Make a String Palindrome"></a><a href="https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/" target="_blank" rel="noopener">1312. Minimum Insertion Steps to Make a String Palindrome</a></h2><p>Given a string s. In one step you can insert any character at any index of the string.</p>
-<p>Return the minimum number of steps to make s palindrome.</p>
-<p>A Palindrome String is one that reads the same backward as well as forward.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>$dp[i][j]$ := min insertions to make s[i ~ j] a palindrome</p>
-<p>分兩種case討論，字串$S = s_{i} s_{i+1} … s_{j}$<br>檢查$s_i$與$s_j$也就是字串頭尾字元是否一樣</p>
-<ol>
-<li>是，$dp[i][j]$的解就是$dp[i + 1][j - 1]$</li>
-<li>否，可以選擇在頭尾插入，方法數+1，取較小的<ul>
-<li>頭插入$s_{j}$，所以插入方法數為$dp[i][j - 1] + 1$</li>
-<li>尾插入$s_{i}$，所以插入方法數為$dp[i + 1][j] + 1$</li>
-</ul>
-</li>
-</ol>
-<p>因為求解長度$k$的子字串，會要知道$k-1$、$k-2$長度的子字串方法數，外迴圈從長度$l=2$的子字串開始到長度$n$，最後$dp[0][n-1]$就是答案</p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/01/leetcode-minimum-insertion-steps-to-make-a-string-palindrome/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -550,7 +550,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            97
+                            98
                         </p>
                     </a>
                 </div>
@@ -671,7 +671,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">57</span>
+                <span class="level-item tag">58</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -679,7 +679,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">52</span>
+                <span class="level-item tag">53</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -763,6 +763,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T08:05:10.000Z">2020-03-24</time></div>
+                    <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-K-Closest-Points-to-Origin/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/i3lSk4R.png" alt="Leetcode - K Closest Points to Origin">
@@ -837,25 +856,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IwyHHN1.jpg" alt="Leetcode - Construct Binary Tree from Preorder and Inorder Traversal">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T10:19:06.000Z">2020-03-07</time></div>
-                    <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Tree from Preorder and Inorder Traversal</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -873,7 +873,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1113,7 +1113,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">57</span>
+                        <span class="tag is-grey">58</span>
                     </a>
                 </div>
                 
@@ -1645,7 +1645,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
@@ -1731,6 +1731,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T08:05:10.000Z">2020-03-24</time></div>
+                    <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-K-Closest-Points-to-Origin/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/i3lSk4R.png" alt="Leetcode - K Closest Points to Origin">
@@ -1805,25 +1824,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IwyHHN1.jpg" alt="Leetcode - Construct Binary Tree from Preorder and Inorder Traversal">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T10:19:06.000Z">2020-03-07</time></div>
-                    <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Tree from Preorder and Inorder Traversal</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1841,7 +1841,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -2081,7 +2081,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">57</span>
+                        <span class="tag is-grey">58</span>
                     </a>
                 </div>
                 
@@ -2613,7 +2613,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 

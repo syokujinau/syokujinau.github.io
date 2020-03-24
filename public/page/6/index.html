@@ -139,6 +139,72 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/xj14dYO.png" alt="FreeRTOS API Interface, Synchronization &amp; Coding Style">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-08T03:32:58.000Z">2020-01-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 480 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/">FreeRTOS API Interface, Synchronization &amp; Coding Style</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="API-Interface"><a href="#API-Interface" class="headerlink" title="API Interface"></a>API Interface</h2><p>這張圖是FreeRTOS與硬體的關係，提供Semaphore, Queue, Timer, Task 等kernel services，來讓我們架構上層的應用，該應用可以包含n個task，透過kernel與device driver (<a href="https://www.freertos.org/FreeRTOS-Plus/BSP_Solutions/FreeRTOS_BSP.html" target="_blank" rel="noopener">Board support package Layer</a>)溝通，執行各種操作，例如UART driver, SPI driver等，在由driver控制硬體週邊（SPI, I2C, Timer, GPIOs, etc），FreeRTOS完全不包含任何跟硬體周邊有關的程式。</p>
+<!-- ![](https://i.imgur.com/Ogsi4gZ.png) -->
+<p><img src="https://i.imgur.com/Bos9Ird.png" alt></p>
+<!-- * Create Task, Semaphore, Queue... , we actually consume the system heap.
+    * ![](https://i.imgur.com/6NXRxpo.png) -->
+
+<p>用FreeRTOS API產生Task, Semaphore, Queue…等, 會消耗system heap的記憶體</p>
+<p><img src="https://i.imgur.com/R1ldlqY.png" alt></p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/08/FreeRTOS-API-Interface-Synchronization-Coding-Style/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2020/01/07/RTOS-Task-Creation-and-semihosting-settings/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/I3hWsho.png" alt="FreeRTOS Task Creation 與 Semi-hosting (USART) 設定">
         </a>
@@ -408,73 +474,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/12/30/leetcode-Combination-Sum/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/ttDxLuM.png" alt="Leetcode - Combination Sum">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-30T06:11:46.000Z">2019-12-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 214 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/30/leetcode-Combination-Sum/">Leetcode - Combination Sum</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39. Combination Sum"></a><a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="noopener">39. Combination Sum</a></h2><p>Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.</p>
-<p>The same repeated number may be chosen from candidates unlimited number of times.</p>
-<p>Note:</p>
-<ul>
-<li>All numbers (including target) will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: candidates = [2,3,6,7], target = 7,</span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [7],</span><br><span class="line">  [2,2,3]</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/30/leetcode-Combination-Sum/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -549,7 +548,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            97
+                            98
                         </p>
                     </a>
                 </div>
@@ -670,7 +669,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">57</span>
+                <span class="level-item tag">58</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -678,7 +677,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">52</span>
+                <span class="level-item tag">53</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -762,6 +761,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T08:05:10.000Z">2020-03-24</time></div>
+                    <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-K-Closest-Points-to-Origin/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/i3lSk4R.png" alt="Leetcode - K Closest Points to Origin">
@@ -836,25 +854,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IwyHHN1.jpg" alt="Leetcode - Construct Binary Tree from Preorder and Inorder Traversal">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T10:19:06.000Z">2020-03-07</time></div>
-                    <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Tree from Preorder and Inorder Traversal</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -872,7 +871,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1112,7 +1111,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">57</span>
+                        <span class="tag is-grey">58</span>
                     </a>
                 </div>
                 
@@ -1644,7 +1643,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
@@ -1730,6 +1729,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T08:05:10.000Z">2020-03-24</time></div>
+                    <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-K-Closest-Points-to-Origin/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/i3lSk4R.png" alt="Leetcode - K Closest Points to Origin">
@@ -1804,25 +1822,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/IwyHHN1.jpg" alt="Leetcode - Construct Binary Tree from Preorder and Inorder Traversal">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-07T10:19:06.000Z">2020-03-07</time></div>
-                    <a href="/2020/03/07/leetcode-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Construct Binary Tree from Preorder and Inorder Traversal</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1840,7 +1839,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -2080,7 +2079,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">57</span>
+                        <span class="tag is-grey">58</span>
                     </a>
                 </div>
                 
@@ -2612,7 +2611,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
