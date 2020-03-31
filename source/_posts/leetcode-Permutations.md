@@ -42,7 +42,7 @@ Output:
 |---|---|---|
 ||n物取r個的直線排列數: $P^{n}_{r} = \frac{n!}{(n-r)!}$|n物取r個的組合數: $C^{n}_{r} = \frac{n!}{r!(n-r)!}$|
 ||需要一個used陣列紀錄用過的元素| 需要s紀錄start|
-| pseudocode |<img src="https://i.imgur.com/G4zORVo.png"  />|<img src="https://i.imgur.com/wnU6FHB.png"  />|
+| pseudocode |<img src="https://syokujinau.github.io/myimages/perm1.png"  />|<img src="https://syokujinau.github.io/myimages/perm2.png"  />|
 
 ## Solution
 
