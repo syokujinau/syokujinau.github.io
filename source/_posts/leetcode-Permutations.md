@@ -44,6 +44,46 @@ Output:
 ||需要一個used陣列紀錄用過的元素| 需要s紀錄start|
 | pseudocode |<img src="https://syokujinau.github.io/myimages/perm1.png"  />|<img src="https://syokujinau.github.io/myimages/perm2.png"  />|
 
+### 其他變形
+
+```
+input:
+[A, B, C, D, E]
+
+output:
+[A, B, C]
+[A, B, D]
+[A, B, E]
+[B, C, D]
+...
+```
+
+保持前後順序取3個直線排列，需紀錄start `s`
+
+
+
+```cpp
+const int n = nums.size();
+vector<int> cur;
+vector<bool> used(n, false);
+
+function<void(int, int)> dfs = [&](int d, int s) {
+    if(d == 3) {
+        for(int el : cur) cout << el << " "; cout << endl;
+        return;
+    }
+    
+    for(int i = s; i < n; ++i) {
+        if(used[i]) continue;
+        used[i] = true;
+        cur.push_back(nums[i]);
+        dfs(d + 1, i + 1);
+        cur.pop_back();
+        used[i] = false;
+    }
+};
+```
+
 ## Solution
 
 套上面模板
