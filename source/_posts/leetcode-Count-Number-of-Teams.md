@@ -51,6 +51,31 @@ Constraints:
 * 1 <= n <= 200
 * 1 <= rating[i] <= 10^5
 
+## Solution 
+
+$O(n^3)$
+
+```cpp
+class Solution {
+public:
+    int numTeams(vector<int>& rating) {
+        
+        int cnt = 0;
+        
+        for(int i = 0; i < rating.size(); ++i) {
+            for(int j = i + 1; j < rating.size(); ++j) {
+                for(int k = j + 1; k < rating.size(); ++k) {
+                    if(rating[i] < rating[j] && rating [j] < rating[k] || rating[i] > rating[j] && rating [j] > rating[k])
+                        cnt++;
+                }
+            }
+        }
+        
+        return cnt;
+    }
+};
+```
+
 ## Solution - Backtracking
 
 $O(2^n)$
