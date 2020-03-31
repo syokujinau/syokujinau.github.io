@@ -139,6 +139,68 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/02/03/js-promise-execute-sequentially/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 238 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/02/03/js-promise-execute-sequentially/">JavaScript 筆記 - 依序執行function</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p><img src="https://i.imgur.com/atfAxVR.png" alt><br>之前做C3.js圖表平移效果，網頁載入後平移9次，於是寫了9次callback</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">1</span>)}, <span class="hljs-number">1000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">2</span>)}, <span class="hljs-number">2000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">3</span>)}, <span class="hljs-number">3000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">4</span>)}, <span class="hljs-number">4000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">5</span>)}, <span class="hljs-number">5000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">6</span>)}, <span class="hljs-number">6000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">7</span>)}, <span class="hljs-number">7000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">8</span>)}, <span class="hljs-number">8000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">9</span>)}, <span class="hljs-number">9000</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>(｀・ω・´)……..</p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/02/03/js-promise-execute-sequentially/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/02/02/Raspberry-Pi3-MJPEG-Streamer-Install-Setup/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/f9eSaX7.jpg" alt="Raspberry Pi3 MJPEG-Streamer Install &amp; Setup">
         </a>
@@ -524,72 +586,6 @@ $$ -->
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2018/11/26/iot-course2018-HW6/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/9b82heZ.jpg" alt="透過AWS IoT core儲存sensor資料至DynamoDB">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-26T03:15:28.000Z">2018-11-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/IoT/">IoT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 minutes read (About 1874 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/11/26/iot-course2018-HW6/">透過AWS IoT core儲存sensor資料至DynamoDB</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><blockquote>
-<p>這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。</p>
-</blockquote>
-<p><img src="https://i.imgur.com/FyLh6ax.png" alt></p>
-<h1 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h1><p>照著步驟做，先安裝<code>pip install AWSIoTPythonSDK</code></p>
-<p><img src="https://i.imgur.com/Srd2tGj.png" alt></p>
-<h1 id="AWS-IoT-subscribe-PM2-5-MQTT"><a href="#AWS-IoT-subscribe-PM2-5-MQTT" class="headerlink" title="AWS IoT subscribe PM2.5 MQTT"></a>AWS IoT subscribe PM2.5 MQTT</h1><h2 id="修改政策"><a href="#修改政策" class="headerlink" title="修改政策"></a>修改政策</h2><p>IOT CORE -> 安全無虞 -> 政策 -> {政策的名稱} -> 編輯政策文件 </p>
-<p><img src="https://i.imgur.com/hBu7nDY.png" alt><br><img src="https://i.imgur.com/PAsU1EQ.png" alt></p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/11/26/iot-course2018-HW6/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -664,7 +660,7 @@ $$ -->
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            98
+                            99
                         </p>
                     </a>
                 </div>
@@ -785,7 +781,7 @@ $$ -->
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">58</span>
+                <span class="level-item tag">59</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -793,7 +789,7 @@ $$ -->
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">53</span>
+                <span class="level-item tag">54</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -877,6 +873,25 @@ $$ -->
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -951,25 +966,6 @@ $$ -->
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -987,7 +983,7 @@ $$ -->
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1227,7 +1223,7 @@ $$ -->
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -1269,7 +1265,7 @@ $$ -->
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1845,6 +1841,25 @@ $$ -->
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -1919,25 +1934,6 @@ $$ -->
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1955,7 +1951,7 @@ $$ -->
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2195,7 +2191,7 @@ $$ -->
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -2237,7 +2233,7 @@ $$ -->
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

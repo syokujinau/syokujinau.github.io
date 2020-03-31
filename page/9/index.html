@@ -139,6 +139,83 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/12/13/FreeRTOS-scheduler-concepts/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/Jimal0z.png" alt="FreeRTOS - Scheduler與設定檔 觀念彙整">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-13T04:01:28.000Z">2019-12-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/FreeRTOS/">FreeRTOS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 402 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/13/FreeRTOS-scheduler-concepts/">FreeRTOS - Scheduler與設定檔 觀念彙整</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><img src="https://i.imgur.com/kIXupfv.png" width="45%">
+
+
+<ol>
+<li>如何使用co-operative排程而不是預設的preemptive？<ul>
+<li>FreeRTOSConfig.h 中將<code>configUSE_PREEMPTION</code>定義為0</li>
+</ul>
+</li>
+<li>定義time slice<ul>
+<li>兩個kernal tick (SysTick)中斷的時間差</li>
+</ul>
+</li>
+<li>如何調整time slice？<ul>
+<li>修改<code>configTICK_RATE_HZ</code>的值</li>
+</ul>
+</li>
+<li>FreeRTOSConfigh.h 與MCU硬體無關？<ul>
+<li>False</li>
+<li>其中定義的中斷優先權會根據硬體而有所差異</li></ul></li></ol></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/12/13/FreeRTOS-scheduler-concepts/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/12/13/FreeRTOS-task-creation-concepts/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/qLhg02D.png" alt="FreeRTOS - Task Creation觀念彙整">
         </a>
@@ -377,7 +454,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 349 words)
+                    2 minutes read (About 363 words)
                 </span>
                 
                 
@@ -400,67 +477,6 @@
             <div class="level-start">
                 <div class="level-item">
                 <a class="button is-size-7 is-light" href="/2019/12/07/leetcode-Permutations/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/12/07/leetcode-Combinations/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/Vho7yDR.png" alt="Leetcode - Combinations">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-07T06:11:46.000Z">2019-12-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 249 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/07/leetcode-Combinations/">Leetcode - Combinations</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><h2 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a><a href="https://leetcode.com/problems/combinations/" target="_blank" rel="noopener">77. Combinations</a></h2><p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 4, k = 2</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [2,4],</span><br><span class="line">  [3,4],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  [1,3],</span><br><span class="line">  [1,4],</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/07/leetcode-Combinations/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -550,7 +566,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            98
+                            99
                         </p>
                     </a>
                 </div>
@@ -671,7 +687,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">58</span>
+                <span class="level-item tag">59</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -679,7 +695,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">53</span>
+                <span class="level-item tag">54</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -763,6 +779,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -837,25 +872,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -873,7 +889,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1113,7 +1129,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -1155,7 +1171,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1731,6 +1747,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -1805,25 +1840,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1841,7 +1857,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2081,7 +2097,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -2123,7 +2139,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

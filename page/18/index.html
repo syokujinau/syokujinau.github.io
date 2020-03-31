@@ -139,6 +139,72 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2018/11/26/iot-course2018-HW6/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/9b82heZ.jpg" alt="透過AWS IoT core儲存sensor資料至DynamoDB">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-11-26T03:15:28.000Z">2018-11-26</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/IoT/">IoT</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1874 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/11/26/iot-course2018-HW6/">透過AWS IoT core儲存sensor資料至DynamoDB</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><blockquote>
+<p>這是物聯網導論HW6，使用AWS IoT core與物聯網裝置經由MQTT通訊，儲存到DynamoDB，再由後端使用matplotlib繪製感測器資訊。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/FyLh6ax.png" alt></p>
+<h1 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h1><p>照著步驟做，先安裝<code>pip install AWSIoTPythonSDK</code></p>
+<p><img src="https://i.imgur.com/Srd2tGj.png" alt></p>
+<h1 id="AWS-IoT-subscribe-PM2-5-MQTT"><a href="#AWS-IoT-subscribe-PM2-5-MQTT" class="headerlink" title="AWS IoT subscribe PM2.5 MQTT"></a>AWS IoT subscribe PM2.5 MQTT</h1><h2 id="修改政策"><a href="#修改政策" class="headerlink" title="修改政策"></a>修改政策</h2><p>IOT CORE -> 安全無虞 -> 政策 -> {政策的名稱} -> 編輯政策文件 </p>
+<p><img src="https://i.imgur.com/hBu7nDY.png" alt><br><img src="https://i.imgur.com/PAsU1EQ.png" alt></p></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/11/26/iot-course2018-HW6/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2018/11/15/iot-course2018-HW4-HW5/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/gYUb3E9.jpg" alt="Arduino LoRa Shield通訊實驗與NodeRED">
         </a>
@@ -388,64 +454,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-10-12T09:05:41.000Z">2018-10-12</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Miscellaneous/">Miscellaneous</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 328 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/10/12/ML-course-note-SVM/">Support-Vector-Machine演算法 - 紅酒種類預測</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><blockquote>
-<p>scikit-learn 內建dataset : wine dataset</p>
-</blockquote>
-<h2 id="函式庫"><a href="#函式庫" class="headerlink" title="函式庫"></a>函式庫</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br><span class="line"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt</span><br><span class="line"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="載入dataset"><a href="#載入dataset" class="headerlink" title="載入dataset"></a>載入dataset</h2><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_wine</span><br><span class="line">data = load_wine()</span><br><span class="line">data.keys()</span><br><span class="line"><span class="hljs-comment"># print(data.DESCR)</span></span><br></pre></td></tr></tbody></table></figure></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/10/12/ML-course-note-SVM/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -518,7 +526,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            98
+                            99
                         </p>
                     </a>
                 </div>
@@ -639,7 +647,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">58</span>
+                <span class="level-item tag">59</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -647,7 +655,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">53</span>
+                <span class="level-item tag">54</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -731,6 +739,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -805,25 +832,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -841,7 +849,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1081,7 +1089,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -1123,7 +1131,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1699,6 +1707,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -1773,25 +1800,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1809,7 +1817,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2049,7 +2057,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -2091,7 +2099,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
