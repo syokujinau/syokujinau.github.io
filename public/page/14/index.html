@@ -139,6 +139,98 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/12/signal-statistics-CMSIS-DSP/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/VFOqYdF.png" alt="Signal Statistics and CMSIS-DSP">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-12T06:14:10.000Z">2019-09-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Embedded/">Embedded</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Embedded/ARM/">ARM</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 559 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/12/signal-statistics-CMSIS-DSP/">Signal Statistics and CMSIS-DSP</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><h2 id="Mean-and-Standard-Deviation"><a href="#Mean-and-Standard-Deviation" class="headerlink" title="Mean and Standard Deviation"></a>Mean and Standard Deviation</h2><ul>
+<li>Mean 平均數<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE  \mu = \frac{1}{N}\sum^{N-1}_{i=0}x_i = \frac{x_0 + x_1 + \dots + x_{N-1}}{N}"></li>
+<li>物理意義: DC signal (Direct current) 直流分量</li>
+</ul>
+</li>
+<li>Deviation<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\large i">  deviates from the mean: <img src="https://render.githubusercontent.com/render/math?math=\large |x_i - \mu|"></li>
+<li>Average deviation: <img src="https://render.githubusercontent.com/render/math?math=\LARGE \frac{1}{N-1}\sum^{N-1}_{i=0}|x_i - \mu|"> </li>
+<li>物理意義: 訊號樣本點與平均之距離</li>
+</ul>
+</li>
+<li>Standard Deviation 標準差<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\large {\color{Red} P} \propto {\color{Orange} V^{ {\color{Orange}2} } }"> </li>
+<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE {\color{Red} \sigma} = R.M.S = \sqrt{\frac{1}{N-1}\sum^{N-1}_{i=0}(x_i - {\color{Orange} \mu})^{\color{Orange} 2}}"> </li>
+<li>物理意義: 顯示單一個測量值(電壓)與平均值間可能偏差的程度(功率)</li>
+</ul>
+</li>
+<li>Variance 變異數<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE {\color{Red} \sigma^{\color{Red}2}}$ = $\frac{1}{N-1}\sum^{N-1}_{i=0}(x_i - {\color{Orange} \mu})^{\color{Orange} 2}"></li>
+<li>物理意義: 描述訊號的波動範圍，表示訊號中交流分量的強弱，即交流訊號的平均功率</li>
+</ul>
+</li>
+<li>Signal ro Noise ratio (SNR)<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE SNR = \frac{\mu}{\sigma}"> </li>
+</ul>
+</li>
+<li>Coefficient of Variation<ul>
+<li><img src="https://render.githubusercontent.com/render/math?math=\LARGE CV = \frac{\mu}{\sigma} \times 100"> 
+
+</li>
+</ul>
+</li>
+</ul></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/12/signal-statistics-CMSIS-DSP/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/09/11/stm32-dsp-fir-low-pass-filter/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/okSiQ42.png" alt="Setup 100MHz HCLK and ST-LINK debugger for logic analyzer of Keil IDE">
         </a>
@@ -403,91 +495,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/05/31/computational-complexity-theory/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/nzJdLTR.jpg" alt="計算複雜度理論簡介">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-31T08:25:30.000Z">2019-05-31</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 minutes read (About 1330 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/31/computational-complexity-theory/">計算複雜度理論簡介</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p>主要介紹</p>
-<ul>
-<li>P</li>
-<li>NP</li>
-<li>NP-Complete</li>
-</ul>
-<h2 id="Decision-Problem"><a href="#Decision-Problem" class="headerlink" title="Decision Problem"></a>Decision Problem</h2><p>一個計算問題，輸出只有True/False的某種演算法<br>例如:</p>
-<ul>
-<li>給定一個圖$G$，是否連通?</li>
-</ul>
-<p>shortest problem也可以改寫成Decision Problem</p>
-<ul>
-<li>給定一個圖$G$，兩點$u、v$，且它們的cost為$k$，是否存在一個path，其cost小於$k$?</li>
-</ul>
-<p>經典的計算難題: Hamiltonian path、cycle - pass all vertices exactly once</p>
-<ul>
-<li>給定一個圖$G$與起點$s$是否存在一個path、cycle，能夠剛好經過所有頂點一次?</li>
-</ul>
-<img src="https://i.imgur.com/niyYfHS.png" width="550px">
-
-
-<h2 id="P-Problems"><a href="#P-Problems" class="headerlink" title="$P$ Problems"></a>$P$ Problems</h2><p>一個Decision Problem屬於$P$，若且唯若存在一個poly-time演算法$A(s)$使得</p>
-<ul>
-<li>一個instance $s$是true$\Leftrightarrow A(s) = 1$</li>
-<li>一個instance $s$是false$\Leftrightarrow A(s) = 0$</li>
-</ul>
-<p><img src="https://i.imgur.com/3vDeqjn.png" alt></p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/31/computational-complexity-theory/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -562,7 +569,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            98
+                            99
                         </p>
                     </a>
                 </div>
@@ -683,7 +690,7 @@
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">58</span>
+                <span class="level-item tag">59</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -691,7 +698,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">53</span>
+                <span class="level-item tag">54</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -775,6 +782,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -849,25 +875,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -885,7 +892,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1125,7 +1132,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -1167,7 +1174,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1743,6 +1750,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -1817,25 +1843,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1853,7 +1860,7 @@
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2093,7 +2100,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -2135,7 +2142,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

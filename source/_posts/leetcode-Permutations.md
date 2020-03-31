@@ -58,7 +58,7 @@ output:
 ...
 ```
 
-保持前後順序取3個直線排列，需紀錄start `s`
+保持前後順序取3個直線排列，需紀錄start `s`, e.g. [1395. Count Number of Teams](https://leetcode.com/problems/count-number-of-teams/)
 
 
 

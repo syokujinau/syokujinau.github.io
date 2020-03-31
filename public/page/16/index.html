@@ -139,6 +139,69 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/2019/03/02/how-https-works/" class="image is-7by1">
+            <img class="thumbnail" src="https://i.imgur.com/1SpDhK2.jpg" alt="用生活化的例子解釋HTTPS">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-02T13:14:47.000Z">2019-03-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 586 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/03/02/how-https-works/">用生活化的例子解釋HTTPS</a>
+            
+        </h1>
+        <div class="content">
+            <html><head></head><body><p>試想一個簡單的情境，Alice跟Bob想互相用飛鴿傳書寄信，但是送信過程可能被Mallory攔截下來偷看內容…</p>
+<ul>
+<li>方法一，使用<a href="https://zh.wikipedia.org/wiki/%E5%87%B1%E6%92%92%E5%AF%86%E7%A2%BC" target="_blank" rel="noopener">凱薩密碼</a>(Caesar cipher，推移字母替代原文，知道加密方法就能解密，所以屬於對稱式加密)，這時Alice跟Bob想先傳送這個密碼，但是Mallory會攔截，然後就能解碼Alice跟Bob的信件內容，除非Alice跟Bob先私下見面制定密碼。</li>
+<li>方法二，當Bob想寄信給Alice，Bob先傳一隻不帶訊息的鴿子，Alice在讓鴿子帶上沒上鎖的盒子，自己留著盒子的鑰匙，然後傳給Bob，Bob收到沒上鎖的盒子後，放入信件並鎖上，傳回給Alice，這時候如果鴿子被攔截，Mallory也無法打開，因為只有Alice有這個盒子的鑰匙，這就是所謂的公鑰與私鑰，雖然叫做公鑰，但是作用是<strong>盒子</strong>，打開盒子的叫做私鑰。</li>
+</ul></body></html>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/02/how-https-works/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/2019/02/28/introduction-to-asymptotic-notation/" class="image is-7by1">
             <img class="thumbnail" src="https://i.imgur.com/K6F6Ojx.jpg" alt="Introduction to Asymptotic Notation and Analysis of Algorithms">
         </a>
@@ -413,68 +476,6 @@ $$</body></html>
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/02/03/js-promise-execute-sequentially/" class="image is-7by1">
-            <img class="thumbnail" src="https://i.imgur.com/X3i6f9L.png" alt="JavaScript 筆記 - 依序執行function">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-03T07:07:42.000Z">2019-02-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 238 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/03/js-promise-execute-sequentially/">JavaScript 筆記 - 依序執行function</a>
-            
-        </h1>
-        <div class="content">
-            <html><head></head><body><p><img src="https://i.imgur.com/atfAxVR.png" alt><br>之前做C3.js圖表平移效果，網頁載入後平移9次，於是寫了9次callback</p>
-<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">1</span>)}, <span class="hljs-number">1000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">2</span>)}, <span class="hljs-number">2000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">3</span>)}, <span class="hljs-number">3000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">4</span>)}, <span class="hljs-number">4000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">5</span>)}, <span class="hljs-number">5000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">6</span>)}, <span class="hljs-number">6000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">7</span>)}, <span class="hljs-number">7000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">8</span>)}, <span class="hljs-number">8000</span>);</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'shift '</span>, <span class="hljs-number">9</span>)}, <span class="hljs-number">9000</span>);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>(｀・ω・´)……..</p></body></html>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/03/js-promise-execute-sequentially/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -549,7 +550,7 @@ $$</body></html>
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            98
+                            99
                         </p>
                     </a>
                 </div>
@@ -670,7 +671,7 @@ $$</body></html>
                 <span class="level-item">Algorithm</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">58</span>
+                <span class="level-item tag">59</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Algorithm/LeetCode/">
@@ -678,7 +679,7 @@ $$</body></html>
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">53</span>
+                <span class="level-item tag">54</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Embedded/">
@@ -762,6 +763,25 @@ $$</body></html>
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -836,25 +856,6 @@ $$</body></html>
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -872,7 +873,7 @@ $$</body></html>
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1112,7 +1113,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -1154,7 +1155,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -1730,6 +1731,25 @@ $$</body></html>
         
         <article class="media">
             
+            <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.imgur.com/EJBV6OV.jpg" alt="Leetcode - Count Number of Teams">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-30T03:21:16.000Z">2020-03-30</time></div>
+                    <a href="/2020/03/30/leetcode-Count-Number-of-Teams/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Count Number of Teams</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/24/leetcode-Find-a-Corresponding-Node-of-a-Binary-Tree-in-a-Clone-of-That-Tree/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://i.imgur.com/ud9TOVd.png" alt="Leetcode - Find a Corresponding Node of a Binary Tree in a Clone of That Tree">
@@ -1804,25 +1824,6 @@ $$</body></html>
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.imgur.com/6cJL2Tu.jpg" alt="Leetcode - Min Cost Climbing Stairs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T23:30:20.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/leetcode-Min-Cost-Climbing-Stairs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode - Min Cost Climbing Stairs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Algorithm/">Algorithm</a> / <a class="has-link-grey -link" href="/categories/Algorithm/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1840,7 +1841,7 @@ $$</body></html>
                     <span class="level-item">March 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -2080,7 +2081,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Algorithm/">
                         <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">58</span>
+                        <span class="tag is-grey">59</span>
                     </a>
                 </div>
                 
@@ -2122,7 +2123,7 @@ $$</body></html>
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Backtracking/">
                         <span class="tag">Backtracking</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
